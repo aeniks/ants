@@ -1,0 +1,99 @@
+#!/bin/bash
+## written by 12ants.github.io
+#########################
+## -- CUSTOM LINUX --  ##
+#########################
+## tput sc; tput cup 7 $((COLUMNS-28)); echo -en "loaded $(tput setaf 7)/etc/bbbb"; tput rc;
+export EDITOR='micro'; 
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
+alias ee="echo ";
+alias ll='ls -lhpAtr --color=always --group-directories-first';
+######## COLORS
+bold=$(tput bold) dim=$(tput dim) so=$(tput smso) noso=$(tput rmso) rev=$(tput rev) re=$(tput sgr0) normal=$(tput sgr0) \
+redb=$(tput setab 1) greenb=$(tput setab 2) yellowb=$(tput setab 3) blueb=$(tput setab 4) purpleb=$(tput setab 5) cyanb=$(tput setab 6) \
+grayb=$(tput setab 7) red=$(tput setaf 1) green=$(tput setaf 2) yellow=$(tput setaf 3) blue=$(tput setaf 4) purple=$(tput setaf 5) \
+cyan=$(tput setaf 6) gray=$(tput setaf 7) white=$(tput setaf 7 bold) pink=$(tput setaf 5 bold) darkblue=$(tput setab 5 bold) blink=$(tput blink) \
+left2=$(tput cub 2) up1=$(tput cuu1) pinkb=$(tput setab 5 bold) 
+if [[ $TERM != "xterm-256color" ]]; then
+ra1=$((RANDOM%16+1)); ra2=$((RANDOM%8+1)); rb1=$((RANDOM%16+1)); rb2=$((RANDOM%8+1)); rc1=$((RANDOM%16+1))
+rc2=$((RANDOM%8+1)); rd1=$((RANDOM%16+1)); rd2=$((RANDOM%8+1)); re1=$((RANDOM%16+1)); re2=$((RANDOM%8+1)); 
+else
+ra1=$((RANDOM%16+1)); ra2=$((RANDOM%256+1)); rb1=$((RANDOM%16+1)); rb2=$((RANDOM%256+1)); rc1=$((RANDOM%16+1))
+rc2=$((RANDOM%256+1)); rd1=$((RANDOM%16+1)); rd2=$((RANDOM%256+1)); re1=$((RANDOM%16+1)); re2=$((RANDOM%256+1)); fi
+########
+c2=""$cyan"--$re"; export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+##########################
+#### Welcome screen ######
+##########################
+echo; greet; qw|pr --omit-header --indent=8 --across|lolcat -p 88 2>/dev/null;
+#export ipn=$(hostname -I|tr " " "\n"|head -n1|tail -c2)
+##
+
+# bash completion for the `wp` command
+_wp_complete() {
+	local OLD_IFS="$IFS"
+	local cur=${COMP_WORDS[COMP_CWORD]}
+
+	IFS=$'\n';  # want to preserve spaces at the end
+	local opts="$(wp cli completions --line="$COMP_LINE" --point="$COMP_POINT")"
+
+	if [[ "$opts" =~ \<file\>\s* ]]
+	then
+		COMPREPLY=( $(compgen -f -- $cur) )
+	elif [[ $opts = "" ]]
+	then
+		COMPREPLY=( $(compgen -f -- $cur) )
+	else
+		COMPREPLY=( ${opts[*]} )
+	fi
+
+	IFS="$OLD_IFS"
+	return 0
+}
+complete -o nospace -F _wp_complete wp
+##
+##
+## bash prompt
+#########
+##
+env=~/.ssh/agent.env
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+agent_load_env
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+    ssh-add
+fi
+unset env
+#######
+ip4=$(curl -4 ip.me -s); 
+ip6=$(curl -6 ip.me -s); 
+iplocal=$(ip addr show $(ip route | awk '/default/ { print $5 }') | grep "inet" | head -n 1 | awk '/inet/ {print $2}' | cut -d'/' -f1)
+ip route
+echo -ne "
+\t$(rrf)------$(tput setaf $rd2) Public IP4: $(tput sgr0)$ip4$(tput setaf 6) 
+\t$(rrf)------$(tput setaf $rb2) Public IP6: $(tput sgr0)$ip6$(tput setaf 6) 
+\t$(rrf)------$(tput setaf $rd1) Network IP: $(tput sgr0)$iplocal$(tput setaf 6)
+\t$(rrf)------$(tput setaf $ra2) Todays command: $re"; cat /ants/sh/cmd.sh|shuf -n1|lolcat -p 8; echo;
+##
+##
+qa() { 
+tput setaf $((RANDOM%$1+$2)); 
+}
+if [ "$(id -u)" -eq 0 ]; then us='#'; else us='$'; fi;
+me=$(whoami)
+computer=$(hostname 2>/dev/null)
+PS1='[$(qa $ra1 $ra2)$()$us$re][$(qa $rb1 $rb2)$(date +%T)$re][$(qa $rc1 $rc2)$computer$re][$(tput setaf $(echo $iplocal|tail -c2))$iplocal$re][$(qa $rd1 $rd2)$USER$re][$(qa $re1 $re2)$PWD/$re]>_\n'
+
+
+
+
+
+
