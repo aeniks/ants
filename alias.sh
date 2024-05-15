@@ -31,6 +31,7 @@ shost="ants.ftp.sh"; suser="aaaa";
 alias sl='ssh $suser@$shost'
 alias serve='read -n1 -ep  "$c2 serve $PWD/? "; npx wrangler pages dev . 2>/dev/null'
 alias wrangler='npx wrangler pages'
+alias iplocal='ip route; cat ~/iplog; ' 
 alias ants='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new/ants; . /tmp/in.sh;'
 alias lenoo='read -t 8 -ep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; curl -k https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM='
 alias rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$rainbow";'
