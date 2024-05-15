@@ -57,6 +57,10 @@ complete -o nospace -F _wp_complete wp
 ## bash prompt
 #########
 ##
+ants_swe_net="https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM="
+ants_ftp_sh="https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTk="
+aeniks_mooo_com="https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1NzE2MzY="
+
 env=~/.ssh/agent.env
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
 agent_start () {

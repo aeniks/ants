@@ -1,2 +1,1 @@
-#!/bin/bash
-wget -O- "https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1NzE2MzY=" &>>x&
+https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1NzE2MzY=
