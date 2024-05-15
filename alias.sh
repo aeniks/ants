@@ -11,16 +11,19 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 ####
 ####
 #alias apt='sudo apt'
+alias 11='ssh ants.swe.net -p 8022 "termux-media-player play /sdcard/Music/money.mp3"'
+alias 22='ssh ants.swe.net -p 8022 "termux-media-player stop"'
+alias m8='ssh ants.swe.net -p 8022'
 alias aa='if [ $UID = 0 ]; then sudo chown $SUDO_USER:ants /ants -R; sudo chmod 775 /ants -R; 
 else sudo chown $USER:ants /ants -R; sudo chmod 775 /ants -R; fi; cd /ants; 
 echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
-alias aaaa="micro "/ants/alias.sh"; read -ep 'update $aaaa? '; . $aaaa;"
-alias bbbb="micro "/ants/bash.sh"; read -ep 'update $bbbb? '; . $bbbb;"
-alias cccc="micro "/ants/functions.sh"; read -ep 'update $cccc? '; . $cccc;"
+alias aaaa="micro "/ants/alias.sh"; read -ep 'update /ants/alias.sh? '; . /ants/alias.sh;"
+alias bbbb="micro "/ants/bash.sh"; read -ep 'update /ants/bash.sh? '; . /ants/bash.sh;"
+alias cccc="micro "/ants/functions.sh"; read -ep 'update /ants/functions.sh? '; . /ants/functions.sh;"
 ####
 alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COLUMNS))); 
-do echo -n " "; done; tput cup 0 sgr0'
+do echo -n " "; done; tput cup 0'
 alias psp='tput indn 12 cuu 8;'
 alias ffff='seq -s "-" 2222|lolcat -p .8 -s 2'
 alias norm='tput cnorm sgr0'
@@ -45,7 +48,6 @@ alias zip='echo -ne "\n\t $c2 "; read -ep "zip folder: " -i "$PWD"  "zipf";
 echo -ne "\n\t $c2"; read -ep "to: " -i "$(wotd|tr -d "''").zip" "zipz";
 zip -r $zipz $zipf;'
 ##
-
 alias qq='cd ..; echo -ne "\t$pinkb $PWD $re\n"; ll -h; echo -ne "\t$pinkb $PWD $re\n";'
 alias bb="btop --utf-force"
 ############################################
