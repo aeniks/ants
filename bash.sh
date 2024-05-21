@@ -80,7 +80,6 @@ unset env
 ip4=$(curl -4 ip.me -s); 
 ip6=$(curl -6 ip.me -s); 
 iplocal=$(ip addr show $(ip route | awk '/default/ { print $5 }') | grep "inet" | head -n 1 | awk '/inet/ {print $2}' | cut -d'/' -f1)
-ip route
 echo -ne "
 \t$(rrf)------$(tput setaf $rd2) Public IP4: $(tput sgr0)$ip4$(tput setaf 6) 
 \t$(rrf)------$(tput setaf $rb2) Public IP6: $(tput sgr0)$ip6$(tput setaf 6) 
