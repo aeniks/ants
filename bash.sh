@@ -6,7 +6,7 @@
 ## tput sc; tput cup 7 $((COLUMNS-28)); echo -en "loaded $(tput setaf 7)/etc/bbbb"; tput rc;
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
-alias ee="echo ";
+alias ee='echo ';
 alias ll='ls -lhpAtr --color=always --group-directories-first';
 ######## COLORS
 bold=$(tput bold) dim=$(tput dim) so=$(tput smso) noso=$(tput rmso) rev=$(tput rev) re=$(tput sgr0) normal=$(tput sgr0) \
@@ -26,8 +26,9 @@ c2=""$cyan"--$re"; export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "
 ##########################
 #### Welcome screen ######
 ##########################
-echo; greet; qw|pr --omit-header --indent=8 --across|lolcat -p 88 2>/dev/null;
-#export ipn=$(hostname -I|tr " " "\n"|head -n1|tail -c2)
+if [ lolcat ]; then qw|pr --omit-header --indent=8 --across|lolcat -p 88 2>/dev/null; fi
+echo; greet 2>/dev/null; #export ipn=$(hostname -I|tr " " "\n"|head -n1|tail -c2)
+who
 ##
 
 # bash completion for the `wp` command
@@ -66,7 +67,7 @@ agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
 agent_start () {
     (umask 077; ssh-agent >| "$env")
     . "$env" >| /dev/null ; }
-agent_load_env
+agent_load_env 2>/dev/null; 
 # agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
 agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
 if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
@@ -80,7 +81,7 @@ unset env
 ip4=$(curl -4 ip.me -s&); 
 ip6=$(curl -6 ip.me -s&); 
 iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c16-25|tr -d " [:alpha:]"); 
-echo "
+echo -e "
 \t$(rrf)------$(tput setaf $rd2) Public IP4: $(tput sgr0)$ip4$(tput setaf 6) 
 \t$(rrf)------$(tput setaf $rb2) Public IP6: $(tput sgr0)$ip6$(tput setaf 6) 
 \t$(rrf)------$(tput setaf $rd1) Network IP: $(tput sgr0)$iplocal$(tput setaf 6;)

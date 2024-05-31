@@ -14,8 +14,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias 11='ssh ants.swe.net -p 8022 "termux-media-player play /sdcard/Music/money.mp3"'
 alias 22='ssh ants.swe.net -p 8022 "termux-media-player stop"'
 alias m8='ssh ants.swe.net -p 8022'
-alias aa='if [ $UID = 0 ]; then sudo chown $SUDO_USER:ants /ants -R; sudo chmod 775 /ants -R; 
-else sudo chown $USER:ants /ants -R; sudo chmod 775 /ants -R; fi; cd /ants; 
+alias aa='if [ $USER = "root" ]; then sudo chown $SUDO_USER: /ants -R; sudo chmod 775 /ants -R; 
+else sudo chown $USER: /ants -R; sudo chmod 775 /ants -R; fi; cd /ants; 
 echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
 alias aaaa="micro "/ants/alias.sh"; read -ep 'update /ants/alias.sh? '; . /ants/alias.sh;"
