@@ -77,14 +77,15 @@ elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
 fi
 unset env
 #######
-ip4=$(curl -4 ip.me -s); 
-ip6=$(curl -6 ip.me -s); 
-iplocal=$(ip addr show $(ip route | awk '/default/ { print $5 }') | grep "inet" | head -n 1 | awk '/inet/ {print $2}' | cut -d'/' -f1)
-echo -ne "
+ip4=$(curl -4 ip.me -s&); 
+ip6=$(curl -6 ip.me -s&); 
+iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c17-25|tr -d " [:alpha:]"); 
+echo "
 \t$(rrf)------$(tput setaf $rd2) Public IP4: $(tput sgr0)$ip4$(tput setaf 6) 
 \t$(rrf)------$(tput setaf $rb2) Public IP6: $(tput sgr0)$ip6$(tput setaf 6) 
-\t$(rrf)------$(tput setaf $rd1) Network IP: $(tput sgr0)$iplocal$(tput setaf 6)
-\t$(rrf)------$(tput setaf $ra2) Todays command: $re"; cat /ants/sh/cmd.sh|shuf -n1|lolcat -p 8; echo;
+\t$(rrf)------$(tput setaf $rd1) Network IP: $(tput sgr0)$iplocal$(tput setaf 6;)
+\t$(rrf)------$(tput setaf $ra2) Todays command: $re $(cat /ants/sh/cmd.sh|shuf -n1|lolcat -p 8)"; 
+echo;
 ##
 ##
 qa() { 
@@ -93,10 +94,5 @@ tput setaf $((RANDOM%$1+$2));
 if [ "$(id -u)" -eq 0 ]; then us='#'; else us='$'; fi;
 me=$(whoami)
 computer=$(hostname 2>/dev/null)
-PS1='[$(qa $ra1 $ra2)$()$us$re][$(qa $rb1 $rb2)$(date +%T)$re][$(qa $rc1 $rc2)$computer$re][$(tput setaf $(echo $iplocal|tail -c2))$iplocal$re][$(qa $rd1 $rd2)$USER$re][$(qa $re1 $re2)$PWD/$re]>_\n'
-
-
-
-
-
-
+PS1='[$(qa $ra1 $ra2)$()$us$re][$(qa $rb1 $rb2)$(date +%T)$re][$(qa $rc1 $rc2)$computer$re]
+[$(tput setaf 6)$iplocal$re][$(qa $rd1 $rd2)$USER$re][$(qa $re1 $re2)$PWD/$re]>_\n'
