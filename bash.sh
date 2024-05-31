@@ -79,7 +79,7 @@ unset env
 #######
 ip4=$(curl -4 ip.me -s&); 
 ip6=$(curl -6 ip.me -s&); 
-iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c17-25|tr -d " [:alpha:]"); 
+iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c16-25|tr -d " [:alpha:]"); 
 echo "
 \t$(rrf)------$(tput setaf $rd2) Public IP4: $(tput sgr0)$ip4$(tput setaf 6) 
 \t$(rrf)------$(tput setaf $rb2) Public IP6: $(tput sgr0)$ip6$(tput setaf 6) 
