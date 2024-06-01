@@ -27,8 +27,8 @@ do echo -n " "; done; tput cup 0'
 alias psp='tput indn 12 cuu 8;'
 alias ffff='seq -s "-" 2222|lolcat -p .8 -s 2'
 alias norm='tput cnorm sgr0'
-shost="aeniks.mooo.com"; suser="aaaa";
-alias sl='ssh $suser@$shost'
+#shost="aeniks.mooo.com"; suser="aaaa";
+#alias sl='ssh $suser@$shost'
 alias serve='read -n1 -ep  "$c2 serve $PWD/? "; npx wrangler pages dev . 2>/dev/null'
 alias wrangler='npx wrangler pages'
 alias iplocal='ip route; cat ~/iplog; ' 

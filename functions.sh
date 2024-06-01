@@ -5,6 +5,32 @@
 ###########
 ## coolors - display available colors
 ####
+
+sl() {
+s1="ants.ftp.sh"
+s2="ants.swe.net"
+s3="aeniks.mooo.com"
+s4="bobo.ftp.sh"
+echo -n "$cyan 1$re) "; host $s1; 
+echo -n "$cyan 2$re) "; host $s2; 
+echo -n "$cyan 3$re) "; host $s3; 
+echo -n "$cyan 4$re) "; host $s4; 
+echo -en "\n\t$c2 server: "; read a
+echo -en "\t$c2 user: "; read -ep "" -i "$USER" "shuser";
+echo -en "\t$c2 port:"; read -ep " " -i "22" "sp";
+        case $a in
+	        1) ssh $shuser@$s1 -p $sp; return 0 ;;
+	        2) ssh $shuser@$s2 -p $sp; return 0 ;;
+	        3) ssh $shuser@$s3 -p $sp; return 0 ;;
+	        4) ssh $shuser@$s4 -p $sp; return 0 ;;
+		0) return 0 ;;
+		*) echo -e $red"Wrong option."$clear; WrongCommand;;
+        esac
+}
+
+
+
+
 cdcd() {
 l -d */; psp read -ep "$c2 "$rev"goto:$re " -i "$PWD" "goto"; 
 mkdir -p $folder -m 775 2>/dev/null;
