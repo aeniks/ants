@@ -13,6 +13,56 @@ cd $goto; echo -e "\n\t $cyan$bold> $pink$PWD$cyan <$re\n\t * * * *\n"; ls -cakl
 
 ####
 
+
+
+ipsnet() {
+ipsnet=($(ip n | grep -v FAILED|tr -s "[:alpha:]" "\t"|cut -c1-11|head -n-1|tr -d "\n\t")); 
+echo ${ipsnet[@]}
+}
+
+#  for i in ${ipsnet[@]}; do nc -N $i 22 -w1 -v||(tput setaf 1 cuu1; echo -e " NO $re";) done
+
+
+
+ipnet() {
+iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c16-29|tr -d " [:alpha:]"); 
+ipbase=${iplocal%.*}; echo $ipbase
+for ip in $ipbase.{1..54}; do
+ping -c 1 -W 1 $ip &
+done | sed -nE 's:^.* from ([0-9.]+).*time=(.*s)$:\1 (\2):p'
+wait
+}
+
+#scan()
+#{
+#
+#baseip=$(arp -a) && baseip=${baseip%%\)*} && baseip=${baseip##*\(}
+#baseip=$(ip -o -f inet addr show|grep "scope global") && \
+#baseip=${baseip##* inet} && baseip=${baseip%%/*}; baseip=${baseip%.*}
+#echo $baseip
+#
+#for ip in $baseip.{1..54}; do
+#ping -c 1 -W 1 $ip &
+#done | sed -nE 's:^.* from ([0-9.]+).*time=(.*s)$:\1 (\2):p'
+#wait
+#fi
+#}
+
+# if [ $1 ]; then
+# for baseip; do
+# scan $baseip
+# done
+# else
+# baseip=$(arp -a) && \
+# baseip=${baseip%%\)*} && baseip=${baseip##*\(}
+# if [ $baseip"" == "" ] ; then
+# baseip=$(ip -o -f inet addr show|grep "scope global") && \
+# baseip=${baseip##* inet} && baseip=${baseip%%/*}
+# fi
+# baseip=${baseip%.*}
+# scan $baseip 
+# fi
+
 coolors() {
 #!/bin/bash
 for ((i=0; i<256; i++)) ;do

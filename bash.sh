@@ -80,7 +80,8 @@ unset env
 #######
 ip4=$(curl -4 ip.me -s&); 
 ip6=$(curl -6 ip.me -s&); 
-iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c16-25|tr -d " [:alpha:]"); 
+iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c16-29|tr -d " [:alpha:]"); 
+ipbase=${iplocal%.*}; echo $ipbase
 echo -e "
 \t$(rrf)------$(tput setaf $rd2) Public IP4: $(tput sgr0)$ip4$(tput setaf 6) 
 \t$(rrf)------$(tput setaf $rb2) Public IP6: $(tput sgr0)$ip6$(tput setaf 6) 
@@ -89,6 +90,7 @@ echo -e "
 echo;
 ##
 ##
+# $(ls -Fptr --classify --color --group-directories-first|tr "\n" " "|head -c$((COLUMNS*6)))
 zz=' 2>/dev/null'
 qa() { 
 tput setaf $((RANDOM%$1+$2)); 
@@ -96,8 +98,7 @@ tput setaf $((RANDOM%$1+$2));
 if [ "$(id -u)" -eq 0 ]; then us='#'; else us='$'; fi;
 me=$(whoami)
 computer=$(hostname 2>/dev/null)
-PS1='$(qa $re1 $re2; tput smso)$PWD \
-$re$(ls -Fptr --classify --color --group-directories-first|tr "\n" " ") \n\
+PS1='$(qa $re1 $re2; tput smso)$PWD$re\
 [$#][$(qa $ra1 $ra2)$()$us$re][$(qa $rb1 $rb2)$(date +%T)$re]\
 [$(qa $rc1 $rc2)$computer$re][$(tput setaf 6)$iplocal$re]\
-[$(qa $rd1 $rd2)$USER$re][$#]>_ $COLUMNS \n'
+[$(qa $rd1 $rd2)$USER$re][$#]>_ \n'
