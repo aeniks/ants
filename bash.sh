@@ -96,7 +96,8 @@ tput setaf $((RANDOM%$1+$2));
 if [ "$(id -u)" -eq 0 ]; then us='#'; else us='$'; fi;
 me=$(whoami)
 computer=$(hostname 2>/dev/null)
-PS1='$(qa $re1 $re2; tput smso)$PWD $re $(ls -Fptrw999 --classify --color --group-directories-first|tr "\n" " ";)\n \
-[$_][$(qa $ra1 $ra2)$()$us$re][$(qa $rb1 $rb2)$(date +%T)$re]\
+PS1='$(qa $re1 $re2; tput smso)$PWD \
+$re$(ls -Fptr --classify --color --group-directories-first|tr "\n" " ") \n\
+[$#][$(qa $ra1 $ra2)$()$us$re][$(qa $rb1 $rb2)$(date +%T)$re]\
 [$(qa $rc1 $rc2)$computer$re][$(tput setaf 6)$iplocal$re]\
-[$(qa $rd1 $rd2)$USER$re][]>_ $COLUMNS \n'
+[$(qa $rd1 $rd2)$USER$re][$#]>_ $COLUMNS \n'
