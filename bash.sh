@@ -88,6 +88,8 @@ echo -e "
 \t$(rrf)------$(tput setaf $rd1) Network IP: $(tput sgr0)$iplocal$(tput setaf 6;)
 \t$(rrf)------$(tput setaf $ra2) Todays command: $re $(cat /ants/sh/cmd.sh|shuf -n1|lolcat -p 8)"; 
 echo;
+netw;
+echo;
 ##
 ##
 # $(ls -Fptr --classify --color --group-directories-first|tr "\n" " "|head -c$((COLUMNS*6)))

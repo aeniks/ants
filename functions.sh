@@ -27,7 +27,11 @@ echo -en "\t$c2 port:"; read -ep " " -i "22" "sp";
 		*) echo -e $red"Wrong option."$clear; WrongCommand;;
         esac
 }
-
+ports() {
+if [ $1 ]; then ho="$1"; h2="$(host $ho|tr -d "[:alpha:] "|tail -c+3)";
+else h2="localhost"; fi; 
+nc -z -v $h2 1-65535 2>&1 | grep succeeded
+}
 
 
 
