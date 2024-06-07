@@ -1,4 +1,5 @@
 #/bin/bash
+# Installs basic apps and functions
 tput dim; 
 sudo apt update; sudo apt -qqy install net-tools ifconfig lolcat fortunes fortune-mod cowsay 2>/dev/null; echo;echo;
 #echo "${cows[$((RANDOM%${#cows[@]}))]}"

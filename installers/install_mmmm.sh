@@ -1,7 +1,7 @@
 #!/bin/bash
+# About: gpm links2 ranger mc lolcat googler...
 ##
 ## 0000/etc/basic_apps.sh
-## About: gpm links2 ranger mc lolcat googler...
 ##
 # BASIC APPS #
 ##############

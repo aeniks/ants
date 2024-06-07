@@ -4,7 +4,8 @@ redb=$(tput setab 1) greenb=$(tput setab 2) yellowb=$(tput setab 3) blueb=$(tput
 grayb=$(tput setab 7) red=$(tput setaf 1) green=$(tput setaf 2) yellow=$(tput setaf 3) blue=$(tput setaf 4) purple=$(tput setaf 5) \
 cyan=$(tput setaf 6) gray=$(tput setaf 7) white=$(tput setaf 7 bold) pink=$(tput setaf 5 bold) darkblue=$(tput setab 5 bold) blink=$(tput blink) \
 left2=$(tput cub 2) up1=$(tput cuu1) pinkb=$(tput setab 5 bold) c2=""$cyan"--$re";
-echo -e "
+echo -en "
+\t  Installation folder:"; read -ep " " -i "$PWD" ovin; echo -e "
 \t  ------------------------------------------
 \t  ------------ $green hello $re ---------------------
 \t  ------------------------------------------
@@ -99,7 +100,7 @@ cursor_blink_on
 eval $retval='("${selected[@]}")'
 }
 ######## CONFIGURATION TO INSTALL FOLDER ########
-ov1=($(ls /ants/installers))
+ov1=($(ls $ovin))
 ov2=(${ov1[@]^})
 OPTIONS_VALUES=(${ov2[@]//.*/ })
 ##################################################
@@ -119,13 +120,13 @@ else echo -e "\n\t $c2 OK"; fi;
 ##
 for i in "${CHECKED[@],,}";
 do echo -e "\t $c2 Installing $i \n"; 
-bash "/ants/installers/"$i".sh"; echo -e "\t $c2 done\n"; done
+bash "$ovin/"$i".sh"; echo -e "\t $c2 DONE\n"; done
 echo -e "\t $c2 All done\n";
 ########################################
 echo -e "\n\t $c2$blink Bash is now better! $re$c2 \n";
 ################# end
-echo -e "$green"; cd /ants/; 
+echo -e "$green"; cd /ants/; cd $OLDPWD
 echo -e "\tEnjoy the ants! \n\t"$re$dim"this be the files\n\t$re$blue---------------- $re\n\t "$dim$bold"/"$re"ants$re"; 
 echo -e "\t$blue---------------- $re";
-ls --group-directories-first --width=2 -p|pr --omit-header --indent=9
+ls --group-directories-first --width=2222 -p|pr --omit-header --indent=6
 echo -e "\t$blue---------------- $re\n"; 
