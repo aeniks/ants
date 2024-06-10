@@ -1,3 +1,5 @@
+#!/bin/bash
+# checkbox menu
 tput cup 0; tput ed; unset CHECKED OPTIONS_VALUES OPTIONS_LABELS OPTIONS_STRING
 bold=$(tput bold) dim=$(tput dim) so=$(tput smso) noso=$(tput rmso) rev=$(tput rev) re=$(tput sgr0) normal=$(tput sgr0) \
 redb=$(tput setab 1) greenb=$(tput setab 2) yellowb=$(tput setab 3) blueb=$(tput setab 4) purpleb=$(tput setab 5) cyanb=$(tput setab 6) \
@@ -15,7 +17,7 @@ echo -en "
 \t  ------------------------------------------
 \t  -- Choose multiple options: --------------
 \t  ------------------------------------------\n"
-prompt_for_multiselect () {
+menux () {
 # little helpers for terminal print control and key input
 ESC=$( printf "\033")
 cursor_blink_on()   { printf "$ESC[?25h"; }
@@ -108,7 +110,8 @@ OPTIONS_VALUES=(${ov2[@]//.*/ })
 ## OPTIONS_LABELS=("Apple" "Microsoft" "Google")
 ##
 for i in "${!OPTIONS_VALUES[@]}"; do OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"; done;
-prompt_for_multiselect SELECTED "$OPTIONS_STRING"
+#menux SELECTED "$OPTIONS_STRING"
+
 for i in "${!SELECTED[@]}"; do if [ "${SELECTED[$i]}" == "true" ]; then CHECKED+=("${OPTIONS_VALUES[$i]}"); fi; done; 
 ######## CHOOSED
 ##
