@@ -99,12 +99,12 @@ cursor_blink_on
 eval $retval='("${selected[@]}")'
 }
 ######## CONFIGURATION TO INSTALL FOLDER ########
-ov1=($(ls /ants/installers))
-ov2=(${ov1[@]^})
-OPTIONS_VALUES=(${ov2[@]//.*/ })
+ov1=($(ls $PWD/$1))
+OPTIONS_VALUES=(${ov1[@]^^})
+#OPTIONS_VALUES=(${ov2[@]//.*/ })
 ##################################################
 ##
-## OPTIONS_LABELS=("Apple" "Microsoft" "Google")
+OPTIONS_LABELS=("Apple" "Microsoft" "Google")
 ##
 for i in "${!OPTIONS_VALUES[@]}"; do OPTIONS_STRING+="${OPTIONS_VALUES[$i]} (${OPTIONS_LABELS[$i]});"; done;
 prompt_for_multiselect SELECTED "$OPTIONS_STRING"

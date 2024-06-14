@@ -2,11 +2,13 @@
 #description:   Menu which allows multiple items to be selected
 #usage:         ./menu.sh
 #Menu options
-options[0]="AAA"
-options[1]="BBB"
-options[2]="CCC"
-options[3]="DDD"
-options[4]="EEE"
+unset options
+options=($(ls))
+#options[0]="AAA"
+#options[1]="BBB"
+#options[2]="CCC"
+#options[3]="DDD"
+#options[4]="EEE"
 #Actions to take based on selection
 function ACTIONS {
 for i in ${choices[@]}; do
