@@ -3,14 +3,18 @@
 #usage:         ./menu.sh
 #Menu options
 unset options
-options=($(ls))
+
+ops() {
+options=($(ls $1))
+}
+ops
 #options[0]="AAA"
 #options[1]="BBB"
 #options[2]="CCC"
 #options[3]="DDD"
 #options[4]="EEE"
 #Actions to take based on selection
-function ACTIONS {
+ACTIONS() {
 for i in ${choices[@]}; do
 if [[ ${choices[NUM]} ]]; then
 echo "$NUM"
@@ -41,7 +45,7 @@ ERROR=" "
 #Clear screen for menu
 clear
 #Menu function
-function MENU {
+MENU() {
 echo "Menu Options"
 for NUM in ${!options[@]}; do
 echo "[""${choices[NUM]:- }""]" $(( NUM+1 ))") ${options[NUM]}"
