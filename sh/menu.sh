@@ -1,424 +1,443 @@
-#!/bin/bash 
-#####################################################################################################################
+#!/usr/bin/env bash
+#===============================================================================
+#NAME
+#  checkbox.sh
 #
-#           R5: MAJ 22/11/2021 : EML 
-#               - Pb d'affichage du menu sur on dépasse la taille de l'écran
-#               - On restreint le choix au 40 derniers fichiers
-#           R6: MAJ 23/11/2021 : EML 
-#               - On détermine automatiquement la taille de l'écran pour vérifier que l'affichage est Ok
-#               - On affichera le menu compatible du coup
-#               - Ajout des flèche gauche/droite pour une évolution sur un menu à plusieurs colonnes parametrables
-#           R7: MAJ 24/11/2021 : EML 
-#               - Correction pour support toute version de bash
-#               - version < 4.3 : option "local -n" inconnue ==> fonction xxx_43m
-#               - version > 4.3 : option "local -n" reconnue ==> fonction xxx_43p
-#               - Possibilité de délectionner tout ou rien
-#           R8: MAJ 24/11/2021 : EML 
-#               - Correction checkwinsize
-#               - Correction positionnement sur la fenetre
+#DESCRIPTION
+#  Creates interactive checkboxes (menu) for the terminal
+#  For more info look the README.md on <https://github.com/pedro-hs/checkbox.sh>
+#  Features:
+#    - Select only a option or multiple options
+#    - Select or unselect multiple options easily
+#    - Select all or unselect all
+#    - Pagination
+#    - Optional Vim keybinds
+#    - Start with options selected
+#    - Show selected options counter for multiple options
+#    - Show custom message
+#    - Show current option index and options amount
+#    - Copy current option value to clipboard
+#    - Help tab when press h or wrongly call the script
 #
+#SOURCE
+#  <https://github.com/pedro-hs/checkbox.sh>
 #
-# SOURCES :
-#   https://www.it-swarm-fr.com/fr/bash/menu-de-selection-multiple-dans-le-script-bash/958779139/ 
-#   https://unix.stackexchange.com/questions/146570/arrow-key-enter-menu/415155#415155
+#INSPIRED BY
+#  <https://gist.github.com/blurayne/f63c5a8521c0eeab8e9afd8baa45c65e>
+#  <https://www.bughunter2k.de/blog/cursor-controlled-selectmenu-in-bash>
 #
-#####################################################################################################################
-export noir='\e[0;30m'
-export gris='\e[1;30m'
-export rougefonce='\e[1;31m'
-export rouge='\e[0;31m'
-export rose='\e[1;31m'
-export vertfonce='\e[0;32m'
-export vertclair='\e[1;32m'
-export orange='\e[0;33m'
-export jaune='\e[1;33m'
-export bleufonce='\e[0;34m'
-export bleuclair='\e[1;34m'
-export violetfonce='\e[0;35m'
-export violetclair='\e[1;35m'
-export cyanfonce='\e[0;36m'
-export cyanclair='\e[1;36m'
-export grisclair='\e[0;37m'
-export blanc='\e[1;37m'
-export neutre='\e[0;m'
+#===============================================================================
+# CONTANTS
+#===============================================================================
+cyan=$(tput setaf 6); re=$(tput sgr0); dim=$(tput dim)
+SELECTED=""$re"["$cyan"x"$re"]"
+UNSELECTED="[ ]"
+WHITE="\033[2K\033[37m"
+BLUE="\033[2K\033[34m"
+RED="\033[2K\033[31m"
+GREEN="\033[2K\033[32m"
+INTERFACE_SIZE="6"
+DEFAULT_OPTIONS=($(ls -pfA1|grep -v /))
+#===============================================================================
+# VARIABLES
+#===============================================================================
+cursor=0
+options_length=0
+terminal_width=0
+start_page=2
+end_page=2
+has_multiple_options=true
+will_return_index=false
+unselect_mode_on=false
+select_mode_on=false
+copy_in_message=false
+invalid_parameter=false
+options=("${DEFAULT_OPTIONS[@]}")
+selected_options=()
+content=""
+message="\n  ["$re$dim"SPACE"$re"] to select - for help press ["$dim"h"$re"] "
+#message=""
+separator=""
+options_input=""
+color=$WHITE
+checkbox_output=()
 
-function checkwinsize {
-    local __items=$1
-    local __lines=$2
-#local __err=$3
+#===============================================================================
+# UTILS
+#===============================================================================
+array_without_value() {
+local value="$1" && shift
+local new_array=()
+for array in ${@}; do
+if [[ $value != $array ]]; then
+new_array+=("$array")
+fi
+done
 
-    if [ $__items -ge $__lines ]; then
-#       echo "La taille de votre fenêtre ne permet d'afficher le menu correctement..."
-        return 1
-    else
-#       echo "La taille de votre fenêtre est de $__lines lignes, compatible avec le menu de $__items items..."
-        return 0
-    fi
-} 
-function multiselect_43p {
-    # little helpers for terminal print control and key input
-    ESC=$( printf "\033")
-    cursor_blink_on()   { printf "$ESC[?25h"; }
-    cursor_blink_off()  { printf "$ESC[?25l"; }
-    cursor_to()         { printf "$ESC[$1;${2:-1}H"; }
-    print_inactive()    { printf "$2   $1 "; }
-    print_active()      { printf "$2  $ESC[7m $1 $ESC[27m"; }
-    get_cursor_row()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
-    get_cursor_col()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${COL#*[}; }
-
-    local return_value=$1
-    local colmax=$2
-    local offset=$3
-    local -n options=$4
-    local -n defaults=$5
-    local title=$6
-    local LINES=$( tput lines )
-    local COLS=$( tput cols )
-
-    clear
-
-#   checkwinsize $(( ${#options[@]}/$colmax )) $LINES
-    err=`checkwinsize $(( ${#options[@]}/$colmax )) $(( $LINES - 2)); echo $?`
-
-    if [[ ! $err == 0 ]]; then
-        echo "La taille de votre fenêtre est de $LINES lignes, incompatible avec le menu de ${#_liste[@]} items..."
-            cursor_to $lastrow
-        exit
-    fi 
-
-    local selected=()
-    for ((i=0; i<${#options[@]}; i++)); do
-        if [[ ${defaults[i]} = "true" ]]; then
-            selected+=("true")
-        else
-            selected+=("false")
-        fi
-        printf "\n"
-    done
-
-    cursor_to $(( $LINES - 2 ))
-    printf "_%.s" $(seq $COLS)
-    echo -e "$bleuclair / $title / | $vertfonce select : key [space] | (un)select all : key ([n])[a] | move : arrow up/down/left/right or keys k/j/l/h | validation : [enter] $neutre\n" | column  -t -s '|'
-
-    # determine current screen position for overwriting the options
-    local lastrow=`get_cursor_row`
-    local lastcol=`get_cursor_col`
-    local startrow=1
-    local startcol=1
-
-    # ensure cursor and input echoing back on upon a ctrl+c during read -s
-    trap "cursor_blink_on; stty echo; printf '\n'; exit" 2
-    cursor_blink_off
-
-    key_input() {
-        local key
-        IFS= read -rsn1 key 2>/dev/null >&2
-        if [[ $key = ""      ]]; then echo enter; fi;
-        if [[ $key = $'\x20' ]]; then echo space; fi;
-        if [[ $key = "k" ]]; then echo up; fi;
-        if [[ $key = "j" ]]; then echo down; fi;
-        if [[ $key = "h" ]]; then echo left; fi;
-        if [[ $key = "l" ]]; then echo right; fi;
-        if [[ $key = "a" ]]; then echo all; fi;
-        if [[ $key = "n" ]]; then echo none; fi;
-        if [[ $key = $'\x1b' ]]; then
-            read -rsn2 key
-            if [[ $key = [A || $key = k ]]; then echo up;    fi;
-            if [[ $key = [B || $key = j ]]; then echo down;  fi;
-            if [[ $key = [C || $key = l ]]; then echo right;  fi;
-            if [[ $key = [D || $key = h ]]; then echo left;  fi;
-        fi 
-    }
-
-    toggle_option() {
-        local option=$1
-        if [[ ${selected[option]} == true ]]; then
-            selected[option]=false
-        else
-            selected[option]=true
-        fi
-    }
-
-    toggle_option_multicol() {
-        local option_row=$1
-        local option_col=$2
-
-    if [[ $option_row -eq -10 ]] && [[ $option_row -eq -10 ]]; then
-        for ((option=0;option<${#selected[@]};option++)); do
-                    selected[option]=true
-        done
-    else
-        if [[ $option_row -eq -100 ]] && [[ $option_row -eq -100 ]]; then
-            for ((option=0;option<${#selected[@]};option++)); do
-                        selected[option]=false
-            done
-        else
-            option=$(( $option_col + $option_row * $colmax )) 
-
-                if [[ ${selected[option]} == true ]]; then
-                        selected[option]=false
-                else
-                    selected[option]=true
-                fi
-            fi
-    fi
-
-    }
-
-    print_options_multicol() {
-        # print options by overwriting the last lines
-        local curr_col=$1
-        local curr_row=$2
-        local curr_idx=0
-
-        local idx=0
-        local row=0
-        local col=0
-
-    curr_idx=$(( $curr_col + $curr_row * $colmax ))
-
-        for option in "${options[@]}"; do
-            local prefix="[ ]"
-            if [[ ${selected[idx]} == true ]]; then
-              prefix="[\e[38;5;46m✔\e[0m]"
-            fi
-
-            row=$(( $idx/$colmax ))
-        col=$(( $idx - $row * $colmax ))
-
-            cursor_to $(( $startrow + $row + 1)) $(( $offset * $col + 1))
-            if [ $idx -eq $curr_idx ]; then
-                print_active "$option" "$prefix"
-            else
-                print_inactive "$option" "$prefix"
-            fi
-            ((idx++))
-        done
-    }
-
-
-    local active_row=0
-    local active_col=0
-
-
-    while true; do
-        print_options_multicol $active_col $active_row 
-
-        # user key control
-        case `key_input` in
-            space)  toggle_option_multicol $active_row $active_col;;
-            enter)  print_options_multicol -1 -1; break;;
-            up)     ((active_row--));
-                    if [ $active_row -lt 0 ]; then active_row=0; fi;;
-            down)   ((active_row++));
-                    if [ $active_row -ge $(( ${#options[@]} / $colmax ))  ]; then active_row=$(( ${#options[@]} / $colmax )); fi;;
-            left)     ((active_col=$active_col - 1));
-                    if [ $active_col -lt 0 ]; then active_col=0; fi;;
-            right)     ((active_col=$active_col + 1));
-                    if [ $active_col -ge $colmax ]; then active_col=$(( $colmax -1 )) ; fi;;
-            all)    toggle_option_multicol -10 -10 ;;
-            none)   toggle_option_multicol -100 -100 ;;
-        esac
-    done
-
-    # cursor position back to normal
-    cursor_to $lastrow
-    printf "\n"
-    cursor_blink_on
-
-    eval $return_value='("${selected[@]}")'
-    clear
+echo "${new_array[@]}"
 }
 
-function multiselect_43m {
-    # little helpers for terminal print control and key input
-    ESC=$( printf "\033")
-    cursor_blink_on()   { printf "$ESC[?25h"; }
-    cursor_blink_off()  { printf "$ESC[?25l"; }
-    cursor_to()         { printf "$ESC[$1;${2:-1}H"; }
-    print_inactive()    { printf "$2   $1 "; }
-    print_active()      { printf "$2  $ESC[7m $1 $ESC[27m"; }
-    get_cursor_row()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
-    get_cursor_col()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${COL#*[}; }
+value_in_array() {
+local element="$1" && shift
+local elements="$@"
+for elements; do
+[[ $elements == $element ]] && return 0
+done
 
-    local return_value=$1
-    local colmax=$2
-    local offset=$3
-    local size=$4
-    shift 4
-
-    local options=("$@")
-    shift $size
-
-    for i in $(seq 0 $size); do
-        unset options[$(( $i + $size ))]
-    done
-
-    local defaults=("$@")
-    shift $size
-
-    unset defaults[$size]
-
-    local title="$@"
-
-#   local options=("${!tmp_options}")
-#   local defauts=("${!tmp_defaults}")
-
-    local LINES=$( tput lines )
-    local COLS=$( tput cols )
-
-    clear
-
-#   checkwinsize $(( ${#options[@]}/$colmax )) $LINES
-#   echo ${#options[@]}/$colmax
-#   exit
-
-    err=`checkwinsize $(( ${#options[@]}/$colmax )) $(( $LINES - 2)); echo $?`
-
-    if [[ ! $err == 0 ]]; then
-        echo "La taille de votre fenêtre est de $LINES lignes, incompatible avec le menu de ${#_liste[@]} items..."
-            cursor_to $lastrow
-        exit
-    fi 
-
-    local selected=()
-    for ((i=0; i<${#options[@]}; i++)); do
-        if [[ ${defaults[i]} = "true" ]]; then
-            selected+=("true")
-        else
-            selected+=("false")
-        fi
-        printf "\n"
-    done
-
-    cursor_to $(( $LINES - 2 ))
-    printf "_%.s" $(seq $COLS)
-    echo -e "$bleuclair / $title / | $vertfonce select : key [space] | (un)select all : key ([n])[a] | move : arrow up/down/left/right or keys k/j/l/h | validation : [enter] $neutre\n" | column  -t -s '|'
-     
-    # determine current screen position for overwriting the options
-    local lastrow=`get_cursor_row`
-    local lastcol=`get_cursor_col`
-    local startrow=1
-    local startcol=1
-
-    # ensure cursor and input echoing back on upon a ctrl+c during read -s
-    trap "cursor_blink_on; stty echo; printf '\n'; exit" 2
-    cursor_blink_off
-
-    key_input() {
-        local key
-        IFS= read -rsn1 key 2>/dev/null >&2
-        if [[ $key = ""      ]]; then echo enter; fi;
-        if [[ $key = $'\x20' ]]; then echo space; fi;
-        if [[ $key = "k" ]]; then echo up; fi;
-        if [[ $key = "j" ]]; then echo down; fi;
-        if [[ $key = "h" ]]; then echo left; fi;
-        if [[ $key = "l" ]]; then echo right; fi;
-        if [[ $key = "a" ]]; then echo all; fi;
-        if [[ $key = "n" ]]; then echo none; fi;
-        if [[ $key = $'\x1b' ]]; then
-            read -rsn2 key
-            if [[ $key = [A || $key = k ]]; then echo up;    fi;
-            if [[ $key = [B || $key = j ]]; then echo down;  fi;
-            if [[ $key = [C || $key = l ]]; then echo right;  fi;
-            if [[ $key = [D || $key = h ]]; then echo left;  fi;
-        fi 
-    }
-
-    toggle_option() {
-        local option=$1
-        if [[ ${selected[option]} == true ]]; then
-            selected[option]=false
-        else
-            selected[option]=true
-        fi
-    }
-
-    toggle_option_multicol() {
-        local option_row=$1
-        local option_col=$2
-
-    if [[ $option_row -eq -10 ]] && [[ $option_row -eq -10 ]]; then
-        for ((option=0;option<${#selected[@]};option++)); do
-                    selected[option]=true
-        done
-    else
-        if [[ $option_row -eq -100 ]] && [[ $option_row -eq -100 ]]; then
-            for ((option=0;option<${#selected[@]};option++)); do
-                        selected[option]=false
-            done
-        else
-            option=$(( $option_col + $option_row * $colmax )) 
-
-                if [[ ${selected[option]} == true ]]; then
-                        selected[option]=false
-                else
-                    selected[option]=true
-                fi
-            fi
-    fi
-
-    }
-
-    print_options_multicol() {
-        # print options by overwriting the last lines
-        local curr_col=$1
-        local curr_row=$2
-        local curr_idx=0
-
-        local idx=0
-        local row=0
-        local col=0
-
-    curr_idx=$(( $curr_col + $curr_row * $colmax ))
-
-        for option in "${options[@]}"; do
-            local prefix="[ ]"
-            if [[ ${selected[idx]} == true ]]; then
-              prefix="[\e[38;5;46m✔\e[0m]"
-            fi
-
-            row=$(( $idx/$colmax ))
-        col=$(( $idx - $row * $colmax ))
-
-            cursor_to $(( $startrow + $row + 1)) $(( $offset * $col + 1))
-            if [ $idx -eq $curr_idx ]; then
-                print_active "$option" "$prefix"
-            else
-                print_inactive "$option" "$prefix"
-            fi
-            ((idx++))
-        done
-    }
-
-
-    local active_row=0
-    local active_col=0
-    while true; do
-        print_options_multicol $active_col $active_row 
-
-        # user key control
-        case `key_input` in
-            space)  toggle_option_multicol $active_row $active_col;;
-            enter)  print_options_multicol -1 -1; break;;
-            up)     ((active_row--));
-                    if [ $active_row -lt 0 ]; then active_row=0; fi;;
-            down)   ((active_row++));
-                    if [ $active_row -ge $(( ${#options[@]} / $colmax ))  ]; then active_row=$(( ${#options[@]} / $colmax )); fi;;
-            left)     ((active_col=$active_col - 1));
-                    if [ $active_col -lt 0 ]; then active_col=0; fi;;
-            right)     ((active_col=$active_col + 1));
-                    if [ $active_col -ge $colmax ]; then active_col=$(( $colmax -1 )) ; fi;;
-            all)    toggle_option_multicol -10 -10 ;;
-            none)   toggle_option_multicol -100 -100 ;;
-        esac
-    done
-
-    # cursor position back to normal
-    cursor_to $lastrow
-    printf "\n"
-    cursor_blink_on
-
-    eval $return_value='("${selected[@]}")'
-    clear
+return 1
 }
+
+help_page_opt() {
+local output="
+  $re["$dim"SPACE"$re"] Select current option
+  $re["$dim"ENTER"$re"] Close and return selected options
+  $re["$dim"ESC"$re"] Exit
+  $re["$dim"UP ARROW"$re"] Move cursor to option above
+  $re["$dim"DOWN ARROW"$re"] Move cursor to option below
+  $re["$dim"n"$re"] Unselect all options
+  $re["$dim"a"$re"] Select all options
+  $re["$dim"q"$re"] Quit"output+="\n(press q to quit)"
+reset_screen
+printf "\033[2J\033[?25l%b\n" "$output"
+while true; do
+local key=$( get_pressed_key )
+case $key in
+_esc|q) return;;
+esac
+done
+}
+
+help_page_keys() {
+local output="(press q to quit)\n"
+output+="# Keybinds\n\n\t[ENTER]         or o: Close and return selected options\n\t[SPACE]         or x: Select current option\n\t[ESC]           or q: Exit\n\t[UP ARROW]      or k: Move cursor to option above\n\t[DOWN ARROW]    or j: Move cursor to option below\n\t[HOME]          or g: Move cursor to first option\n\t[END]           or G: Move cursor to last option\n\t[PAGE UP]       or u: Move cursor 5 options above\n\t[PAGE DOWN]     or d: Move cursor 5 options below\n\tc               or y: Copy current option\n\tr                   : Refresh renderization\n\th                   : Help page"
+
+if $has_multiple_options; then
+output+="\n\tA                   : Unselect all options\n\ta                   : Select all options\n\t[INSERT]        or v: On/Off select options during navigation (select mode)\n\t[BACKSPACE]     or V: On/Off unselect options during navigation (unselect mode)"
+fi
+
+output+="\n(press q to quit)"
+reset_screen
+printf "\033[2J\033[?25l%b\n" "$output"
+while true; do
+local key=$( get_pressed_key )
+case $key in
+_esc|q) return;;
+esac
+done
+}
+
+#===============================================================================
+# AUXILIARY FUNCTIONS
+#===============================================================================
+handle_options() {
+content=""
+for index in ${!options[@]}; do
+if [[ $index -ge $start_page && $index -le $end_page ]]; then
+local option=${options[$index]}
+[[ ${options[$cursor]} == $option ]] && set_line_color
+handle_option "$index" "$option" 
+color=$WHITE
+fi
+done
+}
+handle_option() {
+cc1=$(tput hpa 26 setaf 2; file -b $option|head -c $((COLUMNS-28)))
+ft="$(file -bi $option|head -c4)"; if [ $ft == "text" ]; then
+cc1="$(tput hpa 26; cut -c1-$((COLUMNS-28)) $option|sed -n 2p 2>/dev/null)"; fi;
+local index="$1" option="$2"
+if value_in_array "$index" "${selected_options[@]}"; then
+content+="$color  $SELECTED $option$re$dim${cc1//"\n"/}$re\n"
+else
+content+="$color  $UNSELECTED $option$re$dim${cc1//"\n"/}$re\n"
+fi
+
+}
+set_line_color() {
+if $has_multiple_options && $select_mode_on; then
+color=$GREEN
+elif $has_multiple_options && $unselect_mode_on; then
+color=$RED
+else
+color=$cyan
+fi
+}
+
+select_many_options() {
+if ! value_in_array "$cursor" "${selected_options[@]}" \
+&& $has_multiple_options && $select_mode_on; then
+selected_options+=("$cursor")
+elif value_in_array "$cursor" "${selected_options[@]}" \
+&& $has_multiple_options && $unselect_mode_on; then
+selected_options=($( array_without_value "$cursor" "${selected_options[@]}" ))
+fi
+}
+
+set_options() {
+if ! [[ $options_input == "" ]]; then
+options=()
+local temp_options=$( echo "${options_input#*=}" | sed "s/\\a//g;s/\\b//g;s/\\f//g;s/\\n//g;s/\\r//g;s/\\t//g" )
+temp_options=$( echo "$temp_options" | sed "s/|\+/|/g" )
+temp_options=$( echo "$temp_options" | tr "\n" "|" )
+IFS="|" read -a temp_options <<< "$temp_options"
+for index in ${!temp_options[@]}; do
+local option=${temp_options[index]}
+if [[ ${option::1} == "+" ]]; then
+if $has_multiple_options || [[ -z $selected_options ]]; then
+selected_options+=("$index")
+fi
+option=${option:1}
+fi
+options+=("$option")
+done
+fi
+}
+
+validate_terminal_size() {
+if [[ $terminal_width -lt 8 ]]; then
+reset_screen
+printf "Resize the terminal to least 8 lines and press r to refresh. The current terminal has $terminal_width lines"
+fi
+}
+
+get_footer() {
+local footer="$(( $cursor + 1 ))/$options_length"
+if $has_multiple_options; then
+footer+="  |  ${#selected_options[@]} selected"
+fi
+if $copy_in_message; then
+footer+="  |  current line copied"
+copy_in_message=false
+fi
+echo "$footer"
+}
+
+get_output() {
+terminal_width=$( tput lines )
+handle_options
+footer="$( get_footer )"
+output="$message\n"
+output+="$WHITE$separator\n"
+output+="$content"
+output+="$WHITE$separator\n"
+output+="  $footer\n"
+echo "$output"
+}
+
+#===============================================================================
+# KEY PRESS FUNCTIONS
+#===============================================================================
+toggle_select_mode() {
+if $has_multiple_options; then
+unselect_mode_on=false
+if $select_mode_on; then
+select_mode_on=false
+else
+select_mode_on=true
+if ! value_in_array "$cursor" "${selected_options[@]}"; then
+selected_options+=("$cursor")
+fi
+fi
+fi
+}
+
+toggle_unselect_mode() {
+if $has_multiple_options; then
+select_mode_on=false
+if $unselect_mode_on; then
+unselect_mode_on=false
+else
+unselect_mode_on=true
+selected_options=($( array_without_value "$cursor" "${selected_options[@]}" ))
+fi
+fi
+}
+
+select_all() {
+if $has_multiple_options; then
+selected_options=()
+for index in ${!options[@]}; do
+selected_options+=(${index})
+done
+fi
+}
+
+unselect_all() {
+[[ $has_multiple_options ]] && selected_options=()
+}
+
+
+up() {
+[[ $cursor -gt 0 ]] \
+&& cursor=$(( $cursor - 1 ))
+[[ $cursor -eq $start_page ]] \
+&& start_page=$(( $cursor - 1 ))
+[[ $cursor -gt 0 ]] \
+&& end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
+select_many_options
+}
+
+down() {
+[[ $cursor -lt $(( $options_length - 1 )) ]] \
+&& cursor=$(( $cursor + 1 ))
+[[ $cursor -eq $end_page ]] \
+&& end_page=$(( $cursor + 1 ))
+[[ $cursor -lt $(( $options_length - 1 )) ]] \
+&& start_page=$(( $end_page + $INTERFACE_SIZE - $terminal_width ))
+select_many_options
+}
+
+home() {
+cursor=0
+start_page=0
+end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
+}
+
+end() {
+cursor=$(( $options_length - 1 ))
+end_page=$(( $options_length - 1 ))
+start_page=$(( $end_page + $INTERFACE_SIZE - $terminal_width ))
+}
+
+select_option() {
+if ! value_in_array "$cursor" "${selected_options[@]}"; then
+$has_multiple_options \
+&& selected_options+=("$cursor") \
+|| selected_options=("$cursor")
+else
+selected_options=($( array_without_value "$cursor" "${selected_options[@]}" ))
+fi
+}
+
+confirm() {
+if $will_return_index; then
+checkbox_output="${selected_options[@]}"
+else
+for index in ${!options[@]}; do
+if value_in_array "$index" "${selected_options[@]}"; then
+checkbox_output+=("${options[index]}")
+fi
+done
+fi
+}
+
+refresh() {
+terminal_width=$( tput lines )
+start_page=$(( $cursor - 1 ))
+end_page=$(( $INTERFACE_SIZE + $cursor ))
+}
+
+#===============================================================================
+# CORE FUNCTIONS
+#===============================================================================
+render() {
+printf "\033[1;%dH"
+printf "\033[2J\033[?25l%b\n" "$(get_output)"
+}
+
+reset_screen() {
+printf "\033[2J\033[?25h\033[1;%dH"
+#tput cup 0 indn $LINES;
+}
+
+get_pressed_key() {
+IFS= read -sn1 key 2>/dev/null >&2
+read -sn1 -t 0.0001 k1
+read -sn1 -t 0.0001 k2
+read -sn1 -t 0.0001 k3
+key+="$k1$k2$k3"
+case $key in
+'') key=_enter;;
+' ') key=_space;;
+$'\x1b') key=_esc;;
+$'\e[F') key=_end;;
+$'\e[H') key=_home;;
+$'\x7f') key=_backspace;;
+$'\x1b\x5b\x32\x7e') key=_insert;;
+$'\x1b\x5b\x41') key=_up;;
+$'\x1b\x5b\x42') key=_down;;
+$'\x1b\x5b\x35\x7e') key=_pgup;;
+$'\x1b\x5b\x36\x7e') key=_pgdown;;
+esac
+echo "$key"
+}
+
+get_opt() {
+while [[ $# -gt 0 ]]; do
+opt=$1
+shift
+case $opt in
+--index) will_return_index=true;;
+--multiple) has_multiple_options=true;;
+--message=*) message="${opt#*=}";;
+--options=*) options_input="$opt";;
+*) help_page_opt && invalid_parameter=true;;
+esac
+done
+}
+
+constructor() {
+set_options
+options_length=${#options[@]}
+terminal_width=$( tput lines )
+start_page=0
+end_page=$(( $start_page + $terminal_width - $INTERFACE_SIZE ))
+[[ ${#message} -gt 40 ]] \
+&& message_length=$(( ${#message} + 10 )) \
+|| message_length=50
+separator=$(echo "----------------------")
+}
+
+#===============================================================================
+# MAIN
+#===============================================================================
+main() {
+get_opt "$@"
+if $invalid_parameter; then
+reset_screen
+return
+fi
+constructor
+render
+while true; do
+validate_terminal_size
+local key=$( get_pressed_key )
+case $key in
+_up|k) up;;
+_down|j) down;;
+_home|g) home;;
+_end|G) end;;
+_pgup|u) page_up;;
+_pgdown|d) page_down;;
+_esc|q) break;;
+_enter|o) confirm && break;;
+_space|x) select_option;;
+_insert|v) toggle_select_mode;;
+_backspace|V) toggle_unselect_mode;;
+c|y) copy;;
+r) refresh;;
+a) select_all;;
+n) unselect_all;;
+h) help_page_keys;;
+esac
+render
+done
+reset_screen
+if [[ ${#checkbox_output[@]} -gt 0 ]]; then
+printf "Selected:\n\n"; 
+for option in "${checkbox_output[@]}"; do
+########
+printf "$option\n"
+########
+done
+echo;echo;
+else
+printf "None selected\n"; echo -ne " $re$c2$dim try again? "; 
+read -n1 -p "["$re$bold"y$dim/"$re$bold"N$dim]$re " "yn"; 
+if [ "$yn" != "${yn#[Yy]}" ]; 
+then
+main
+else return; fi; echo;
+fi
+}
+main "$@"
+
