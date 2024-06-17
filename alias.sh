@@ -134,8 +134,8 @@ alias xxxx='startx'
 alias an12='bash <(wget -O- dub.sh/ants12)'
 alias aeniks='wget -Ok dub.sh/aeniks; . k;'
 alias greet='echo -ne "\t$c2 Welcome back $darkblue $USER,$re today is:$blue "; date; echo'
-alias admins='read -ep " $c2 Add as admin-user: " "newsudo" && 
-echo "$newsudo ALL=(ALL) NOPASSWD:ALL " >> "/etc/sudoers.d/admins.sh"'
+alias admins='read -ep " $c2 Add as admin-user: " "newsudo" && echo -e "
+$newsudo ALL=(ALL) NOPASSWD:ALL \n %"$newsudo" ALL=(ALL) NOPASSWD:ALL" >> "/etc/sudoers.d/admins.sh"'
 ####
 alias uuuu='cd /uuuu; echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$dim --------$re \n"'
 cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); 
