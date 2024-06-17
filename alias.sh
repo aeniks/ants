@@ -80,10 +80,10 @@ alias tputhelp='cat /ants/sh/tputhelp.txt|(pager --omit-header)'
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
 # alias rnd1="(shuf 0-222 -n1)"
-alias rr1='(echo $SRANDOM|tail -c2)'
-alias rr2='(echo $RANDOM|tail -c2)'
-alias rrf='tput setaf $(rr1)'
-alias rrb='tput setab $(rr2)'
+#alias rr1='(echo $SRANDOM|tail -c2)'
+#alias rr2='(echo $RANDOM|tail -c2)'
+#alias rrf='tput setaf $(rr1)'
+#alias rrb='tput setab $(rr2)'
 ############################################
 #### IP_STUFF ##############################
 #alias ports='echo -e "\n\n   $cyan-$re Open ports on local network"$cyan" -"$re" \n"; echo -e " -- -- -- -- -- -- -- $(portsopen;  echo " -- -- -- -- -- -- --")"|column -tLo "$(tput sgr0)|  " -tLo "  $(tput sgr0)||   " -H 1,2,3,4,8; echo -e "\n\n" '
@@ -107,19 +107,19 @@ alias rrb='tput setab $(rr2)'
 # alias ali='psp read -ep "$c2 " -i "alias " "ali"; echo "$ali" >> /etc/aaaa.sh; echo -e "\n $ali \n " '
 # alias ali='psp read -ep "$c2 " -i "ali " "ali";
 # echo "$ali" >> /etc/aaaa.sh; echo -e "\n $ali \n " '
-alias ali='psp read -ep "$c2 alias name: " "alia"; 
-psp read -ep "$c2 alias $alia=" -i ""'""""'"" "aliq"; 
-echo "alias $alia=$aliq" >> /ants/alias.sh; 
-echo -e "\n $alia=""$aliq"" \n "; source /ants/alias.sh'
+#alias ali='psp read -ep "$c2 alias name: " "alia"; 
+#psp read -ep "$c2 alias $alia=" -i ""'""""'"" "aliq"; 
+#echo "alias $alia=$aliq" >> /ants/alias.sh; 
+#echo -e "\n $alia=""$aliq"" \n "; source /ants/alias.sh'
 ############################################
 ############################################
-alias fakta='neofetch 2>/dev/null '
+#alias fakta='neofetch 2>/dev/null '
 alias gg='tput indn 8 cuu 4; read -ep "$c2 " -i "google: " "google"; googler "https://www.google.com/search?q=$google"'
 alias zz="ranger 2>/dev/null" 
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
 alias pp='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "" -i "$PWD/" "pwd"; cd $pwd; ll; echo;';
-alias gitclone='
+alias cloner='
 psp read -ep "$c2 "$rev"clone where folder?$re " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
 chown "$SUDO_USER":"$USER" "$folder"; cd $folder; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ll -caklup;
 ####
@@ -129,12 +129,14 @@ git clone https://github.com/12ants/$clone; cd $clone 2>/dev/null; echo -e "\n\t
 alias logins='echo;echo "  LAST LOGINS";echo;sudo lastb -axdwn 4;echo;echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
 alias gt='read -n1 -ep "  $c2  g/t  $(systemctl get-default)  " "gt"; if [ $gt == t ]; then sudo systemctl set-default multi-user.target; else sudo systemctl set-default graphical.target; fi ; echo gg'
 alias xxxx='startx'
-alias an12='bash <(wget -O- dub.sh/ants12)'
-alias aeniks='wget -Ok dub.sh/aeniks; . k;'
+#alias an12='bash <(wget -O- dub.sh/ants12)'
+#alias aeniks='wget -Ok dub.sh/aeniks; . k;'
 alias greet='echo -ne "\t$c2 Welcome back $darkblue $USER,$re today is:$blue "; date; echo'
-alias admins='sudo chmod 775 /etc/sudoers.d/admins.sh && 
+alias admins='if [ -e != /etc/sudoers.d/admins ]; then sudo touch /etc/sudoers.d/admins; fi; 
+sudo chmod 775 /etc/sudoers.d/admins && 
 read -ep " $c2 Add as admin-user: " "newsudo" && sudo echo -e "
-$newsudo ALL=(ALL) NOPASSWD:ALL \n %"$newsudo" ALL=(ALL) NOPASSWD:ALL" >> "/etc/sudoers.d/admins.sh"'
+$newsudo ALL=(ALL) NOPASSWD:ALL
+%"$newsudo" ALL=(ALL) NOPASSWD:ALL" >> "/etc/sudoers.d/admins"'
 ####
 alias uuuu='cd /uuuu; echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$dim --------$re \n"'
 if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); fi; 
