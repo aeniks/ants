@@ -106,7 +106,7 @@ qa() {
 tput setaf $((RANDOM%$1+$2)); 
 }
 if [ "$(id -u)" -eq 0 ]; then us='#'; else us='$'; fi;
-#computer=$(hostname 2>/dev/null)
+computer=$(hostname 2>/dev/null)
 PS1='$re\
 [$(qa $ra1 $ra2)$()$us$re]\
 [$(qa $rd1 $rd2)$USER$re@$(qa $rc1 $rc2)$computer$re]\

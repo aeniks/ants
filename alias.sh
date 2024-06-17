@@ -15,9 +15,12 @@ alias netw='ip n | grep -v FAILED|head -n-1'
 alias 11='ssh ants.swe.net -p 8022 "termux-media-player play /sdcard/Music/money.mp3"'
 alias 22='ssh ants.swe.net -p 8022 "termux-media-player stop"'
 alias m8='ssh ants.swe.net -p 8022'
-alias aa='if [ $USER = "root" ]; then sudo chown $SUDO_USER: /ants -R; sudo chmod 775 /ants -R; 
-else sudo chown $USER: /ants -R; sudo chmod 775 /ants -R; fi; cd /ants; 
-echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
+#alias aa='if [ $USER = "root" ]; then sudo chown $SUDO_USER: /ants -R; sudo chmod 775 /ants -R; 
+#else sudo chown $USER: /ants -R; sudo chmod 775 /ants -R; fi; cd /ants; 
+#echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
+#ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
+alias aa='cd /ants; echo; pwd|pr --omit-header --indent=4|lolcat -p 2 2>/dev/null; 
+echo -e "\n$cyan$dim --------$re"; 
 ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
 alias aaaa="micro "/ants/alias.sh"; read -ep 'update /ants/alias.sh? '; . /ants/alias.sh;"
 alias bbbb="micro "/ants/bash.sh"; read -ep 'update /ants/bash.sh? '; . /ants/bash.sh;"
