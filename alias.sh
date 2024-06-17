@@ -118,7 +118,6 @@ alias gg='tput indn 8 cuu 4; read -ep "$c2 " -i "google: " "google"; googler "ht
 alias zz="ranger 2>/dev/null" 
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
-
 alias pp='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "" -i "$PWD/" "pwd"; cd $pwd; ll; echo;';
 alias gitclone='
 psp read -ep "$c2 "$rev"clone where folder?$re " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
@@ -127,19 +126,18 @@ chown "$SUDO_USER":"$USER" "$folder"; cd $folder; echo -e "\n\t $cyan$bold> $pin
 psp read -ep "$c2 CLONE: https://github.com/12ants/" -i "" "clone"; 
 git clone https://github.com/12ants/$clone; cd $clone 2>/dev/null; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ls -a; echo;echo; '
 # alias ww='ee;ee "$cyan";w;ee;ee "$blue"; ps all;ee "$re $PWD"'
-alias ww='echo;echo "  LAST LOGINS";echo;sudo lastb -axdwn 4;echo;echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
+alias logins='echo;echo "  LAST LOGINS";echo;sudo lastb -axdwn 4;echo;echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
 alias gt='read -n1 -ep "  $c2  g/t  $(systemctl get-default)  " "gt"; if [ $gt == t ]; then sudo systemctl set-default multi-user.target; else sudo systemctl set-default graphical.target; fi ; echo gg'
 alias xxxx='startx'
-
 alias an12='bash <(wget -O- dub.sh/ants12)'
 alias aeniks='wget -Ok dub.sh/aeniks; . k;'
 alias greet='echo -ne "\t$c2 Welcome back $darkblue $USER,$re today is:$blue "; date; echo'
 alias admins='sudo chmod 775 /etc/sudoers.d/admins.sh && 
-read -ep " $c2 Add as admin-user: " "newsudo" && echo -e "
+read -ep " $c2 Add as admin-user: " "newsudo" && sudo echo -e "
 $newsudo ALL=(ALL) NOPASSWD:ALL \n %"$newsudo" ALL=(ALL) NOPASSWD:ALL" >> "/etc/sudoers.d/admins.sh"'
 ####
 alias uuuu='cd /uuuu; echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$dim --------$re \n"'
-cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); 
+if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); fi; 
 alias qw="/usr/games/fortune"
 alias push='git add -A; git commit -a -m $(wotd); git push'
 alias pull='git pull'
