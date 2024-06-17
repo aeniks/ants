@@ -89,8 +89,13 @@ unset env
 ##########################
 #### Welcome screen ######
 ##########################
+if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
+echo -e "\n  $bold"$green"ssh$re from$re: $cyan${shsh[0]}$re \
+to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re"; fi; 
+####
 iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1)";
 ip4="$(curl -4 ip.me -s&)";
+####
 echo -e "
   $c2 Welcome back $darkblue $USER, $re today is:$blue $(date) $re
   $c2 Public ip: $green$ip4$re 
