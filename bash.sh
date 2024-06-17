@@ -3,6 +3,16 @@
 #########################
 ## -- CUSTOM LINUX --  ##
 #########################
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 ## tput sc; tput cup 7 $((COLUMNS-28)); echo -en "loaded $(tput setaf 7)/etc/bbbb"; tput rc;
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
@@ -91,6 +101,7 @@ echo -e "public ip: $green$ip4$re, local ip: $cyan$iploc$re\n";
 #"
 #$(ls -Fptr --classify --color --group-directories-first|tr "\n" " "|head -c$((COLUMNS*6)))
 #$dim$(ls -pAmtr|tr -d ","|pr --omit-header -c1 -w$((COLUMNS*2))|head -n1)
+. /ants/alias.sh; . /ants/functions.sh;
 qa() { 
 tput setaf $((RANDOM%$1+$2)); 
 }
