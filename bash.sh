@@ -89,10 +89,12 @@ unset env
 ##########################
 #### Welcome screen ######
 ##########################
-echo -e "\n$c2 Welcome back $darkblue $USER, $re today is:$blue $(date) $re";
 iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1)";
 ip4="$(curl -4 ip.me -s&)";
-echo -e "public ip: $green$ip4$re, local ip: $cyan$iploc$re\n";
+echo -e "
+  $c2 Welcome back $darkblue $USER, $re today is:$blue $(date) $re
+  $c2 Public ip: $green$ip4$re 
+  $c2 Local  ip: $cyan$iploc$re\n";
 #export ipn=$(hostname -I|tr " " "\n"|head -n1|tail -c2)
 #if [ lolcat ]; then qw|pr --omit-header --indent=8 --across|lolcat -p 88 2>/dev/null; fi; echo;
 #echo -ne "
@@ -112,4 +114,4 @@ PS1='$re\
 [$(qa $rd1 $rd2)$USER$re@$(qa $rc1 $rc2)$computer$re]\
 [$(tput setaf 6)$iploc$re]\
 [$(qa $rb1 $rb2)$(date +%T)$re]\
-$(qa $re1 $re2; tput smso)$PWD $re \n'
+$(qa $re1 $re2; tput rev)$PWD $re\n'
