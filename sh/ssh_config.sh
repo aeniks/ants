@@ -1,6 +1,7 @@
 
 #### SSH
 ####
+tput indn 22;
 tput cuu 4 cuf 8; read -ep " -- Where to store ssh-key: " -i "$HOME/.ssh/" "sshkeyloc"; 
 tput cuf 8; read -ep " -- Domain for ssh: " -i '*' "sshdomain"
 tput cuf 8; read -ep " -- Add ssh-agent? " -i 'y' "yno"
