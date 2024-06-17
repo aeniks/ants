@@ -70,18 +70,21 @@ elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
 fi
 unset env
 #######
-zz=' 2>/dev/null'
-ip4=$(curl -4 ip.me -s&); 
-alias ip6=$(curl -6 ip.me -s&); 
-iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c16-29|tr -d " [:alpha:]"); 
-ipbase=${iplocal%.*};
+#zz=' 2>/dev/null'
+#ip4=$(curl -4 ip.me -s&); 
+#alias ip6=$(curl -6 ip.me -s&); 
+#iplocal=$(ifconfig|grep "4163" -n1|tail -n1|cut -c16-29|tr -d " [:alpha:]"); 
+#ipbase=${iplocal%.*};
 #echo -e "\n\t$c2 Last logins: "; who
 ##########################
 #### Welcome screen ######
 ##########################
-echo; greet 2>/dev/null; echo;
+echo -e "\n$c2 Welcome back $darkblue $USER, $re today is:$blue $(date) $re";
+iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1)";
+ip4="$(curl -4 ip.me -s&)";
+echo -e "public ip: $green$ip4$re, local ip: $cyan$iploc$re\n";
 #export ipn=$(hostname -I|tr " " "\n"|head -n1|tail -c2)
-if [ lolcat ]; then qw|pr --omit-header --indent=8 --across|lolcat -p 88 2>/dev/null; fi; echo;
+#if [ lolcat ]; then qw|pr --omit-header --indent=8 --across|lolcat -p 88 2>/dev/null; fi; echo;
 #echo -ne "
 #\t$(rrf)------$(tput setaf $rd2) Public IP4: $(tput sgr0)$ip4$(tput setaf 6) 
 #\t$(rrf)------$(tput setaf $rd1) Network IP: $(tput sgr0)$iplocal$(tput setaf 6)
@@ -92,10 +95,10 @@ qa() {
 tput setaf $((RANDOM%$1+$2)); 
 }
 if [ "$(id -u)" -eq 0 ]; then us='#'; else us='$'; fi;
-computer=$(hostname 2>/dev/null)
+#computer=$(hostname 2>/dev/null)
 PS1='$re\
 [$(qa $ra1 $ra2)$()$us$re]\
 [$(qa $rd1 $rd2)$USER$re@$(qa $rc1 $rc2)$computer$re]\
-[$(tput setaf 6)$iplocal$re]\
+[$(tput setaf 6)$iploc$re]\
 [$(qa $rb1 $rb2)$(date +%T)$re]\
 $(qa $re1 $re2; tput smso)$PWD $re \n'

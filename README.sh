@@ -1,7 +1,7 @@
 #!/bin/bash
 ## RUN THIS README FILE TO INSTALL ##
-re=$(tput sgr0) cyan=$(tput setaf 6); tput indn $((LINES-6)) cup 2;
-echo -e '\n\n
+re=$(tput sgr0) cyan=$(tput setaf 6 bold); tput indn $((LINES-6)) cup 2;
+echo -e "\n\n$cyan
                                      ░▒▒▒░  ░░▒▒░                            
                                ▒▓█▓▓▒▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░                   
                  ░▒▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓▒▒░░ ░  ░░ ░   ░░░░░░▒▒▒▒▒▒▒▒░             
@@ -21,7 +21,7 @@ echo -e '\n\n
                    ░▒▒▒░         ░▒▒░        ▓▒▒▒▒▒░             ░▒▒▒▒▒▓     
                                              ░▒░░░                  ▒▓▓▓     
                                                                     ░▒▒░     
-';
+$re";
 ################################
 ################################
 #### DOWNLOAD /ANTS/ FOLDER ####
@@ -45,4 +45,4 @@ if [ ! $HOME/.ssh/id_ed25519 ]; then ssh-keygen -p -f $HOME/.ssh/id_ed25519; fi;
 ##
 ###############################
 ###############################
-cd $pwd/ants/installers/; . ../menu.sh
+cd $pwd/ants/installers/; . ..sh/menu.sh
