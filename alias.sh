@@ -54,6 +54,7 @@ echo -ne "\n\t $c2"; read -ep "to: " -i "$(wotd|tr -d "''").zip" "zipz";
 zip -r $zipz $zipf;'
 ##
 alias qq='cd ..; echo -ne "\t$pinkb $PWD $re\n"; ll -h; echo -ne "\t$pinkb $PWD $re\n";'
+alias ww='cd $OLDPWD; echo -ne "\t$pinkb $PWD $re\n"; ll -h; echo -ne "\t$pinkb $PWD $re\n";'
 alias bb="btop --utf-force"
 ############################################
 #### GITHUB ################################
