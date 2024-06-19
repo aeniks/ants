@@ -120,4 +120,4 @@ computer=$(hostname 2>/dev/null)
 #[$(tput setaf 6)$iploc$re]\
 #[$(qa $rb1 $rb2)$(date +%T)$re]\
 #$(qa $re1 $re2; tput rev)$PWD $re\n'
-PS1='$green$us$cyan$PWD$re: '
+PS1='$green$USER$re$dim$computer$cyan$PWD \e[0m \n'
