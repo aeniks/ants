@@ -5,7 +5,7 @@
 ###########
 ## coolors - display available colors
 ####
-alias sl='ssh aaaa@ants.ftp.sh'; 
+alias sl='ssh -x aaaa@ants.ftp.sh'; 
 ssl() {
 s1="ants.ftp.sh"
 s2="ants.swe.net"
