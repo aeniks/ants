@@ -64,21 +64,21 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 ants_swe_net="https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM="
 ants_ftp_sh="https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTk="
 aeniks_mooo_com="https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1NzE2MzY="
-env=~/.ssh/agent.env
-agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
-agent_start () {
-    (umask 077; ssh-agent >| "$env")
-    . "$env" >| /dev/null ; }
-agent_load_env 2>/dev/null; 
-# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
-agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
-    ssh-add
-elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
-    ssh-add
-fi
-unset env
+#env=~/.ssh/agent.env
+#agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+#agent_start () {
+#    (umask 077; ssh-agent >| "$env")
+#    . "$env" >| /dev/null ; }
+#agent_load_env 2>/dev/null; 
+## agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+#agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+#if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+#    agent_start
+#    ssh-add
+#elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+#    ssh-add
+#fi
+#unset env
 #######
 #zz=' 2>/dev/null'
 #ip4=$(curl -4 ip.me -s&); 
@@ -120,4 +120,4 @@ computer=$(hostname 2>/dev/null)
 #[$(tput setaf 6)$iploc$re]\
 #[$(qa $rb1 $rb2)$(date +%T)$re]\
 #$(qa $re1 $re2; tput rev)$PWD $re\n'
-PS1='$PWD: '
+PS1='$green$us$cyan$PWD$re: '
