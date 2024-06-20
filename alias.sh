@@ -140,12 +140,12 @@ alias admins='if [ -e != /etc/sudoers.d/admins ]; then sudo touch /etc/sudoers.d
 sudo chmod 775 /etc/sudoers.d/admins && 
 read -ep " $c2 Add as admin-user: " "newsudo" && sudo echo -e "
 $newsudo ALL=(ALL) NOPASSWD:ALL
-%"$newsudo" ALL=(ALL) NOPASSWD:ALL" >> "/etc/sudoers.d/admins"'
+%"$newsudo" ALL=(ALL) NOPASSWD:ALL \n" >> "/etc/sudoers.d/admins"'
 ####
 alias uuuu='cd /uuuu; echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$dim --------$re \n"'
 if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); fi; 
 alias qw="/usr/games/fortune"
-alias push='git add -A; git commit -a -m $(wotd); git push'
+alias push='git add -A; git commit -a -m $(date +%F_%H_%M); git push'
 alias pull='git pull'
 alias cm'=cat /ants/sh/cmd.sh|shuf -n1'
 alias cm2'=cat /ants/sh/cmd.sh'
