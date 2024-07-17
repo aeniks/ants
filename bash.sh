@@ -12,7 +12,7 @@ then . /etc/bash_completion; fi; fi;
 export EDITOR='micro'; export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ################################
 ################ _colors
-cl_black='\e[0;30m'; cl_red='\e[0;31m'; cl_green='\e[0;32m'; cl_yellow='\e[0;33m'; cl_blue='\e[0;34m'; cl_pink='\e[0;35m'; cl_cyan='\e[0;36m'; cl_white='\e[0;37m'; re='\e[0m'
+black='\e[0;30m'; red='\e[0;31m'; green='\e[0;32m'; yellow='\e[0;33m'; blue='\e[0;34m'; pink='\e[0;35m'; cyan='\e[0;36m'; white='\e[0;37m'; re='\e[0m'
 bold='\e[1m'; dim='\e[2m'; italic='\e[3m'; underline='\e[44m'; blink='\e[45m'; rev='\e[47m'; invis='\e[8m'; strike='\e[9m'; c2=''$cya' --$re'; 
 ################################
 e='echo -e '; c2=$($e'\e[36m --\e[0m'); cyan=$($e'\e[0;36m'); green=$($e'\e[0;32m'); red=$($e'\e[0;31m'); 
@@ -66,4 +66,4 @@ echo -e "
   $c2 Local  ip: $cyan$iploc$re";
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 echo -e "  $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo;
-PS1='$(history -a)'$re$blue$dim'\t'$red' \u '$green'\H '$cyan'$PWD '$red'\$ '$re'\n'
+PS1='$(history -a)'$re$blue$dim'\t'$red' \u '$green'\H '$cyan'$PWD '$pink'\$ '$re'\n'
