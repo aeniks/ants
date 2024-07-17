@@ -10,6 +10,7 @@ alias netw='ip n | grep -v FAILED|head -n-1'
 ####
 ####
 #alias apt='sudo apt'
+alias gmail='open gmail.com'
 alias no='echo -e "\e[?25h"'
 alias 12_ansi_info='less /ants/sh/info/ansi.md'
 alias 12_tard='lo="$(jp2a /ants/media/tard5.jpg --chars="_oooo" --term-width)";
