@@ -10,7 +10,14 @@ alias netw='ip n | grep -v FAILED|head -n-1'
 ####
 ####
 #alias apt='sudo apt'
-alias info_ansi='less /ants/sh/info/ansi.md'
+alias no='echo -e "\e[?25h"'
+alias 12_ansi_info='less /ants/sh/info/ansi.md'
+alias 12_tard='lo="$(jp2a /ants/media/tard5.jpg --chars="_oooo" --term-width)";
+echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
+do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
+alias tard='lo="$(jp2a /ants/media/tard5.jpg --chars="_oooo" --term-width)";
+echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
+do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
 alias lflf='micro /etc/lf/lfrc.sh;'
 alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
 alias staticants=''

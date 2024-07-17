@@ -512,3 +512,17 @@ gpg -qd /ants/sh/info/gh_aeniks.gpg|gh auth login --with-token; gh auth status;
 #  ----$dim Confirm: [$re Enter$dim ]$re --$dim Select: [$re Space$dim ]$re ----\n  ------------ $gre hello $re ----------------------------
 #  ----$dim Choose:  [$re Up / Down$dim ]$re ----$dim Quit: [$re Q$dim ]$re ----
 #  ----$dim Confirm: [$re Enter$dim ]$re --$dim Select: [$re Space$dim ]$re ----\n
+
+
+
+
+12_asci() {
+[ -e /bin/jp2a ]||sudo apt install jp2a -y &>/dev/null; 
+ll *.jpg;
+read -rep " $c2 Choose a jpg: " -i "$PWD" "jpg";
+load="$(jp2a $jpg --chars="_oooo" --term-width)"
+echo -e "\e[?25l"; 
+for i in $(seq ${#load}); 
+do echo -ne ${load:$i-1:1}|tr "_o" " ."; sleep 0.0001; done; 
+echo -e "\e[?25h";
+}
