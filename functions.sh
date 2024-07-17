@@ -117,6 +117,10 @@ echo -e "\e[0m  $c2 $i Installed \e[2m"; done; echo -e "\n  Done"; fi; echo -e "
 #####################
 ## coolors - display available colors
 ####
+
+alias 12load='for i in $(seq ${#load}); do echo -ne ${load:$i-1:1}; sleep .1; done'
+
+
 12_gg() {
 if [ $1 ]; then
 gg="$1 $2 $3 $4 $5 $6";
