@@ -41,6 +41,16 @@ alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COL
 do echo -n " "; done; tput cup 0'
 alias psp='tput indn 12 cuu 8;'
 alias ffff='seq -s "-" 2222|lolcat -p .8 -s 2'
+alias ansii="echo -e '
+## $($e'\e[1m') bold $($e'\e[0m') 	## $($e'\e[2m') dim $($e'\e[0m')
+## $($e'\e[3m') italic $($e'\e[0m') 	## $($e'\e[4m') underline $($e'\e[0m')
+## $($e'\e[5m') blink $($e'\e[0m') 	## $($e'\e[7m') rev $($e'\e[0m')
+## $($e'\e[2m') invis $($e'\e[0m') 	## $($e'\e[9m') strike $($e'\e[0m')
+## $($e'\e[2m') blank $($e'\e[0m') 	## $($e'\e[31m') red$($e'\e[0m')
+## $($e'\e[32m') green $($e'\e[0m') 	## $($e'\e[33m') yellow $($e'\e[0m')
+## $($e'\e[34m') blue $($e'\e[0m') 	## $($e'\e[35m') pink $($e'\e[0m')
+## $($e'\e[36m') cyan $($e'\e[0m') 	## $($e'\e[37m') white $($e'\e[0m')
+## $($e'\e[0m') re $($e'\e[0m') 	## $($e'\e[36m --\e[0m') c2 $($e'\e[0m')'"
 #shost="aeniks.mooo.com"; suser="aaaa";
 #alias sl='ssh $suser@$shost'
 alias serve='read -n1 -ep  "$c2 serve $PWD/? "; npx wrangler pages dev . 2>/dev/null'

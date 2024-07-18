@@ -1,18 +1,12 @@
-#!/bin/bash
-## lf config
 map . set hidden! 
 map <esc> quit
 map <enter> open
 map F setfilter
-map c+F filter
-map m set mouse!
-map a glob-select *
-map z unselect *
-map <tab> :push :<tab> 
-map M :push %mkdir<space>
-map <delete> delete
+set <right> jump-next
+set <left> jump-prev
+#!/bin/bash
 # interpreter for shell commands
-set shell bash
+#set shell sh
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -38,7 +32,7 @@ set shell bash
 #map <enter> shell
 
 # show the result of execution of previous commands
-map <backspace2> !true
+#map ` !true
 
 # execute current file (must be executable)
 map x $$f

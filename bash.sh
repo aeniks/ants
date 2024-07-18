@@ -12,23 +12,30 @@ then . /etc/bash_completion; fi; fi;
 export EDITOR='micro'; export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ################################
 ################ _colors
-black='\e[0;30m'; red='\e[0;31m'; green='\e[0;32m'; yellow='\e[0;33m'; blue='\e[0;34m'; pink='\e[0;35m'; cyan='\e[0;36m'; white='\e[0;37m'; re='\e[0m'
-bold='\e[1m'; dim='\e[2m'; italic='\e[3m'; underline='\e[44m'; blink='\e[45m'; rev='\e[47m'; invis='\e[8m'; strike='\e[9m'; c2=''$cya' --$re'; 
-################################
-e='echo -e '; c2=$($e'\e[36m --\e[0m'); cyan=$($e'\e[0;36m'); green=$($e'\e[0;32m'); red=$($e'\e[0;31m'); 
+## black='\e[0;30m'; red='\e[0;31m'; green='\e[0;32m'; yellow='\e[0;33m'; blue='\e[0;34m'; pink='\e[0;35m'; cyan='\e[0;36m'; white='\e[0;37m'; 
+############
+## COLORS ##
+e='echo -e '; bold=$($e'\e[1m';); dim=$($e'\e[2m';); italic=$($e'\e[3m';); 
+underline=$($e'\e[44m';); blink=$($e'\e[45m';); rev=$($e'\e[47m';); invis=$($e'\e[8m';); 
+strike=$($e'\e[9m';); blank=$($e'\e[0;30m';); red=$($e'\e[0;31m';); green=$($e'\e[0;32m';); 
+yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
+white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
+############
+########
+##############
 ################_ lfilemanager
-LFRC='/ants/sh/config/lfrc.sh'; if [ -e /bin/lf ]; then bind '"\C-o":"lfcd\C-m"'; alias l='cd $(lf -config $LFRC -print-last-dir )';
-lfcd () { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
 ################################
 ################################
 ################ _functions
-cd () { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; }
+LFRC='/ants/sh/config/lfrc.sh'; if [ -e /bin/lf ]; then bind '"\C-o":"lfcd\C-m"'; alias l='cd $(lf -config $LFRC -print-last-dir )';
+lfcd () { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
+cd () { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; $cyan pwd; }
 ################################
 ################ _alias
 alias ee='echo ';
 alias ll='ls --hyperlink -hltrp --color=always --group-directories-first'; 
 alias la='ls --hyperlink -Ahltrp --color=always --group-directories-first; pwd'; 
-alias sl='ssh -p 44444 aaaa@ants.ftp.sh'; 
+alias sl='ssh aaaa@ants.ftp.sh'; 
 alias m8='ssh -p 8022 4.4.4.5'
 iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
 ip4="$(curl -4 ip.me -s&)"; zz=' 2>/dev/null'; 
@@ -61,9 +68,9 @@ alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${H
 
 if [ -e /bin/neofetch ]; then neofetch; fi 
 echo -e "
-  $c2 Welcome back $blu $USER, $re today is:$blu $(date) $re
-  $c2 Public ip: $green$ip4$re 
-  $c2 Local  ip: $cyan$iploc$re";
+  $c2 Welcome back $cyan$bold $USER, $re today is:$blu $(date) $re
+  $c2 Public ip: $green$line$ip4$re 
+  $c2 Local  ip: $cyan$line$iploc$re";
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 echo -e "  $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo;
 PS1='$(history -a)'$re$blue$dim'\t'$red' \u '$green'\H '$cyan'$PWD '$pink'\$ '$re'\n'
