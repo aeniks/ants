@@ -29,14 +29,14 @@ white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';);
 ################ _functions
 LFRC='/ants/sh/config/lfrc.sh'; if [ -e /bin/lf ]; then bind '"\C-o":"lfcd\C-m"'; alias l='cd $(lf -config $LFRC -print-last-dir )';
 lfcd () { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
-cd () { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; $cyan pwd; }
+cd () { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; echo -e '\e[36m'; pwd; }
 ################################
 ################ _alias
 alias ee='echo ';
 alias ll='ls --hyperlink -hltrp --color=always --group-directories-first'; 
 alias la='ls --hyperlink -Ahltrp --color=always --group-directories-first; pwd'; 
 alias sl='ssh aaaa@ants.ftp.sh'; 
-alias m8='ssh -p 8022 4.4.4.5'
+alias m8='ssh -p 8022 192.168.0.102'
 iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
 ip4="$(curl -4 ip.me -s&)"; zz=' 2>/dev/null'; 
 ################ _variables

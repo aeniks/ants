@@ -7,12 +7,16 @@ map F setfilter
 map c+F filter
 map m set mouse!
 map a glob-select *
+map n glob-unselect *
 map z unselect *
 map <tab> :push :<tab> 
 map M :push %mkdir<space>
 map <delete> delete
+map <?> maps
 # interpreter for shell commands
 set shell bash
+set info time:size
+set drawbox
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -59,7 +63,9 @@ esac
 }}
 
 # mkdir command. See wiki if you want it to select created dir
-map h :push :<tab> 
+#map h :push :<tab> 
+map h :maps 
+map s :search 
 map M :push %mkdir<space>
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
