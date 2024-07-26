@@ -36,9 +36,11 @@ alias ee='echo ';
 alias ll='ls --hyperlink -hltrp --color=always --group-directories-first'; 
 alias la='ls --hyperlink -Ahltrp --color=always --group-directories-first; pwd'; 
 alias 'sl_cc@192.168.0.105'='ssh cc@192.168.0.105'
-alias 'sl_aaaa@ants.ftp.sh'='ssh aaaa@ants.ftp.sh'; 
+alias 'sl'='ssh aaaa@ants.ftp.sh'; 
 alias m8='ssh -p 8022 192.168.0.102'
-iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
+#iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
+iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
+
 ip4="$(curl -4 ip.me -s&)"; zz=' 2>/dev/null'; 
 ################ _variables
 export m8='62e27586_c5be_4dd2_a26c_6c558847cf63';
