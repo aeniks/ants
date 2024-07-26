@@ -2,28 +2,31 @@
 # Installs basic apps and functions
 tput dim; 
 sudo apt update; sudo apt upgrade -y;
-##################
-basicapps=(
-micro
-openssh-server
-net-tools
-lolcat
-fortunes
-fortune-mod
-cowsay
-neofetch
-mc
-btop
-gpm
-links2
-ranger
-pv
-fortune-mod
-tlp
-googler
-lf
-)
-
+#########################################################
+## read basic_app list from ants/bash.sh basic_apps=() ##
+#########################################################
+# basicapps=(
+# micro
+# openssl
+# openssh-server
+# net-tools
+# lolcat
+# fortunes
+# fortune-mod
+# cowsay
+# neofetch
+# mc
+# btop
+# gpm
+# links2
+# ranger
+# pv
+# fortune-mod
+# tlp
+# googler
+# lf
+# ncdu
+# )
 #############
 sudo apt -qqy install ${basicapps[@]}; 
 ##############

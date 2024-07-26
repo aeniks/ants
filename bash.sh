@@ -60,13 +60,35 @@ alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${H
 #    ssh-add
 #fi
 #unset env
+basicapps=(
+micro
+openssl
+openssh-server
+net-tools
+lolcat
+fortunes
+fortune-mod
+cowsay
+neofetch
+mc
+btop
+gpm
+links2
+ranger
+pv
+fortune-mod
+tlp
+googler
+lf
+ncdu
+)
 #######
 ##########################
 #### Welcome screen ######
 ##########################
 ####
 . /ants/alias.sh; . /ants/functions.sh;
-
+for i in /ants/12/*.*; do . $i; done; 
 if [ -e /bin/neofetch ]; then neofetch; fi 
 echo -e "
   $c2 Welcome back $cyan$bold $USER, $re today is:$blu $(date) $re
