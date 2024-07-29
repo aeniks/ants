@@ -112,10 +112,10 @@ alias 12_info_tput='less /sh/info/tputhelp.txt'
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
 # alias rnd1="(shuf 0-222 -n1)"
-#alias rr1='(echo $SRANDOM|tail -c2)'
-#alias rr2='(echo $RANDOM|tail -c2)'
-#alias rrf='tput setaf $(rr1)'
-#alias rrb='tput setab $(rr2)'
+alias rr1='(echo $SRANDOM|tail -c2)'
+alias rr2='(echo $RANDOM|tail -c2)'
+alias rrf='tput setaf $(rr1)'
+alias rrb='tput setab $(rr2)'
 ############################################
 #### IP_STUFF ##############################
 #alias ports='echo -e "\n\n   $cyan-$re Open ports on local network"$cyan" -"$re" \n"; echo -e " -- -- -- -- -- -- -- $(portsopen;  echo " -- -- -- -- -- -- --")"|column -tLo "$(tput sgr0)|  " -tLo "  $(tput sgr0)||   " -H 1,2,3,4,8; echo -e "\n\n" '
