@@ -9,7 +9,7 @@ esac
 if ! shopt -oq posix; then if [ -f /usr/share/bash-completion/bash_completion ]; 
 then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completion ]; 
 then . /etc/bash_completion; fi; fi; 
-export EDITOR='micro'; export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
+export ants="/ants"; export EDITOR='micro'; export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ################################
 ################ _colors
 ## black='\e[0;30m'; red='\e[0;31m'; green='\e[0;32m'; yellow='\e[0;33m'; blue='\e[0;34m'; pink='\e[0;35m'; cyan='\e[0;36m'; white='\e[0;37m'; 
@@ -27,9 +27,9 @@ white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';);
 ################################
 ################################
 ################ _functions
-LFRC='/ants/sh/config/lfrc.sh'; if [ -e /bin/lf ]; then bind '"\C-o":"lfcd\C-m"'; alias l='cd $(lf -config $LFRC -print-last-dir )';
-lfcd () { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
-cd () { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; echo -e '\e[36m'; pwd; }
+LFRC='$ants/sh/config/lfrc.sh'; if [ -e /bin/lf ]; then bind '"\C-o":"lfcd\C-m"'; alias l='cd $(lf -config $LFRC -print-last-dir )';
+lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
+cd() { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; echo -e '\e[36m'; pwd; }
 ################################
 ################ _alias
 alias ee='echo ';
@@ -40,7 +40,6 @@ alias 'sl'='ssh aaaa@ants.ftp.sh';
 alias m8='ssh -p 8022 192.168.0.102'
 #iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
 iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
-
 ip4="$(curl -4 ip.me -s&)"; zz=' 2>/dev/null'; 
 ################ _variables
 export m8='62e27586_c5be_4dd2_a26c_6c558847cf63';
@@ -89,8 +88,9 @@ ncdu
 #### Welcome screen ######
 ##########################
 ####
-. /ants/alias.sh; . /ants/functions.sh;
-for i in /ants/12/*.*; do . $i; done; 
+. $ants/alias.sh; . $ants/functions.sh;
+alias 12_='cd $ants/12; menu; cd $OLDPWD';
+#for i in /ants/12/*.*; do . $i; done; 
 if [ -e /bin/neofetch ]; then neofetch; fi 
 echo -e "
   $c2 Welcome back $cyan$bold $USER, $re today is:$blu $(date) $re
@@ -98,4 +98,4 @@ echo -e "
   $c2 Local  ip: $cyan$line$iploc$re";
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 echo -e "  $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo;
-PS1='$(history -a)'$re$blue$dim'\t'$red' \u '$green'\H '$cyan'$PWD '$pink'\$ '$re'\n'
+PS1=''$re$blue$dim'\t'$red' \u '$green'\H '$cyan'$PWD '$pink'\$ '$re'\n'
