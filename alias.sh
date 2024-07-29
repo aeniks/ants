@@ -2,7 +2,7 @@
 # alias for bash terminal
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
-export PATH="$PATH:/usr/games"
+#export PATH="$PATH:/usr/games"
 #alias grep='grep --color=auto'
 #alias fgrep='fgrep --color=auto'
 #alias egrep='egrep --color=auto'
@@ -25,11 +25,11 @@ alias 12_goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -e
 #alias apt='sudo apt'
 alias 12_gmail='open gmail.com'
 alias no='echo -e "\e[?25h"'
-alias 12_ansi_info='less /ants/sh/info/ansi.md'
-alias 12_tard='lo="$(jp2a /ants/media/tard5.jpg --chars="_oooo" --term-width)";
+alias 12_ansi_info='less $ants/sh/info/ansi.md'
+alias 12_tard='lo="$(jp2a $ants/media/tard5.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
-alias tard='lo="$(jp2a /ants/media/tard5.jpg --chars="_oooo" --term-width)";
+alias tard='lo="$(jp2a $ants/media/tard5.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
 alias 12_lf_config='micro /etc/lf/lfrc.sh;'
@@ -41,14 +41,14 @@ norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }
 #alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 #alias 11='ssh ants.swe.net -p 8022 "termux-media-player play /sdcard/Music/money.mp3"'
 #alias 22='ssh ants.swe.net -p 8022 "termux-media-player stop"'
-#alias aa='if [ $USER = "root" ]; then sudo chown $SUDO_USER: /ants -R; sudo chmod 775 /ants -R; 
-#else sudo chown $USER: /ants -R; sudo chmod 775 /ants -R; fi; cd /ants; 
+#alias aa='if [ $USER = "root" ]; then sudo chown $SUDO_USER:  -R; sudo chmod 775  -R; 
+#else sudo chown $USER:  -R; sudo chmod 775  -R; fi; cd ; 
 #echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 #ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
-alias aa='cd /ants; '
-alias aaaa="micro "/ants/alias.sh"; read -ep 'update /ants/alias.sh? '; . /ants/alias.sh;"
-alias bbbb="micro "/ants/bash.sh"; read -ep 'update /ants/bash.sh? '; . /ants/bash.sh;"
-alias cccc="micro "/ants/functions.sh"; read -ep 'update /ants/functions.sh? '; . /ants/functions.sh;"
+alias aa='cd $ants; '
+alias aaaa="micro "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; . $ants/alias.sh;"
+alias bbbb="micro "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; . $ants/bash.sh;"
+alias cccc="micro "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; . $ants/functions.sh;"
 ####
 alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COLUMNS))); 
 do echo -n " "; done; tput cup 0'
@@ -69,7 +69,7 @@ alias 12_ansii_codes="echo -e '
 alias 12_serve_folder_with_wrangler='read -n1 -ep  "$c2 serve $PWD/? "; npx wrangler pages dev . 2>/dev/null'
 #alias wrangler='npx wrangler pages'
 alias 12_iplocal='ip route; cat ~/iplog; ' 
-alias 12_ants_dl_installer='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new/ants; . /tmp/in.sh;'
+alias 12_ants_dl_installer='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new$ants; . /tmp/in.sh;'
 alias lenoo='read -t 8 -ep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; curl -k https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM='
 alias 12_rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$rainbow";'
 alias 12_fortune="rrf; fortune; tput sgr0;"
@@ -92,8 +92,8 @@ alias kf='guf=$(gum file);echo -e "\n\n\n\n\n"; tput cuu 2; read -ep "$c2 title:
 #### SSH ###################################
 ############################################
 #### ANTS ##################################
-#alias ali='micro /ants/alias.sh && read -t2 -n1 -ep "update /ants/alias.sh? " ab && source /ants/alias.sh'ions.sh'
-alias uu='sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove; sudo apt full-upgrade -y && sudo snap refresh && jp2a /ants/media/tard.jpg|pv --rate-limit=2222 --quiet'
+#alias ali='micro /alias.sh && read -t2 -n1 -ep "update /alias.sh? " ab && source /alias.sh'ions.sh'
+alias uu='sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove; sudo apt full-upgrade -y && sudo snap refresh && jp2a $ants/media/tard.jpg|pv --rate-limit=2222 --quiet'
 alias rb='sudo wall "gg"; sleep 1; sudo systemctl reboot'
 ##
 alias www="www-browser"
@@ -107,7 +107,7 @@ curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++; tput cup 6 $((COLUMNS-28
 ############################################
 ## MISC_STUFF ##############################
 alias 12_fill='seq -s " # " 4444|lolcat'
-alias 12_info_tput='less /ants/sh/info/tputhelp.txt'
+alias 12_info_tput='less /sh/info/tputhelp.txt'
 ############################################
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
@@ -141,8 +141,8 @@ alias 12_info_tput='less /ants/sh/info/tputhelp.txt'
 # echo "$ali" >> /etc/aaaa.sh; echo -e "\n $ali \n " '
 #alias ali='psp read -ep "$c2 alias name: " "alia"; 
 #psp read -ep "$c2 alias $alia=" -i ""'""""'"" "aliq"; 
-#echo "alias $alia=$aliq" >> /ants/alias.sh; 
-#echo -e "\n $alia=""$aliq"" \n "; source /ants/alias.sh'
+#echo "alias $alia=$aliq" >> /alias.sh; 
+#echo -e "\n $alia=""$aliq"" \n "; source /alias.sh'
 ############################################
 ############################################
 #alias fakta='neofetch 2>/dev/null '
@@ -154,21 +154,22 @@ alias cloner='
 psp read -ep "$c2 "$rev"clone where folder?$re " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
 chown "$SUDO_USER":"$USER" "$folder"; cd $folder; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ll -caklup;
 ####
-psp read -ep "$c2 CLONE: https://github.com/12ants/" -i "" "clone"; 
-git clone https://github.com/12ants/$clone; cd $clone 2>/dev/null; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ls -a; echo;echo; '
+psp read -ep "$c2 CLONE: https://github.com/aeniks/" -i "" "clone"; 
+git clone https://github.com/aeniks/$clone; cd $clone 2>/dev/null; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ls -a; echo;echo; '
 # alias ww='ee;ee "$cyan";w;ee;ee "$blue"; ps all;ee "$re $PWD"'
-alias logins='echo;echo "  LAST LOGINS"; echo -e "$pink"; sudo lastb -axdwn 4;echo -e "$white"; echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
+alias 12_last_logins='echo;echo "  LAST LOGINS"; echo -e "$pink"; sudo lastb -axdwn 4;echo -e "$white"; echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
 alias 12_choose_logins_screen='read -n1 -ep "  $c2  g/t  $(systemctl get-default)  " "gt"; if [ $gt == t ]; then sudo systemctl set-default multi-user.target; else sudo systemctl set-default graphical.target; fi ; echo gg'
 alias xxxx='startx'
-#alias an12='bash <(wget -O- dub.sh/ants12)'
+#alias an12='bash <(wget -O- dub.sh12)'
 #alias aeniks='wget -Ok dub.sh/aeniks; . k;'
 alias greet='echo -ne "\t$c2 Welcome back $blue $USER,$re today is:$blue "; date; echo'
 ####
-alias uuuu='cd /uuuu; echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$dim --------$re \n"'
+alias uuuu='cd /uuuu; echo; pwd|pr --omit-header --indent=4|\
+lolcat -p 2; echo;  echo -e "$cyan$dim --------$re"; ls -Alhkct; echo -e "$cyan$dim --------$re \n"'
 if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//g)); fi; 
 alias 12_quote="/usr/games/fortune"
 alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push'
 alias pull='git pull'
-alias info_cm'=less /ants/sh/info/cmd.sh'
-alias cm2'=cat /ants/sh/cmd.sh'
+alias info_cm'=less $ants/sh/info/cmd.sh'
+alias cm2'=cat $ants/sh/cmd.sh'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
