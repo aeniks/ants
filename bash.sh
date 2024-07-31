@@ -2,6 +2,8 @@
 ## A better bash. Written by 12ants.github.io
 ################################
 ################ _do nothing if not interactive
+export "ants"='/ants'; ants='/ants';
+################ keep on line 5 for sed replacement
 case $- in
 *i*) ;;
 *) return;;
@@ -9,8 +11,6 @@ esac
 if ! shopt -oq posix; then if [ -f /usr/share/bash-completion/bash_completion ]; 
 then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completion ]; 
 then . /etc/bash_completion; fi; fi; 
-export "ants"='/ants'; 
-ants='/ants'
 export EDITOR='micro'; export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ################################
 ################ _colors
@@ -34,6 +34,9 @@ lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi;
 cd() { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; echo -e '\e[36m'; pwd; }
 ################################
 ################ _alias
+
+alias mm='micro';
+alias qq='cd ..; ll';
 alias ee='echo ';
 alias ll='ls --hyperlink -hltrp --color=always --group-directories-first'; 
 alias la='ls --hyperlink -Ahltrp --color=always --group-directories-first; pwd'; 
@@ -90,14 +93,16 @@ ncdu
 #### Welcome screen ######
 ##########################
 ####
+qwqw="$(curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++ & disown)"
 . $ants/alias.sh; 
 for i in $ants/functions/*; do . $i; done; 
 alias 12_='menu "$ants/12"';
-if [ -e /bin/neofetch ]; then neofetch; fi 
+if [ -e /bin/neofetch ]; then neofetch & disown; fi 
 echo -e "
-  $c2 Welcome back $cyan$bold $USER, $re today is:$blu $(date) $re
+  $c2 Welcome back $cyan$bold $(id -urn), $re today is:$blu $(date) $re
   $c2 Public ip: $green$line$ip4$re 
   $c2 Local  ip: $cyan$line$iploc$re";
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 echo -e "  $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo;
 PS1=''$re$blue$dim'\t'$red' \u '$green'\H '$cyan'$PWD '$pink'\$ '$re'\n'
+(sleep 2; echo -e "$qwqw";)& disown; 
