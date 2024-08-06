@@ -10,4 +10,4 @@ echo -ne "\e[31m"; done;
 read -n1 -rep "$c2 Are these changes ok? ${red}n ${re}/${green} y " "baba"; fi; 
 if [ $baba = "y" ]; 
 then cat tmpfl|while read fa; do mv -nv "$fa" "$(echo $fa |sed "s/ /_/g"| \
-sed "s/[{}()\'~,]//g")"; done; fi; echo -e "ok"; ls; }
+sed "s/[{}()\'~,]//g")"; done; fi; echo -e "ok \e[0m"; rm tmpfl; ls -p; }
