@@ -100,9 +100,9 @@ timeout -k 1s 2s echo -e "
  $c2 ${vader^^}
  $c2 Welcome back $cyan$bold$(id -un)
  $c2 Public ip: $green$line$ip4$re 
- $c2 Local  ip: $cyan$line$iploc$re "; 
+ $c2 Local  ip: $cyan$line$iploc$re  
+ $c2 $pink$(date +%A" $green"%B" $yellow"%D)$re -- $bold$cyan$blink$italic$(date +%T)$re"
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
-echo -e "  $c2 $pink$(date +%A" $green"%B" $yellow"%D)$re -- $bold$cyan$blink$italic$(date +%T)$re"
 echo -e "  $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo; 
 #PS1=''$re$blue$dim'\t'$red' \u '$green'\H '$cyan' '$pink'\$ '$re'\n'
 PS1='\e[0m\e[2;3m\t\e[0m\e[1;36m\u\e[0;2;33m\H\e[0;32m\w\e[0m _ \n'

@@ -1,3 +1,4 @@
+
 #!/bin/bash
 ## A better bash. Written by 12ants.github.io
 ################################
@@ -105,7 +106,7 @@ timeout -k 1s 2s echo -e "  $c2 ${vader^^}
   $c2 Welcome back $cyan$bold$(id -un)
   $c2 Public ip: $green$line$ip4$re 
   $c2 Local  ip: $cyan$line$iploc$re "; 
-if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 echo -e "  $c2 $pink$(date +%A" $green"%B" $yellow"%D)$re -- $bold$cyan$blink$italic$(date +%T)$re"
+if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 echo -e "  $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo;
 #PS1='\e7\e[4;4H\e[1;3;36m\w\e[0m\e8\n'
