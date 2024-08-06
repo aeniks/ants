@@ -25,7 +25,7 @@ alias 12_goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -e
 #alias apt='sudo apt'
 alias 12_gmail='open gmail.com'
 alias no='echo -e "\e[?25h"'
-alias 12_ansi_info='less $ants/sh/info/ansi.md'
+alias 12_ansi_info='glow $ants/sh/info/ansi.md'
 alias 12_tard='lo="$(jp2a $ants/media/tard5.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
@@ -35,6 +35,7 @@ do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "
 alias 12_lf_config='micro /etc/lf/lfrc.sh;'
 alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
 alias staticants=''
+alias reloadbash='exec bash'
 alias 11='kdeconnect-cli -d "62e27586_c5be_4dd2_a26c_6c558847cf63" --ring'; 
 alias 12_history='less +G ~/.bash_history'
 norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }  
@@ -54,7 +55,7 @@ alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COL
 do echo -n " "; done; tput cup 0'
 alias psp='tput indn 12 cuu 8;'
 alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
-alias 12_ansii_codes="echo -e '
+alias 12_ansii_codes="echo '
 ## $($e'\e[1m') bold $($e'\e[0m') 	## $($e'\e[2m') dim $($e'\e[0m')
 ## $($e'\e[3m') italic $($e'\e[0m') 	## $($e'\e[4m') underline $($e'\e[0m')
 ## $($e'\e[5m') blink $($e'\e[0m') 	## $($e'\e[7m') rev $($e'\e[0m')
