@@ -2,7 +2,7 @@
 ## lf config
 map . set hidden! 
 map <esc> quit
-map <enter> open
+#map <enter> open
 map F setfilter
 map c+F filter
 map m set mouse!
@@ -13,10 +13,13 @@ map <tab> :push :<tab>
 map M :push %mkdir<space>
 map <delete> delete
 map <?> maps
+map <pgdn> half-down
+map <pgup> half-up
 # interpreter for shell commands
+set previewer /bin/glow
 set shell bash
 set info time:size
-set drawbox
+#set drawbox
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -33,13 +36,13 @@ set drawbox
 #set ifs "\n"
 
 # leave some space at the top and the bottom of the screen
-#set scrolloff 10
+set scrolloff 10
 
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
-#set cursorpreviewfmt "\033[7;2m"
+set cursorpreviewfmt "\033[7;2m"
 
 # use enter for shell commands
-#map <enter> shell
+map <enter> shell
 
 # show the result of execution of previous commands
 map <backspace2> !true
@@ -49,7 +52,7 @@ map x $$f
 map X !$f
 
 # dedicated keys for file opener actions
-map <enter> open
+#map <enter> open
 map o $mimeopen --ask $f
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
@@ -66,7 +69,7 @@ esac
 #map h :push :<tab> 
 map h :maps 
 map s :search 
-map M :push %mkdir<space>
+#map M :push %mkdir<space>
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 # map r push :rename<space>
