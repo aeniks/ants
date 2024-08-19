@@ -47,7 +47,6 @@ tput cnorm; echo -ne "\e[0m";
 }
 trap BLA::stop_loading_animation SIGINT
 BLA::start_loading_animation "${BLA_metro[@]}"
-read -n1 "qq"& 
 sleep 1; 
 echo -ne "\e[0m\e[$((size/2+2));$((size[1]/2-8))H\e[2;40;39m working on $1 ... \e[0m"; 
 $1 &>/dev/null; 
