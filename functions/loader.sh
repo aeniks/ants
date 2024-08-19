@@ -37,7 +37,7 @@ BLA_active_loading_animation=( "${@}" );
 BLA_loading_animation_frame_interval="${BLA_active_loading_animation[0]}"; 
 unset "BLA_active_loading_animation[0]"; 
 BLA::play_loading_animation_loop & disown; echo -e "\eM\e[0K"
-echo -ne "\e[$((size/2-1));$((size[1]/2-5))H\e[2;5;40;39m loading\e[0;40;37m... "; 
+echo -ne "\e[$((size/2-1));$((size[1]/2-5))H\e[2;5;40;39m loading\e[0;40;37m...    "; 
 BLA_loading_animation_pid="${!}"; 
 }
 BLA::stop_loading_animation() {
