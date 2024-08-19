@@ -1,6 +1,7 @@
 #/bin/bash
 ## LOADING_ANIMATIONS
 loader() {
+[ -e /bin/tput ]|| apt install ncurses-utils &>/dev/null;
 BLA_metro=( 0.1 \
 '       ' \
 '=      ' \
