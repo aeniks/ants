@@ -9,6 +9,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias 12_network='ip n | grep -v FAILED|head -n-1'
 ####
 ####
+alias fill='seq -s "" 2222';
 alias 12_make_admin='if [ -e != /etc/sudoers.d/admins ]; 
 then sudo touch /etc/sudoers.d/admins; fi; 
 sudo chmod 775 /etc/sudoers.d/admins && 
@@ -36,7 +37,6 @@ alias 12_lf_config='micro /etc/lf/lfrc.sh;'
 alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
 alias staticants=''
 alias reloadbash='exec bash'
-alias 11='kdeconnect-cli -d "62e27586_c5be_4dd2_a26c_6c558847cf63" --ring'; 
 alias 12_history='less +G ~/.bash_history'
 norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }  
 #alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -82,9 +82,14 @@ alias 12_zip='echo -ne "\n\t $c2 "; read -ep "zip folder: " -i "$PWD"  "zipf";
 echo -ne "\n\t $c2"; read -ep "to: " -i "$(wotd|tr -d "''").zip" "zipz";
 zip -r $zipz $zipf;'
 ##
+alias hiztory='command -v glow||(sudo apt install glow -y &>/dev/null||apt install glow -y&>/dev/null); 
+history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash_history|glow; read -rep " $c2 lines: " -i "$lo" "lo"; \
+tail -n${lo} ~/.bash_history|glow; '
 alias qq='cd ..; ' 
 alias ww='cd $OLDPWD; '
 alias bb="btop --utf-force"
+alias emojis='cat $ants/sh/emojis.sh|tr "\n" "\t";';
+alias 12_emojis=emojis;
 ############################################
 #### GITHUB ################################
 alias 12_write_gist_kk='read -ep ">_ " 'kl'; printf "$kl"|gh gist create -f $(date +%A_%y_%m_%d_%__0k_%M.sh);'
@@ -147,7 +152,7 @@ alias rrb='tput setab $(rr2)'
 ############################################
 ############################################
 #alias fakta='neofetch 2>/dev/null '
-#alias gg='tput indn 8 cuu 4; read -ep "$c2 " -i "google: " "google"; googler "https://www.google.com/search?q=$google"'
+alias gg='tput indn 8 cuu 4; read -ep "$c2 " -i "google: " "google"; googler "https://www.google.com/search?q=$google"'
 alias zz="ranger 2>/dev/null" 
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
