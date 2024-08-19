@@ -10,9 +10,11 @@ alias 12_network='ip n | grep -v FAILED|head -n-1'
 ####
 ####
 alias fill='seq -s "" 2222';
-alias 12_nuke_ants='read -rep "$c2$red nuke$re ant-folder: " -i "$ants" "nk"; 
+alias 12_nuke_ants='
+read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
+read -rep "$c2$red nuke$re new ant-folder: " -i "$ants" "nk"; 
 read "$nk${cyan} ok${re}? " "okok" 2>/dev/null;
-sudo rm $nk -R;  git clone https://github.com/aeniks/ants /tmp/ants; 
+sudo rm $ok -R;  git clone https://github.com/aeniks/ants /tmp/ants; 
 sudo mv /tmp/ants $nk 2>/dev/null; cd $nk/ants; exec bash;'
 alias 12_make_admin='if [ -e != /etc/sudoers.d/admins ]; 
 then sudo touch /etc/sudoers.d/admins; fi; 
