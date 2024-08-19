@@ -120,6 +120,8 @@ curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++; tput cup 6 $((COLUMNS-28
 ## MISC_STUFF ##############################
 alias 12_fill='seq -s " # " 4444|lolcat'
 alias 12_info_tput='less /sh/info/tputhelp.txt'
+alias 12_coolors='. $ants/sh/helpansi.sh;' 
+
 ############################################
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
