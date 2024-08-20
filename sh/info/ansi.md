@@ -1,4 +1,112 @@
-# ANSI Escape Sequences
+#!/bin/bash
+## ANSI Escape Sequences
+#### List of keyboard strings
+
+| Key                      | Code     | SHIFT+code | CTRL+code | ALT+code  |
+| ------------------------ | -------- | ---------- | --------- | --------- |
+| F1                       | 0;59     | 0;84       | 0;94      | 0;104     |
+| F2                       | 0;60     | 0;85       | 0;95      | 0;105     |
+| F3                       | 0;61     | 0;86       | 0;96      | 0;106     |
+| F4                       | 0;62     | 0;87       | 0;97      | 0;107     |
+| F5                       | 0;63     | 0;88       | 0;98      | 0;108     |
+| F6                       | 0;64     | 0;89       | 0;99      | 0;109     |
+| F7                       | 0;65     | 0;90       | 0;100     | 0;110     |
+| F8                       | 0;66     | 0;91       | 0;101     | 0;111     |
+| F9                       | 0;67     | 0;92       | 0;102     | 0;112     |
+| F10                      | 0;68     | 0;93       | 0;103     | 0;113     |
+| F11                      | 0;133    | 0;135      | 0;137     | 0;139     |
+| F12                      | 0;134    | 0;136      | 0;138     | 0;140     |
+| HOME (num keypad)        | 0;71     | 55         | 0;119     | \--       |
+| UP ARROW (num keypad)    | 0;72     | 56         | (0;141)   | \--       |
+| PAGE UP (num keypad)     | 0;73     | 57         | 0;132     | \--       |
+| LEFT ARROW (num keypad)  | 0;75     | 52         | 0;115     | \--       |
+| RIGHT ARROW (num keypad) | 0;77     | 54         | 0;116     | \--       |
+| END (num keypad)         | 0;79     | 49         | 0;117     | \--       |
+| DOWN ARROW (num keypad)  | 0;80     | 50         | (0;145)   | \--       |
+| PAGE DOWN (num keypad)   | 0;81     | 51         | 0;118     | \--       |
+| INSERT (num keypad)      | 0;82     | 48         | (0;146)   | \--       |
+| DELETE (num keypad)      | 0;83     | 46         | (0;147)   | \--       |
+| HOME                     | (224;71) | (224;71)   | (224;119) | (224;151) |
+| UP ARROW                 | (224;72) | (224;72)   | (224;141) | (224;152) |
+| PAGE UP                  | (224;73) | (224;73)   | (224;132) | (224;153) |
+| LEFT ARROW               | (224;75) | (224;75)   | (224;115) | (224;155) |
+| RIGHT ARROW              | (224;77) | (224;77)   | (224;116) | (224;157) |
+| END                      | (224;79) | (224;79)   | (224;117) | (224;159) |
+| DOWN ARROW               | (224;80) | (224;80)   | (224;145) | (224;154) |
+| PAGE DOWN                | (224;81) | (224;81)   | (224;118) | (224;161) |
+| INSERT                   | (224;82) | (224;82)   | (224;146) | (224;162) |
+| DELETE                   | (224;83) | (224;83)   | (224;147) | (224;163) |
+| PRINT SCREEN             | \--      | \--        | 0;114     | \--       |
+| PAUSE/BREAK              | \--      | \--        | 0;0       | \--       |
+| BACKSPACE                | 8        | 8          | 127       | (0)       |
+| ENTER                    | 13       | \--        | 10        | (0        |
+| TAB                      | 9        | 0;15       | (0;148)   | (0;165)   |
+| NULL                     | 0;3      | \--        | \--       | \--       |
+| A                        | 97       | 65         | 1         | 0;30      |
+| B                        | 98       | 66         | 2         | 0;48      |
+| C                        | 99       | 66         | 3         | 0;46      |
+| D                        | 100      | 68         | 4         | 0;32      |
+| E                        | 101      | 69         | 5         | 0;18      |
+| F                        | 102      | 70         | 6         | 0;33      |
+| G                        | 103      | 71         | 7         | 0;34      |
+| H                        | 104      | 72         | 8         | 0;35      |
+| I                        | 105      | 73         | 9         | 0;23      |
+| J                        | 106      | 74         | 10        | 0;36      |
+| K                        | 107      | 75         | 11        | 0;37      |
+| L                        | 108      | 76         | 12        | 0;38      |
+| M                        | 109      | 77         | 13        | 0;50      |
+| N                        | 110      | 78         | 14        | 0;49      |
+| O                        | 111      | 79         | 15        | 0;24      |
+| P                        | 112      | 80         | 16        | 0;25      |
+| Q                        | 113      | 81         | 17        | 0;16      |
+| R                        | 114      | 82         | 18        | 0;19      |
+| S                        | 115      | 83         | 19        | 0;31      |
+| T                        | 116      | 84         | 20        | 0;20      |
+| U                        | 117      | 85         | 21        | 0;22      |
+| V                        | 118      | 86         | 22        | 0;47      |
+| W                        | 119      | 87         | 23        | 0;17      |
+| X                        | 120      | 88         | 24        | 0;45      |
+| Y                        | 121      | 89         | 25        | 0;21      |
+| Z                        | 122      | 90         | 26        | 0;44      |
+| 1                        | 49       | 33         | \--       | 0;120     |
+| 2                        | 50       | 64         | 0         | 0;121     |
+| 3                        | 51       | 35         | \--       | 0;122     |
+| 4                        | 52       | 36         | \--       | 0;123     |
+| 5                        | 53       | 37         | \--       | 0;124     |
+| 6                        | 54       | 94         | 30        | 0;125     |
+| 7                        | 55       | 38         | \--       | 0;126     |
+| 8                        | 56       | 42         | \--       | 0;126     |
+| 9                        | 57       | 40         | \--       | 0;127     |
+| 0                        | 48       | 41         | \--       | 0;129     |
+| \-                       | 45       | 95         | 31        | 0;130     |
+| \=                       | 61       | 43         | \---      | 0;131     |
+| \[                       | 91       | 123        | 27        | 0;26      |
+| \]                       | 93       | 125        | 29        | 0;27      |
+|                          | 92       | 124        | 28        | 0;43      |
+| ;                        | 59       | 58         | \--       | 0;39      |
+| '                        | 39       | 34         | \--       | 0;40      |
+| ,                        | 44       | 60         | \--       | 0;51      |
+| .                        | 46       | 62         | \--       | 0;52      |
+| /                        | 47       | 63         | \--       | 0;53      |
+| \`                       | 96       | 126        | \--       | (0;41)    |
+| ENTER (keypad)           | 13       | \--        | 10        | (0;166)   |
+| / (keypad)               | 47       | 47         | (0;142)   | (0;74)    |
+| \* (keypad)              | 42       | (0;144)    | (0;78)    | \--       |
+| \- (keypad)              | 45       | 45         | (0;149)   | (0;164)   |
+| \+ (keypad)              | 43       | 43         | (0;150)   | (0;55)    |
+| 5 (keypad)               | (0;76)   | 53         | (0;143)   | \--       |
+
+## Resources
+
+- [Wikipedia: ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code)
+- [Build your own Command Line with ANSI escape codes](http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html)
+- [ascii-table: ANSI Escape sequences](http://ascii-table.com/ansi-escape-sequences.php)
+- [bluesock: ansi codes](https://bluesock.org/~willkg/dev/ansi.html)
+- [bash-hackers: Terminal Codes (ANSI/VT100) introduction](http://wiki.bash-hackers.org/scripting/terminalcodes)
+- [XTerm Control Sequences](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html)
+- [VT100 – Various terminal manuals](https://vt100.net/)
+- [xterm.js – Supported Terminal Sequences](https://xtermjs.org/docs/api/vtfeatures/)
+
 
 Standard escape codes are prefixed with `Escape`:
 
@@ -183,30 +291,6 @@ These escape sequences are usually not well documented.
 
 > Note that `;38` and `;48` corresponds to the 16 color sequence and is interpreted by the terminal to set the foreground and background color respectively. Where as `;2` and `;5` sets the color format.
 
-## Screen Modes
-
-### Set Mode
-
-| ESC Code Sequence | Description                                                                                                                                                           |
-| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ESC[={value}h`   | Changes the screen width or type to the mode specified by value.                                                                                                      |
-| `ESC[=0h`         | 40 x 25 monochrome (text)                                                                                                                                             |
-| `ESC[=1h`         | 40 x 25 color (text)                                                                                                                                                  |
-| `ESC[=2h`         | 80 x 25 monochrome (text)                                                                                                                                             |
-| `ESC[=3h`         | 80 x 25 color (text)                                                                                                                                                  |
-| `ESC[=4h`         | 320 x 200 4-color (graphics)                                                                                                                                          |
-| `ESC[=5h`         | 320 x 200 monochrome (graphics)                                                                                                                                       |
-| `ESC[=6h`         | 640 x 200 monochrome (graphics)                                                                                                                                       |
-| `ESC[=7h`         | Enables line wrapping                                                                                                                                                 |
-| `ESC[=13h`        | 320 x 200 color (graphics)                                                                                                                                            |
-| `ESC[=14h`        | 640 x 200 color (16-color graphics)                                                                                                                                   |
-| `ESC[=15h`        | 640 x 350 monochrome (2-color graphics)                                                                                                                               |
-| `ESC[=16h`        | 640 x 350 color (16-color graphics)                                                                                                                                   |
-| `ESC[=17h`        | 640 x 480 monochrome (2-color graphics)                                                                                                                               |
-| `ESC[=18h`        | 640 x 480 color (16-color graphics)                                                                                                                                   |
-| `ESC[=19h`        | 320 x 200 color (256-color graphics)                                                                                                                                  |
-| `ESC[={value}l`   | Resets the mode by using the same values that Set Mode uses, except for 7, which disables line wrapping. The last character in this escape sequence is a lowercase L. |
-
 ### Common Private Modes
 
 These are some examples of private modes, which are not defined by the specification, but are implemented in most terminals.
@@ -221,128 +305,3 @@ These are some examples of private modes, which are not defined by the specifica
 | `ESC[?1049l`      | disables the alternative buffer |
 
 Refer to the [XTerm Control Sequences](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html) for a more in-depth list of private modes defined by XTerm.
-
-> Note: While these modes may be supported by the most terminals, some may not work in multiplexers like tmux.
-
-### Keyboard Strings
-
-```sh
-ESC[{code};{string};{...}p
-```
-
-Redefines a keyboard key to a specified string.
-
-The parameters for this escape sequence are defined as follows:
-
-- `code` is one or more of the values listed in the following table. These values represent keyboard keys and key combinations. When using these values in a command, you must type the semicolons shown in this table in addition to the semicolons required by the escape sequence. The codes in parentheses are not available on some keyboards. `ANSI.SYS` will not interpret the codes in parentheses for those keyboards unless you specify the `/X` switch in the `DEVICE` command for `ANSI.SYS`.
-
-- `string` is either the ASCII code for a single character or a string contained in quotation marks. For example, both 65 and "A" can be used to represent an uppercase A.
-
-> **IMPORTANT:** Some of the values in the following table are not valid for all computers. Check your computer's documentation for values that are different.
-
-#### List of keyboard strings
-
-| Key                      | Code     | SHIFT+code | CTRL+code | ALT+code  |
-| ------------------------ | -------- | ---------- | --------- | --------- |
-| F1                       | 0;59     | 0;84       | 0;94      | 0;104     |
-| F2                       | 0;60     | 0;85       | 0;95      | 0;105     |
-| F3                       | 0;61     | 0;86       | 0;96      | 0;106     |
-| F4                       | 0;62     | 0;87       | 0;97      | 0;107     |
-| F5                       | 0;63     | 0;88       | 0;98      | 0;108     |
-| F6                       | 0;64     | 0;89       | 0;99      | 0;109     |
-| F7                       | 0;65     | 0;90       | 0;100     | 0;110     |
-| F8                       | 0;66     | 0;91       | 0;101     | 0;111     |
-| F9                       | 0;67     | 0;92       | 0;102     | 0;112     |
-| F10                      | 0;68     | 0;93       | 0;103     | 0;113     |
-| F11                      | 0;133    | 0;135      | 0;137     | 0;139     |
-| F12                      | 0;134    | 0;136      | 0;138     | 0;140     |
-| HOME (num keypad)        | 0;71     | 55         | 0;119     | \--       |
-| UP ARROW (num keypad)    | 0;72     | 56         | (0;141)   | \--       |
-| PAGE UP (num keypad)     | 0;73     | 57         | 0;132     | \--       |
-| LEFT ARROW (num keypad)  | 0;75     | 52         | 0;115     | \--       |
-| RIGHT ARROW (num keypad) | 0;77     | 54         | 0;116     | \--       |
-| END (num keypad)         | 0;79     | 49         | 0;117     | \--       |
-| DOWN ARROW (num keypad)  | 0;80     | 50         | (0;145)   | \--       |
-| PAGE DOWN (num keypad)   | 0;81     | 51         | 0;118     | \--       |
-| INSERT (num keypad)      | 0;82     | 48         | (0;146)   | \--       |
-| DELETE (num keypad)      | 0;83     | 46         | (0;147)   | \--       |
-| HOME                     | (224;71) | (224;71)   | (224;119) | (224;151) |
-| UP ARROW                 | (224;72) | (224;72)   | (224;141) | (224;152) |
-| PAGE UP                  | (224;73) | (224;73)   | (224;132) | (224;153) |
-| LEFT ARROW               | (224;75) | (224;75)   | (224;115) | (224;155) |
-| RIGHT ARROW              | (224;77) | (224;77)   | (224;116) | (224;157) |
-| END                      | (224;79) | (224;79)   | (224;117) | (224;159) |
-| DOWN ARROW               | (224;80) | (224;80)   | (224;145) | (224;154) |
-| PAGE DOWN                | (224;81) | (224;81)   | (224;118) | (224;161) |
-| INSERT                   | (224;82) | (224;82)   | (224;146) | (224;162) |
-| DELETE                   | (224;83) | (224;83)   | (224;147) | (224;163) |
-| PRINT SCREEN             | \--      | \--        | 0;114     | \--       |
-| PAUSE/BREAK              | \--      | \--        | 0;0       | \--       |
-| BACKSPACE                | 8        | 8          | 127       | (0)       |
-| ENTER                    | 13       | \--        | 10        | (0        |
-| TAB                      | 9        | 0;15       | (0;148)   | (0;165)   |
-| NULL                     | 0;3      | \--        | \--       | \--       |
-| A                        | 97       | 65         | 1         | 0;30      |
-| B                        | 98       | 66         | 2         | 0;48      |
-| C                        | 99       | 66         | 3         | 0;46      |
-| D                        | 100      | 68         | 4         | 0;32      |
-| E                        | 101      | 69         | 5         | 0;18      |
-| F                        | 102      | 70         | 6         | 0;33      |
-| G                        | 103      | 71         | 7         | 0;34      |
-| H                        | 104      | 72         | 8         | 0;35      |
-| I                        | 105      | 73         | 9         | 0;23      |
-| J                        | 106      | 74         | 10        | 0;36      |
-| K                        | 107      | 75         | 11        | 0;37      |
-| L                        | 108      | 76         | 12        | 0;38      |
-| M                        | 109      | 77         | 13        | 0;50      |
-| N                        | 110      | 78         | 14        | 0;49      |
-| O                        | 111      | 79         | 15        | 0;24      |
-| P                        | 112      | 80         | 16        | 0;25      |
-| Q                        | 113      | 81         | 17        | 0;16      |
-| R                        | 114      | 82         | 18        | 0;19      |
-| S                        | 115      | 83         | 19        | 0;31      |
-| T                        | 116      | 84         | 20        | 0;20      |
-| U                        | 117      | 85         | 21        | 0;22      |
-| V                        | 118      | 86         | 22        | 0;47      |
-| W                        | 119      | 87         | 23        | 0;17      |
-| X                        | 120      | 88         | 24        | 0;45      |
-| Y                        | 121      | 89         | 25        | 0;21      |
-| Z                        | 122      | 90         | 26        | 0;44      |
-| 1                        | 49       | 33         | \--       | 0;120     |
-| 2                        | 50       | 64         | 0         | 0;121     |
-| 3                        | 51       | 35         | \--       | 0;122     |
-| 4                        | 52       | 36         | \--       | 0;123     |
-| 5                        | 53       | 37         | \--       | 0;124     |
-| 6                        | 54       | 94         | 30        | 0;125     |
-| 7                        | 55       | 38         | \--       | 0;126     |
-| 8                        | 56       | 42         | \--       | 0;126     |
-| 9                        | 57       | 40         | \--       | 0;127     |
-| 0                        | 48       | 41         | \--       | 0;129     |
-| \-                       | 45       | 95         | 31        | 0;130     |
-| \=                       | 61       | 43         | \---      | 0;131     |
-| \[                       | 91       | 123        | 27        | 0;26      |
-| \]                       | 93       | 125        | 29        | 0;27      |
-|                          | 92       | 124        | 28        | 0;43      |
-| ;                        | 59       | 58         | \--       | 0;39      |
-| '                        | 39       | 34         | \--       | 0;40      |
-| ,                        | 44       | 60         | \--       | 0;51      |
-| .                        | 46       | 62         | \--       | 0;52      |
-| /                        | 47       | 63         | \--       | 0;53      |
-| \`                       | 96       | 126        | \--       | (0;41)    |
-| ENTER (keypad)           | 13       | \--        | 10        | (0;166)   |
-| / (keypad)               | 47       | 47         | (0;142)   | (0;74)    |
-| \* (keypad)              | 42       | (0;144)    | (0;78)    | \--       |
-| \- (keypad)              | 45       | 45         | (0;149)   | (0;164)   |
-| \+ (keypad)              | 43       | 43         | (0;150)   | (0;55)    |
-| 5 (keypad)               | (0;76)   | 53         | (0;143)   | \--       |
-
-## Resources
-
-- [Wikipedia: ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code)
-- [Build your own Command Line with ANSI escape codes](http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html)
-- [ascii-table: ANSI Escape sequences](http://ascii-table.com/ansi-escape-sequences.php)
-- [bluesock: ansi codes](https://bluesock.org/~willkg/dev/ansi.html)
-- [bash-hackers: Terminal Codes (ANSI/VT100) introduction](http://wiki.bash-hackers.org/scripting/terminalcodes)
-- [XTerm Control Sequences](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html)
-- [VT100 – Various terminal manuals](https://vt100.net/)
-- [xterm.js – Supported Terminal Sequences](https://xtermjs.org/docs/api/vtfeatures/)

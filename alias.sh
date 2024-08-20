@@ -6,9 +6,41 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #alias grep='grep --color=auto'
 #alias fgrep='fgrep --color=auto'
 #alias egrep='egrep --color=auto'
-alias 12_network='ip n | grep -v FAILED|head -n-1'
+alias 12_network='ip -c n | grep -v FAILED|head -n-1'
 ####
 ####
+kl() {
+if [ -z $1 ] 2>/dev/null; then 
+timeout 1 batcat -Pp --language c;
+[ $? ] 2>/dev/null && kat; else 
+timeout 1 batcat -Pp --language $1
+if [ $? = 130 ] 2>/dev/null; then kat
+else batcat -L; fi; fi; 
+}
+hh(){
+# get bat in no has
+[ -e /bin/batcat ]||[ -e /bin/bat ]||\
+(read -rep "$c2 install bat? " "qq"; 
+sudo apt install batcat -y 2>/dev/null||\
+apt install bat -y 2>/dev/null; echo gg;)  
+# do script
+[ $1 = "help" ] 2>/dev/null && (echo -e "\n$c2 hh + #number_lines \n"; return 0;); # help
+lng="c"; [ $2 ]&& lng="${2}"; 
+lns="42"; [ $1 ]&& lns="${1}"; 
+history -a;
+tail -n $lns ~/.bash_history|awk '!x[$0]++'|batcat -Pp --language "$lng"||batcat --list-languages;
+}
+kat() {
+unset -v kat; 
+if [ $1 = "help" ] 2>/dev/null; then 
+batcat -h|batcat --force-colorization -pP --language c;
+return 0; fi; 
+[ $2 ]&& lng="${2}"; [ $2 ]|| lng="c"; 
+[ $1 ] 2>/dev/null||ls -p --color --group-directories-first --hyperlink; 
+[ $1 ] 2>/dev/null||read -rep "$c2 kat file: " -i "$PWD/" kat;
+batcat -Pp --color always --decorations always $kat $1 \
+--language $lng;  
+}
 alias fill='seq -s "" 2222';
 alias 12_nuke_ants='
 read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
@@ -121,7 +153,6 @@ curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++; tput cup 6 $((COLUMNS-28
 alias 12_fill='seq -s " # " 4444|lolcat'
 alias 12_info_tput='less /sh/info/tputhelp.txt'
 alias 12_coolors='. $ants/sh/helpansi.sh;' 
-
 ############################################
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
