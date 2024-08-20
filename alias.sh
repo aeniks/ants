@@ -20,7 +20,7 @@ else batcat -L; fi; fi;
 hh(){
 echo -e "\n\e[4;46;30m$(date; history -a)\e[0m";
 # get bat in no has
-[ -e /bin/batcat ]||[ -e /bin/bat ]||\
+[ -e /bin/batcat ]||[ -e $PREFIX/bin/bat ]||\
 (read -rep "$c2 install bat? " "qq"; 
 sudo apt install batcat -y 2>/dev/null||\
 apt install bat -y 2>/dev/null; echo gg;)  
