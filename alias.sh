@@ -1,5 +1,39 @@
 #!/bin/bash
 # alias for bash terminal
+
+############# _COLORS ##########
+e='echo -e '; bold=$($e'\e[1m';); dim=$($e'\e[2m';); italic=$($e'\e[3m';); 
+underline=$($e'\e[44m';); blink=$($e'\e[45m';); rev=$($e'\e[47m';); invis=$($e'\e[8m';); 
+strike=$($e'\e[9m';); blank=$($e'\e[0;30m';); red=$($e'\e[0;31m';); green=$($e'\e[0;32m';); 
+yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
+white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
+################################
+alias coolers='grep -m1 -wA6 --colour "_COLORS" $ants/alias.sh;'
+################################
+################################
+################ _functions
+LFRC="$ants/sh/config/lfrc.sh"; if [ -e /bin/lf ]; then bind '"\C-o":"lfcd\C-m"'; 
+alias l='cd $(lf -config $LFRC -print-last-dir )';
+lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
+cd() { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; 
+echo -e '\e[36m'; pwd; }
+################################
+################ _alias
+alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring'; 
+m11='fb1c649a_3a0c_4297_ae12_b0cf5cb558b8'; 
+alias mm='micro';
+alias qq='cd ..; ll';
+alias ee='echo ';
+alias ll='ls --hyperlink -hltrp --color=always --group-directories-first'; 
+alias la='ls --hyperlink -Ahltrp --color=always --group-directories-first; pwd'; 
+alias 'sl_cc@192.168.0.105'='ssh cc@192.168.0.105'
+alias 'sl'='ssh aaaa@ants.ftp.sh'; 
+alias m11='ssh -p 8022 192.168.0.105'
+#iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
+iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; ip4="$(curl -4 ip.me -s&)"; 
+################ _variables
+alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
+|| printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 #export PATH="$PATH:/usr/games"
@@ -9,14 +43,20 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias 12_network='ip -c n | grep -v FAILED|head -n-1'
 ####
 ####
+# kl() {
+# if [ -z $1 ] 2>/dev/null; then 
+# timeout 1 batcat -Pp --language c;
+# [ $? ] 2>/dev/null || kat; else 
+# batcat -Pp --language $1
+# if [ $? = 0 ] 2>/dev/null; then kat
+# else batcat -L; fi; fi; 
+# }
 kl() {
-if [ -z $1 ] 2>/dev/null; then 
-timeout 1 batcat -Pp --language c;
-[ $? ] 2>/dev/null || kat; else 
-batcat -Pp --language $1
-if [ $? = 0 ] 2>/dev/null; then kat
-else batcat -L; fi; fi; 
+batlist=($(batcat --list-languages|grep ','|grep -v " "|tr "," "\n"|cut -f2 -d ":"));
+batn=$(shuf -e -n1 ${batlist[@]})
+echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn;
 }
+
 hh(){
 echo -e "\n\e[4;46;30m$(date; history -a)\e[0m";
 unset -v lng lns;
@@ -56,7 +96,9 @@ return 0; fi;
 [ $2 ]&& batcat -Ppf $kat $1 --language $lng||batcat -Ppf $kat $1;
 
 }
+alias ips='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
 alias fill='seq -s "" 2222';
+alias 12_='menu "$ants/12"';
 alias 12_nuke_ants='
 read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
 read -rep "$c2$red nuke$re new ant-folder: " -i "$ants" "nk"; 
@@ -234,3 +276,27 @@ alias pull='git pull'
 alias info_cm'=less $ants/sh/info/cmd.sh'
 alias cm2'=cat $ants/sh/cmd.sh'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
+
+################################
+basicapps=(
+micro
+openssl
+openssh-server
+net-tools
+lolcat
+fortunes
+fortune-mod
+cowsay
+neofetch
+mc
+btop
+gpm
+links2
+ranger
+pv
+fortune-mod
+tlp
+googler
+lf
+ncdu
+)
