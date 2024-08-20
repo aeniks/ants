@@ -25,7 +25,7 @@ echo -e "\n\e[4;46;30m$(date; history -a)\e[0m";
 sudo apt install batcat -y 2>/dev/null||\
 apt install bat -y 2>/dev/null; echo gg;)  
 # do script
-[ $PREFIX ]&& ln $PREFIX/bin/bat $PREFIX/bin/batcat; 
+[ $PREFIX ]&&[ -e $PREFIX/bin/bat ]||ln $PREFIX/bin/bat $PREFIX/bin/batcat --symbolic; 
 [ $1 = "help" ] 2>/dev/null && (echo -e "\n$c2 usage: \n\thh #${cyan}number_lines$re(use +1 to lista all) #${cyan}style$re \n"; return 0;); # help
 [ $1 = "style" ] 2>/dev/null && (batcat --list-languages; return 0;); # help
 lng="c"; [ $2 ]&& lng="${2}"; 
