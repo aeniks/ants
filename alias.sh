@@ -12,23 +12,24 @@ alias 12_network='ip -c n | grep -v FAILED|head -n-1'
 kl() {
 if [ -z $1 ] 2>/dev/null; then 
 timeout 1 batcat -Pp --language c;
-[ $? ] 2>/dev/null && kat; else 
-timeout 1 batcat -Pp --language $1
-if [ $? = 130 ] 2>/dev/null; then kat
+[ $? ] 2>/dev/null || kat; else 
+batcat -Pp --language $1
+if [ $? = 0 ] 2>/dev/null; then kat
 else batcat -L; fi; fi; 
 }
 hh(){
+echo -e "\n\e[4;46;30m$(date; history -a)\e[0m";
 # get bat in no has
 [ -e /bin/batcat ]||[ -e /bin/bat ]||\
 (read -rep "$c2 install bat? " "qq"; 
 sudo apt install batcat -y 2>/dev/null||\
 apt install bat -y 2>/dev/null; echo gg;)  
 # do script
-[ $1 = "help" ] 2>/dev/null && (echo -e "\n$c2 hh + #number_lines \n"; return 0;); # help
+[ $1 = "help" ] 2>/dev/null && (echo -e "\n$c2 usage: \n\thh #${cyan}number_lines$re(use +1 to lista all) #${cyan}style$re \n"; return 0;); # help
+[ $1 = "style" ] 2>/dev/null && (batcat --list-languages; return 0;); # help
 lng="c"; [ $2 ]&& lng="${2}"; 
 lns="42"; [ $1 ]&& lns="${1}"; 
-history -a;
-tail -n $lns ~/.bash_history|awk '!x[$0]++'|batcat -Pp --language "$lng"||batcat --list-languages;
+tail -n $lns ~/.bash_history 2>/dev/null|awk '!x[$0]++'|batcat -Pp --language "$lng"||batcat --list-languages;
 }
 kat() {
 unset -v kat; 
