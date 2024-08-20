@@ -19,18 +19,31 @@ else batcat -L; fi; fi;
 }
 hh(){
 echo -e "\n\e[4;46;30m$(date; history -a)\e[0m";
+unset -v lng lns;
 # get bat in no has
 [ -e /bin/batcat ]||[ -e $PREFIX/bin/bat ]||\
 (read -rep "$c2 install bat? " "qq"; 
 sudo apt install batcat -y 2>/dev/null||\
 apt install bat -y 2>/dev/null; echo gg;)  
 # do script
-[ $PREFIX ]&&[ -e $PREFIX/bin/bat ]||ln $PREFIX/bin/bat $PREFIX/bin/batcat --symbolic; 
-[ $1 = "help" ] 2>/dev/null && (echo -e "\n$c2 usage: \n\thh #${cyan}number_lines$re(use +1 to lista all) #${cyan}style$re \n"; return 0;); # help
-[ $1 = "style" ] 2>/dev/null && (batcat --list-languages; return 0;); # help
-lng="c"; [ $2 ]&& lng="${2}"; 
-lns="42"; [ $1 ]&& lns="${1}"; 
-tail -n $lns ~/.bash_history 2>/dev/null|awk '!x[$0]++'|batcat -Pp --language "$lng"||batcat --list-languages;
+if
+[ -n ${PREFIX} ] 2>/dev/null; then [ -e $PREFIX/bin/bat ]&&ln $PREFIX/bin/bat $PREFIX/bin/batcat --symbolic; fi;
+[ $1 = "help" ] 2>/dev/null &&(echo -e "\n$c2 usage: \n\thh #${cyan}number_lines$re(use +1 to lista all) #${cyan}style$re \n"; return 0;); # help
+[ $1 = "style" ] 2>/dev/null &&(batcat --list-languages; return 0); # help
+local lns='66'; 
+local lng="go"; 
+echo $1|grep -e "[0-9]" ||local lng=${1}; 
+echo $1|grep -e "[0-9]" && local lns=${1}; 
+# if [ -n $1 ]; then 
+# if [ $1 -gt 0 ] 2>/dev/null; then lng=${1}; 
+# # fi; fi; 
+if [ -n $2 ]; then lng=${2}; fi; 
+if [ -z $2 ]; then lng="go"; fi; 
+# if [ -n $1 ]; then lns=${1}; fi; 
+# if [ -z $1 ]; then lns="88"; fi; 
+# #if [ $1 -lt 0 ] 2>/dev/null; then lng=${1}; lns=66; fi
+#[ $1 ]&& lns="${1}"; 
+tail -n ${lns} ~/.bash_history 2>/dev/null|awk '!x[$0]++'|batcat -fPp --language ${lng}||batcat --list-languages;
 }
 kat() {
 unset -v kat; 
