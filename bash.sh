@@ -2,7 +2,8 @@
 ## A better bash. Written by 12ants.github.io
 ##
 ## keep on line 5 for sed replacement
-export "ants"='/ants'; ants='/ants';
+export "ants"='/ants'; 
+ants='/ants';
 ## _do nothing if not interactive
 case $- in
 *i*) ;;
@@ -15,24 +16,21 @@ shopt -s histappend; ## append to history, don't overwrite it
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-. $ants/alias.sh; 
+##[ -e /bin/neofetch ]&& neofetch; 
 ## load alias and functions 
+[ -e $ants/functions ]&&
 for i in $ants/functions/*; do . $i; done; 
-#if [ -e /bin/neofetch ]; then neofetch; fi; 
+. $ants/alias.sh; 
 vader="$(curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++ & disown)"; 
-bath=($(batcat --list-themes|cut -f1 -d:|tr ' ' '_')); 
-batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
-batn=$(shuf -en1 ${batl[@]})
-bathb=$(shuf -en1 ${bath[@]});
-echo -e "
-  --------------------
-$dim  -- $cyan$dim${batn}$re
-$dim  -- $pink$dim${bathb}$re \e[0m\n  --------------------\n"; 
-fortune|pr --omit-header --indent=2|batcat --terminal-width $((COLUMNS-6)) --style numbers --theme "${bathb//_/ }" --language ${batn};
+## bat
+quotes;
+###################
+###################
 timeout -k 1s 2s echo -e "
  $c2 Welcome back $cyan$bold$(id -un)$re
- $c2 Public ip: $green$line$ip4$re 
- $c2 Local  ip: $cyan$line$iploc$re  
+ $c2 Public ip: $green$line$ip4$re //// $red$ip6$re 
+ $c2 Local  ip: $cyan$line$iploc$re ////\
+ $dim$(ip -c l|grep -w "link/ether "|cut -f6-6 -d " ";)$re  
  $c2 $pink$(date +%A" $green"%B" $yellow"%D)$re -- $bold$cyan$blink$italic$(date +%T)$re
 \t\t\t\t${vader^^} " ;
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);

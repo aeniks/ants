@@ -30,7 +30,9 @@ alias 'sl_cc@192.168.0.105'='ssh cc@192.168.0.105'
 alias 'sl'='ssh aaaa@ants.ftp.sh'; 
 alias m11='ssh -p 8022 192.168.0.105'
 #iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
-iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; ip4="$(curl -4 ip.me -s&)"; 
+iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
+ip4="$(curl -4 ip.me -s&)"; 
+ip6="$(curl -6 ip.me -s&)"; 
 ################ _variables
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
@@ -51,10 +53,22 @@ alias 12_network='ip -c n | grep -v FAILED|head -n-1'
 # if [ $? = 0 ] 2>/dev/null; then kat
 # else batcat -L; fi; fi; 
 # }
+quotes() {
+bath=($(batcat --list-themes|cut -f1 -d:|tr ' ' '_')); 
+batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
+batn=$(shuf -en1 ${batl[@]})
+bathb=$(shuf -en1 ${bath[@]});
+###################
+echo -e "
+  --------------------
+$dim  -- $cyan$dim${batn}$re
+$dim  -- $pink$dim${bathb}$re \e[0m\n  --------------------\n"; 
+fortune|batcat --style numbers --theme "${bathb//_/ }" --language ${batn};
+} 
 kl() {
 batlist=($(batcat --list-languages|grep ','|grep -v " "|tr "," "\n"|cut -f2 -d ":"));
 batn=$(shuf -e -n1 ${batlist[@]})
-echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn;
+echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn; echo; 
 }
 
 hh(){
