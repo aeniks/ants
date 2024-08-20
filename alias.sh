@@ -36,11 +36,11 @@ unset -v kat;
 if [ $1 = "help" ] 2>/dev/null; then 
 batcat -h|batcat --force-colorization -pP --language c;
 return 0; fi; 
-[ $2 ]&& lng="${2}"; [ $2 ]|| lng="c"; 
+[ $2 ]&& lng="${2}"; [ $2 ]|| lng="sh"; 
 [ $1 ] 2>/dev/null||ls -p --color --group-directories-first --hyperlink; 
 [ $1 ] 2>/dev/null||read -rep "$c2 kat file: " -i "$PWD/" kat;
-batcat -Pp --color always --decorations always $kat $1 \
---language $lng;  
+[ $2 ]&& batcat -Ppf $kat $1 --language $lng||batcat -Ppf $kat $1;
+
 }
 alias fill='seq -s "" 2222';
 alias 12_nuke_ants='
