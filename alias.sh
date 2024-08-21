@@ -56,12 +56,9 @@ alias 12_network='ip -c n | grep -v FAILED|head -n-1'
 quotes() {
 bath=($(batcat --list-themes|cut -f1 -d:|tr ' ' '_')); 
 batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
-batn=$(shuf -en1 ${batl[@]})
+batn=$(shuf -en1 ${batl[@]}); 
 bathb=$(shuf -en1 ${bath[@]});
-###################
-echo -e "
-  --------------------
-$dim  -- $cyan$dim${batn}$re
+echo -e "\n  --------------------\n$dim  -- $cyan$dim${batn}$re\n
 $dim  -- $pink$dim${bathb}$re \e[0m\n  --------------------\n"; 
 fortune|batcat --style numbers --theme "${bathb//_/ }" --language ${batn};
 } 
@@ -92,12 +89,19 @@ echo $1|grep -e "[0-9]" && local lns=${1};
 # if [ $1 -gt 0 ] 2>/dev/null; then lng=${1}; 
 # # fi; fi; 
 if [ -n $2 ]; then lng=${2}; fi; 
-if [ -z $2 ]; then lng="go"; fi; 
+if [ -z $2 ]; then # lng="go"; 
+bath=($(batcat --list-themes|cut -f1 -d:|grep -v " ")); 
+batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
+lng=$(shuf -en1 ${batl[@]}); 
+bthm=$(shuf -en1 ${bath[@]});
+fi; 
 # if [ -n $1 ]; then lns=${1}; fi; 
 # if [ -z $1 ]; then lns="88"; fi; 
 # #if [ $1 -lt 0 ] 2>/dev/null; then lng=${1}; lns=66; fi
 #[ $1 ]&& lns="${1}"; 
-tail -n ${lns} ~/.bash_history 2>/dev/null|awk '!x[$0]++'|batcat -fPp --language ${lng}||batcat --list-languages;
+echo -e "$cyan$lng$re -- $red$bthm$re";
+tail -n ${lns} ~/.bash_history 2>/dev/null|awk '!x[$0]++'|\
+batcat -fPp --language ${lng} --theme ${bthm}||batcat --list-languages;
 }
 kat() {
 unset -v kat; 
