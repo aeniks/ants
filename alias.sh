@@ -116,19 +116,28 @@ return 0; fi;
 }
 alias ips='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
 alias fill='seq -s "" 2222';
-alias 12_='menu "$ants/12"';
+alias 12_='loader "(for i in $ants/functions/*.sh; do . $ants/functions/$i; done)"; menu "$ants/12"';
 alias 12_nuke_ants='
 read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
 read -rep "$c2$red nuke$re new ant-folder: " -i "$ants" "nk"; 
 read "$nk${cyan} ok${re}? " "okok" 2>/dev/null;
 sudo rm $ok -R;  git clone https://github.com/aeniks/ants /tmp/ants; 
 sudo mv /tmp/ants $nk 2>/dev/null; cd $nk/ants; exec bash;'
-alias 12_make_admin='if [ -e != /etc/sudoers.d/admins ]; 
+alias 12_make_admin='
+if [ -e != /etc/sudoers.d/admins ]; 
 then sudo touch /etc/sudoers.d/admins; fi; 
 sudo chmod 775 /etc/sudoers.d/admins && 
-read -epr " $c2 Add as admin-user: " "newsudo" && sudo echo -e "
+read -rep " $c2 Add as admin-user: " "newsudo" && sudo echo -e "
 $newsudo ALL=(ALL) NOPASSWD:ALL
 %"$newsudo" ALL=(ALL) NOPASSWD:ALL \n" >> "/etc/sudoers.d/admins"'
+
+12_admins() {
+## make new sudo user 
+read -rep "$c2 new admin user: " -i "$1" "newsudo"; 
+[ -e /etc/sudoers.d/admins ]|| sudo touch /etc/sudoers.d/admins; 
+sudo echo -e "\n $newsudo ALL=(ALL) NOPASSWD:ALL
+%"$newsudo" ALL=(ALL) NOPASSWD:ALL \n" | tee -a "/etc/sudoers.d/admins"
+}
 ##### << make this a function
 alias 12_make_foler='
 psp read -ep "$c2 "$rev"new folder?$re " -i "$PWD" "folder"; 
@@ -159,7 +168,7 @@ norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }
 #else sudo chown $USER:  -R; sudo chmod 775  -R; fi; cd ; 
 #echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 #ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
-alias aa='cd $ants; '
+alias aa='[ -z $ants ]&& read -rep "antspath: " -i "$PWD" "ants"; cd $ants; '
 alias aaaa="micro "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; . $ants/alias.sh;"
 alias bbbb="micro "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; . $ants/bash.sh;"
 alias cccc="micro "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; . $ants/functions.sh;"
@@ -168,7 +177,7 @@ alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COL
 do echo -n " "; done; tput cup 0'
 alias psp='tput indn 12 cuu 8;'
 alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
-alias 12_ansii_codes="echo '
+#alias 12_ansii_codes="echo '
 ## $($e'\e[1m') bold $($e'\e[0m') 	## $($e'\e[2m') dim $($e'\e[0m')
 ## $($e'\e[3m') italic $($e'\e[0m') 	## $($e'\e[4m') underline $($e'\e[0m')
 ## $($e'\e[5m') blink $($e'\e[0m') 	## $($e'\e[7m') rev $($e'\e[0m')
