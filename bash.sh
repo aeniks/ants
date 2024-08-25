@@ -2,8 +2,8 @@
 ## A better bash. Written by 12ants.github.io
 ##
 ## keep on line 5 for sed replacement
-export "ants"='/ants'; 
-ants='/ants';
+#export "ants"='/ants'; 
+#ants='/ants';
 ## _do nothing if not interactive
 case $- in
 *i*) ;;
@@ -35,4 +35,5 @@ timeout -k 1s 2s echo -e "
 \t\t\t\t${vader^^} " ;
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 echo -e " $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo; 
+. ~/.bashrc
 PS1='\e[0m\e[2;3m\t\e[0m\e[1;36m\u\e[0;2;33m\H\e[0;32m\w\e[0m _ \n'
