@@ -148,7 +148,7 @@ alias 12_goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -e
 #alias apt='sudo apt'
 alias 12_gmail='open gmail.com'
 alias no='echo -e "\e[?25h"'
-alias 12_ansi_info='glow $ants/sh/info/ansi.md'
+alias 12_ansi_info='batcat -p $ants/sh/info/ansi.md'
 alias 12_tard='lo="$(jp2a $ants/media/tard5.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
@@ -192,7 +192,7 @@ alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
 alias 12_serve_folder_with_wrangler='read -n1 -ep  "$c2 serve $PWD/? "; npx wrangler pages dev . 2>/dev/null'
 #alias wrangler='npx wrangler pages'
 alias 12_iplocal='ip route; cat ~/iplog; ' 
-alias 12_ants_dl_installer='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new$ants; . /tmp/in.sh;'
+alias 12_12_ants_dl_installer='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new$ants; . /tmp/in.sh;'
 alias lenoo='read -t 8 -ep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; curl -k https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM='
 alias 12_rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$rainbow";'
 alias 12_fortune="rrf; fortune; tput sgr0;"

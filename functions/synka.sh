@@ -36,7 +36,8 @@ print_inactive()    { printf "$2  $1 "; }
 print_active()      { printf "$2 $ESC[7m $1 $ESC[27m"; }
 get_cursor_row()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
 key_input()         {
-local key; IFS= read -rsn1 key 2>/dev/null >&2; 
+local key; 
+IFS=" "; local IFS; read -rsn1 key 2>/dev/null >&2; 
 if [[ $key = "" ]]; then if [[ ${active} == $((idx - 1)) ]]; 
 then echo -e "c"; else echo enter; fi; fi; 
 if [[ $key = "q" ]]; then echo -e "q"; fi; if [[ $key = "h" ]]; then echo -e "h"; fi; 
@@ -97,7 +98,7 @@ echo -e "\n \e[4;32mYou chose:\e[0m nothing"; cd "$olpwd";
 echo -ne "\n $c2 Try again? \e[2m[\e[0my\e[2m/\e[0mN\e[2m]\e[0m "; 
 read -n1 -ep "" "yn"; 
 if [ "$yn" != "${yn#[Yy]}" ]; 
-then menu "$1" "$2" "$3" "$4"; return 0; 
+then menu "$1" "$2" "$3" "$4"; break; 
 else cd "$olpwd"; echo -e "\e[?25h\n Nope\n"; return 0; fi
 else
 echo -e "\n \e[4;32mYou chose:\e[0m${CHECKED[@]/#/\\n" "}";
@@ -105,15 +106,17 @@ echo -e "\n \e[4;32mYou chose:\e[0m${CHECKED[@]/#/\\n" "}";
 echo -ne "\n $c2 Do you wish to proceed? \e[2m[\e[0mY\e[2m/\e[0mn\e[2m]\e[0m "; 
 read -n1 -ep "" "yn"; if [ "$yn" != "${yn#[Nn]}" ]; then 
 cd "$olpwd"; echo -e "\e[?25h\n Nope\n"; 
-return 0; else 
+break; else 
 echo -e "\n $c2 OK"; 
 ## after ############
 ## EXECUTE ##########
 for i in "${CHECKED[@]}"; do echo -e "\e[0m $c2 Installing $i \e[2m"; sleep 0.1; 
 [ "$2" ]|| bash $i; [ "$2" ]&& $command $i; 
-echo -e "\e[0m $c2 $i$green Installed$re \e[2m"; done; cd $olpwd; echo -e "\n Done"; fi; 
+echo -e "\e[0m $c2 $i$green Installed$re \e[2m"; 
+done; cd $olpwd; echo -e "\n Done"; fi; 
 echo -e "\e[0m"; fi; 
-}; ## END MENU ##
+} 
+## END MENU ##
 #################
 ## 12_ menu #####
 #################
