@@ -20,6 +20,7 @@ LFRC="$ants/sh/config/lf/lfrc";
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
 bind '"\C-o":"cd $(lf -config $ants/sh/config/lf/lfrc -print-last-dir) \n"'; 
+alias l='cd $(lf -config $ants/sh/config/lf/lfrc -print-last-dir); '; 
 alias w='walk --icons'
 info() { command info $1|batcat -p --language c#||apropos $1; }
 man() { command man $1|batcat -p --language manpage||apropos $1; } 
