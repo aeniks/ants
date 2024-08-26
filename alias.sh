@@ -12,11 +12,15 @@ alias coolers='grep -m1 -wA6 --colour "_COLORS" $ants/alias.sh;'
 ################################
 ################################
 ################ _functions
-LFRC="$ants/sh/config/lfrc.sh"; if [ -e /bin/lf ]; then bind '"\C-o":"lfcd\C-m"'; 
-alias l='cd $(lf -config $LFRC -print-last-dir )';
-lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
+LFRC="$ants/sh/config/lf/lfrc"; 
+#if [ -e /bin/lf ]; then 
+#bind '"\C-o":"lfcd\C-m"'; 
+#alias l='cd $(lf -config $LFRC -print-last-dir )';
+#lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
 cd() { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; 
 echo -e '\e[36m'; pwd; }
+bind '"\C-o":"cd $(lf -print-last-dir) \n"'; 
+alias w='walk --icons'
 ################################
 ################ _alias
 alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring'; 
@@ -24,17 +28,19 @@ m11='fb1c649a_3a0c_4297_ae12_b0cf5cb558b8';
 alias mm='micro';
 alias qq='cd ..; ll';
 alias ee='echo ';
-alias ll='ls --hyperlink -hltrp --color=always --group-directories-first'; 
-alias la='ls --hyperlink -Ahltrp --color=always --group-directories-first; pwd'; 
+alias lll='lsd -l --extensionsort --group-directories-first -tr'
+alias llla='lsd --extensionsort --group-directories-first -Altr'
+alias ll='ls --hyperlink --color=always --group-directories-first -hltrp'; 
+alias la='ls --hyperlink --color=always --group-directories-first -Ahltrp; pwd'; 
 alias 'sl_cc@192.168.0.105'='ssh cc@192.168.0.105'
 alias 'sl'='ssh aaaa@ants.ftp.sh'; 
-alias m11='ssh -p 8022 192.168.0.105'
+alias m11='ssh -p 8022 u0_a428@192.168.0.105'
 #iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
 iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
 ip4="$(curl -4 ip.me -s&)"; 
 ip6="$(curl -6 ip.me -s&)"; 
 ################ _variables
-alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
+alias 12_nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
@@ -106,7 +112,7 @@ batcat -fPp --language ${lng} --theme ${bthm}||batcat --list-languages;
 kat() {
 unset -v kat; 
 if [ $1 = "help" ] 2>/dev/null; then 
-batcat -h|batcat --force-colorization -pP --language c;
+batcat -h|batcat -pP --language c;
 return 0; fi; 
 [ $2 ]&& lng="${2}"; [ $2 ]|| lng="sh"; 
 [ $1 ] 2>/dev/null||ls -p --color --group-directories-first --hyperlink; 
@@ -241,7 +247,6 @@ alias 12_coolors='. $ants/sh/helpansi.sh;'
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
 # alias rnd1="(shuf 0-222 -n1)"
-alias lf=lfub
 alias rr1='(echo $SRANDOM|tail -c2)'
 alias rr2='(echo $RANDOM|tail -c2)'
 alias rrf='tput setaf $(rr1)'
