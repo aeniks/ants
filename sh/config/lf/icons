@@ -7,20 +7,21 @@
 # them look aligned in the 'Alacritty' terminal
 
 # file types (with matching order)
-ln      🔗       # LINK
-or      ❌       # ORPHAN
-tw      🍃       # STICKY_OTHER_WRITABLE
-ow      📂       # OTHER_WRITABLE
-st      🔖       # STICKY
-di      📁       # DIR
-pi     " "      # FIFO
-so      🔌       # SOCK
-bd      🧱       # BLK
-cd     " "      # CHR
-su      🦸       # SETUID
-sg      👥       # SETGID
-ex      🎯       # EXEC
-fi      📄       # FILE
+
+ln             # LINK
+or             # ORPHAN
+tw             # STICKY_OTHER_WRITABLE
+ow             # OTHER_WRITABLE
+st             # STICKY
+di             # DIR
+pi           # FIFO
+so       󰐧      # SOCK
+bd             # BLK
+cd            # CHR
+su      󱃶       # SETUID
+sg      󱃵       # SETGID
+ex             # EXEC\uebac
+fi             # FILE
 
 # file extensions (vim-devicons)
 *.styl          " "
@@ -242,132 +243,132 @@ fi      📄       # FILE
 Vagrantfile            " "
 
 # archives or compressed extensions
-*.tar   📦
-*.tgz   📦
-*.arc   📦
-*.arj   📦
-*.taz   📦
-*.lha   📦
-*.lz4   📦
-*.lzh   📦
-*.lzma  📦
-*.tlz   📦
-*.txz   📦
-*.tzo   📦
-*.t7z   📦
-*.zip   📦
-*.z     📦
-*.dz    📦
-*.gz    📦
-*.lrz   📦
-*.lz    📦
-*.lzo   📦
-*.xz    📦
-*.zst   📦
-*.tzst  📦
-*.bz2   📦
-*.bz    📦
-*.tbz   📦
-*.tbz2  📦
-*.tz    📦
-*.deb   📦
-*.rpm   📦
-*.jar   📦
-*.war   📦
-*.ear   📦
-*.sar   📦
-*.rar   📦
-*.alz   📦
-*.ace   📦
-*.zoo   📦
-*.cpio  📦
-*.7z    📦
-*.rz    📦
-*.cab   📦
-*.wim   📦
-*.swm   📦
-*.dwm   📦
-*.esd   📦
-*.xpi   📦
+*.tar   󰞹
+*.tgz   󰞹
+*.arc   󰞹
+*.arj   󰞹
+*.taz   󰞹
+*.lha   󰞹
+*.lz4   󰞹
+*.lzh   󰞹
+*.lzma  󰞹
+*.tlz   󰞹
+*.txz   󰞹
+*.tzo   󰞹
+*.t7z   󰞹
+*.zip   󰞹
+*.z     󰞹
+*.dz    󰞹
+*.gz    󰞹
+*.lrz   󰞹
+*.lz    󰞹
+*.lzo   󰞹
+*.xz    󰞹
+*.zst   󰞹
+*.tzst  󰞹
+*.bz2   󰞹
+*.bz    󰞹
+*.tbz   󰞹
+*.tbz2  󰞹
+*.tz    󰞹
+*.deb   󰞹
+*.rpm   󰞹
+*.jar   󰞹
+*.war   󰞹
+*.ear   󰞹
+*.sar   󰞹
+*.rar   󰞹
+*.alz   󰞹
+*.ace   󰞹
+*.zoo   󰞹
+*.cpio  󰞹
+*.7z    󰞹
+*.rz    󰞹
+*.cab   󰞹
+*.wim   󰞹
+*.swm   󰞹
+*.dwm   󰞹
+*.esd   󰞹
+*.xpi   󰞹
 
 # image and video extensions
-*.jpg    📸
-*.JPG    📸
-*.jpeg   📸
-*.JPEG   📸
-*.jpe    📸
-*.mjpg   📸
-*.mjpeg  📸
-*.jxl   "🖼 "
-*.JXL   "🖼 "
-*.svg   "🗺 "
-*.svgz  "🗺 "
-*.bmp   "🖼 "
-*.pbm   "🖼 "
-*.pgm   "🖼 "
-*.ppm   "🖼 "
-*.tga   "🖼 "
-*.xbm   "🖼 "
-*.xpm   "🖼 "
-*.tif   "🖼 "
-*.tiff  "🖼 "
-*.png   "🖼 "
-*.PNG   "🖼 "
-*.webp  "🖼 "
-*.mng   "🖼 "
-*.pcx   "🖼 "
-*.ico   "🖼 "
-*.gif   "🎞 "
-*.mov    🎥
-*.mpg    🎥
-*.mpeg   🎥
-*.m2v    🎥
-*.mkv    🎥
-*.webm   🎥
-*.ogm    🎥
-*.mp4    🎥
-*.m4v    🎥
-*.mp4v   🎥
-*.vob    🎥
-*.qt     🎥
-*.nuv    🎥
-*.wmv    🎥
-*.asf    🎥
-*.rm     🎥
-*.rmvb   🎥
-*.flc    🎥
-*.avi    🎥
-*.fli    🎥
-*.flv    🎥
-*.gl     🎥
-*.dl     🎥
-*.xcf    🎥
-*.xwd    🎥
-*.yuv    🎥
-*.cgm    🎥
-*.emf    🎥
-*.ogv    🎥
-*.ogx    🎥
-*.kdenlive 🎬
-*.prproj   🎬
+*.jpg   
+*.JPG   
+*.jpeg  
+*.JPEG  
+*.jpe   
+*.mjpg  
+*.mjpeg 
+*.jxl    
+*.JXL    
+*.svg    
+*.svgz   
+*.bmp    
+*.pbm    
+*.pgm    
+*.ppm    
+*.tga    
+*.xbm    
+*.xpm    
+*.tif    
+*.tiff   
+*.png    
+*.PNG    
+*.webp  󰥶 
+*.mng    
+*.pcx    
+*.ico    
+*.gif   󰋪
+*.mov    
+*.mpg    
+*.mpeg   
+*.m2v    
+*.mkv    
+*.webm   
+*.ogm    
+*.mp4    
+*.m4v    
+*.mp4v   
+*.vob    
+*.qt     
+*.nuv    
+*.wmv    
+*.asf    
+*.rm     
+*.rmvb   
+*.flc    
+*.avi    
+*.fli    
+*.flv    
+*.gl     
+*.dl     
+*.xcf    
+*.xwd    
+*.yuv    
+*.cgm    
+*.emf    
+*.ogv    
+*.ogx    
+*.kdenlive 
+*.prproj   
 
 # audio extensions
 *.wav   🎼
-*.aac   🎵
-*.au    🎵
-*.flac  🎵
-*.m4a   🎵
-*.mid   🎵
-*.midi  🎵
-*.mka   🎵
-*.mp3   🎵
-*.mpc   🎵
-*.ogg   🎵
-*.ra    🎵
-*.oga   🎵
-*.opus  🎵
-*.spx   🎵
-*.xspf  🎵
+*.aac   󰝚
+*.au    󰝚
+*.flac  󰝚
+*.m4a   󰝚
+*.mid   󰝚
+*.midi  󰝚
+*.mka   󰝚
+*.mp3   󰝚
+*.mpc   󰝚
+*.ogg   󰝚
+*.ra    󰝚
+*.oga   󰝚
+*.opus  󰝚
+*.spx   󰝚
+*.xspf  󰝚
 
 # other extensions
 *.elf      " "

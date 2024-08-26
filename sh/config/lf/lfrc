@@ -7,11 +7,12 @@ map F setfilter
 map c+F filter
 map m set mouse!
 map a glob-select *
-map n glob-unselect *
+map a glob-unselect *
 map z unselect *
 map <tab> :push :<tab> 
 map M :push %mkdir<space>
 map <delete> delete
+map d delete
 map <?> maps
 map <pgdn> half-down
 map <pgup> half-up
@@ -45,12 +46,10 @@ set cursorpreviewfmt "\033[7;2m"
 map <enter> shell
 
 # show the result of execution of previous commands
-map <backspace2> !true
-
+map 1 !true
 # execute current file (must be executable)
 map x $$f
 map X !$f
-
 # dedicated keys for file opener actions
 #map <enter> open
 map o $mimeopen --ask $f
@@ -123,3 +122,53 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+
+
+
+##
+##
+
+
+# Main options
+set icons
+set period 1
+#set relativenumber
+#set number
+set hidden!
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+set cleaner '~/.config/lf/cleaner'
+#set previewer 'chafa'
+set previewer '~/.config/lf/previewer'
+# set promptfmt "
+# \033[48;2;35;38;39;38;2;28;220;156m  
+# \033[38;2;35;38;39;48;2;202;31;31m
+# \033[38;2;202;31;31;48;2;40;47;62m
+# \033[38;2;255;255;255m %w 
+# \033[38;2;40;47;62;48;2;58;67;89m
+# \033[38;2;255;255;255m %f 
+# \033[;38;2;58;67;89;49m\033[m"
+set incsearch
+set incfilter
+#set globsearch on
+set ratios 2:3:4 # 2:3:7:7
+set truncatechar "…"
+set waitmsg "\033[1;31m⏎\033[m"
+set timefmt "02/01/2006 15:04:05 "
+set infotimefmtnew '02/01 15:04'
+set infotimefmtold '02/01/06'
+set errorfmt "\033[1;31m"
+set numberfmt "\033[38;2;75;87;116m"
+set dircounts
+set tabstop 4
+set scrolloff 5
+set wrapscroll
+set shellopts '-eu'
+set ifs "\n"
+set shell "bash"
+set ruler 'df:acc:progress:selection:filter:ind'
+set cursorpreviewfmt "\033[7m"
+
+source '~/.config/lf/opener'
+
+%test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
