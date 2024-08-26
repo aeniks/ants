@@ -1,7 +1,7 @@
 #!/bin/bash
 ## selection menu 
 qmenu() {
-
+hash batcat||hash bat||sudu apt install batcat -qy &>/dev/null||apt install bat -y 2>/dev/null; 
 local prompt="${2}"; [ "$2" ]||local prompt="hello"; 
 local ops=($1); [ "$1" ]||local ops=(*); 
 local index="0" cur="0" count="${#ops[@]}"; 
@@ -15,8 +15,8 @@ while true; do local index="0"; for o in "${ops[@]}"; do
 ## mark & highlight the current option
 if [ "$index" == "$cur" ]; then 
 printf "\e[0m > \e[7m $o "; printf "\e7\e[s"; 
-printf "\e[${prevl}H\e[0m$dash\e[0m \n\n"; 
-[ -e ${ops[cur]} ]&& batcat -pPf ${ops[cur]} --line-range :$((LINES - prevl)); 
+printf "\e[${prevl}H\e[0m$dash\e[0m \n\n\e[0J"; 
+[ -e ${ops[cur]} ]&& batcat -pPf ${ops[cur]} --line-range :$((size - prevl-6)); 
 [ -e ${ops[cur]} ]|| printf "\e[0J"; 
 printf "\e8\e[u\n";
 ## list all options (option list is zero-based)
