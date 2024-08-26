@@ -17,7 +17,7 @@ LFRC="$ants/sh/config/lf/lfrc";
 #bind '"\C-o":"lfcd\C-m"'; 
 #alias l='cd $(lf -config $LFRC -print-last-dir )';
 #lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
-cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first; 
+cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
 bind '"\C-o":"cd $(lf -config $ants/sh/config/lf/lfrc -print-last-dir) \n"'; 
 alias w='walk --icons'
@@ -177,7 +177,7 @@ norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }
 #else sudo chown $USER:  -R; sudo chmod 775  -R; fi; cd ; 
 #echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 #ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
-alias aa='[ -z $ants ]&& read -rep "antspath: " -i "$PWD" "ants"; cd $ants; '
+alias aa='[ -z $ants ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants; '
 alias aaaa="micro "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; . $ants/alias.sh;"
 alias bbbb="micro "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; . $ants/bash.sh;"
 alias cccc="micro "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; . $ants/functions.sh;"

@@ -139,6 +139,9 @@ set hidden!
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set cleaner '~/.config/lf/cleaner'
 #set previewer 'chafa'
+#[ $ants ]&& set previewer "$ants/sh/config/lf/previewer"
+#[ $ants ]|| 
+#set previewer "/ants/sh/config/lf/previewer"
 set previewer '~/.config/lf/previewer'
 # set promptfmt "
 # \033[48;2;35;38;39;38;2;28;220;156m  

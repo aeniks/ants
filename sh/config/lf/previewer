@@ -38,8 +38,11 @@
 # }
 image() {
 ww=$(($2-2))
-chafa $1 --view-size ${ww}x$3 --scale max -O 8  --polite=on --fill ascii -f symbols --symbols ascii; 
-printf "\n$1\e[36m\n\n";
+printf "\e[36m$1\n";
+jp2a $1 --width=${ww} --color-depth=8;
+chafa $1 --view-size ${ww}x$3 --scale max --polite=on; 
+exif $1;
+##chafa --fill ascii -f symbols --symbols ascii
 }
 # 
 # ifub() {
