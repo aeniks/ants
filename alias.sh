@@ -17,10 +17,13 @@ LFRC="$ants/sh/config/lf/lfrc";
 #bind '"\C-o":"lfcd\C-m"'; 
 #alias l='cd $(lf -config $LFRC -print-last-dir )';
 #lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
-cd() { builtin cd "$@" && ls --hyperlink -hltrp --color=always --group-directories-first; 
+cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first; 
 echo -e '\e[36m'; pwd; }
-bind '"\C-o":"cd $(lf -print-last-dir) \n"'; 
+bind '"\C-o":"cd $(lf -config $ants/sh/config/lf/lfrc -print-last-dir) \n"'; 
 alias w='walk --icons'
+info() { command info $1|batcat -p --language c#||apropos $1; }
+man() { command man $1|batcat -p --language manpage||apropos $1; } 
+help() { command help $1|batcat -p --language c#||apropos $1; } 
 ################################
 ################ _alias
 alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring'; 
@@ -28,10 +31,10 @@ m11='fb1c649a_3a0c_4297_ae12_b0cf5cb558b8';
 alias mm='micro';
 alias qq='cd ..; ll';
 alias ee='echo ';
-alias lll='lsd -l --extensionsort --group-directories-first -tr'
-alias llla='lsd --extensionsort --group-directories-first -Altr'
-alias ll='ls --hyperlink --color=always --group-directories-first -hltrp'; 
-alias la='ls --hyperlink --color=always --group-directories-first -Ahltrp; pwd'; 
+alias ll='lsd -l --extensionsort --group-directories-first -tr'
+alias la='lsd --extensionsort --group-directories-first -Altr'
+alias llll='ls --hyperlink --color=always --group-directories-first -hltrp'; 
+alias lllla='ls --hyperlink --color=always --group-directories-first -Ahltrp; pwd'; 
 alias 'sl_cc@192.168.0.105'='ssh cc@192.168.0.105'
 alias 'sl'='ssh aaaa@ants.ftp.sh'; 
 alias m11='ssh -p 8022 u0_a428@192.168.0.105'
