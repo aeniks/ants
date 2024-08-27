@@ -1,6 +1,5 @@
 #!/bin/bash
 # alias for bash terminal
-
 ############# _COLORS ##########
 e='echo -e '; bold=$($e'\e[1m';); dim=$($e'\e[2m';); italic=$($e'\e[3m';); 
 underline=$($e'\e[44m';); blink=$($e'\e[45m';); rev=$($e'\e[47m';); invis=$($e'\e[8m';); 
@@ -9,6 +8,7 @@ yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e
 white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
 alias coolers='grep -m1 -wA6 --colour "_COLORS" $ants/alias.sh;'
+alias "12_"='menu $ants/12'
 ################################
 ################################
 ################ _functions

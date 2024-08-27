@@ -26,13 +26,13 @@ vader="$(curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++ & disown)";
 quotes;
 ###################
 ###################
-timeout -k 1s 2s echo -e "
+timeout 1s printf "
  $c2 Welcome back $cyan$bold$(id -un)$re
  $c2 Public ip: $green$line$ip4$re //// $red$ip6$re 
  $c2 Local  ip: $cyan$line$iploc$re ////\
  $dim$(ip -c l|grep -w "link/ether "|cut -f6-6 -d " ";)$re  
  $c2 $pink$(date +%A" $green"%B" $yellow"%D)$re -- $bold$cyan$blink$italic$(date +%T)$re
-\t\t\t\t${vader^^} " ;
+\t\t\t\t${vader^^} \n" ;
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
-echo -e " $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo; 
+printf " $c2 $bold"$red"ssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}$re\n"; fi; echo; 
 PS1='\e[0m\e[2;3m\t\e[0m\e[1;36m\u\e[0;2;33m\H\e[0;32m\w\e[0m _ \n'
