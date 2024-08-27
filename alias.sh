@@ -19,8 +19,8 @@ LFRC="$ants/sh/config/lf/lfrc";
 #lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
-bind '"\C-o":"cd $(lf -config $ants/sh/config/lf/lfrc -print-last-dir) \n"'; 
-alias l='cd $(lf -config $ants/sh/config/lf/lfrc -print-last-dir); '; 
+bind '"\C-o":"cd $(lf -config $LFRC -print-last-dir) \n"'; 
+alias l='cd $(lf -config $LFRC -print-last-dir); '; 
 alias w='walk --icons'
 info() { command info $1|batcat -p --language c#||apropos $1; }
 man() { command man $1|batcat -p --language manpage||apropos $1; } 
@@ -126,7 +126,6 @@ return 0; fi;
 }
 alias ips='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
 alias fill='seq -s "" 2222';
-alias 12_='loader "(for i in $ants/functions/*.sh; do . $ants/functions/$i; done)"; menu "$ants/12"';
 alias 12_nuke_ants='
 read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
 read -rep "$c2$red nuke$re new ant-folder: " -i "$ants" "nk"; 
