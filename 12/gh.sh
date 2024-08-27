@@ -1,21 +1,21 @@
 #!/bin/bash 
 # Authenticates github
 
-sudo apt -y install gpg git gh -qy 2>/dev/null;
-printf "\n$c2 ants folder: "; read -rei "$ants" "ants"; 
-gpg -o /tmp/gh.txt -d $ants/sh/config/gh.gpg
-gh auth login --with-token < /tmp/gh.txt
+sudo apt install gpg git gh -qqy 2>/dev/null;
+printf "\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
+gpg -o /tmp/gh.txt -d $ants/sh/config/gh_aeniks.gpg
+gh auth login --with-token < /tmp/gh.txt;
 gh auth status; echo; rm /tmp/gh.txt; 
-printf "\n$c2 gh username: "; read -rei "$aeniks" "ghuser"; 
+printf "\n$c2 gh username:"; read -rep " " -i "$aeniks" "ghuser"; 
 git config --global user.name $ghuser; 
-printf "\n$c2 gh user mail: "; read -rei "$ghuser@" "ghusermail"; 
+printf "\n$c2 gh user mail:"; read -rep " " -i "$ghuser@" "ghmail"; 
 git config --global user.email $ghuser; 
 git config --global init.defaultBranch main; 
 ##
-new gh key?; read; 
+printf "new gh key?; "; read; 
 [ "$(id -u)" -eq 0 ]&& (echo "cant be root"; read );
-read -rep "name for key: " "githubs";
-read -rep "gh email/login: " -i "$ghuseremail" "ghmail";
+read -rep "name for key: " -i "$(hostname)" "githubs";
+read -rep "gh email/login: " -i "$ghmail" "ghmail";
 echo 'Host *
 ForwardAgent yes
 ' >> ~/.ssh/config;
