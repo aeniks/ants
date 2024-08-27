@@ -1,15 +1,16 @@
 #!/bin/bash 
 ## Authenticates github
 printf "\e[0m\n\n\n\n\n\n\n\n\n\n\e[6A"; 
-sudo apt install gpg git gh -qqy 2>/dev/null;
+sudo apt install gpg git gh -qqy &>/dev/null;
 printf "\e[0m\n\n\n\n\n\n\n\n\n\n\e[6A"; 
+c2='\e[0m\e[36m --\e[0m'
 printf "$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
 gpg -o /tmp/gh.txt -d $ants/sh/config/gh_aeniks.gpg
 gh auth login --with-token < /tmp/gh.txt;
 gh auth status; echo; rm /tmp/gh.txt; 
-printf "\n$c2 gh username:"; read -rep " " -i "$(hostname)" "ghuser"; 
+printf "$c2 gh username:"; read -rep " " -i "$(hostname)" "ghuser"; 
 git config --global user.name $ghuser; 
-printf "\n$c2 gh user mail:"; read -rep " " -i "$ghuser@" "ghmail"; 
+printf "$c2 gh user mail:"; read -rep " " -i "$ghuser@" "ghmail"; 
 git config --global user.email $ghuser; 
 git config --global init.defaultBranch main; 
 ##
