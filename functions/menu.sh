@@ -109,8 +109,10 @@ return 0; else
 echo -e "\n $c2 OK"; 
 ## after ############
 ## EXECUTE ##########
+printf " $c2 Command to execute:"; read -rep " " -i "$command" "command";
 for i in "${CHECKED[@]}"; do echo -e "\e[0m $c2 Installing $i \e[2m"; sleep 0.1; 
-[ "$2" ]|| bash $i; [ "$2" ]&& $command $i; 
+#[ "$2" ]|| bash $i; [ "$2" ]&& 
+$command $i; 
 echo -e "\e[0m $c2 $i$green Installed$re \e[2m"; done; cd $olpwd; echo -e "\n Done"; fi; 
 echo -e "\e[0m"; fi; 
 }; ## END MENU ##
