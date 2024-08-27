@@ -39,6 +39,8 @@ alias lllla='ls --hyperlink --color=always --group-directories-first -Ahltrp; pw
 alias 'sl_cc@192.168.0.105'='ssh cc@192.168.0.105'
 alias 'sl'='ssh aaaa@ants.ftp.sh'; 
 alias m11='ssh -p 8022 u0_a428@192.168.0.105'
+alias wrangler='npx wrangler'
+alias 'wrangler__pages__deploy'='npx wrangler pages deploy'
 #iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
 iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
 ip4="$(curl -4 ip.me -s&)"; 
@@ -68,7 +70,7 @@ bath=($(batcat --list-themes|cut -f1 -d:|tr ' ' '_'));
 batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
 batn=$(shuf -en1 ${batl[@]}); 
 bathb=$(shuf -en1 ${bath[@]});
-echo -e "\n  --------------------\n$dim  -- $cyan$dim${batn}$re\n
+echo -e "\n  --------------------\n$dim  -- $cyan$dim${batn}$re
 $dim  -- $pink$dim${bathb}$re \e[0m\n  --------------------\n"; 
 fortune|batcat --style numbers --theme "${bathb//_/ }" --language ${batn};
 } 
