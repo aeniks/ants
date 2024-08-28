@@ -1,6 +1,6 @@
 #!/bin/bash
 ## selection menu 
-qmenu() {
+q() {
 hash batcat||hash bat||sudu apt install batcat -qy &>/dev/null||apt install bat -y 2>/dev/null; 
 local prompt="${2}"; [ "$2" ]||local prompt="hello"; 
 local ops=($1); [ "$1" ]||local ops=(*); 

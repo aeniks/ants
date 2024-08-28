@@ -39,6 +39,7 @@ alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${H
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 alias 12_network='ip -c n | grep -v FAILED|head -n-1'
+alias portscan='nmap localhost|batcat -pP --language c++; printf "\n\nuse nmap to do more\n\n"; '
 ####
 ####
 quotes() {
