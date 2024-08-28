@@ -13,14 +13,14 @@ alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias sl='ssh aaaa@ants.ftp.sh'; 
-#############################
+###############################
 alias 12_='menu $ants/12'
-################################
+###############################
 alias m11='ssh -p 8022 u0_a428@192.168.0.105||(read -rep "$c2 open findmydevice? " "gf"; open https://www.google.com/android/find/;)'
 alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
 alias coolers='grep -m1 -wA6 --colour "_COLORS" $ants/alias.sh;'
 alias pp='printf'
-################################
+###############################
 LFRC="$ants/sh/config/lf/lfrc"; 
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
@@ -29,7 +29,7 @@ alias w='walk --icons'
 info() { command info $1|batcat -p --language c#||apropos $1; }
 man() { command man $1|batcat -p --language manpage||apropos $1; } 
 help() { command help $1|batcat -p --language c#||apropos $1; } 
-################################
+###############################
 ################ _functions
 alias sl_cc='ssh cc@192.168.0.105'
 alias key-binings='batcat $ants/sh/info/emacs.sh -p'
@@ -39,10 +39,14 @@ alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${H
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
-alias 12_network='ip -c n | grep -v FAILED|head -n-1'
+###############################
+###############################
 alias portscan='nmap localhost|batcat -pP --language c++; printf "\n\nuse nmap to do more\n\n"; '
-####
-####
+alias neighbours='sudo nmap 192.168.0.1 192.168.0.100-122 -sn &>>/tmp/x; sudo nmap 192.168.0.1 192.168.0.100-122 -sL &>>/tmp/x; sudo ip -c n|grep -v "FAILED"'
+alias 12_portscan='portscan'
+alias 12_neighbours='neighbours'
+###############################
+###############################
 quotes() {
 bath=($(batcat --list-themes|cut -f1 -d:|tr ' ' '_')); 
 batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
@@ -57,7 +61,7 @@ batlist=($(batcat --list-languages|grep ','|grep -v " "|tr "," "\n"|cut -f2 -d "
 batn=$(shuf -e -n1 ${batlist[@]})
 echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn; echo; 
 }
-
+################################
 hh(){
 echo -e "\n\e[4;46;30m$(date; history -a)\e[0m";
 unset -v lng lns;
