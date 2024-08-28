@@ -45,6 +45,7 @@ alias portscan='nmap localhost|batcat -pP --language c++; printf "\n\nuse nmap t
 alias neighbours='sudo nmap 192.168.0.1 192.168.0.100-122 -sn &>>/tmp/x; sudo nmap 192.168.0.1 192.168.0.100-122 -sL &>>/tmp/x; sudo ip -c n|grep -v "FAILED"'
 alias 12_portscan='portscan'
 alias 12_neighbours='neighbours'
+klockan="$ants/12/klockan.sh"
 ###############################
 ###############################
 quotes() {
