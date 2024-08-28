@@ -23,7 +23,7 @@ for i in $ants/functions/*; do . $i; done;
 . $ants/alias.sh; 
 vader="hello";
 vader="$(curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++ & disown)";
-vader="${vader^^}"; vader="${vader:0:(-1)}" 2>/dev/null; 
+vader="${vader^^}"; vader="${vader:0:(-1)}" &>/dev/null; 
 ## quotes;
 ## PS1='\e7\e[0;36m\e[H$?\e8\e[2;38m\t\e[0;32m\w\e[0m/'
 ## PS1='\e7\e[0;36m\e[H$?\e8\e[32m\w\e[0m'
@@ -41,7 +41,6 @@ vader="${vader^^}"; vader="${vader:0:(-1)}" 2>/dev/null;
 ## ) & disown;
 ##
 . $ants/alias.sh; 
-alias zync='~/sync/sanc.sh; ~/sync/sync-cron.sh &'
 [ -e $ants/functions/ ]&& for i in $ants/functions/*; do . $i; done; 
 [ -e ~/functions.d/ ]&& for i in ~/functions.d/*; do . $i; done; 
 ###################################
