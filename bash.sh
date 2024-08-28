@@ -51,9 +51,9 @@ printf "\e7\e[s"; timeout 1 printf "
 \e[14;${cl}H$ln
 \e[15;${cl}H$ln\e[15;${cl}H$c2 ${vader}
 \e[16;${cl}H$ln\e[16;${cl}H$c2 Welcome back $cyan$bold$(id -un) 
-\e[17;${cl}H$ln\e[17;${cl}H$c2 Local ip:  $blue$iploc 
-\e[18;${cl}H$ln\e[18;${cl}H$c2 Public ip: $green$ip4 
-\e[19;${cl}H$ln\e[19;${cl}H$c2 $bold$cyan$italic$(date +%T)$re$dim -- $pink$(date +%A" $green"%B" $yellow"%D) 
+\e[18;${cl}H$ln\e[18;${cl}H$c2 Public ip:\e[0;2m - $green$ip4 
+\e[17;${cl}H$ln\e[17;${cl}H$c2 Local ip:\e[0;2m -- $blue$iploc 
+\e[19;${cl}H$ln\e[19;${cl}H$c2 $bold$cyan$italic$(date +%T)$re$dim --- $pink$(date +%A" $green"%B" $yellow"%D) 
 \e[20;${cl}H$ln$re\n"
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 printf "
