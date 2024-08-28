@@ -15,6 +15,8 @@ map M :push %mkdir<space>
 map <delete> delete
 map d delete
 map z zip
+map c copy
+map v copy
 map <?> maps
 map <pgdn> half-down
 map <pgup> half-up

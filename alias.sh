@@ -1,5 +1,5 @@
 #!/bin/bash
-# alias for bash terminal
+#" alias for bash terminal
 ############# _COLORS ##########
 e='echo -e '; bold=$($e'\e[1m';); dim=$($e'\e[2m';); italic=$($e'\e[3m';); 
 underline=$($e'\e[44m';); blink=$($e'\e[45m';); rev=$($e'\e[47m';); invis=$($e'\e[8m';); 
@@ -7,64 +7,40 @@ strike=$($e'\e[9m';); blank=$($e'\e[0;30m';); red=$($e'\e[0;31m';); green=$($e'\
 yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
 white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
+alias mm='micro';
+alias qq='cd ..; ll';
+alias ee='echo ';
+alias ll='lsd -l --extensionsort --group-directories-first -tr'
+alias la='lsd --extensionsort --group-directories-first -Altr'
+alias sl='ssh aaaa@ants.ftp.sh'; 
+#############################
+alias 12_='menu $ants/12'
+################################
+alias m11='ssh -p 8022 u0_a428@192.168.0.105||(read -rep "$c2 open findmydevice? " "gf"; open https://www.google.com/android/find/;)'
+alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
 alias coolers='grep -m1 -wA6 --colour "_COLORS" $ants/alias.sh;'
-alias "12_"='menu $ants/12'
 ################################
-################################
-################ _functions
 LFRC="$ants/sh/config/lf/lfrc"; 
-#if [ -e /bin/lf ]; then 
-#bind '"\C-o":"lfcd\C-m"'; 
-#alias l='cd $(lf -config $LFRC -print-last-dir )';
-#lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
-bind '"\C-o":"cd $(lf -config $LFRC -print-last-dir) \n"'; 
 alias l='cd $(lf -config $LFRC -print-last-dir); '; 
 alias w='walk --icons'
 info() { command info $1|batcat -p --language c#||apropos $1; }
 man() { command man $1|batcat -p --language manpage||apropos $1; } 
 help() { command help $1|batcat -p --language c#||apropos $1; } 
 ################################
-################ _alias
-alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring'; 
-m11='fb1c649a_3a0c_4297_ae12_b0cf5cb558b8'; 
-alias mm='micro';
-alias qq='cd ..; ll';
-alias ee='echo ';
-alias ll='lsd -l --extensionsort --group-directories-first -tr'
-alias la='lsd --extensionsort --group-directories-first -Altr'
-alias llll='ls --hyperlink --color=always --group-directories-first -hltrp'; 
-alias lllla='ls --hyperlink --color=always --group-directories-first -Ahltrp; pwd'; 
-alias 'sl_cc@192.168.0.105'='ssh cc@192.168.0.105'
-alias 'sl'='ssh aaaa@ants.ftp.sh'; 
-alias m11='ssh -p 8022 u0_a428@192.168.0.105'
+################ _functions
+alias sl_cc='ssh cc@192.168.0.105'
+alias key-binings='batcat $ants/sh/info/emacs.sh -p'
 alias wrangler='npx wrangler'
-alias 'wrangler__pages__deploy'='npx wrangler pages deploy'
-#iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
-iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
-ip4="$(curl -4 ip.me -s&)"; 
-ip6="$(curl -6 ip.me -s&)"; 
-################ _variables
-alias 12_nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
+alias wrangler__pages__deploy='npx wrangler pages deploy'
+alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
 export EDITOR='micro'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
-#export PATH="$PATH:/usr/games"
-#alias grep='grep --color=auto'
-#alias fgrep='fgrep --color=auto'
-#alias egrep='egrep --color=auto'
 alias 12_network='ip -c n | grep -v FAILED|head -n-1'
 ####
 ####
-# kl() {
-# if [ -z $1 ] 2>/dev/null; then 
-# timeout 1 batcat -Pp --language c;
-# [ $? ] 2>/dev/null || kat; else 
-# batcat -Pp --language $1
-# if [ $? = 0 ] 2>/dev/null; then kat
-# else batcat -L; fi; fi; 
-# }
 quotes() {
 bath=($(batcat --list-themes|cut -f1 -d:|tr ' ' '_')); 
 batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
@@ -172,10 +148,6 @@ alias staticants=''
 alias reloadbash='exec bash'
 alias 12_history='less +G ~/.bash_history'
 norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }  
-#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-#alias 11='ssh ants.swe.net -p 8022 "termux-media-player play /sdcard/Music/money.mp3"'
-#alias 22='ssh ants.swe.net -p 8022 "termux-media-player stop"'
-#alias aa='if [ $USER = "root" ]; then sudo chown $SUDO_USER:  -R; sudo chmod 775  -R; 
 #else sudo chown $USER:  -R; sudo chmod 775  -R; fi; cd ; 
 #echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 #ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
@@ -188,10 +160,6 @@ alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COL
 do echo -n " "; done; tput cup 0'
 alias psp='tput indn 12 cuu 8;'
 alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
-#alias 12_ansii_codes="echo '
-## $($e'\e[1m') bold $($e'\e[0m') 	## $($e'\e[2m') dim $($e'\e[0m')
-## $($e'\e[3m') italic $($e'\e[0m') 	## $($e'\e[4m') underline $($e'\e[0m')
-## $($e'\e[5m') blink $($e'\e[0m') 	## $($e'\e[7m') rev $($e'\e[0m')
 ## $($e'\e[2m') invis $($e'\e[0m') 	## $($e'\e[9m') strike $($e'\e[0m')
 ## $($e'\e[2m') blank $($e'\e[0m') 	## $($e'\e[31m') red$($e'\e[0m')
 ## $($e'\e[32m') green $($e'\e[0m') 	## $($e'\e[33m') yellow $($e'\e[0m')
@@ -258,31 +226,6 @@ alias rrf='tput setaf $(rr1)'
 alias rrb='tput setab $(rr2)'
 ############################################
 #### IP_STUFF ##############################
-#alias ports='echo -e "\n\n   $cyan-$re Open ports on local network"$cyan" -"$re" \n"; echo -e " -- -- -- -- -- -- -- $(portsopen;  echo " -- -- -- -- -- -- --")"|column -tLo "$(tput sgr0)|  " -tLo "  $(tput sgr0)||   " -H 1,2,3,4,8; echo -e "\n\n" '
-#export ipn="$(hostname -I | tail -c3)"
-#export ipnet="$(hostname -I|tr  " " "\n"|head -n1)"
-#export ipnet=$(hostname -I|tr " " "\n"|head -n1)
-#export ipn=$(hostname -I|tr " " "\n"|head -n1|tail -c2)
-#alias iplocal="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'|tr "\n" "-""
-#iplocal=$(iplocal|tail -n1)
-#alias ipnet="tput setab $ipn; echo -n $ipnet; tput sgr0;"
-#alias ippub="wget -qO- ifconfig.me"
-#alias ipports="sudo lsof -i -P -n"
-##
-#alias ipa='echo -ne "
-#\t$(rrf)------$(tput setaf 2) Public IP: $(tput sgr0)$(ippub)$(tput setaf 6) 
-#\t$(tput setaf $(rr2))---------------------------------- 
-#\t$(rrf)------$(tput setaf 4) Network IP: $(tput sgr0)$(iplocal|tr "\n" "\t")$(tput sgr0)"; echo'
-############################################
-
-##
-# alias ali='psp read -ep "$c2 " -i "alias " "ali"; echo "$ali" >> /etc/aaaa.sh; echo -e "\n $ali \n " '
-# alias ali='psp read -ep "$c2 " -i "ali " "ali";
-# echo "$ali" >> /etc/aaaa.sh; echo -e "\n $ali \n " '
-#alias ali='psp read -ep "$c2 alias name: " "alia"; 
-#psp read -ep "$c2 alias $alia=" -i ""'""""'"" "aliq"; 
-#echo "alias $alia=$aliq" >> /alias.sh; 
-#echo -e "\n $alia=""$aliq"" \n "; source /alias.sh'
 ############################################
 ############################################
 #alias fakta='neofetch 2>/dev/null '
@@ -336,4 +279,19 @@ tlp
 googler
 lf
 ncdu
+batcat
+lsd
+tmux
 )
+#iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
+#iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
+#ip4="$(curl -4 ip.me -s&)"; 
+#ip6="$(curl -6 ip.me -s&)"; 
+################ _variables
+#if [ -e /bin/lf ]; then 
+# bind '"\C-o":"cd $(lf -config $LFRC -print-last-dir) \n"'; 
+#bind '"\C-o":"lfcd\C-m"'; 
+#alias l='cd $(lf -config $LFRC -print-last-dir )';
+#lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
+#alias llll='ls --hyperlink --color=always --group-directories-first -hltrp'; 
+#alias lllla='ls --hyperlink --color=always --group-directories-first -Ahltrp; pwd'; 
