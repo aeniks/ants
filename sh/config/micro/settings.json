@@ -1,0 +1,11 @@
+{
+    "autoclose": false,
+    "fakecursor": true,
+    "filetype": "shell",
+    "mkparents": true,
+    "savecursor": true,
+    "saveundo": true,
+    "scrollbar": true,
+    "softwrap": true,
+    "wordwrap": true
+}
