@@ -1,6 +1,7 @@
 #/bin/bash
 ## LOADING_ANIMATIONS
 loader() {
+printf "\e7\e[s";
 [ -e /bin/tput ]|| apt install ncurses-utils &>/dev/null;
 BLA_metro=( 0.1 \
 '       ' \
@@ -19,7 +20,7 @@ BLA_metro=( 0.1 \
 '       ' \
 )
 ##\e[0;40m
-BLA_passing_dots=( 0.25 '.  ' '.. ' '...' ' ..' '  .' '   ' )
+BLA_passing_dots=( 0.1 '.   ' '..  ' '... ' ' ...' '  ..' '   .' '    ' '    ' '    ' )
 ##
 echo -ne "\e7"; tput civis;
 declare -a BLA_active_loading_animation; 
@@ -46,10 +47,11 @@ echo -ne "\e[$((size/2-1));$((size[1]/2-5))H\e[0;40;37m -\e[40;32m done ✔ \e[4
 tput cnorm; echo -ne "\e[0m"; 
 }
 trap BLA::stop_loading_animation SIGINT
-BLA::start_loading_animation "${BLA_metro[@]}"
+BLA::start_loading_animation "${BLA_passing_dots[@]}"
 sleep 1; 
-echo -ne "\e[0m\e[$((size/2+2));$((size[1]/2-8))H\e[2;40;39m working on $1 ... \e[0m"; 
-$1 &>/dev/null; 
+echo -ne "\e[0m\e[$((size/2+2));$((size[1]/2-8))H\e[2;40;39m working on...    \e[0m"; 
+echo -ne "\e[0m\e[$((size/2+3));$((size[1]/2-8))H\e[2;40;39m $(printf "$1"|tail -c 16) \e[0m"; 
+printf "\e8\e[u"; $1; 
 sleep 1; echo -ne "\e[$((size/2+1));$((size[1]/2-8))H\e[0;40;39m almost ...       \e[0m"; 
 sleep 1; echo -ne "\e[$((size/2+2));$((size[1]/2-8))H\e[0;40m           "; 
 BLA::stop_loading_animation
