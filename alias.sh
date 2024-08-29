@@ -12,7 +12,7 @@ alias qq='cd ..; ll';
 alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
-alias sl='ssh aaaa@ants.ftp.sh'; 
+#alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 alias 12_='menu $ants/12'
 ###############################
@@ -20,6 +20,7 @@ alias m11='ssh -p 8022 u0_a428@192.168.0.105||(read -rep "$c2 open findmydevice?
 alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
 alias coolers='grep -m1 -wA6 --colour "_COLORS" $ants/alias.sh;'
 alias pp='printf'
+alias sl='ssh aaaa@ants.ftp.sh'
 ###############################
 LFRC="$ants/sh/config/lf/lfrc"; 
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
@@ -174,7 +175,6 @@ alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
 ## $($e'\e[36m') cyan $($e'\e[0m') 	## $($e'\e[37m') white $($e'\e[0m')
 ## $($e'\e[0m') re $($e'\e[0m') 	## $($e'\e[36m --\e[0m') c2 $($e'\e[0m')'"
 #shost="aeniks.mooo.com"; suser="aaaa";
-#alias sl='ssh $suser@$shost'
 alias 12_serve_folder_with_wrangler='read -n1 -ep  "$c2 serve $PWD/? "; npx wrangler pages dev . 2>/dev/null'
 #alias wrangler='npx wrangler pages'
 alias 12_iplocal='ip route; cat ~/iplog; ' 

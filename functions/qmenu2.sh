@@ -1,6 +1,6 @@
 #!/bin/bash
 ## selection menu 
-q() {
+q2() {
 #### just make sure of dependencies ####
 dim='\e[2m'; re='\e[0m'; hash sudo && su='sudo'; hash batcat||hash bat||$su apt install batcat file -qy &>/dev/null||apt install bat file -y &>/dev/null; hash jp2a||$su apt install jp2a file -y &>/dev/null;
 #########################################
