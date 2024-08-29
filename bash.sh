@@ -21,9 +21,9 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 [ -e $ants/functions ]&&
 for i in $ants/functions/*; do . $i; done; 
 . $ants/alias.sh; 
-vader="hello";
+#vader="hello";
 vader="$(curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++ & disown)";
-vader="${vader^^}"; vader="${vader:0:(-1)}" &>/dev/null; 
+if [ "${#vader}" -gt 2 ];then vader="${vader^^}"; vader="${vader:0:(-1)}"; else vader="nothing good on \e[1m):\e[0m "; fi; 
 ## quotes;
 ## PS1='\e7\e[0;36m\e[H$?\e8\e[2;38m\t\e[0;32m\w\e[0m/'
 ## PS1='\e7\e[0;36m\e[H$?\e8\e[32m\w\e[0m'

@@ -59,7 +59,7 @@ ssh -p $port $selected -l $user;
 printf "${re}ssh-copy-key ${cyan}${user}${re}@${cyan}${selected}${re}:${cyan}${port}${re}? [y/N]";  
 read -n1 -rep " " "yn";
 if [[ $yn = "y" ]]; then 
-ssh-copy-key -p $port $selected -l $user; fi; 
+ssh-copy-id -p $port $user@$selected; fi; 
 printf "\n\nOK\n\n"; 
 }
 
