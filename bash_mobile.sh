@@ -1,4 +1,3 @@
-
 #!/bin/bash
 ## A better bash. Written by 12ants.github.io
 ################################
