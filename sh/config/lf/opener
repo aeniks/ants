@@ -1,3 +1,4 @@
+#!/bin/bash
 # Opener for lf
 
 # En general, deberías delegar la apertura de ficheros a tu abridor de

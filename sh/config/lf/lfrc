@@ -4,26 +4,50 @@ map . set hidden!
 map <esc> quit
 #map <enter> open
 set mouse
+set icons
+map i set icons!
 map F setfilter
-map c+F filter
-map m set mouse!
+map <c-f> filter
+map M set mouse!
 map a glob-select *
-map a glob-unselect *
-map n unselect *
+map n glob-unselect *
+# map a unselect *
 map <tab> :push :<tab> 
-map M :push %mkdir<space>
+map m :push %mkdir<space>
 map <delete> delete
 map d delete
-map z zip
+map Z zip
+# map <c-z> zip
+map <c-z> 'zip'
 map c copy
-map v copy
+map v paste
+map p paste
+map k cut
+map H home
+map L1 cut
+map L2 cut
+map L3 cut
 map <?> maps
 map <pgdn> half-down
 map <pgup> half-up
-# interpreter for shell commands
-#set previewer /bin/glow
-set shell bash
+set previewer "/etc/lf/previever"
+set opener "/etc/lf/opener"
+set shell sh
 set info time:size
+
+
+cmd zip ${{
+set -f
+mkdir $f
+cp -r $fx $f
+zip -r $f.zip $f
+# rm -rf $1
+}}
+
+cmd zip ${{
+set -f
+zip -r $f.zip $f
+}}
 #set drawbox
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -32,13 +56,13 @@ set info time:size
 # $fx variables contain names with '*' or '?' characters. However, this option
 # is used selectively within individual commands as it can be limiting at
 # times.
-#set shellopts '-eu'
+set shellopts '-eu'
 # set internal field separator (IFS) to "\n" for shell commands
 # This is useful to automatically split file names in $fs and $fx properly
 # since default file separator used in these variables (i.e. 'filesep' option)
 # is newline. You need to consider the values of these options and create your
 # commands accordingly.
-#set ifs "\n"
+set ifs "\n"
 # leave some space at the top and the bottom of the screen
 set scrolloff 20
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
@@ -52,6 +76,7 @@ map x $$f
 map X !$f
 # dedicated keys for file opener actions
 map <enter> $mimeopen --ask $f
+map <enter> open
 map o $mimeopen --ask $f
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
@@ -67,8 +92,8 @@ esac
 #map h :push :<tab> 
 map h :maps 
 map s :search 
-#map M :push %mkdir<space>
-# define a custom 'rename' command without prompt for overwrite
+map m :push %mkdir<space>
+# define a custom 'rename' command without prompt for overwrit
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 # map r push :rename<space>
 # make sure trash folder exists
@@ -113,18 +138,11 @@ cmd tar ${{
 }}
 
 # compress current file or selected files with zip
-cmd zip ${{
-zip $1
-}}
+#zip ${{
+#zip $1.zip $1
+#}}
 
 
-# cmd zip ${{
-#     set -f
-#     mkdir $1
-#     cp -r $fx $1
-#     zip -r $1.zip $1
-#     rm -rf $1
-# }}
 # Main options
 set icons
 set period 1
@@ -132,9 +150,9 @@ set period 1
 #set number
 #set hidden!
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
-set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/previewer'
-source '~/.config/lf/opener'
+set cleaner '/etc/lf/cleaner'
+set previewer '/etc/lf/previewer'
+source '/etc/lf/opener'
 set promptfmt "
 \033[48;2;35;38;39;38m  %u\033[48;2;35;38;39;38;2;28;220;156m 
 \033[38;2;255;255;255m %w 
@@ -142,10 +160,10 @@ set promptfmt "
 \033[38;2;255;255;255m %f  "
 set incsearch
 set incfilter
-set globsearch on
+set globsearch true
 set ratios 2:2:8 # 2:3:7:7
 set truncatechar "…"
-set waitmsg "\033[1;31m⏎\033[m"
+set waitmsg "zzzz"
 set timefmt "02/01/2006 15:04:05 "
 set infotimefmtnew '02/01 15:04'
 set infotimefmtold '02/01/06'
@@ -155,9 +173,6 @@ set dircounts
 set tabstop 4
 set scrolloff 22
 set wrapscroll
-set shellopts '-eu'
-set ifs "\n"
-set shell "bash"
-set ruler 'df:acc:progress:selection:filter:ind'
-set cursorpreviewfmt "\033[7m"
+set rulerfmt 'df:acc:progress:selection:filter:ind'
+set cursorpreviewfmt "\e[36;7m"
 %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
