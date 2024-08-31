@@ -10,7 +10,7 @@ not="-r $(notify-send -c critical -p -a "$day" "$day")";
 ##
 ##
 for i in {1..60}; do timeout 2 notify-send -a "  $(date +%X)   ${day} " "  $(echo -e "$(shuf -n1 /ants/sh/config/emojiline.sh) $(date +%X) $(shuf -n1 /ants/sh/config/emojiline.sh)")"  $not -A "$(
- date +"  ---- "%#A" -- den "%d:de" -- %#B"" ---- den "%j:de" dagen pa "%Y" ----")"=" $(date +%n-%X-%n) " "  ${vader}"; if [ "${i}" -gt 22 ]; then unset not; $((day++)) fi; done|~/log.log; 
+ date +"  ---- "%#A" -- den "%d:de" -- %#B"" ---- den "%j:de" dagen pa "%Y" ----")"=" $(date +%n-%X-%n) " "  ${vader}"; if [ "${i}" -gt 22 ]; then unset not; fi; done
 #####################################
 #####################################
 
