@@ -173,6 +173,6 @@ set dircounts
 set tabstop 4
 set scrolloff 22
 set wrapscroll
-set rulerfmt 'df:acc:progress:selection:filter:ind'
+set rulerfmt "df:acc:progress:selection:filter:ind$(date)""
 set cursorpreviewfmt "\e[36;7m"
 %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"

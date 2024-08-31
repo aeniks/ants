@@ -7,7 +7,7 @@ strike=$($e'\e[9m';); blank=$($e'\e[0;30m';); red=$($e'\e[0;31m';); green=$($e'\
 yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
 white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
-alias mm='micro';
+alias mm='tilde';
 alias qq='cd ..; ll';
 alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
@@ -40,14 +40,14 @@ alias wrangler='npx wrangler'
 alias wrangler__pages__deploy='npx wrangler pages deploy'
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
-export EDITOR='micro'; 
+export EDITOR='tilde'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ###############################
 ###############################
 alias portscan='nmap localhost|batcat -pP --language c++; printf "\n\nuse nmap to do more\n\n"; '
 alias neighbours='sudo nmap 192.168.0.1 192.168.0.100-122 -sn &>>/tmp/x; sudo nmap 192.168.0.1 192.168.0.100-122 -sL &>>/tmp/x; sudo ip -c n|grep -v "FAILED"'
-alias 12_portscan='portscan'
-alias 12_neighbours='neighbours'
+alias 12_it_portscan='portscan'
+alias 12_it_neighbours='neighbours'
 klockan="$ants/12/klockan.sh"
 ###############################
 ###############################
@@ -152,7 +152,7 @@ do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "
 alias tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
-alias 12_lf_config='micro /etc/lf/lfrc.sh;'
+alias 12_config_lf='tilde /etc/lf/lfrc.sh;'
 alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
 alias staticants=''
 alias reloadbash='exec bash'
@@ -162,9 +162,9 @@ norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }
 #echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 #ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
 alias aa='[ -z $ants ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants; '
-alias aaaa="micro "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; . $ants/alias.sh;"
-alias bbbb="micro "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; . $ants/bash.sh;"
-alias cccc="micro "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; . $ants/functions.sh;"
+alias aaaa="tilde "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; . $ants/alias.sh;"
+alias bbbb="tilde "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; . $ants/bash.sh;"
+alias cccc="tilde "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; . $ants/functions.sh;"
 ####
 alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COLUMNS))); 
 do echo -n " "; done; tput cup 0'
@@ -185,8 +185,8 @@ alias lenoo='read -t 8 -ep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; c
 alias 12_rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$rainbow";'
 alias 12_fortune="rrf; fortune; tput sgr0;"
 alias rr="sudo -s"
-alias 12_edit_etc_besh="micro /etc/bash.bashrc"
-alias mm="micro"
+alias 12_edit_etc_besh="tilde /etc/bash.bashrc"
+alias mm="tilde"
 alias 12_randomword="wotd"
 alias 12_zip='echo -ne "\n\t $c2 "; read -ep "zip folder: " -i "$PWD"  "zipf"; 
 echo -ne "\n\t $c2"; read -ep "to: " -i "$(wotd|tr -d "''").zip" "zipz";
@@ -208,7 +208,7 @@ alias kf='guf=$(gum file);echo -e "\n\n\n\n\n"; tput cuu 2; read -ep "$c2 title:
 #### SSH ###################################
 ############################################
 #### ANTS ##################################
-#alias ali='micro /alias.sh && read -t2 -n1 -ep "update /alias.sh? " ab && source /alias.sh'ions.sh'
+#alias ali='tilde /alias.sh && read -t2 -n1 -ep "update /alias.sh? " ab && source /alias.sh'ions.sh'
 alias uu='sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove; sudo apt full-upgrade -y && sudo snap refresh && jp2a $ants/media/tard.jpg|pv --rate-limit=2222 --quiet'
 alias rb='sudo wall "gg"; sleep 1; sudo systemctl reboot'
 ##
@@ -268,7 +268,7 @@ alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; 
 
 ################################
 basicapps=(
-micro
+tilde
 openssl
 openssh-server
 net-tools
