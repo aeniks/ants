@@ -40,6 +40,9 @@ if [ "${#vader}" -gt 2 ];then vader="${vader^^}"; vader="${vader:0:(-1)}"; else 
 ## fi; printf "\e[u\e8"; 
 ## ) & disown;
 ##
+. $ants/sh/time.sh & 
+##
+##
 . $ants/alias.sh; 
 [ -e $ants/functions/ ]&& for i in $ants/functions/*; do . $i; done; 
 [ -e ~/functions.d/ ]&& for i in ~/functions.d/*; do . $i; done; 
@@ -60,4 +63,5 @@ printf "
  from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]} 
  \e[21;${cl}H$ln$re\n"; fi; 
 printf "\e[u\e8";) & disown;
+
 PS1='\e[0m\e[2;3m\t\e[0m\e[1;36m\u\e[0;2;33m\H\e[0;32m\w\e[0m _ \n'

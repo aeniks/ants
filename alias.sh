@@ -7,23 +7,26 @@ strike=$($e'\e[9m';); blank=$($e'\e[0;30m';); red=$($e'\e[0;31m';); green=$($e'\
 yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
 white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
-alias mm='tilde';
+alias tt='tilde';
+alias mm='micro'
 alias qq='cd ..; ll';
 alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
+alias psp='tput indn 12 cuu 8;'
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 alias 12_='menu $ants/12'
 ###############################
 alias m11='ssh -p 8022 u0_a428@192.168.0.105||(read -rep "$c2 open findmydevice? " "gf"; open https://www.google.com/android/find/;)'
 alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
-alias coolers='grep -m1 -wA6 --colour "_COLORS" $ants/alias.sh;'
 alias 1111='ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"||ping 192.168.0.105 -c5||nmap 192.168.0.105 -sL -W1||nmap 192.168.0.105 -sn -W1 &&
 ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"'; 
 alias pp='printf'
 alias sl='ssh aaaa@ants.ftp.sh'
 ###############################
+alias apa='sudo apt install'; 
+##################
 LFRC="$ants/sh/config/lf/lfrc"; 
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
@@ -35,12 +38,13 @@ help() { command help $1|batcat -p --language c#||apropos $1; }
 ###############################
 ################ _functions
 alias sl_cc='ssh cc@192.168.0.105'
-alias key-binings='batcat $ants/sh/info/emacs.sh -p'
-alias wrangler='npx wrangler'
-alias wrangler__pages__deploy='npx wrangler pages deploy'
+alias key-bindings='batcat $ants/sh/info/emacs.sh -p'
+alias wrangler_pages='npx wrangler pages'
+alias wrangler_local='npx wrangler pages dev'
+alias sizec='sizec="$(stty size|cut -f2 -d" ")"; printf "$sizec"'
+alias sizel='sizel="$(stty size|cut -f1 -d" ")"; printf "$sizel"'
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
 || printf %s "${XDG_CONFIG_HOME}/nvm")"; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; ';
-export EDITOR='tilde'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
 ###############################
 ###############################
@@ -66,40 +70,10 @@ batn=$(shuf -e -n1 ${batlist[@]})
 echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn; echo; 
 }
 ################################
-hh(){
-echo -e "\n\e[4;46;30m$(date; history -a)\e[0m";
-unset -v lng lns;
-# get bat in no has
-[ -e /bin/batcat ]||[ -e $PREFIX/bin/bat ]||\
-(read -rep "$c2 install bat? " "qq"; 
-sudo apt install batcat -y 2>/dev/null||\
-apt install bat -y 2>/dev/null; echo gg;)  
-# do script
-if
-[ -n ${PREFIX} ] 2>/dev/null; then [ -e $PREFIX/bin/bat ]&&ln $PREFIX/bin/bat $PREFIX/bin/batcat --symbolic; fi;
-[ $1 = "help" ] 2>/dev/null &&(echo -e "\n$c2 usage: \n\thh #${cyan}number_lines$re(use +1 to lista all) #${cyan}style$re \n"; return 0;); # help
-[ $1 = "style" ] 2>/dev/null &&(batcat --list-languages; return 0); # help
-local lns='66'; 
-local lng="go"; 
-echo $1|grep -e "[0-9]" ||local lng=${1}; 
-echo $1|grep -e "[0-9]" && local lns=${1}; 
-# if [ -n $1 ]; then 
-# if [ $1 -gt 0 ] 2>/dev/null; then lng=${1}; 
-# # fi; fi; 
-if [ -n $2 ]; then lng=${2}; fi; 
-if [ -z $2 ]; then # lng="go"; 
-bath=($(batcat --list-themes|cut -f1 -d:|grep -v " ")); 
-batl=($(batcat --list-languages|grep ','|tr "," "\n"|grep -v "*"|cut -f2 -d ":"));
-lng=$(shuf -en1 ${batl[@]}); 
-bthm=$(shuf -en1 ${bath[@]});
-fi; 
-# if [ -n $1 ]; then lns=${1}; fi; 
-# if [ -z $1 ]; then lns="88"; fi; 
-# #if [ $1 -lt 0 ] 2>/dev/null; then lng=${1}; lns=66; fi
-#[ $1 ]&& lns="${1}"; 
-echo -e "$cyan$lng$re -- $red$bthm$re";
-tail -n ${lns} ~/.bash_history 2>/dev/null|awk '!x[$0]++'|\
-batcat -fPp --language ${lng} --theme ${bthm}||batcat --list-languages;
+hh() {
+linesh=222; 
+[ -n "${1} "]&& linesh="${1}";
+tail ~/.bash_history -n122|batcat -ppl c;
 }
 kat() {
 unset -v kat; 
@@ -136,16 +110,18 @@ sudo echo -e "\n $newsudo ALL=(ALL) NOPASSWD:ALL
 %"$newsudo" ALL=(ALL) NOPASSWD:ALL \n" | tee -a "/etc/sudoers.d/admins"
 }
 ##### << make this a function
-alias 12_make_foler='
-psp read -ep "$c2 "$rev"new folder?$re " -i "$PWD" "folder"; 
+mkd() {
+psp read -rep "$c2 new folder?$re " -i "$PWD/$1" "folder"; 
 mkdir -p $folder -m 775; 
 chown "$SUDO_USER":"$USER" "$folder"; 
-cd $folder; echo -e "\n\t $cyan$bold> $pink$PWD$cyan <$re\n\t * * * *\n"; ls -caklhuptr --group-directories-first;'
-alias 12_goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "" -i "$PWD/" "pwd"; cd $pwd; ll; echo;';
+cd $folder; echo -e "\n\t $cyan$bold> $pink$PWD$cyan <$re\n\t * * * *\n"; ls -caklhuptr --group-directories-first; 
+}
+alias goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "" -i "$PWD/" "pwd"; cd $pwd; ll; echo; '
+
 #alias apt='sudo apt'
-alias 12_gmail='open gmail.com'
+alias gmail='open gmail.com'
 alias no='echo -e "\e[?25h"'
-alias 12_ansi_info='batcat -p $ants/sh/info/ansi.md'
+alias 12_info_ansi='batcat -p $ants/sh/info/ansi.md'
 alias 12_tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
@@ -155,20 +131,21 @@ do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "
 alias 12_config_lf='tilde /etc/lf/lfrc.sh;'
 alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
 alias staticants=''
+alias figz='figlist=($(figlist|batcat -pp --line-range 4:|head -n-5)); 
+nn=; for i in ${figlist[*]}; do printf "\n\n\e[0m --\t\e[7;46m $i\e[0m \e[38;5;$((nn++))m\n\n"; figlet -f "$i" "$i"; done; 
+'; 
 alias reloadbash='exec bash'
-alias 12_history='less +G ~/.bash_history'
 norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }  
 #else sudo chown $USER:  -R; sudo chmod 775  -R; fi; cd ; 
 #echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
 #ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
 alias aa='[ -z $ants ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants; '
-alias aaaa="tilde "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; . $ants/alias.sh;"
-alias bbbb="tilde "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; . $ants/bash.sh;"
-alias cccc="tilde "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; . $ants/functions.sh;"
+alias aaaa="$EDITOR "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; exec bash;"
+alias bbbb="$EDITOR "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; exec bash;"
+alias cccc="$EDITOR "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; exec bash;"
 ####
 alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COLUMNS))); 
 do echo -n " "; done; tput cup 0'
-alias psp='tput indn 12 cuu 8;'
 alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
 ## $($e'\e[2m') invis $($e'\e[0m') 	## $($e'\e[9m') strike $($e'\e[0m')
 ## $($e'\e[2m') blank $($e'\e[0m') 	## $($e'\e[31m') red$($e'\e[0m')
@@ -186,7 +163,6 @@ alias 12_rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$ra
 alias 12_fortune="rrf; fortune; tput sgr0;"
 alias rr="sudo -s"
 alias 12_edit_etc_besh="tilde /etc/bash.bashrc"
-alias mm="tilde"
 alias 12_randomword="wotd"
 alias 12_zip='echo -ne "\n\t $c2 "; read -ep "zip folder: " -i "$PWD"  "zipf"; 
 echo -ne "\n\t $c2"; read -ep "to: " -i "$(wotd|tr -d "''").zip" "zipz";
@@ -197,6 +173,7 @@ history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash
 tail -n${lo} ~/.bash_history|glow; '
 alias qq='cd ..; ' 
 alias ww='cd $OLDPWD; '
+alias apt='command "sudo apt"'
 alias bb="btop --utf-force"
 alias emojis='cat $ants/sh/emojis.sh|tr "\n" "\t";';
 alias 12_emojis=emojis;
@@ -224,7 +201,8 @@ curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++; tput cup 6 $((COLUMNS-28
 ## MISC_STUFF ##############################
 alias 12_fill='seq -s " # " 4444|lolcat'
 alias 12_info_tput='less /sh/info/tputhelp.txt'
-alias 12_coolors='. $ants/sh/helpansi.sh;' 
+alias coolors='printf "esc[38;5;[code]m >> "; for i in $(seq --equal-width 255); do printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done
+;' 
 ############################################
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
@@ -265,7 +243,6 @@ alias pull='git pull'
 alias info_cm'=less $ants/sh/info/cmd.sh'
 alias cm2'=cat $ants/sh/cmd.sh'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
-
 ################################
 basicapps=(
 tilde
@@ -291,6 +268,8 @@ ncdu
 batcat
 lsd
 tmux
+tilde
+figlet
 )
 #iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
 #iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
