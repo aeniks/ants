@@ -1,7 +1,7 @@
 {
     "autoclose": false,
+    "colorscheme": "simple",
     "fakecursor": true,
-    "filetype": "shell",
     "mkparents": true,
     "savecursor": true,
     "saveundo": true,
