@@ -16,7 +16,6 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 [ -e $ants/functions ]&&
 for i in $ants/functions/*; do . $i; done; 
 . $ants/alias.sh; 
-. $ants/sh/time.sh & 
 [ -e $ants/functions/ ]&& for i in $ants/functions/*; do . $i; done; 
 if [ "$SSH_CONNECTION" ]; then shsh=($SSH_CONNECTION);
 printf "\n\e[20;${cl}H$ln\e[20;${cl}H$c2 $bold"$red"ssh$re\

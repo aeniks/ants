@@ -73,11 +73,11 @@ echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn; echo;
 hh() {
 linesh=222; 
 [ -n "${1} "]&& linesh="${1}";
-tail ~/.bash_history -n122|batcat -ppl c;
+tail ~/.bash_history -n${lines}|batcat -ppl c;
 }
 kat() {
 unset -v kat; 
-if [ $1 = "help" ] 2>/dev/null; then 
+if [ "${1}" = "help" ] 2>/dev/null; then 
 batcat -h|batcat -pP --language c;
 return 0; fi; 
 [ $2 ]&& lng="${2}"; [ $2 ]|| lng="sh"; 
@@ -128,18 +128,13 @@ do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "
 alias tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
-alias 12_config_lf='tilde /etc/lf/lfrc.sh;'
 alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
 alias staticants=''
 alias figz='figlist=($(figlist|batcat -pp --line-range 4:|head -n-5)); 
-nn=; for i in ${figlist[*]}; do printf "\n\n\e[0m --\t\e[7;46m $i\e[0m \e[38;5;$((nn++))m\n\n"; figlet -f "$i" "$i"; done; 
-'; 
+nn=; for i in ${figlist[*]}; do printf "\n\n\e[0m --\t\e[7;46m $i\e[0m \e[38;5;$((nn++))m\n\n"; figlet -f "$i" "$i"; done; '; 
 alias reloadbash='exec bash'
-norm() { echo -e '\e[0m'; tput cnorm 2>/dev/null; }  
-#else sudo chown $USER:  -R; sudo chmod 775  -R; fi; cd ; 
-#echo; pwd|pr --omit-header --indent=4|lolcat -p 2; echo; echo -e "$cyan$dim --------$re"; 
-#ls -Ahltrp --color=always --group-directories-first; echo -e "$cyan$dim --------$re \n"'
-alias aa='[ -z $ants ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants; '
+alias norm=' echo -e '\e[0m'; tput cnorm 2>/dev/null;' 
+alias aa='[ -z "$ants" ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants; '
 alias aaaa="$EDITOR "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; exec bash;"
 alias bbbb="$EDITOR "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; exec bash;"
 alias cccc="$EDITOR "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; exec bash;"
@@ -158,22 +153,24 @@ alias 12_serve_folder_with_wrangler='read -n1 -ep  "$c2 serve $PWD/? "; npx wran
 #alias wrangler='npx wrangler pages'
 alias 12_iplocal='ip route; cat ~/iplog; ' 
 alias 12_12_ants_dl_installer='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new$ants; . /tmp/in.sh;'
-alias lenoo='read -t 8 -ep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; curl -k https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM='
-alias 12_rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$rainbow";'
-alias 12_fortune="rrf; fortune; tput sgr0;"
+alias lenoo='read -t 8 -rep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; curl -k https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM='
+# alias 12_rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$rainbow";'
+# alias 12_fortune="rrf; fortune; tput sgr0;"
 alias rr="sudo -s"
-alias 12_edit_etc_besh="tilde /etc/bash.bashrc"
-alias 12_randomword="wotd"
-alias 12_zip='echo -ne "\n\t $c2 "; read -ep "zip folder: " -i "$PWD"  "zipf"; 
-echo -ne "\n\t $c2"; read -ep "to: " -i "$(wotd|tr -d "''").zip" "zipz";
-zip -r $zipz $zipf;'
+# alias 12_edit_etc_besh="$EDITOR /etc/bash.bashrc"
+# alias 12_randomword="wotd"
+alias zipit='
+read -rep "$c2 what to zip: " -i "$PWD"  "zipf"; 
+read -rep "$c2 output file: " -i "${zipf}.zip" "zipz";
+zip -r "${zipz}" -i "${zipf}"; 
+zipinfo -l "${zipz}"; printf "\e[36m"; 
+zipinfo -h "${zipz}"; printf "\e[0m"; ' 
 ##
 alias hiztory='command -v glow||(sudo apt install glow -y &>/dev/null||apt install glow -y&>/dev/null); 
 history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash_history|glow; read -rep " $c2 lines: " -i "$lo" "lo"; \
 tail -n${lo} ~/.bash_history|glow; '
 alias qq='cd ..; ' 
 alias ww='cd $OLDPWD; '
-alias apt='command "sudo apt"'
 alias bb="btop --utf-force"
 alias emojis='cat $ants/sh/emojis.sh|tr "\n" "\t";';
 alias 12_emojis=emojis;
@@ -207,10 +204,10 @@ alias coolors='printf "esc[38;5;[code]m >> "; for i in $(seq --equal-width 255);
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
 # alias rnd1="(shuf 0-222 -n1)"
-alias rr1='(echo $SRANDOM|tail -c2)'
-alias rr2='(echo $RANDOM|tail -c2)'
-alias rrf='tput setaf $(rr1)'
-alias rrb='tput setab $(rr2)'
+#alias rr1='(echo $SRANDOM|tail -c2)'
+#alias rr2='(echo $RANDOM|tail -c2)'
+#alias rrf='tput setaf $(rr1)'
+#alias rrb='tput setab $(rr2)'
 ############################################
 #### IP_STUFF ##############################
 ############################################
