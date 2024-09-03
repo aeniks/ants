@@ -1,0 +1,1 @@
+ "" "Kill server" x "confirm-before -p             'kill tmux server defined in() ? (y/n)' kill-server" "" "Help -->" H "run-shell '/home/aaaa/.tmux/plugins/tmux-menus/items/help.sh /home/aaaa/.tmux/plugins/tmux-menus/items/advanced.sh'"

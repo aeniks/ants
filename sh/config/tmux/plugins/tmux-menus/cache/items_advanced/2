@@ -1,0 +1,1 @@
+ "Toggle mouse to: off" m "set-option -g mouse         off ; run-shell \"/home/aaaa/.tmux/plugins/tmux-menus/items/advanced.sh\"" "Change prefix <b>" p "command-prompt -1 -p             'prefix (will take effect imeditally)'             'run-shell \"/home/aaaa/.tmux/plugins/tmux-menus/scripts/change_prefix.sh %1  ; /home/aaaa/.tmux/plugins/tmux-menus/items/advanced.sh\"'"

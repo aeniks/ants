@@ -1,0 +1,452 @@
+[2024-07-23 21:06:25.955]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:06:25.967]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:06:25.991]	 Installing "tmux-menus"
+[2024-07-23 21:06:26.610]	   "tmux-menus" download success
+[2024-07-23 21:06:26.631]	 Done.
+
+[2024-07-23 21:06:32.704]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:06:32.716]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:06:32.742]	 Already installed "tmux-menus"
+[2024-07-23 21:06:32.754]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:06:33.070]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:06:33.083]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:06:33.112]	 Already installed "tmux-menus"
+[2024-07-23 21:06:33.125]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:06:32.766]	 Updating all plugins!
+[2024-07-23 21:06:32.766]	 
+[2024-07-23 21:06:33.195]	   "tmux-menus" update success
+[2024-07-23 21:06:33.197]	     | Already up to date.
+[2024-07-23 21:06:33.211]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:06:33.246]	 Done.
+
+[2024-07-23 21:06:33.139]	 Updating all plugins!
+[2024-07-23 21:06:33.139]	 
+[2024-07-23 21:06:33.539]	   "tmux-menus" update success
+[2024-07-23 21:06:33.542]	     | Already up to date.
+[2024-07-23 21:06:33.557]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:06:33.580]	 Removing "tmux-menus"
+[2024-07-23 21:06:33.583]	   "tmux-menus" clean success
+[2024-07-23 21:06:33.598]	 Done.
+
+[2024-07-23 21:06:40.411]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:06:40.423]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:06:40.449]	 Installing "tmux-menus"
+[2024-07-23 21:06:41.098]	   "tmux-menus" download success
+[2024-07-23 21:06:41.113]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:06:41.125]	 Updating all plugins!
+[2024-07-23 21:06:41.125]	 
+[2024-07-23 21:06:41.547]	   "tmux-menus" update success
+[2024-07-23 21:06:41.550]	     | Already up to date.
+[2024-07-23 21:06:41.575]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:06:41.615]	 Done.
+
+[2024-07-23 21:06:43.132]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:06:43.143]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:06:43.169]	 Already installed "tmux-menus"
+[2024-07-23 21:06:43.181]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:06:43.193]	 Updating all plugins!
+[2024-07-23 21:06:43.193]	 
+[2024-07-23 21:06:43.677]	   "tmux-menus" update success
+[2024-07-23 21:06:43.684]	     | Already up to date.
+[2024-07-23 21:06:43.731]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:06:43.775]	 Done.
+
+[2024-07-23 21:06:51.765]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:06:51.776]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:06:51.803]	 Already installed "tmux-menus"
+[2024-07-23 21:06:51.819]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:06:51.833]	 Updating all plugins!
+[2024-07-23 21:06:51.833]	 
+[2024-07-23 21:06:52.276]	   "tmux-menus" update success
+[2024-07-23 21:06:52.278]	     | Already up to date.
+[2024-07-23 21:06:52.301]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:06:52.339]	 Done.
+
+[2024-07-23 21:13:08.574]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:13:08.586]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:13:08.612]	 Already installed "tmux-menus"
+[2024-07-23 21:13:08.624]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:13:08.637]	 Updating all plugins!
+[2024-07-23 21:13:08.637]	 
+[2024-07-23 21:13:09.074]	   "tmux-menus" update success
+[2024-07-23 21:13:09.075]	     | Already up to date.
+[2024-07-23 21:13:09.087]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:13:09.122]	 Done.
+
+[2024-07-23 21:14:53.189]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:14:53.203]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:14:53.237]	 Already installed "tmux-menus"
+[2024-07-23 21:14:53.251]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:14:53.263]	 Updating all plugins!
+[2024-07-23 21:14:53.263]	 
+[2024-07-23 21:14:53.785]	   "tmux-menus" update success
+[2024-07-23 21:14:53.792]	     | Already up to date.
+[2024-07-23 21:14:53.838]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:14:53.894]	 Done.
+
+[2024-07-23 21:17:15.324]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:17:15.336]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:17:15.362]	 Already installed "tmux-menus"
+[2024-07-23 21:17:15.375]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:17:15.387]	 Updating all plugins!
+[2024-07-23 21:17:15.387]	 
+[2024-07-23 21:17:15.807]	   "tmux-menus" update success
+[2024-07-23 21:17:15.809]	     | Already up to date.
+[2024-07-23 21:17:15.835]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:17:15.874]	 Done.
+
+[2024-07-23 21:24:42.106]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:24:42.118]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:24:42.144]	 Already installed "tmux-menus"
+[2024-07-23 21:24:42.158]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:24:42.171]	 Updating all plugins!
+[2024-07-23 21:24:42.172]	 
+[2024-07-23 21:24:42.617]	   "tmux-menus" update success
+[2024-07-23 21:24:42.619]	     | Already up to date.
+[2024-07-23 21:24:42.634]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:24:42.670]	 Done.
+
+[2024-07-23 21:25:58.880]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:25:58.892]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:25:58.918]	 Already installed "tmux-menus"
+[2024-07-23 21:25:58.933]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:25:58.947]	 Updating all plugins!
+[2024-07-23 21:25:58.947]	 
+[2024-07-23 21:25:59.406]	   "tmux-menus" update success
+[2024-07-23 21:25:59.408]	     | Already up to date.
+[2024-07-23 21:25:59.430]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:25:59.469]	 Done.
+
+[2024-07-23 21:26:06.723]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:26:06.735]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:26:06.761]	 Already installed "tmux-menus"
+[2024-07-23 21:26:06.774]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:26:06.786]	 Updating all plugins!
+[2024-07-23 21:26:06.786]	 
+[2024-07-23 21:26:07.232]	   "tmux-menus" update success
+[2024-07-23 21:26:07.234]	     | Already up to date.
+[2024-07-23 21:26:07.257]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:26:07.296]	 Done.
+
+[2024-07-23 21:26:27.663]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:26:27.675]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:26:27.701]	 Already installed "tmux-menus"
+[2024-07-23 21:26:27.713]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:26:27.725]	 Updating all plugins!
+[2024-07-23 21:26:27.725]	 
+[2024-07-23 21:26:28.154]	   "tmux-menus" update success
+[2024-07-23 21:26:28.157]	     | Already up to date.
+[2024-07-23 21:26:28.185]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:26:28.229]	 Done.
+
+[2024-07-23 21:27:06.965]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:27:06.976]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:27:07.003]	 Already installed "tmux-menus"
+[2024-07-23 21:27:07.020]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:27:07.036]	 Updating all plugins!
+[2024-07-23 21:27:07.036]	 
+[2024-07-23 21:27:07.514]	   "tmux-menus" update success
+[2024-07-23 21:27:07.516]	     | Already up to date.
+[2024-07-23 21:27:07.532]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:27:07.568]	 Done.
+
+[2024-07-23 21:27:29.213]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:27:29.227]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:27:29.255]	 Already installed "tmux-menus"
+[2024-07-23 21:27:29.270]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:27:29.285]	 Updating all plugins!
+[2024-07-23 21:27:29.285]	 
+[2024-07-23 21:27:29.732]	   "tmux-menus" update success
+[2024-07-23 21:27:29.735]	     | Already up to date.
+[2024-07-23 21:27:29.760]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:27:29.804]	 Done.
+
+[2024-07-23 21:28:07.939]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:28:07.953]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:28:07.979]	 Already installed "tmux-menus"
+[2024-07-23 21:28:07.991]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:28:08.003]	 Updating all plugins!
+[2024-07-23 21:28:08.003]	 
+[2024-07-23 21:28:08.411]	   "tmux-menus" update success
+[2024-07-23 21:28:08.414]	     | Already up to date.
+[2024-07-23 21:28:08.437]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:28:08.474]	 Done.
+
+[2024-07-23 21:28:29.170]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:28:29.182]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:28:29.208]	 Already installed "tmux-menus"
+[2024-07-23 21:28:29.220]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:28:29.233]	 Updating all plugins!
+[2024-07-23 21:28:29.233]	 
+[2024-07-23 21:28:29.678]	   "tmux-menus" update success
+[2024-07-23 21:28:29.680]	     | Already up to date.
+[2024-07-23 21:28:29.696]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:28:29.734]	 Done.
+
+[2024-07-23 21:28:36.892]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:28:36.904]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:28:36.930]	 Already installed "tmux-menus"
+[2024-07-23 21:28:36.942]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:28:36.954]	 Updating all plugins!
+[2024-07-23 21:28:36.954]	 
+[2024-07-23 21:28:37.417]	   "tmux-menus" update success
+[2024-07-23 21:28:37.420]	     | Already up to date.
+[2024-07-23 21:28:37.436]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:28:37.471]	 Done.
+
+[2024-07-23 21:29:24.674]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:29:24.685]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:29:24.714]	 Already installed "tmux-menus"
+[2024-07-23 21:29:24.733]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:29:24.751]	 Updating all plugins!
+[2024-07-23 21:29:24.751]	 
+[2024-07-23 21:29:25.233]	   "tmux-menus" update success
+[2024-07-23 21:29:25.236]	     | Already up to date.
+[2024-07-23 21:29:25.262]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:29:25.301]	 Done.
+
+[2024-07-23 21:29:35.090]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:29:35.104]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:29:35.131]	 Already installed "tmux-menus"
+[2024-07-23 21:29:35.148]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:29:35.161]	 Updating all plugins!
+[2024-07-23 21:29:35.161]	 
+[2024-07-23 21:29:35.603]	   "tmux-menus" update success
+[2024-07-23 21:29:35.606]	     | Already up to date.
+[2024-07-23 21:29:35.622]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:29:35.657]	 Done.
+
+[2024-07-23 21:32:47.972]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:32:47.985]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:32:48.017]	 Already installed "tmux-menus"
+[2024-07-23 21:32:48.032]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:32:48.045]	 Updating all plugins!
+[2024-07-23 21:32:48.045]	 
+[2024-07-23 21:32:48.661]	   "tmux-menus" update success
+[2024-07-23 21:32:48.664]	     | Already up to date.
+[2024-07-23 21:32:48.682]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:32:48.717]	 Done.
+
+[2024-07-23 21:32:56.739]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:32:56.751]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:32:56.777]	 Already installed "tmux-menus"
+[2024-07-23 21:32:56.790]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:32:56.802]	 Updating all plugins!
+[2024-07-23 21:32:56.802]	 
+[2024-07-23 21:32:57.223]	   "tmux-menus" update success
+[2024-07-23 21:32:57.225]	     | Already up to date.
+[2024-07-23 21:32:57.244]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:32:57.301]	 Done.
+
+[2024-07-23 21:33:02.755]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:33:02.767]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:33:02.793]	 Already installed "tmux-menus"
+[2024-07-23 21:33:02.806]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:33:03.088]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:33:03.100]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:33:03.129]	 Already installed "tmux-menus"
+[2024-07-23 21:33:03.144]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:33:02.818]	 Updating all plugins!
+[2024-07-23 21:33:02.818]	 
+[2024-07-23 21:33:03.315]	   "tmux-menus" update success
+[2024-07-23 21:33:03.316]	     | Already up to date.
+[2024-07-23 21:33:03.328]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:33:03.372]	 Done.
+
+[2024-07-23 21:33:03.160]	 Updating all plugins!
+[2024-07-23 21:33:03.160]	 
+[2024-07-23 21:33:03.615]	   "tmux-menus" update success
+[2024-07-23 21:33:03.618]	     | Already up to date.
+[2024-07-23 21:33:03.644]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:33:03.669]	 Removing "tmux-menus"
+[2024-07-23 21:33:03.695]	   "tmux-menus" clean success
+[2024-07-23 21:33:03.744]	 Done.
+
+[2024-07-23 21:33:08.906]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:33:08.917]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:33:08.945]	 Installing "tmux-menus"
+[2024-07-23 21:33:09.658]	   "tmux-menus" download success
+[2024-07-23 21:33:09.673]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:33:09.685]	 Updating all plugins!
+[2024-07-23 21:33:09.685]	 
+[2024-07-23 21:33:10.129]	   "tmux-menus" update success
+[2024-07-23 21:33:10.131]	     | Already up to date.
+[2024-07-23 21:33:10.146]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:33:10.183]	 Done.
+
+[2024-07-23 21:33:12.771]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:33:12.782]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:33:12.809]	 Already installed "tmux-menus"
+[2024-07-23 21:33:12.822]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:33:12.834]	 Updating all plugins!
+[2024-07-23 21:33:12.834]	 
+[2024-07-23 21:33:13.239]	   "tmux-menus" update success
+[2024-07-23 21:33:13.241]	     | Already up to date.
+[2024-07-23 21:33:13.257]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:33:13.293]	 Done.
+
+[2024-07-23 21:36:09.217]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:36:09.229]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:36:09.255]	 Already installed "tmux-menus"
+[2024-07-23 21:36:09.269]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:36:09.283]	 Updating all plugins!
+[2024-07-23 21:36:09.283]	 
+[2024-07-23 21:36:09.719]	   "tmux-menus" update success
+[2024-07-23 21:36:09.722]	     | Already up to date.
+[2024-07-23 21:36:09.747]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:36:09.824]	 Done.
+
+[2024-07-23 21:36:16.169]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:36:16.183]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:36:16.211]	 Already installed "tmux-menus"
+[2024-07-23 21:36:16.225]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:36:16.239]	 Updating all plugins!
+[2024-07-23 21:36:16.239]	 
+[2024-07-23 21:36:16.700]	   "tmux-menus" update success
+[2024-07-23 21:36:16.703]	     | Already up to date.
+[2024-07-23 21:36:16.718]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:36:16.754]	 Done.
+
+[2024-07-23 21:36:30.538]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 21:36:30.553]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 21:36:30.579]	 Already installed "tmux-menus"
+[2024-07-23 21:36:30.591]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 21:36:30.603]	 Updating all plugins!
+[2024-07-23 21:36:30.603]	 
+[2024-07-23 21:36:31.079]	   "tmux-menus" update success
+[2024-07-23 21:36:31.081]	     | Already up to date.
+[2024-07-23 21:36:31.108]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 21:36:31.149]	 Done.
+
+[2024-07-23 22:39:31.172]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-07-23 22:39:31.185]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-23 22:39:31.214]	 Already installed "tmux-menus"
+[2024-07-23 22:39:31.228]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-23 22:39:31.241]	 Updating all plugins!
+[2024-07-23 22:39:31.241]	 
+[2024-07-23 22:39:31.728]	   "tmux-menus" update success
+[2024-07-23 22:39:31.735]	     | Already up to date.
+[2024-07-23 22:39:31.783]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-23 22:39:31.823]	 Done.
+
+[2024-08-01 23:31:06.428]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-01 23:31:06.440]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-01 23:31:06.467]	 Already installed "tmux-menus"
+[2024-08-01 23:31:06.479]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-01 23:31:06.491]	 Updating all plugins!
+[2024-08-01 23:31:06.491]	 
+[2024-08-01 23:31:06.947]	   "tmux-menus" update success
+[2024-08-01 23:31:06.948]	     | Already up to date.
+[2024-08-01 23:31:06.961]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-01 23:31:06.999]	 Done.
+
+[2024-08-02 04:57:43.835]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-02 04:57:43.847]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-02 04:57:43.874]	 Already installed "tmux-menus"
+[2024-08-02 04:57:43.886]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-02 04:57:43.898]	 Updating all plugins!
+[2024-08-02 04:57:43.898]	 
+[2024-08-02 04:57:44.319]	   "tmux-menus" update success
+[2024-08-02 04:57:44.321]	     | Already up to date.
+[2024-08-02 04:57:44.352]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-02 04:57:44.408]	 Done.
+
+[2024-08-19 09:05:49.306]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-19 09:05:49.318]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-19 09:05:49.345]	 Already installed "tmux-menus"
+[2024-08-19 09:05:49.360]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-19 09:05:49.376]	 Updating all plugins!
+[2024-08-19 09:05:49.376]	 
+[2024-08-19 09:05:49.842]	   "tmux-menus" update success
+[2024-08-19 09:05:49.843]	     | Already up to date.
+[2024-08-19 09:05:49.856]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-19 09:05:49.891]	 Done.
+
+[2024-08-19 22:30:51.239]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-19 22:30:51.251]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-19 22:30:51.278]	 Already installed "tmux-menus"
+[2024-08-19 22:30:51.290]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-19 22:30:51.302]	 Updating all plugins!
+[2024-08-19 22:30:51.302]	 
+[2024-08-19 22:30:51.962]	   "tmux-menus" update success
+[2024-08-19 22:30:51.969]	     | From https://github.com/jaclu/tmux-menus
+[2024-08-19 22:30:51.969]	     |    4185466..6cf2fb3  main       -> origin/main
+[2024-08-19 22:30:51.969]	     | Updating 4185466..6cf2fb3
+[2024-08-19 22:30:51.969]	     | Fast-forward
+[2024-08-19 22:30:51.970]	     |  .olint.conf | 1 +
+[2024-08-19 22:30:51.970]	     |  1 file changed, 1 insertion(+)
+[2024-08-19 22:30:52.015]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-19 22:30:52.064]	 Done.
+
+[2024-08-19 22:54:24.237]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-19 22:54:24.251]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-19 22:54:24.278]	 Already installed "tmux-menus"
+[2024-08-19 22:54:24.291]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-19 22:54:24.303]	 Updating all plugins!
+[2024-08-19 22:54:24.303]	 
+[2024-08-19 22:54:24.748]	   "tmux-menus" update success
+[2024-08-19 22:54:24.750]	     | Already up to date.
+[2024-08-19 22:54:24.765]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-19 22:54:24.800]	 Done.
+
+[2024-08-20 15:57:28.327]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-20 15:57:28.338]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-20 15:57:28.365]	 Already installed "tmux-menus"
+[2024-08-20 15:57:28.378]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-20 15:57:28.390]	 Updating all plugins!
+[2024-08-20 15:57:28.390]	 
+[2024-08-20 15:57:28.826]	   "tmux-menus" update success
+[2024-08-20 15:57:28.828]	     | Already up to date.
+[2024-08-20 15:57:28.850]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-20 15:57:28.916]	 Done.
+
+[2024-08-24 11:20:53.292]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-24 11:20:53.305]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-24 11:20:53.337]	 Already installed "tmux-menus"
+[2024-08-24 11:20:53.358]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-24 11:20:53.382]	 Updating all plugins!
+[2024-08-24 11:20:53.382]	 
+[2024-08-24 11:20:53.850]	   "tmux-menus" update success
+[2024-08-24 11:20:53.853]	     | Already up to date.
+[2024-08-24 11:20:53.867]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-24 11:20:53.906]	 Done.
+
+[2024-08-26 00:21:55.059]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-26 00:21:55.073]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-26 00:21:55.103]	 Already installed "tmux-menus"
+[2024-08-26 00:21:55.121]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-26 00:21:55.140]	 Updating all plugins!
+[2024-08-26 00:21:55.140]	 
+[2024-08-26 00:21:55.619]	   "tmux-menus" update success
+[2024-08-26 00:21:55.621]	     | Already up to date.
+[2024-08-26 00:21:55.633]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-26 00:21:55.671]	 Done.
+
+[2024-08-28 14:40:31.899]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-08-28 14:40:31.911]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-08-28 14:40:31.944]	 Already installed "tmux-menus"
+[2024-08-28 14:40:31.966]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-08-28 14:40:31.989]	 Updating all plugins!
+[2024-08-28 14:40:31.989]	 
+[2024-08-28 14:40:32.481]	   "tmux-menus" update success
+[2024-08-28 14:40:32.482]	     | Already up to date.
+[2024-08-28 14:40:32.495]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-08-28 14:40:32.533]	 Done.
+
+[2024-09-03 00:04:00.968]	 List of discovered tpm plugins: jaclu/tmux-menus
+[2024-09-03 00:04:00.980]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/install_plugins
+[2024-09-03 00:04:01.012]	 Already installed "tmux-menus"
+[2024-09-03 00:04:01.027]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/update_plugins all
+[2024-09-03 00:04:01.044]	 Updating all plugins!
+[2024-09-03 00:04:01.044]	 
+[2024-09-03 00:04:01.638]	   "tmux-menus" update success
+[2024-09-03 00:04:01.640]	     | From https://github.com/jaclu/tmux-menus
+[2024-09-03 00:04:01.640]	     |    6cf2fb3..f6d3544  main       -> origin/main
+[2024-09-03 00:04:01.640]	     | Updating 6cf2fb3..f6d3544
+[2024-09-03 00:04:01.640]	     | Fast-forward
+[2024-09-03 00:04:01.640]	     |  scripts/dialog_handling.sh | 4 +---
+[2024-09-03 00:04:01.640]	     |  scripts/plugins.sh         | 2 +-
+[2024-09-03 00:04:01.640]	     |  2 files changed, 2 insertions(+), 4 deletions(-)
+[2024-09-03 00:04:01.656]	 Invoking /home/aaaa/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-09-03 00:04:01.705]	 Done.
+
