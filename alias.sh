@@ -18,29 +18,34 @@ alias psp='tput indn 12 cuu 8;'
 ###############################
 alias 12_='menu $ants/12'
 ###############################
-alias m11='ssh -p 8022 u0_a428@192.168.0.105||(read -rep "$c2 open findmydevice? " "gf"; open https://www.google.com/android/find/;)'
-alias 11='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
-alias 1111='ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"||ping 192.168.0.105 -c5||nmap 192.168.0.105 -sL -W1||nmap 192.168.0.105 -sn -W1 &&
+alias m11='ssh -p 8022 192.168.0.105||(read -rep "$c2 open findmydevice? [Y/n] " "gf"||open https://www.google.com/android/find/;)'
+alias 1111='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
+alias 11='ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"||ping 192.168.0.105 -c5||nmap 192.168.0.105 -sL -W1||nmap 192.168.0.105 -sn -W1 &&
 ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"'; 
 alias pp='printf'
-alias sl='ssh aaaa@ants.ftp.sh'
+alias sl='printf "\nssh aa@192.168.0.100\n"; ssh aa@192.168.0.100'
+alias hhhh='batcat -pfl sh ~/.bash_history' 
 ###############################
-alias apa='sudo apt install'; 
+#### wrangler stuff ###########
+alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
+alias wrangler_list='wrangler pages project list'
+###############################
+###############################
+
+apt() { command apt $@||printf "\n\n\e[1;32m  Going sudo!  \e[0m\n\n"&& sudo apt $@;  }
 ##################
 LFRC="$ants/sh/config/lf/lfrc"; 
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
-alias l='cd $(lf -config $LFRC -print-last-dir); '; 
+alias l='cd $(lf -print-last-dir);'; 
 alias w='walk --icons'
-info() { command info $1|batcat -p --language c#||apropos $1; }
-man() { command man $1|batcat -p --language manpage||apropos $1; } 
+info() { command info $1|batcat -p --language c#||man $1; }
+man() { command man $1|batcat -p --language manpage||help $1; } 
 help() { command help $1|batcat -p --language c#||apropos $1; } 
 ###############################
 ################ _functions
 alias sl_cc='ssh cc@192.168.0.105'
 alias key-bindings='batcat $ants/sh/info/emacs.sh -p'
-alias wrangler_pages='npx wrangler pages'
-alias wrangler_local='npx wrangler pages dev'
 alias sizec='sizec="$(stty size|cut -f2 -d" ")"; printf "$sizec"'
 alias sizel='sizel="$(stty size|cut -f1 -d" ")"; printf "$sizel"'
 alias nvm_init='export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" \
@@ -73,7 +78,7 @@ echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn; echo;
 hh() {
 linesh=222; 
 [ -n "${1} "]&& linesh="${1}";
-tail ~/.bash_history -n${lines}|batcat -ppl c;
+tail ~/.bash_history -n${linesh}|batcat -ppl c;
 }
 kat() {
 unset -v kat; 
@@ -241,33 +246,33 @@ alias info_cm'=less $ants/sh/info/cmd.sh'
 alias cm2'=cat $ants/sh/cmd.sh'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
 ################################
-basicapps=(
-tilde
-openssl
-openssh-server
-net-tools
-lolcat
-fortunes
-fortune-mod
-cowsay
-neofetch
-mc
-btop
-gpm
-links2
-ranger
-pv
-fortune-mod
-tlp
-googler
-lf
-ncdu
-batcat
-lsd
-tmux
-tilde
-figlet
-)
+# basicapps=(
+# tilde
+# openssl
+# openssh-server
+# net-tools
+# lolcat
+# fortunes
+# fortune-mod
+# cowsay
+# neofetch
+# mc
+# btop
+# gpm
+# links2
+# ranger
+# pv
+# fortune-mod
+# tlp
+# googler
+# lf
+# ncdu
+# batcat
+# lsd
+# tmux
+# tilde
+# figlet
+# )
 #iploc="$(ip a|head -n 12|tail -n 4|grep "inet "|tr -s "[:alpha:] /\n" " \n"|head -n2|tail -n1 2>/dev/null)"; 
 #iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; 
 #ip4="$(curl -4 ip.me -s&)"; 
