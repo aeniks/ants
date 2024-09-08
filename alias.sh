@@ -14,10 +14,16 @@ alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
-alias note='gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||
-$EDITOR notes.sh; read -n1 -rep "-- login with token? [Y/n] " "yn"' 
-
-alias os_info='cat /etc/os-release|grep -v "URL"; batcat -ppfl c'
+note() {
+gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||
+(read -n1 -rep "-- login with token? [Y/n] " "yn"; [ "$yn" ]&& return; 
+printf "\n\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
+gpg --pinentry-mode loopback -o "/tmp/gh.txt" -d "$ants/sh/config/gh_aeniks.gpg"; 
+gh auth login --with-token < "/tmp/gh.txt"; printf "$c2 "; rm /tmp/gh.txt;
+gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n"; 
+printf "\n  try again \n\n"; )
+}
+alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c'
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 alias 12_='menu $ants/12'
