@@ -14,6 +14,10 @@ alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
+alias note='gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||
+$EDITOR notes.sh; read -n1 -rep "-- login with token? [Y/n] " "yn"' 
+
+alias os_info='cat /etc/os-release|grep -v "URL"; batcat -ppfl c'
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 alias 12_='menu $ants/12'
