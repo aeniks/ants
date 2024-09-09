@@ -27,6 +27,7 @@ alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c'
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 alias 12_='menu $ants/12'
+alias qqqq='cd $ants/sh/q;'
 ###############################
 alias m11='ssh -p 8022 192.168.0.105||(read -rep "$c2 open findmydevice? [Y/n] " "gf"||open https://www.google.com/android/find/;)'
 alias 1111='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
