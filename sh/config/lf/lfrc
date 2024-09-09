@@ -41,8 +41,7 @@ map L1 cut
 map L2 cut
 map L3 cut
 map p
-map pp :chmod_p
-map pr :reload;  
+map p :chmod_p
 map 1 !true
 map x $$f
 map X !$f

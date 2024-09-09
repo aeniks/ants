@@ -11,7 +11,7 @@ then . /etc/bash_completion; fi; fi;
 shopt -s histappend; ## append to history, don't overwrite it
 export EDITOR='micro'; 
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
-#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ## load alias and functions 
 . $ants/alias.sh; 
 [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
