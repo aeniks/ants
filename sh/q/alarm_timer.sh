@@ -1,14 +1,15 @@
 #!/bin/bash
 ## alarm timer
-qalarm() {
 qalarma() {
 ppp=$(timeout 1 notify-send -u critical aa -p)
-kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring& 
 for i in {1..8}; do echo gg; timeout 1 kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ping-msg "${an} kk"; 
 sudo wall --nobanner "${an}"; 
-$(timeout 2 notify-send -u critical -a "${an} $ppp" -r "$ppp" -A "return"="TURN OFF $ppp" "$an $ppp $(date) ")
+$(timeout 2 notify-send -u critical -a "${an} $ppp" -r "$ppp" -A "exit"="TURN OFF $ppp" "$an $ppp $(date) ")
+kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring& 
 echo gg; done 
 } 
+
+qalarm() {
 
 ########################################
 ## variables for color etc #############
@@ -31,7 +32,8 @@ printf "${re}${bo}  Your Alarm: ${pink}${rev} ${an} ${re} is set to ${bb}${al:0:
 printf "${re}${dim}    ----------${re}\n\n"; 
 ########################################
 ## timer checks every 25 seconds #######
-while true; do sleep 5; [ "$(date +%H%M)" -eq "${al}" ]&& qalarma; return; done & disown; 
+while true; do sleep 44; if [ "$(date +%H%M)" -eq "${al}" ]; then qalarma; return; fi; done & disown; 
+return; 
 ########################################
 }
 ## end alarm

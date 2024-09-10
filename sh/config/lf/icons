@@ -1,21 +1,20 @@
 #!/bin/bash
 ###################
-$ants 			
-/ants 			
-~/ants 			
-~/Desktop 		
-~/Documents		
-~/Downloads 	
-fonts 			
-~/Music 		
-~/Pictures 		
-~/torrent		
-~/Public 		
-~/Scripts 		
-~/snap 			
-~/Templates 	
-~/Videos 		
-~/tmp			
+ants/			
+Desktop/ 		
+Documents/		
+Downloads/ 		
+fonts/ 			
+Music/ 			
+Pictures/ 		
+torrent/		
+Public/ 		
+Scripts/ 		
+snap/ 			
+Templates/ 		
+Videos/ 		
+tmp/			
+Backups/		󰁯
 ######################
 ######################
 *.config	

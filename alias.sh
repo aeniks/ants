@@ -38,8 +38,10 @@ alias sl='printf "\nssh aa@192.168.0.100\n"; ssh aa@192.168.0.100'
 alias hhhh='batcat -pfl sh ~/.bash_history' 
 ###############################
 #### wrangler stuff ###########
-alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
+alias wrangler_dev_server='wrangler pages dev ./ '
+alias wrangler-deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
 alias wrangler_list='wrangler pages project list'
+alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
 ###############################
 ###############################
 

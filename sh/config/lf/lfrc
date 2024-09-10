@@ -13,7 +13,7 @@ map <?> maps
 map <pgdn> half-down
 map <pgup> half-up
 map M set mouse!
-map a invert glob-select *
+map <c-a> invert glob-select *
 map n toch 
 map <tab> :push :<tab> 
 map m :push %mkdir<space>
@@ -35,7 +35,7 @@ map 122 :mark-remove
 map v paste
 map k cut
 map A :cd /ants
-map <c-a> :cd /ants
+map a :cd /ants
 map L
 map L1 cut
 map L2 cut

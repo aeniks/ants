@@ -19,12 +19,12 @@ fday() {
 dag="$(date +%#A" den"%e":de "%#B)"; daghw=$((${#dag}/2)); halfw=$((${sizew}/2)); printf "\e[2m\e[2J\e[${sizehh};$((${halfw}-${daghw}))H${dag}\e[0m"; ## print day
 } 
 while true; do figfont="$(shuf -n1 -e ${figlist[@]})"; figlength="$(figlet -f "$figfont" $(date +%T))"; [ "${#figlength}" -gt 8 ]&& break; done; fday; 
-while true; do date="$(date +%H"  "%M"  "%S;)"; ftime; lang='c#'; 
+while true; do date="$(date +%H:%M;)"; ftime; lang='c#'; 
 [ "$1" ] && figfont="$1" && key="s";
 [ "$2" ] && lang="$2";
 if [ "$lang" != 22 ]; then figlet -w "$sizew" -cf "$figfont" "$date"|batcat -Ppl "$lang"; ## time
 else printf "\e[36m"; figlet -w "$sizew" -cf "$figfont" "$date"; fi; ## time
-read -t1 -srn1 "key"||key=0; printf "$((kk++))\e[2K"; [ "$kk" -eq 44 ] && key="c" && kk="0";
+read -t60 -srn1 "key"||key=0; printf "$((kk++))\e[2K"; [ "$kk" -eq 44 ] && key="c" && kk="0";
 if [ "$key" = "c" ]; then figfont=$(shuf -n1 -e ${figlist[@]}); fsize; fday; 
 printf "\e[2m\e[${sizehh};$((${halfw}-${daghw}))H${dag}\e[0m\e[0J"; 
 printf "\e[H\e[2m$lang $figfont          "; 
