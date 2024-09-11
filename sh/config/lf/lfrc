@@ -1,5 +1,6 @@
 #!/bin/bash
 ## lf config
+. 
 map . set hidden! 
 map <esc> quit
 map i set icons!
@@ -11,9 +12,13 @@ map <c-c> quit
 map <enter> :shell 
 map <?> maps
 map <pgdn> half-down
+map <s-down> half-down
 map <pgup> half-up
+map <s-up> half-up
 map M set mouse!
 map <c-a> invert glob-select *
+map a invert glob-select *
+map <lt> :cd /ants
 map n toch 
 map <tab> :push :<tab> 
 map m :push %mkdir<space>
@@ -25,23 +30,17 @@ map c copy
 map ss :search 
 map S :search 
 map <c-s> :search-next
-map w
 map 1
+cmap w
 map ww :search 
 map 11 mark-save
 map 12 :mark-load
 map 122 :mark-remove 
-
 map v paste
 map k cut
 map A :cd /ants
-map a :cd /ants
-map L
-map L1 cut
-map L2 cut
-map L3 cut
-map p
 map p :chmod_p
+map <c-p> reload
 map 1 !true
 map x $$f
 map X !$f
@@ -51,16 +50,16 @@ map h :cd ~
 map sh :cmds
 map H :maps 
 map m :push %mkdir<space>
-map d :depl
-map l
+map D :depl
+map t tag-toggle
 map ll :lala
 cmd lala $read -rep "$fx " "kk"; sleep 1;
-
-
 set mouse
 set icons
 set shell /usr/bin/bash
-set info size
+set info size:time
+set sortby time
+set reverse 
 #set drawbox
 # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.
 set shellopts '-eu'
@@ -82,9 +81,7 @@ read -rp "newfile: " "nf"; touch "$nf";
 }}
 
 
-cmd chmod_p ${{
-printf "\e[36m$fx\e[0m\nchmod:"; read -rep " " -i "775" "chmod"; chmod "$chmod" $fx||sudo chmod "$chmod" $fx; 
-}}
+
 cmd trash ${{
 set -f
 printf "\n--------\n\n\n\n$fx\n--------\n\n"
@@ -164,9 +161,20 @@ zip -r $ee.zip $fx
 #zip $1.zip $1
 #}}
 
-date ${{
-date
+cmd chmod_p ${{
+printf "\n\n\e[36m$fx\e[0m\n----\nchmod:"; 
+read -rep " " -i "775" "chmod"; 
+sudo chmod $chmod $fx; 
+lf -remote "send $id unselect *"; 
+lf -remote "send $id reload"; 
 }}
+
+# 
+# cmd tata ${{
+# printf " tt\tll";
+# read -rep " " -i "aa $id aaaal" "chmod";
+# $(lf -remote "send $id echomsg "$id qqqq"");
+# }}
 # Main options
 set icons
 set sixel true
@@ -178,7 +186,6 @@ set hiddenfiles ".*"
 set cleaner "/etc/lf/cleaner"
 set previewer "/etc/lf/previewer"
 #source '/etc/lf/opener'
-
 set promptfmt "
 \033[48;2;35;38;39;38m  %u\033[97m@\033[38;2;235;138;139;38m%h
 \033[96m   
@@ -186,16 +193,16 @@ set promptfmt "
 set incsearch true
 set incfilter true
 set globsearch true
-set ratios 2:2:6 # 2:3:7:7
-set truncatechar "…"
-set waitmsg "zzzz"
-set timefmt "\033[30m02/01/2006\033[36m 15:04:05 \033[0m"
+set ratios 4:8 #2:2:6 # 2:3:7:7
+set truncatechar "+"
+set waitmsg "a"
+set timefmt "\033[35m02/01/2006\033[46m 15:04:05 \033[0m"
 set infotimefmtnew "02/01 \033[35m15:04"
-set infotimefmtold "\x1b[5;222m2/01/06"
+set infotimefmtold "\033[5;222m 2/01/06"
 set errorfmt "\033[1;31m"
 set numberfmt "\033[38;5;75;87;116m"
 set dircounts
-set tabstop 4
+set tabstop 2
 set scrolloff 22
 set wrapscroll
 #set rulerfmt "df:acc:progress:selection:filter:ind"

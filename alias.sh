@@ -51,7 +51,7 @@ apt() { command apt $@||printf "\n\n\e[1;32m  Going sudo!  \e[0m\n\n"&& sudo apt
 LFRC="$ants/sh/config/lf/lfrc"; 
 cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; 
 echo -e '\e[36m'; pwd; }
-alias l='cd $(lf -print-last-dir);'; 
+alias l='cd $(lf -config "$ants/sh/config/lf/lfrc" -print-last-dir);'; 
 alias w='walk --icons'
 info() { command info $1|batcat -p --language c#||man $1; }
 man() { command man $1|batcat -p --language manpage||help $1; } 
