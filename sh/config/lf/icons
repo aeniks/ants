@@ -11,12 +11,16 @@ torrent/		
 Public/ 		
 Scripts/ 		
 snap/ 			
-Templates/ 		
+Templates/ 		
 Videos/ 		
 tmp/			
 Backups/		󰁯
-pub/			
+pub/			
 etc/			
+home/			
+var/			
+media/			󰚺
+logs/			
 ######################
 ######################
 *.config	

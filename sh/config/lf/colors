@@ -6,14 +6,14 @@ or      31;01   # ORPHAN
 tw      38;5;47 # STICKY_OTHER_WRITABLE
 ow      38;5;86 # OTHER_WRITABLE
 st      01;34   # STICKY
-di      1;38;5;30   # DIR
+di      38;5;252   # DIR
 pi      33      # FIFO
 so      01;35   # SOCK
 bd      33;01   # BLK
 cd      33;01   # CHR
 su      01;36   # SETUID
 sg      01;32   # SETGID
-ex      1;38;5;250   # EXEC
+ex      38;5;109   # EXEC
 fi      38;5;250      # FILE
 
 # archives or compressed
@@ -30,11 +30,11 @@ fi      38;5;250      # FILE
 *.txz   2;38;5;66
 *.tzo   2;38;5;66
 *.t7z   2;38;5;66
-*.zip   2;38;5;66
+*.zip   2;38;5;74
 *.xpi   2;38;5;66
 *.z     2;38;5;66
 *.dz    2;38;5;66
-*.gz    2;38;5;66
+*.gz    2;38;5;58
 *.lrz   2;38;5;66
 *.lz    2;38;5;66
 *.lzo   2;38;5;66
