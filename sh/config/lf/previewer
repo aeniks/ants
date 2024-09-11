@@ -47,7 +47,7 @@
 # }
 image() {
 ww=$(($2/2+8))
-jp2a $1 --width=${ww} --color-depth=8 --fill --border;
+jp2a $1 --width=${ww} --color-depth=8 ;
 exiftool "$1"|batcat -ppfl c; 
 chafa $1 --view-size ${ww}x$3 --scale max --polite=on; 
 printf "$1"; 
