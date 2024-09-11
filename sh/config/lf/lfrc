@@ -178,7 +178,7 @@ lf -remote "send $id reload";
 # Main options
 set icons
 set sixel true
-set period 1
+# set period 1
 #set relativenumber
 #set number
 #set hiddenfiles "*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
@@ -189,18 +189,18 @@ set previewer "/etc/lf/previewer"
 set promptfmt "
 \033[48;2;35;38;39;38m  %u\033[97m@\033[38;2;235;138;139;38m%h
 \033[96m   
-\033[38;2;255;255;255m\033[48;2;15;25;25m  %w/\033[96m\033[48;2;38;84;86m\033[38;2;255;255;255m%f  "
+\033[38;2;255;255;255m\033[48;2;15;25;25m  %w/\033[96m\033[48;2;38;84;86m\033[38;2;255;255;255m%f  \033[0m"
 set incsearch true
 set incfilter true
 set globsearch true
 set ratios 4:8 #2:2:6 # 2:3:7:7
 set truncatechar "+"
 set waitmsg "a"
-set timefmt "\033[35m02/01/2006\033[46m 15:04:05 \033[0m"
-set infotimefmtnew "02/01 \033[35m15:04"
-set infotimefmtold "\033[5;222m 2/01/06"
-set errorfmt "\033[1;31m"
-set numberfmt "\033[38;5;75;87;116m"
+set timefmt 		"\033[35m02/01/2006\033[46m 15:04:05 \033[0m"
+set infotimefmtnew	"02/01 \033[35m15:04"
+set infotimefmtold 	"\033[5;222m 2/01/06"
+set errorfmt 		"\033[1;31m"
+set numberfmt 		"\033[38;5;75;87;116m"
 set dircounts
 set tabstop 2
 set scrolloff 22
