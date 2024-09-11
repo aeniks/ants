@@ -34,7 +34,8 @@ alias 1111='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||ope
 alias 11='ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"||ping 192.168.0.105 -c5||nmap 192.168.0.105 -sL -W1||nmap 192.168.0.105 -sn -W1 &&
 ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"'; 
 alias pp='printf'
-alias sl='printf "\nssh aa@192.168.0.100\n"; ssh aa@192.168.0.100'
+alias sl='ssh "aa@ants.ftp.sh"; '
+##alias sl='sshs="aa@ants.ftp.sh"; read -rep "-- ssh: " -i "${sshs}" "sshs"; ssh ${sshs}; '
 alias hhhh='batcat -pfl sh ~/.bash_history' 
 ###############################
 #### wrangler stuff ###########
