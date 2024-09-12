@@ -16,3 +16,4 @@ ${note}
 \n\n " >> $ants/sh/notes.sh; 
 
 }
+notes

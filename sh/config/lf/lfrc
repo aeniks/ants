@@ -1,6 +1,5 @@
 #!/bin/bash
 ## lf config
-. 
 map . set hidden! 
 map <esc> quit
 map i set icons!
@@ -12,9 +11,11 @@ map <c-c> quit
 map <enter> :shell 
 map <?> maps
 map <pgdn> half-down
-map <s-down> half-down
+map <s-down> invert-below
 map <pgup> half-up
-map <s-up> half-up
+map <a-up> top
+map <a-down> bottom
+map <s-up> :invert && :invert-below 
 map M set mouse!
 map <c-a> invert glob-select *
 map a invert glob-select *
@@ -52,7 +53,7 @@ map H :maps
 map m :push %mkdir<space>
 map D :depl
 map t tag-toggle
-map ll :lala
+map l $batcat -p $f
 cmd lala $read -rep "$fx " "kk"; sleep 1;
 set mouse
 set icons
@@ -60,6 +61,15 @@ set shell /usr/bin/bash
 set info size:time
 set sortby time
 set reverse 
+map x $exiftool $f|batcat -fpl c;  
+map <enter> pger 
+
+
+
+####
+cmd pger ${{
+batcat -fpl c $f
+}}
 #set drawbox
 # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.
 set shellopts '-eu'
@@ -177,7 +187,7 @@ lf -remote "send $id reload";
 # }}
 # Main options
 set icons
-set sixel true
+# set sixel true
 # set period 1
 #set relativenumber
 #set number
@@ -193,14 +203,15 @@ set promptfmt "
 set incsearch true
 set incfilter true
 set globsearch true
-set ratios 4:8 #2:2:6 # 2:3:7:7
-set truncatechar "+"
-set waitmsg "a"
+set ratios 4:12 #2:2:6 # 2:3:7:7
+set truncatechar "..."
+set waitmsg ">_ "
 set timefmt 		"\033[35m02/01/2006\033[46m 15:04:05 \033[0m"
-set infotimefmtnew	"02/01 \033[35m15:04"
-set infotimefmtold 	"\033[5;222m 2/01/06"
-set errorfmt 		"\033[1;31m"
-set numberfmt 		"\033[38;5;75;87;116m"
+##
+set infotimefmtnew	"\033[0m 02/01 \033[35m15:04\033[0m"
+set infotimefmtold 	"\033[5;222m 02/01/06\033[0m"
+set errorfmt 		"\033[1;31m\033[0m"
+set numberfmt 		"\033[38;5;75;87;116m\033[0m"
 set dircounts
 set tabstop 2
 set scrolloff 22

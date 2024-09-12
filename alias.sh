@@ -56,7 +56,8 @@ alias l='cd $(lf -print-last-dir);';
 
 
 alias w='walk --icons'
-
+alias kkkk='sudo batcat -Ppfl c --line-range 1:88
+ "/home/aa/.local/share/klipper/history2.lst"'
 
 info() { command info $1|batcat -p --language c#||man $1; }
 man() { command man $1|batcat -p --language manpage||help $1; } 
