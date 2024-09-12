@@ -61,7 +61,7 @@ set shell /usr/bin/bash
 set info size:time
 set sortby time
 set reverse 
-map x $printf "\033[?47h\033[H\033[0J -- exif-viewer -- \n\n"; [ -x "/bin/exiftool" ]&&exiftool $f|batcat -fpl c; read -n1 -pes "aa" "bb" 2>/dev/null; printf "\033[?47l"; 
+map x $printf "\033[?47h\033[H\033[0J -- exif-viewer -- \n\n"; [ -x "/bin/exiftool" ]&&(exiftool $f; jp2a --width=88 --color-depth=8 $f)|batcat -p;  read -n1 -pes "aa" "bb" 2>/dev/null; printf "\033[?47l"; 
 
 # map x $printf "\033[?47hh \n\n\n\n\033[2A"; exiftool $f|batcat -fpl c; read -n1 -prs "" 2>/dev/null; printf "\033[?47l"; 
 

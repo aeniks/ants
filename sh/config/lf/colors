@@ -1,7 +1,7 @@
 #!/bin/bash
 # Colors for filenames in lf
 # file types (with matching order)
-ln      38;5;206   # LINK
+ln      38;5;042   # LINK
 or      31;01   # ORPHAN
 tw      38;5;47 # STICKY_OTHER_WRITABLE
 ow      38;5;86 # OTHER_WRITABLE
@@ -14,8 +14,7 @@ cd      33;01   # CHR
 su      01;36   # SETUID
 sg      01;32   # SETGID
 ex      38;5;109   # EXEC
-fi      38;5;250      # FILE
-
+fi      38;5;66     # FILE
 # archives or compressed
 *.tar   2;38;5;168
 *.tgz   2;38;5;66

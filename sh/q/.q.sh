@@ -18,16 +18,6 @@ printf "\n"; . $ants/sh/q/$sel; printf "\n"; return; #####
 ##for i in $ants/sh/q/*; do . $i; done; 
 
 
-
-
-
-
-
-
-# 
-# 
-# 
-# 
 # op2c=($(cat .q.sh | cut -f-1 -d"#"|tr -d '"'))
 # op2d=($(cat .q.sh | cut -f2- -d"#"))
 # 
