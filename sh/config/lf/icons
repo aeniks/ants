@@ -56,8 +56,8 @@ logs/			
 ######################
 ######################
 # default values from lf (with matching order)
-  ln		       # LINK
-  or		       # ORPHAN
+ln			       # LINK
+or			       # ORPHAN
 # tw		       # STICKY_OTHER_WRITABLE
 # ow		       # OTHER_WRITABLE
 # st		       # STICKY
@@ -68,7 +68,7 @@ logs/			
 # cd		       # CHR
 # su		       # SETUID
 # sg		       # SETGID
-  ex		       # EXEC
+ex			       # EXEC
 # fi		       # FILE
 exe			       # EXEC
 fi			       # FILE
