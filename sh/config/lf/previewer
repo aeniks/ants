@@ -45,7 +45,7 @@
 image() {
 ww=$(($2-4))
 chafa $1 --view-size ${ww}x$3 --scale max --polite=on; 
-jp2a $1 --width=${ww} --color-depth=8; 
+jp2a $1 --width=${ww} --color-depth=8 --fill
 # exifprobe -c -L "$1"|batcat -pPfl go;
 printf "$1"; 
 ##chafa ${1} --view-size ${ww}x$3 --scale max --polite=on; 
@@ -75,14 +75,20 @@ mime_preview() {
 	# because the initial mime_type variable wasn't enough to determine
 	# an adequate preview
 	case "$mime_type","$ran_guard" in
+		(image/svg,0)
+		cacaview "$1" "$2" "$3" "$4" "$5" "$1"
+	;;
 	(image/svg+xml,0 | image/svg)
 		create_cache "$1"
 		[ -f "$CACHE.png" ] \
 			|| rsvg-convert  -o "$CACHE.png" -a -w "1000" -b '#1f2430' "$1"
-		image "$CACHE.png" "$2" "$3" "$4" "$5" "$1"
+		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/*,0)
 		image "$1" "$2" "$3" "$4" "$5" "$1"
+	;;
+	(image/svg,0)
+		cacaview "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(text/html,0)
 		batcat "$1" -Ppf --language HTML
@@ -93,7 +99,7 @@ mime_preview() {
 			man ./ "$1" | col -b
 		;;
 		(*)
-			batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1"
+		exiftool|batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go
 		esac
 	;;
 	(text/*,0 | */xml,0 | application/javascript,0 | application/x-subrip,0 )
@@ -118,6 +124,9 @@ zipinfo -t "$1"|batcat -pPfl c;
 	(audio/*,[01])
 		exiftool -j "$1" | jq -C
 	;;
+	(*.mod,0)
+batcat $f-fppl js 
+;;
 	(video/webm,0)
 		# file --mime-type doesn't distinguish well between "video/webm"
 		# actual webm videos or webm audios, but exiftool does, thus

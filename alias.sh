@@ -38,6 +38,9 @@ alias sl='ssh "aa@ants.ftp.sh"; '
 ##alias sl='sshs="aa@ants.ftp.sh"; read -rep "-- ssh: " -i "${sshs}" "sshs"; ssh ${sshs}; '
 alias hhhh='batcat -pfl sh ~/.bash_history' 
 ###############################
+info() { command info $1|batcat -p --language c#||man $1; }
+man() { command man $1|batcat -p --language manpage||help $1; } 
+help() { command help $1|batcat -p --language c#||apropos $1; } 
 #### wrangler stuff ###########
 alias wrangler_server='wrangler pages dev ./ '
 alias wrangler_deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
@@ -45,23 +48,17 @@ alias wrangler_list='wrangler pages project list'
 alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
 ###############################
 ###############################
-apt() { command apt $@||printf "\n\n\e[1;32m  Going sudo!  \e[0m\n\n"&& sudo apt $@;  }
-cd() { builtin cd "$@" && lsd --hyperlink always -hltr --color=always --group-directories-first||ls -pltcr; echo -e '\e[36m'; pwd; }
+apt() { command apt $@||(printf "\n\n\e[1;32m  Going sudo!  \e[0m\n\n"&& sudo apt $@;)  }
+cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-directories-first||ls -pltcr; echo -e '\e[36m'; pwd; }
 ############################
 ######## LF ################
 # LFRC="$ants/sh/config/lf/lfrc"; 
 alias l='cd $(lf -print-last-dir);'; 
 #############################
-
-
-
+alias o='/home/aa/go/bin/o'
 alias w='walk --icons'
 alias kkkk='sudo batcat -Ppfl c --line-range 1:88
  "/home/aa/.local/share/klipper/history2.lst"'
-
-info() { command info $1|batcat -p --language c#||man $1; }
-man() { command man $1|batcat -p --language manpage||help $1; } 
-help() { command help $1|batcat -p --language c#||apropos $1; } 
 ###############################
 ################ _functions
 alias sl_cc='ssh cc@192.168.0.105'

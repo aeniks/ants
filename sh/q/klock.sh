@@ -40,3 +40,9 @@ lang=$(shuf -n1 -e ${figlist[@]}); printf "\e[2m\e[H$lang $figfont       ";
 fi; done; 
 printf "\e[?47l\e[?25h\e[0m\e8";
 }
+
+klock
+
+
+
+

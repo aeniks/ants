@@ -20,5 +20,12 @@ PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 [ -n "$SSH_CONNECTION" ] && shsh=($SSH_CONNECTION) &&
 printf "$c2$dim \e[2;32mssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}\n\e[0m"; 
 ###################
-PS1='\e[0m\e[2;3m\t\e[0m\e[1;36m\u\e[0;2;33m\H\e[0;32m\w\e[0m\n'
-# [ "$BASH" ]&& hey; 
+koko() { hh=$(date +%H); mm=$(date +%M); 
+printf "\e7\e[1;$(($COLUMNS/2-4))H\e[0m\e[40m  ${hh}\e[2m:\e[0;40m${mm}  \e[0m\e8"; } 
+
+jojo() { while true; do 
+printf "\e7\e[1;$(($COLUMNS/2-4))H\e[1;95m         \e[0m\e8"; sleep .5;
+koko; sleep 59.5; done } 
+jojo & disown; 
+####################
+PS1='$(koko)\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m\w\e[0m'
