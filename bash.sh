@@ -24,8 +24,9 @@ koko() { hh=$(date +%H); mm=$(date +%M);
 printf "\e7\e[1;$(($COLUMNS/2-4))H\e[0m\e[40m  ${hh}\e[2m:\e[0;40m${mm}  \e[0m\e8"; } 
 
 jojo() { while true; do 
-printf "\e7\e[1;$(($COLUMNS/2-4))H\e[1;95m         \e[0m\e8"; sleep .5;
-koko; sleep 59.5; done } 
+echo -ne "\e7\e[1;$(($COLUMNS/2-4))H\e[1;95m         \e[0m\e8"; sleep .5;
+koko; sleep 15; done } 
 jojo & disown; 
 ####################
-PS1='$(koko)\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m\w\e[0m'
+PS1='\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m\w\e[0m\n'
+

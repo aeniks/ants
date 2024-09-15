@@ -22,6 +22,6 @@ printf "\n"; . $ants/sh/q/$sel; printf "\n"; return; #####
 # op2d=($(cat .q.sh | cut -f2- -d"#"))
 # 
 # printf "\n\n"
-# printf " c -- ${op2c[*]} \n"
+# printf " c -- ${op2c[*]} \
 # printf " d -- ${op2d[*]} \n"
 # 

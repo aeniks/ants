@@ -53,12 +53,13 @@ map H :maps
 map m :push %mkdir<space>
 map D :depl
 map t tag-toggle
-map l $batcat $f --paging always -fpl go||exiftool $f
+map l $batcat $f --paging always -fpl go &>/dev/null||exiftool $f; read -n1 -re "x";
 map <enter> pger
 map - maps
 map _ cmds
 map <+> drawbox! 
 map x :push :shell<space>$f 
+# map x :push :shell<space>$f 
 
 
 ####
