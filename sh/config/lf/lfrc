@@ -68,7 +68,7 @@ set drawbox
 cmd lala $read -rep "$fx " "kk"; sleep 1;
 set mouse
 set icons
-set shell /usr/bin/bash
+set shell bash
 set info size:time
 set sortby time
 set reverse 

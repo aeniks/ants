@@ -9,7 +9,7 @@ Control-p: 'sed -n l;\n'
 Control-d: 'kill-whole-line;\n exit; \n'
 Control-q: 'exit; \n'
 Control-x: 'exec bash\n'
-Control-o: undo
+"\eq": logout 
 # Cortrol-l 
 # kdm bash-env
 # .inputrc

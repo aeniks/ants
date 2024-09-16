@@ -28,7 +28,9 @@ echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[1;105m         \e[0m\e8"; sleep 1;
 koko; sleep 60; done 
 } 
 jojo & disown; 
-fortune
+echo; 
+fortune|batcat -ppl c#
+echo; 
 ####################
 PS1='\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m\w\e[0m\n'
 
