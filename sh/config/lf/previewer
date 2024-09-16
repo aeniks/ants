@@ -44,8 +44,7 @@
 # }
 image() {
 ww=$(($2-4))
-chafa $1 --view-size ${ww}x$3 --scale max --polite=on; 
-jp2a $1 --width=${ww} --color-depth=8 --fill
+jp2a $1 --width=${ww} --color-depth=8 --fill||chafa $1
 # exifprobe -c -L "$1"|batcat -pPfl go;
 printf "$1"; 
 ##chafa ${1} --view-size ${ww}x$3 --scale max --polite=on; 
@@ -89,6 +88,12 @@ mime_preview() {
 	;;
 	(image/svg,0)
 		cacaview "$1" "$2" "$3" "$4" "$5" "$1"
+	;;
+	(image/jpg,0)
+		cacaview "$1" "$2" "$3" "$4" "$5" "$1"
+	;;
+	(image/png,0)
+chafa $1 --view-size ${ww}x$3 --scale max --polite=on; 
 	;;
 	(text/html,0)
 		batcat "$1" -Ppf --language HTML
