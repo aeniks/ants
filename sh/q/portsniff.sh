@@ -1,6 +1,6 @@
 #!/bin/bash
 #portsniff
-12_portsniff() {
+portsniff() {
 ipl=($(ip -c n|cut -f1 -d " ")); 
 ip=$(timeout 4 curl ip.me -4 2>/dev/null;);
 ipr=$(host $ip)
@@ -31,3 +31,4 @@ do timeout 0.01 bash -c "</dev/tcp/$ip/$port" &&\
 echo -ne "\n${re}[$ip${dim}:$re$green$port$re] is open\e[0K"||\
 echo -e "\e[42G\e[2;35;46m ${port} \e[1A\e[42G\e[40m       \r\r"; done
 }
+portsniff

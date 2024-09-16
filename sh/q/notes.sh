@@ -1,25 +1,19 @@
- 
 
--- 09/11/24 --
+
+
+
+## to save stauu
+
+
+
+notes() {
+cat $ants/sh/notes.sh; echo;echo; 
+read -rep ":" "note";
+printf " \n\n-- $(date +%D) --
 ---------------
-lalalala 
+${note} 
 ---------------
+\n\n " >> $ants/sh/notes.sh; 
 
-
-  
-
--- 09/11/24 --
----------------
-console-codes, man console_codes 
----------------
-
-
-  
-
--- 09/11/24 --
----------------
-man console-setup 
----------------
-
-
- 
+}
+notes

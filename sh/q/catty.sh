@@ -12,3 +12,4 @@ echo -e "$(head -n8 $i) \n\t\e[34m -- $re$dim\n$(tail -n8 $i)"|pr --omit-header 
 fi; if [ $ls = "imag" ]; then jp2a $i --color-depth=8 --width=$((COLUMNS-16))|pr --omit-header --indent 8||echo -e " $c2 install jp2a "; fi
 echo -e "$seps"; done; [ $oldir ]&& cd $oldir;
 }
+catty

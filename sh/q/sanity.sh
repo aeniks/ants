@@ -9,3 +9,4 @@ read -n1 -rep "$c2 Are these changes ok? n / ${green}y " "baba";
 fi; if [ $baba = "y" ]; then find ./ -type f | cat -n | \
 while read n f; do mv -nv "$f" "$(echo $f |sed "s/ /_/g"| \
 sed "s/[{}()\'~,]//g")"; done; fi; echo -e "ok";}
+sanity

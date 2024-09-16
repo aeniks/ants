@@ -20,3 +20,4 @@ printf "\e[0;2m-----------------------------\n\n\e[0m";
 done; echo; echo; 
 }
 alias 12_lanscan='lanscan';
+lanscan

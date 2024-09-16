@@ -3,7 +3,7 @@
 vader="$(curl -sm2 http://wttr.in/sthlm?format=%l:+%c+%t+/+%f++ & disown)";
 if [ "${#vader}" -gt 2 ];then vader="${vader^^}"; vader="${vader:0:(-1)}"; else vader="nothing good on \e[1m):\e[0m "; fi; 
 iploc="$(ip route |tail -n1|cut --fields=9 --delimiter=" ")"; ip4="$(curl -4 ip.me -s&)"; 
-(sleep 2; cl="$((COLUMNS/2-16))"; ln="\e[0;2m -------------------------------------------------"; 
+sleep 2; cl="$((COLUMNS/2-16))"; ln="\e[0;2m -------------------------------------------------"; 
 printf "\e7\e[s"; timeout 1 printf "
 \e[14;${cl}H$ln
 \e[15;${cl}H$ln\e[15;${cl}H$c2 ${vader}

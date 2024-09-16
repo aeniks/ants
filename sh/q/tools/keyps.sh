@@ -1,6 +1,7 @@
 #!/bin/bash
 ## get arrow keys
-printf "\n\n\n\n\n\n\e[4A\e[?25l\n    >_< "; while read -rsn1 k; do 
+printf "\n\n\n\n\n\n\e[4A\e[?25l\n    >_< "; 
+while read -rsn1 k; do 
 [ "$k" = A ]&&printf "    ^   up"&& break; 
 [ "$k" = B ]&&printf "    v   down"&& break; 
 [ "$k" = C ]&&printf "    >   right"&& break; 

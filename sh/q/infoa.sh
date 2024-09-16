@@ -1,6 +1,7 @@
 #!/bin/bash
 # system info
 # Get system information
+12_c_info() {
 sudo apt install jp2a batcat bat -qqy &>/dev/null;
 OS=$(uname -s)
 HOSTNAME=$(uname -n)
@@ -26,3 +27,5 @@ CPU cores: $CORES
 Memory: $MEMORY
 GPU: $GPU
 "|batcat -p --language cpuinfo; 
+}
+12_c_info

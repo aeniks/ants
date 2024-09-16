@@ -16,3 +16,4 @@ printf "\e[0;2m\t----\n";
 done; 
 }
 
+hosup

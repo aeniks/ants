@@ -5,3 +5,4 @@ apt install figlet -y >/dev/null||sudo apt install figlet -y >/dev/null; fi;
 [ $1 ]||read -rep "$c2 yo: " "mx"; figlet -c -f block "$mx$1" 2>/dev/null||figlet-figlet \
 -c -f block "$mx$1"; unset mx kk; }
 
+yo

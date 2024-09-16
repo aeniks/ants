@@ -1,6 +1,6 @@
 #!/bin/bash
 ## kkkk
-for i in $(cat $ants/sh/q/rss/urls.sh); do
+for i in $(cat $ants/sh/q/.rss/urls.sh); do
 
 rsstail -u "$i" \
 -1n 4 -NpHZ"_------_------__"|tr "_" "\n"|batcat -fppl c; printf "\n\n";
