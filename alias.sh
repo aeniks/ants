@@ -53,7 +53,7 @@ cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-dir
 ############################
 ######## LF ################
 # LFRC="$ants/sh/config/lf/lfrc"; 
-alias l='cd $(lf -print-last-dir);'; 
+alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; 
 #############################
 alias o='/home/aa/go/bin/o'
 alias w='walk --icons'

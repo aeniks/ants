@@ -63,12 +63,12 @@ printf "$1";
 # an image appears in multiple places across the machine, it will not have to
 # be regenerated once seen.
 # 
-# create_cache() {
-# 	CACHE="${XDG_CACHE_HOME:-"$HOME/.cache"}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
-# 		-- "$(readlink -f "$1" || realpath "$1" )" \
-# 		| sha256sum \
-# 		| cut -d' ' -f1)"
-# }
+create_cache() {
+	CACHE="${XDG_CACHE_HOME:-"$HOME/.cache"}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
+		-- "$(readlink -f "$1" || realpath "$1" )" \
+		| sha256sum \
+		| cut -d' ' -f1)"
+}
 
 mime_preview() {
 	# The 'ran_guard' variable is there in case I need to do recursion

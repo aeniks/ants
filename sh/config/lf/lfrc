@@ -29,9 +29,9 @@ map zu unzip
 map zz zip
 map c copy
 map ss :search 
+map sr :set reverse!
 map S :search 
 map <c-s> :search-next
-map 1
 cmap w
 map ww :search 
 map 11 mark-save
@@ -49,7 +49,7 @@ cmap o
 map O $mimeopen --ask $f
 map oj !jp2a --color-depth=8 --fill $f
 map oc !chafa $f
-map oo open
+map oo open $f
 map op $mimeopen --ask $f
 map h :cd ~
 map sh :cmds
@@ -57,12 +57,12 @@ map H :maps
 map m :push %mkdir<space>
 map D :depl
 map t tag-toggle
-map l $batcat $f --paging always -fpl go &>/dev/null||exiftool $f; read -n1 -re "x";
+map l !exiftool $f
 map <enter> pger
 map - maps
 map _ cmds
 map <+> drawbox! 
-map x :push :shell<space>$f 
+map x !$f 
 # map x :push :shell<space>$f 
 
 
@@ -202,7 +202,7 @@ lf -remote "send $id reload";
 # $(lf -remote "send $id echomsg "$id qqqq"");
 # }}
 # Main options
-set icons
+# set icons
 # set sixel true
 # set period 1
 #set relativenumber
@@ -226,7 +226,7 @@ set timefmt 		"\033[0m \033[38;5;222m "12/22" \033[38;5;222m 06:04 \033[0m "
 set infotimefmtnew	"\033[0m \033[38;5;142m "02/12" \033[38;5;212m 08:24 \033[0m "
 set infotimefmtold 	"\033[0m \033[38;5;182m "06/08" \033[38;5;202m 22:44 \033[0m "
 set numberfmt 		"\033[0m \033[38;5;116m "09/11" \033[38;5;188m 05:54 \033[0m "
-set errorfmt 		"\033[0m \033[7;31m xx \033[0m"
+# set errorfmt 		"\033[0m \033[7;31m xx \033[0m"
 set tabstop 2
 set scrolloff 22
 set wrapscroll
