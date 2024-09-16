@@ -41,7 +41,7 @@ fi; done;
 printf "\e[?47l\e[?25h\e[0m\e8";
 }
 
-klock
+#klock
 
 
 

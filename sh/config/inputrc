@@ -10,6 +10,7 @@ Control-d: 'kill-whole-line;\n exit; \n'
 Control-q: 'exit; \n'
 Control-x: 'exec bash\n'
 "\eq": logout 
+
 # Cortrol-l 
 # kdm bash-env
 # .inputrc
@@ -20,7 +21,7 @@ Control-x: 'exec bash\n'
 "\e2": dump-variables
 "\e3": dump-macros
 set show-mode-in-prompt off
-#bind -l: List functions
+# bind -l: List functions
 # `bind -p`  : List functions      and bindings
 # `bind -v`  : List variable names and values
 #See actual character input coming into the terminal"

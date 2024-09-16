@@ -45,8 +45,12 @@ map <c-p> reload
 map 1 !true
 map x $$f
 map X !$f
-map o open
+cmap o 
 map O $mimeopen --ask $f
+map oj !jp2a --color-depth=8 --fill $f
+map oc !chafa $f
+map oo open
+map op $mimeopen --ask $f
 map h :cd ~
 map sh :cmds
 map H :maps 
