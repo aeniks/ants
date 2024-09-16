@@ -209,9 +209,9 @@ set icons
 #set number
 #set hiddenfiles "*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set hiddenfiles ".*"
-set cleaner "/etc/lf/cleaner"
-set previewer "/etc/lf/previewer"
-source '/etc/lf/opener'
+set cleaner "~/.config/lf/cleaner"
+set previewer "~/.config/lf/previewer"
+source "~/.config/lf/opener"
 set promptfmt "
 \033[48;2;35;38;39;38m  %u\033[97m@\033[38;2;235;138;139;38m%h
 \033[96m   
