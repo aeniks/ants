@@ -29,7 +29,15 @@ map zu unzip
 map zz zip
 map c copy
 map ss :search 
+map sp :set preview! 
+map s0 :set ratios 1
+map s1 :set ratios 2:1
+map s2 :set ratios 1:1
+map s4 :set ratios 1:2
+map s8 :set ratios 1:4
+map s9 :set ratios 1:1:1
 map sr :set reverse!
+map sd :set drawbox!
 map S :search 
 map <c-s> :search-next
 cmap w
@@ -73,7 +81,6 @@ map x !$f
 ####
 ####
 set drawbox
-cmd lala $read -rep "ln from: " -i "$fx" "kk"; read -rep "to: " -i "$PWD" "kt"; ln "${kk}" "${kt}" --symbolic; ls $kt; sleep 1;
 set mouse
 set icons
 set shell bash
@@ -86,6 +93,7 @@ set reverse
 # map x $printf "\033[?47hh \n\n\n\n\033[2A"; exiftool $f|batcat -fpl c; read -n1 -prs "" 2>/dev/null; printf "\033[?47l"; 
 
 
+cmd lala $read -rep "ln from: " -i "$fx" "kk"; read -rep "to: " -i "$PWD" "kt"; ln "${kk}" "${kt}" --symbolic; ls $kt; sleep 1;
 ####
 cmd pger ${{
 batcat --paging always -fpl c $f||cacaview $f||exiftool $f; read -r "x";
