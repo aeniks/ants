@@ -43,10 +43,9 @@
 # }
 image() {
 ww=$(($2-4))
-jp2a $1 --width=${ww} --color-depth=8 --fill||chafa $1
+jp2a $1 --width=${ww} --color-depth=8 --fill||chafa ${1} --view-size ${ww}x$3 --scale max --polite=on; 
 # exifprobe -c -L "$1"|batcat -pPfl go;
 # printf "$1"; 
-##chafa ${1} --view-size ${ww}x$3 --scale max --polite=on; 
 ##chafa --fill ascii -f symbols --symbols ascii
 }
 
@@ -62,11 +61,11 @@ jp2a $1 --width=${ww} --color-depth=8 --fill||chafa $1
 # be regenerated once seen.
 # 
 create_cache() {
-# exiftool $1|batcat -pl c#; 
 	CACHE="${XDG_CACHE_HOME:-"$HOME/.cache"}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
 		-- "$(readlink -f "$1" || realpath "$1" )" \
 		| sha256sum \
 		| cut -d' ' -f1)"
+#exiftool $1|batcat -pl c#; 
 }
 
 mime_preview() {
@@ -127,10 +126,10 @@ echo;echo " -- -- -- -- ";echo;
 zipinfo -t "$1"|batcat -pPfl c; 
 	;;
 	(audio/*,[01])
-		exiftool -j "$1" | jq -C
+		exiftool "$1"|batcat -ppfl c#
 	;;
 	(*.mod,0)
-batcat $f-fppl js 
+batcat $f -fppl js 
 ;;
 	(video/webm,0)
 		# file --mime-type doesn't distinguish well between "video/webm"
@@ -144,13 +143,16 @@ batcat $f-fppl js
 		create_cache "$1"
 		[ -f "$CACHE" ] \
 			|| ffmpegthumbnailer -i "$1" -o "$CACHE" -s 0
-		image "$CACHE" "$2" "$3" "$4" "$5" "$1"
+		##image "$CACHE" "$2" "$3" "$4" "$5" "$1"
+ww=$(($2-4))
+chafa ${CACHE} --view-size ${ww}x$3 --scale max --polite=on; 
+exiftool -S $1|tac|batcat -pfl d; 
 	;;
 	(*/pdf,0 | */postscript,0)  # .pdf, .ps
 		create_cache "$1"
 		[ -f "$CACHE.jpg" ] \
 			|| pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
-		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
+		chafa "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(application/font*,0 | application/*opentype,0 | font/sfnt,0)  # .ttf, .otf
 		create_cache "$1"
@@ -159,7 +161,8 @@ batcat $f-fppl js
 				-pointsize "72" -font "$1" -gravity center -annotate +0+0 \
 				"ABCDEFGHIJKLM\nNOPQRSTUVWXYZ\nabcdefghijklm\nnopqrstuvwxyz\n1234567890\n!@#$\%^&*,.;:\n_-=+'\"|\\(){}[]" \
 				"$CACHE.png"
-		image "$CACHE.png" "$2" "$3" "$4" "$5" "$1"
+		chafa  "$CACHE.png" --view-size ${ww}x$3 --scale max --polite=on; 
+		# "$CACHE.png" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(*opendocument*,0) # .odt, .ods
 		CCt='	' \

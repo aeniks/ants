@@ -31,10 +31,11 @@ map c copy
 map ss :search 
 map sp :set preview! 
 map s0 :set ratios 1
-map s1 :set ratios 2:1
-map s2 :set ratios 1:1
-map s4 :set ratios 1:2
-map s8 :set ratios 1:4
+map s1 :set ratios 1:1
+map s2 :set ratios 1:2
+map s4 :set ratios 1:4
+map s8 :set ratios 1:8
+map s6 :set ratios 2:1
 map s9 :set ratios 1:1:1
 map sr :set reverse!
 map sd :set drawbox!
