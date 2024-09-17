@@ -302,5 +302,5 @@ alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; 
 #lfcd() { cd "$(command lf -config $LFRC -print-last-dir "$@")"; } fi; 
 #alias llll='ls --hyperlink --color=always --group-directories-first -hltrp'; 
 #alias lllla='ls --hyperlink --color=always --group-directories-first -Ahltrp; pwd'; 
-alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_Hello"; printf "\n\n"|batcat -ppfl zig'
+alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_Hello"|batcat -ppfl zig; printf "\n\n"'
 alias pub='curl ip.me -4'

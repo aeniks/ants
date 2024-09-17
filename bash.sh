@@ -37,3 +37,4 @@ printf "\e[1A\e[20G"; $ants/sh/q/mac.sh
 echo;
 ####################
 PS1='\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m\w\e[0m\n'
+
