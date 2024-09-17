@@ -29,6 +29,7 @@ koko; sleep 60; done
 } 
 jojo & disown; 
 echo;
+printf "\e[96m"; figlet -c -f Big_Money-ne "h e l_ l_ o" 2>/dev/null|batcat -ppfl Zig 2>/dev/null; 
 printf "\e[11;4H"; $ants/sh/q/iplocal.sh 
 printf "\e[11;20H"; $ants/sh/q/mac.sh 
 printf "\e7\e[11;40H\e[96m $(curl -s ip.me -4)\e[0m\e8" & disown 
@@ -36,4 +37,3 @@ printf "\e7\e[11;40H\e[96m $(curl -s ip.me -4)\e[0m\e8" & disown
 echo;
 ####################
 PS1='\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m\w\e[0m\n'
-
