@@ -1,6 +1,7 @@
 #!/bin/bash
 # choose files to gist (-p) to public
 lf_install() { 
+mkdir -p ~/.config/lf 
 mkdir -p ~/tmp/lf_bu_$(date +%F)
 mv ~/.config/lf/* ~/tmp/lf_bu_$(date +%F)/
 ln $ants/sh/config/lf/lfrc ~/.config/lf/ --symbolic

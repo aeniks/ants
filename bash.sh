@@ -30,9 +30,9 @@ koko; sleep 60; done
 jojo & disown; 
 echo;
 printf "\e[96m"; figlet -c -f Big_Money-ne "h e l_ l_ o" 2>/dev/null|batcat -ppfl Zig 2>/dev/null; 
-printf "\e[11;4H"; $ants/sh/q/iplocal.sh 
-printf "\e[11;20H"; $ants/sh/q/mac.sh 
-printf "\e7\e[11;40H\e[96m $(curl -s ip.me -4)\e[0m\e8" & disown 
+printf "\e[4G"; $ants/sh/q/iplocal.sh 
+printf "\e[1A\e[20G"; $ants/sh/q/mac.sh 
+printf "\e7\e[2A\e[40G\e[96m $(curl -s ip.me -4)\e[0m\e8" & disown 
 #fortune|batcat -ppl c#
 echo;
 ####################
