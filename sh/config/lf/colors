@@ -1,13 +1,12 @@
 #!/bin/bash
 # Colors for filenames in lf
 # file types (with matching order)
-ants/	38;5;198;7 
-ln      38;5;042   # LINK
+ln      38;5;42   # LINK
 or      31;01   # ORPHAN
 tw      38;5;47 # STICKY_OTHER_WRITABLE
 ow      38;5;86 # OTHER_WRITABLE
 st      01;34   # STICKY
-di      38;5;252   # DIR
+di      38;5;248   # DIR
 pi      33      # FIFO
 so      01;35   # SOCK
 bd      33;01   # BLK
@@ -16,11 +15,12 @@ su      01;36   # SETUID
 sg      01;32   # SETGID
 ex      38;5;109   # EXEC
 fi      38;5;66     # FILE
-ants/	38;5;198;7 
-home/	38;5;65;7 
+home/	38;5;65
 bin/	38;5;68 
 media/	38;5;114
 gh/		38;5;78
+ants/	38;5;198 
+etc/	38;5;74
 # archives or compressed
 *.tar   2;38;5;168
 *.tgz   2;38;5;66
@@ -204,4 +204,3 @@ gh/		38;5;78
 *.lhs    38;5;133
 *.blend  38;5;208
 *.html	 38;5;80
-ants/	38;5;198;7

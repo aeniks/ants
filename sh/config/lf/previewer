@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/bin/bash
 # File preview handler for lf.
 # Dependencies:
 #	- GNU 'file' or similar (file detection)
@@ -46,7 +45,7 @@ image() {
 ww=$(($2-4))
 jp2a $1 --width=${ww} --color-depth=8 --fill||chafa $1
 # exifprobe -c -L "$1"|batcat -pPfl go;
-printf "$1"; 
+# printf "$1"; 
 ##chafa ${1} --view-size ${ww}x$3 --scale max --polite=on; 
 ##chafa --fill ascii -f symbols --symbols ascii
 }
@@ -63,6 +62,7 @@ printf "$1";
 # be regenerated once seen.
 # 
 create_cache() {
+exiftools $1; 
 	CACHE="${XDG_CACHE_HOME:-"$HOME/.cache"}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
 		-- "$(readlink -f "$1" || realpath "$1" )" \
 		| sha256sum \
