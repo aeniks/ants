@@ -28,9 +28,12 @@ echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[1;105m         \e[0m\e8"; sleep 1;
 koko; sleep 60; done 
 } 
 jojo & disown; 
-echo; 
-fortune|batcat -ppl c#
-echo; 
+echo;
+printf "\e[11;4H"; $ants/sh/q/iplocal.sh 
+printf "\e[11;20H"; $ants/sh/q/mac.sh 
+printf "\e7\e[11;40H\e[96m $(curl -s ip.me -4)\e[0m\e8" & disown 
+#fortune|batcat -ppl c#
+echo;
 ####################
 PS1='\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m\w\e[0m\n'
 
