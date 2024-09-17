@@ -38,6 +38,7 @@ map s8 :set ratios 1:8
 map s6 :set ratios 2:1
 map s9 :set ratios 1:1:1
 map sr :set reverse!
+map sz :set sortby size
 map sd :set drawbox!
 map S :search 
 map <c-s> :search-next
@@ -54,6 +55,7 @@ map <c-p> reload
 map 1 !true
 map x $$f
 map X !$f
+map b !batcat -pfl d $f
 cmap o 
 map O $mimeopen --ask $f
 map oj !jp2a --color-depth=8 --fill $f
