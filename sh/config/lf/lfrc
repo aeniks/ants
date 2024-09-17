@@ -255,3 +255,16 @@ cmd on-select &{{
 set cursorparentfmt "\033[44m" 
 set cursorpreviewfmt "\033[4m" 
 set cursoractivefmt "\033[7m" 
+
+
+source "~/.config/lf/lf_m"
+
+
+
+
+
+
+
+
+
+
