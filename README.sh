@@ -1,3 +1,4 @@
+## run this in terminal   >>>>       wget git.new/ants && . ants       <<<<<<
 seq $LINES; hello=$(echo -en "\e[95;1mhello\e[96m"); o=$(echo -en "\e[96;1m--\e[0m"); 
 printf "\e[H\e[0J\e[0;96m
 
