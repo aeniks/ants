@@ -80,20 +80,29 @@ map - maps
 map _ cmds
 map <+> drawbox! 
 map x !$f 
+map j !printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%D); printf "\e[0;1;37m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%H" : "%M); printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\n\n\n\n\n\n\n\e[25m\e[0m"; 
 # map x :push :shell<space>$f 
-
-
+# cmd tamo ${{ 
+# printf "\e[2;38;5;24m"; 
+# $figlet -w $lf_width -c -fDOS_Rebel $(date +%D;);
+# printf "\e[0;1;37m"; 
+# $figlet -w $lf_width -c -fDOS_Rebel $(date +%T;);
+# printf "\e[5m\n\n"; 
+# $read -n1 -rep ">_<" "aa"; 
+# printf "\e[25m\e[0m\e[?47l"; 
+# }}
 ####
 ####
 
+#batcat --paging always -fpl c $f||cacaview $f||exiftool $f; read -r "x";
 # map x $printf "\033[?47h\033[H\033[0J -- exif-viewer -- \n\n"; [ -x "/bin/exiftool" ]&&(exiftool $f; jp2a --width=88 --color-depth=8 $f)|batcat -pfl c --paging always; printf "\033[?47l"; 
 
 # map x $printf "\033[?47hh \n\n\n\n\033[2A"; exiftool $f|batcat -fpl c; read -n1 -prs "" 2>/dev/null; printf "\033[?47l"; 
 $(printf "\e[96m")
-$(printf "\e[0m")
 
 cmd lala $read -rep "ln from: $(printf "\e[96m")" -i "$fx" "kk"; read -rep "$(printf "\e[0m")to: $(printf "\e[92m")" -i "$PWD" "kt"; printf "\e[0m"; ln "${kk}" "${kt}" --symbolic; ls $kt; sleep 1;
 
+$(printf "\e[0m")
 
 
 ####
