@@ -235,17 +235,18 @@ set incfilter true
 set globsearch true
 set ratios 4:8 #2:2:6 # 2:3:7:7
 set truncatechar "..."
-set waitmsg "\n\n >_<  "
+set dircounts
+# set waitmsg ">_<"
 set timefmt 		"\033[0m \033[38;5;222m "12/22" \033[38;5;222m 06:04 \033[0m "
 set infotimefmtnew	"\033[0m \033[38;5;142m "02/12" \033[38;5;212m 08:24 \033[0m "
 set infotimefmtold 	"\033[0m \033[38;5;182m "06/08" \033[38;5;202m 22:44 \033[0m "
 set numberfmt 		"\033[0m \033[38;5;116m "09/11" \033[38;5;188m 05:54 \033[0m "
-# set errorfmt 		"\033[0m \033[7;31m xx \033[0m"
+set errorfmt 		"\033[7;31m"
 set tabstop 2
 set scrolloff 22
 set wrapscroll
-set borderfmt "\033[38;5;200mx\e[0m"
-#set rulerfmt df:acc:progress:selection:filter:ind
+set borderfmt "\033[38;5;200m"
+# set rulerfmt "%df:acc:progress:selection:filter:ind"
 set rulerfmt "\033[38;5;200m|| %s \033[0m|\033[2;32m%{lf_user_selected_size}\033[0m 
 \033[2m| %i \033[0;1;98m\e/\033[2m %t |
 \033[0m \033[0m %d \033[0m "
