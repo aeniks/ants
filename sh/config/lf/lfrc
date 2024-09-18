@@ -37,6 +37,7 @@ map s4 :set ratios 1:4
 map s8 :set ratios 1:8
 map s6 :set ratios 2:1
 map s9 :set ratios 1:1:1
+map s5 :set ratios 1:4:4
 map sr :set reverse!
 map sz :set sortby size
 map sd :set drawbox!
@@ -69,7 +70,7 @@ map h :cd ~
 map sh :cmds
 map H :maps 
 map m :push %mkdir<space>
-map D :depl
+map oD :depl
 map t tag-toggle
 map l !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
 map <enter> !printf "\n\n\n\n\n\n\e[4A"; read -n1 -rep "[C]hafa [K]akaview [B]atcat e[X]iftool" "x"; if [ $x = c ]; then chafa $f; elif [ $x = k ]; then cacaview $f; elif [ $x = b ]; then batcat $f -pl c#; elif [ $x = x ]; then printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++; fi 
@@ -84,13 +85,6 @@ map x !$f
 
 ####
 ####
-set drawbox
-set mouse
-set icons
-set shell bash
-set info size:time
-set sortby time
-set reverse 
 
 # map x $printf "\033[?47h\033[H\033[0J -- exif-viewer -- \n\n"; [ -x "/bin/exiftool" ]&&(exiftool $f; jp2a --width=88 --color-depth=8 $f)|batcat -pfl c --paging always; printf "\033[?47l"; 
 
@@ -271,8 +265,13 @@ cmd on-select &{{
 set cursorparentfmt "\033[44m" 
 set cursorpreviewfmt "\033[4m" 
 set cursoractivefmt "\033[7m" 
-
-
+set drawbox
+set mouse
+set icons
+set shell bash
+set info size:time
+set sortby natural
+#set reverse 
 source "~/.config/lf/lf_m"
 
 

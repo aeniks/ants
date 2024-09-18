@@ -41,13 +41,14 @@
 # 		exiftool -j "$6" | jq -C
 # 	fi
 # }
+
 image() {
 ww=$(($2-4))
-jp2a $1 --width=${ww} --color-depth=8 --fill||chafa ${1} --view-size ${ww}x$3 --scale max --polite=on; 
+chafa  -s ${ww}x$3 "$1" 2>/dev/null|| chafa  -s ${ww}x$3 "$6" 2>/dev/null|| jp2a $1 --width=${ww} --color-depth=8 --fill; 
+} 
 # exifprobe -c -L "$1"|batcat -pPfl go;
 # printf "$1"; 
 ##chafa --fill ascii -f symbols --symbols ascii
-}
 
 # 
 # ifub() {
@@ -60,6 +61,7 @@ jp2a $1 --width=${ww} --color-depth=8 --fill||chafa ${1} --view-size ${ww}x$3 --
 # an image appears in multiple places across the machine, it will not have to
 # be regenerated once seen.
 # 
+[ -e "${XDG_CACHE_HOME:-"$HOME/.cache"}/lf" ]||mkdir -p -m 775 ${XDG_CACHE_HOME:-"$HOME/.cache"}/lf; 
 create_cache() {
 	CACHE="${XDG_CACHE_HOME:-"$HOME/.cache"}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
 		-- "$(readlink -f "$1" || realpath "$1" )" \
@@ -74,25 +76,29 @@ mime_preview() {
 	# an adequate preview
 	case "$mime_type","$ran_guard" in
 		(image/svg,0)
-		cacaview "$1" "$2" "$3" "$4" "$5" "$1"
+		image "$1" "$2" "$3" "$4" "$5" "$1"
+		exiftool -S "$1"|tac|batcat -pfl d; 
+		
 	;;
 	(image/svg+xml,0 | image/svg)
 		create_cache "$1"
 		[ -f "$CACHE.png" ] \
-			|| rsvg-convert  -o "$CACHE.png" -a -w "1000" -b '#1f2430' "$1"
+			|| rsvg-convert  -o "$CACHE.png" -a -w "888" -b '#1f2430' "$1"
 		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/*,0)
 		image "$1" "$2" "$3" "$4" "$5" "$1"
+		exiftool -S "$1"|tac|batcat -pfl d; 
+		
 	;;
 	(image/svg,0)
-		cacaview "$1" "$2" "$3" "$4" "$5" "$1"
+		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/jpg,0)
-		cacaview "$1" "$2" "$3" "$4" "$5" "$1"
+		image "$1" "$2" "$3" "$4" "$5" "$1"
 	;;
 	(image/png,0)
-chafa $1 --view-size ${ww}x$3 --scale max --polite=on; 
+		image "$1" "$2" "$3" "$4" "$5" "$1"	
 	;;
 	(text/html,0)
 		batcat "$1" -Ppf --language HTML
@@ -103,7 +109,8 @@ chafa $1 --view-size ${ww}x$3 --scale max --polite=on;
 			man ./ "$1" | col -b
 		;;
 		(*)
-		exiftool|batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go
+		batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go\
+		||exiftool -S|batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go
 		esac
 	;;
 	(text/*,0 | */xml,0 | application/javascript,0 | application/x-subrip,0 )
@@ -126,7 +133,7 @@ echo;echo " -- -- -- -- ";echo;
 zipinfo -t "$1"|batcat -pPfl c; 
 	;;
 	(audio/*,[01])
-		exiftool "$1"|batcat -ppfl d
+		exiftool -S "$1"|batcat -ppfl d
 	;;
 	(*.mod,0)
 batcat $f -fppl d
@@ -142,7 +149,7 @@ batcat $f -fppl d
 	(video/*,[01])
 		create_cache "$1"
 		[ -f "$CACHE" ] \
-			|| ffmpegthumbnailer -i "$1" -o "$CACHE" -s 0
+			|| ffmpegthumbnailer -i "$1" -o "$CACHE" -m
 		##image "$CACHE" "$2" "$3" "$4" "$5" "$1"
 chafa ${CACHE} --view-size $(($2-4))x$3 --scale max --polite=on; 
 exiftool -S $1|tac|batcat -pfl d; 
@@ -202,7 +209,9 @@ exiftool -S $1|tac|batcat -pfl d;
 		(gpg)
 			printf "OpenPGP \033[1;31mencrypted\033[m file,\ntry using gpg to decrypt it\n\n"
 		;;
-		(*) exiftool "$1"|batcat -ppfl d
+		(*) 
+	batcat -p --wrap character --terminal-width "$(($2-4))" -f "$1" -l go\
+		||exiftool "$1"|batcat -p --wrap character --terminal-width "$(($2-4))" -l go
 		esac
 	;;
 	(application/vnd.sqlite3,0)
