@@ -27,7 +27,7 @@ jojo & disown;
 beggn() { sleep 2; 
 printf "\e[2;$((COLUMNS/2))H\e[1;38;5;67;40m $(timeout 1 lsb_release -ds) \e[0m";  
 printf "\e[3;$((COLUMNS/2))H\e[0;2;37;40m $TERM_PROGRAM \e[0;1;97;40m-\e[0;2;37;40m $SHELL \e[0;1;97;40m-\e[0;2;37;40m $TERM \e[0m"; 
-printf "\e[4;$((COLUMNS/2))H\e[38;5;24;40m $(ip l|grep --color=never -w link/ether|cut -f6-6 -d " ";) \e[0m"; 
+printf "\e[4;$((COLUMNS/2))H\e[38;5;24;40m $(ip l|grep -m 1 -w "link/ether"|cut -f6-6 -d " ";) \e[0m"; 
 printf "\e[5;$((COLUMNS/2))H\e[92;40m $(date) \e[0m"; 
 printf "\e[6;$((COLUMNS/2))H\e[31;40m $(hostname --all-ip-addresses|cut -f1 -d" "
 ) \e[0;1;97;40m-\e[0;94;40m $(curl -s ip.me -4) \e[0m"; 
