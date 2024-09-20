@@ -25,13 +25,17 @@ jojo() { while true; do echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[1;105m         \
 jojo & disown; 
 #printf "\e[96m"; figlet -c -f Big_Money-ne "h e l_ l_ o" 2>/dev/null|batcat -ppfl Zig 2>/dev/null; 
 if [ -z $PREFIX ]; then alias ipa='ip -c a'; else alias ipa='ifconfig'; fi; 
-ip_pub=$(curl ip.me -s4 & disown); 
-ip_loc=$(ipa|grep -w "inet"|cut -f-1 -d "/"|tr -d "\ninet"); 
+# getprop ro.product.system.model 2>/dev/null; hostnamectl& disown 2>/dev/null; 
+printf "\e[2;97m"; date +%^A" "%d" "%^B" "%Y" $(printf "\e[0m- \e[0;1;96m")"%T; printf "\e[0;1m"; 
+uname --kernel-name --kernel-release --operating-system --machine; 
+ip_pub=$(timeout 2 curl ip.me -s4 & disown); 
+ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
 blue='\e[34m'; re='\e[0m'; cyan='\e[36m'; pink='\e[35m'; green='\e[32m'; red='\e[31m'; 
-if [ $(id -u) = 0 ]; then me="$red$USER$re"; else me="$cyan$USER$re"; fi; 
-date; 
-printf "$OSTYPE $HOSTTYPE \n$blue$ip_pub$re$cyan$ip_loc$re \
-\n$me$re @ $green$HOSTNAME$re \n\n"; 
-#fortune|batcat -ppl c#
+if [ $(id -u) != 1000 ]; then me="$blue$USER$re"; 
+elif [ $(id -u) = 0 ]; then me="$red$USER$re"; 
+else me="$cyan$USER$re"; fi; 
+printf "$blue$ip_pub$re - $cyan$ip_loc$re   $SSH_CLIENT
+$me$re @ $green$HOSTNAME$re - $red$TERM$re\e[2;97m\n"; 
+#fortune|batcat -ppl c# date +%A" "%B" "%F" "%T 
 ####################
 PS1='\e[0m\e[2;3;40m\t'${me}'\e[0;1;40m@\e[0;2;35;40m\H\e[32m$PWD\e[0m\n'
