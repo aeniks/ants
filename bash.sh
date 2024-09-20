@@ -24,16 +24,13 @@ koko() { hh=$(date +%H); mm=$(date +%M); echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e
 jojo() { while true; do echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[1;105m         \e[0m\e8"; sleep 1; koko; sleep 20; done } 
 jojo & disown; 
 #printf "\e[96m"; figlet -c -f Big_Money-ne "h e l_ l_ o" 2>/dev/null|batcat -ppfl Zig 2>/dev/null; 
-beggn() { sleep 2; 
-printf "\e[2;$((COLUMNS/2))H\e[1;38;5;67;40m $(timeout 1 lsb_release -ds) \e[0m";  
-printf "\e[3;$((COLUMNS/2))H\e[0;2;37;40m $TERM_PROGRAM \e[0;1;97;40m-\e[0;2;37;40m $SHELL \e[0;1;97;40m-\e[0;2;37;40m $TERM \e[0m"; 
-printf "\e[4;$((COLUMNS/2))H\e[38;5;24;40m $(ip l|grep -m 1 -w "link/ether"|cut -f6-6 -d " ";) \e[0m"; 
-printf "\e[5;$((COLUMNS/2))H\e[92;40m $(date) \e[0m"; 
-printf "\e[6;$((COLUMNS/2))H\e[31;40m $(hostname --all-ip-addresses|cut -f1 -d" "
-) \e[0;1;97;40m-\e[0;94;40m $(curl -s ip.me -4) \e[0m"; 
-printf "\e[7;$((COLUMNS/2))H\e[96;40m $USER \e[97m@\e[95;40m $HOSTNAME \e8"; }; 
+ip_pub=$(curl ip.me -s4 & disown); 
+ip_loc=$(ip -c a|grep -w "inet"|cut -f-1 -d "/"|tr -d "\ninet"); 
+blue='\e[34m'; re='\e[0m'; cyan='\e[36m'; pink='\e[35m'; green='\e[32m'; red='\e[31m'; 
+if [ $(id -u) = 0 ]; then me="$red$USER$re"; else me="$cyan$USER$re"; fi; 
+date; 
+printf "$OSTYPE $HOSTTYPE \n$blue$ip_pub$re$cyan$ip_loc$re \
+\n$me$re @ $green$HOSTNAME$re \n\n"; 
 #fortune|batcat -ppl c#
-beggn & disown; 
-printf "\n\e[0m"
 ####################
-PS1='\e[0m\e[40m\e[2;3m\t\e[40m\e[1;36m\u\e[40;2;33m\H\e[32m$PWD\e[0m\e7\n'
+PS1='\e[0m\e[2;3;40m\t'${me}'\e[0;1;40m@\e[0;2;35;40m\H\e[32m$PWD\e[0m\n'
