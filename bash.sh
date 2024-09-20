@@ -24,8 +24,9 @@ koko() { hh=$(date +%H); mm=$(date +%M); echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e
 jojo() { while true; do echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[1;105m         \e[0m\e8"; sleep 1; koko; sleep 20; done } 
 jojo & disown; 
 #printf "\e[96m"; figlet -c -f Big_Money-ne "h e l_ l_ o" 2>/dev/null|batcat -ppfl Zig 2>/dev/null; 
+if [ -z $PREFIX ]; then alias ipa='ip -c a'; else alias ipa='ifconfig'; fi; 
 ip_pub=$(curl ip.me -s4 & disown); 
-ip_loc=$(ip -c a|grep -w "inet"|cut -f-1 -d "/"|tr -d "\ninet"); 
+ip_loc=$(ipa|grep -w "inet"|cut -f-1 -d "/"|tr -d "\ninet"); 
 blue='\e[34m'; re='\e[0m'; cyan='\e[36m'; pink='\e[35m'; green='\e[32m'; red='\e[31m'; 
 if [ $(id -u) = 0 ]; then me="$red$USER$re"; else me="$cyan$USER$re"; fi; 
 date; 
