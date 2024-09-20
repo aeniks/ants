@@ -71,6 +71,8 @@ map m :push %mkdir<space>
 map oD :depl
 map t tag-toggle
 map l !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
+
+cmap <enter>
 map <enter><enter> dial 
 map <enter>c !chafa $f 
 map <enter>b $batcat --paging always -ld --decorations never $f 
@@ -248,14 +250,16 @@ set incfilter true
 set globsearch true
 set ratios 4:8 #2:2:6 # 2:3:7:7
 set truncatechar "..."
-# set waitmsg ">_<"
-
-set timefmt "\033[36m2006\033[0m-\033[95mJan\033[0m-\033[31m02\033[94m\033[0m-\033[92m15:04:05\033[0m" 
-#set timefmt 'Mon Jan _2 15:04:05 2006' ## default
-set infotimefmtnew "Jan-02-15:04"
-set infotimefmtold "Jan+02+15:04" 
 set dircounts
+# set waitmsg ">_<"
+set timefmt 		"\033[0m \033[38;5;222m 2006 Jan _2 15:04:05 "
+" \033[38;5;222m Jan _2 15:04:05 \033[0m "
+set infotimefmtnew	"\033[0m \033[38;5;142m 2006 Jan _2 15:04:05 "
 
+" \033[38;5;212m Jan _2 15:04:05 \033[0m "
+set infotimefmtold 	"\033[0m \033[38;5;182m 2006 Jan _2 15:04:05 "
+
+" \033[38;5;202m Jan _2 15:04:05 \033[0m "
 # set numberfmt 		"\033[0m \033[38;5;116m "09/11" \033[38;5;188m 05:54 \033[0m "
 set errorfmt 		"\033[7;31m"
 set tabstop 2
@@ -263,13 +267,12 @@ set scrolloff 22
 set wrapscroll
 set borderfmt "\033[38;5;200m"
 # set rulerfmt "%df:acc:progress:selection:filter:ind"
-#set rulerfmt "\033[38;5;200m|| %s \033[0m|\033[2;32m%{lf_user_selected_size}\033[0m 
-#\033[2m| %i \033[0;1;98m\e/\033[2m %t |
-#\033[0m \033[0m %d \033[0m "
+set rulerfmt "\033[38;5;200m|| %s \033[0m|\033[2;32m%{lf_user_selected_size}\033[0m 
+\033[2m| %i \033[0;1;98m\e/\033[2m %t |
+\033[0m \033[0m %d \033[0m "
 
 
-set statfmt "\033[36m%p\033[0m| %c| %u| %g| %S| %t| -> %l" ## default
-set rulerfmt "%a  |%p  |\033[7;31m %m \033[0m| %{lf_user_selected_size} |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t " 
+#set rulerfmt "%a  |%p  |\033[7;31m %m \033[0m  |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t" 
 
 
 

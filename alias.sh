@@ -100,7 +100,7 @@ tail ~/.bash_history -n${linesh}|batcat -ppl c;
 kat() {
 unset -v kat; 
 if [ "${1}" = "help" ] 2>/dev/null; then 
-batcat -h|batcat -pP --language c;
+batcat -h|batcat -fp --language d;
 return 0; fi; 
 [ $2 ]&& lng="${2}"; [ $2 ]|| lng="sh"; 
 [ $1 ] 2>/dev/null||ls -p --color --group-directories-first --hyperlink; 
