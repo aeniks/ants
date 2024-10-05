@@ -248,7 +248,7 @@ git clone https://github.com/aeniks/$clone; cd $clone 2>/dev/null; echo -e "\n\t
 # alias ww='ee;ee "$cyan";w;ee;ee "$blue"; ps all;ee "$re $PWD"'
 alias 12_last_logins='echo;echo "  LAST LOGINS"; echo -e "$pink"; sudo lastb -axdwn 4;echo -e "$white"; echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
 alias 12_choose_logins_screen='read -n1 -ep "  $c2  g/t  $(systemctl get-default)  " "gt"; if [ $gt == t ]; then sudo systemctl set-default multi-user.target; else sudo systemctl set-default graphical.target; fi ; echo gg'
-alias xxxx='startx'
+alias xx='startx'
 #alias an12='bash <(wget -O- dub.sh12)'
 #alias aeniks='wget -Ok dub.sh/aeniks; . k;'
 alias greet='echo -ne "\t$c2 Welcome back $blue $USER,$re today is:$blue "; date; echo'
@@ -304,3 +304,4 @@ alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; 
 #alias lllla='ls --hyperlink --color=always --group-directories-first -Ahltrp; pwd'; 
 alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_Hello"|batcat -ppfl zig; printf "\n\n"'
 alias pub='curl ip.me -4'
+alias tttt='popo=8686; ttyd -c aa:oioioioi -u 1000 -w /home/aa/GitHub/ -p $popo -Wo bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
