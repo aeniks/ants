@@ -37,6 +37,7 @@ elif [ $(id -u) = 0 ]; then me="$red$USER$re";
 else me="$cyan$USER$re"; fi; 
 printf "$blue$ip_pub$re - $cyan$ip_loc$re   $SSH_CLIENT
 $me$re @ $green$HOSTNAME$re - $red$TERM$re\e[2;97m\n"; 
+timeout 2 curl -s ipinfo.io|tr -d '}{ ""'|batcat -ppfl d & disown; 
 #fortune|batcat -ppl c# date +%A" "%B" "%F" "%T 
 ####################
 PS1='\e[0m\e[2;3;40m\t'${me}'\e[0;1;40m@\e[0;2;35;40m\H\e[32m$PWD\e[0m\n'
