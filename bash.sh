@@ -50,7 +50,7 @@ printf "hello!\n"; date;
 printf "$csys$re | $red$bold$TERM$re
 $dim$(id --groups -n)$re
 $dim$yellow${ip_pub[4]}$re//$dim$green${ip_pub[2]}$re//$dim$blue${ip_pub[3]}$re\n"; 
-printf "\n\e[46;2m\t"; 
+printf "\n\e[36;7m\t"; 
 date +" -- "%^A" "%d" "%^B" "%Y" $(printf "\e[7;38;5;200m - \e[2;37;36m") "%T" -- $(printf "\e[0m")"; 
 ## QUOTES!! ######################################
 printf "\e[2m --$re\n"; 
@@ -64,6 +64,6 @@ printf "$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re \n\e[2m --$re\n";
 # [ "$rere" != "x" ]&& neofetch& disown;
 # [ "$rere" = "x" ]&& [ $DISPLAY ]||startx 2>/dev/null; 
 
-PS1='\e[0m\e[2;3m\t\e[0m - '${yo}'\e[0;2;40m@\e[32;40m\H\e[1;32m$PWD\e[0m\e[2A
+PS1='\e[0m\e[2;3m\t\e[0;30;2m|'${yo}'\e[0;2m@\e[32;40m\H\e[1;32m$PWD\e[0m\e[A
 \e7\e[H\e[2K\e[44m\n\e[H$(bs)\e[2;40m ${BASH_COMMAND} \e8\n'
 ####
