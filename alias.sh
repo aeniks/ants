@@ -313,3 +313,4 @@ alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; 
 alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_Hello"|batcat -ppfl zig; printf "\n\n"'
 alias pub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:oioioioi -u 1000 -w /home/aa/GitHub/ -p $popo -Wo bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
+alias pppp=cd /ants; push; ssh aa@ants.ftp.sh "cd ants; git pull" 
