@@ -64,6 +64,6 @@ printf "$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re \n\e[2m --$re\n";
 # [ "$rere" != "x" ]&& neofetch& disown;
 # [ "$rere" = "x" ]&& [ $DISPLAY ]||startx 2>/dev/null; 
 
-PS1='\e[0m\e[2;3m\t\e[0;30;2m|'${yo}'\e[0;2m@\e[32;40m\H\e[1;32m$PWD\e[0m\e[A
+PS1='\e[0m\e[2;3m\t\e[0;30;2m|'${yo}'\e[0;2;40m@\e[35;40m\H\e[48;5;24m\e[40;37;2m$PWD/\e[0m\e[A
 \e7\e[H\e[2K\e[44m\n\e[H$(bs)\e[2;40m ${BASH_COMMAND} \e8\n'
 ####
