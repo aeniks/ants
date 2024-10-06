@@ -54,7 +54,9 @@ printf "\n\e[36;7m\t";
 date +" -- "%^A" "%d" "%^B" "%Y" $(printf "\e[7;38;5;200m - \e[2;37;36m") "%T" -- $(printf "\e[0m")"; 
 ## QUOTES!! ######################################
 printf "\e[2m --$re\n"; 
-fortune -s 2>/dev/null|batcat -ppfl go; printf "\e[2m --\n";  
+quotes||apt install fortune; 
+#fortune -s 2>/dev/null|batcat -ppfl go; 
+printf "\e[2m --\n";  
 ##################################################
 printf "$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re \n\e[2m --$re\n";
 ##################################################
