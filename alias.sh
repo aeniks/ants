@@ -103,7 +103,7 @@ klockan="$ants/12/klockan.sh"
 # $dim  -- $pink$dim${bathb}$re \e[0m\n  --------------------\n"; 
 # fortune|batcat --style numbers --theme "${bathb//_/ }" --language ${batn};
 # } 
-
+alias rrrrch='$EDITOR $ants/functions/rrrr.sh'; 
 alias quotes='fortune $s|tr -s "\t" " "|batcat -ppfl go'
 
 kl() {
