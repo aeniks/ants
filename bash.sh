@@ -10,34 +10,60 @@ then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completio
 then . /etc/bash_completion; fi; fi; 
 shopt -s histappend; ## append to history, don't overwrite it
 export EDITOR='micro';
-export PAGER='batcat'; 
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PAGER='batcat -p';
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+####################################################################
+[ "$PREFIX" ]&& alias ipa='ip -c a'; 
+#[ -e "/bin/neofetch" ]&& neofetch;
+[ "$PREFIX" ]&& alias ipa='ifconfig'; [ -e "$PREFIX/bin/fastfetch" ]&& fastfetch;
+################################# NEOFETCH #########################
+#PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ## load alias and functions 
 . $ants/alias.sh; 
 [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
 ###### <SSH> ######
-#[ -n "$SSH_CONNECTION" ] && shsh=($SSH_CONNECTION) &&
-#printf "$c2$dim \e[2;32mssh$re from$re: $cyan${shsh[0]}$re to$re $cyan${shsh[2]}$re:$cyan${shsh[3]}\n\e[0m"; 
 ###################
 koko() { hh=$(date +%H); mm=$(date +%M); echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[0m\e[40m  ${hh}\e[2m:\e[0;40m${mm}  \e[0m\e8"; } 
-jojo() { while true; do echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[1;105m         \e[0m\e8"; sleep 1; koko; sleep 59; done } 
-jojo & disown; 
+jojo() { while true; do echo -ne "\e7\e[1;$(($COLUMNS/2-4))H \e[1;105m         \e[0m\e8"; sleep 1; koko; sleep 59; done }; jojo & disown; 
+bs(){ for b in ${BASH_CMDS[@]}; do printf "\e[2m\e[38;5;$((RANDOM%8+$RANDOM%2));7m ${b##**/} \e[0m "; done; }; 
 #printf "\e[96m"; figlet -c -f Big_Money-ne "h e l_ l_ o" 2>/dev/null|batcat -ppfl Zig 2>/dev/null; 
-if [ -z $PREFIX ]; then alias ipa='ip -c a'; [ -e "/bin/neofetch" ]&& neofetch; 
-else alias ipa='ifconfig'; [ -e "$PREFIX/bin/fastfetch" ]&& fastfetch; fi; 
-# getprop ro.product.system.model 2>/dev/null; hostnamectl& disown 2>/dev/null; 
-printf "\e[2;97m"; date +%^A" "%d" "%^B" "%Y" $(printf "\e[0m- \e[0;1;96m")"%T; printf "\e[0;1m"; 
-uname --kernel-name --kernel-release --operating-system --machine; 
-ip_pub=$(timeout 2 curl ip.me -s4 & disown); 
-ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
-blue='\e[34m'; re='\e[0m'; cyan='\e[36m'; pink='\e[35m'; green='\e[32m'; red='\e[31m'; 
-if [ $(id -u) != 1000 ]; then me="$blue$USER$re"; 
-elif [ $(id -u) = 0 ]; then me="$red$USER$re"; 
-else me="$cyan$USER$re"; fi; 
-printf "$blue$ip_pub$re - $cyan$ip_loc$re   $SSH_CLIENT
-$me$re @ $green$HOSTNAME$re - $red$TERM$re\e[2;97m\n"; 
-timeout 2 curl -s ipinfo.io|tr -d '}{ ""'|batcat -ppfl d & disown; 
-#fortune|batcat -ppl c# date +%A" "%B" "%F" "%T 
-####################
-PS1='\e[0m\e[2;3;40m\t'${me}'\e[0;1;40m@\e[0;2;35;40m\H\e[32m$PWD\e[0m\n'
+# bs=(${BASH_CMDS[@]} ${BASH_COMMAND[@]})
+#bs=(cmds $(printf "(${BASH_CMDS[@]} ${BASH_COMMAND[@]})"|batcat -ppfl d));
+#printf "${bs[*]}"
+#################################################
+#################################################
+## GET IP:S #####################################
+ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
+ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1);
+#################################################
+## COLORS -- VARIABLES ##########################
+key='\e[30m'; red='\e[31m'; green='\e[32m';
+yellow='\e[33m'; blue='\e[34m'; pink='\e[35m';
+cyan='\e[36m'; white='\e[37m'; rev='\e[7m';
+re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m'; 
+csys="$(uname --kernel-name --kernel-release --operating-system --machine|batcat -ppfl d;)"
+[ "$UID" = "0" ]&& ss="\e[0;41m\e[32m"
+me=$(whoami); uc="\e[48;5;$((UID-952))m"; yo="${uc}$ss${me}"; 
+##################################################
+## SYSTEM // INFO ################################
+printf "hello!\n"; date; 
+printf "$csys$re | $red$bold$TERM$re
+$dim$(id --groups -n)$re
+$dim$yellow${ip_pub[4]}$re//$dim$green${ip_pub[2]}$re//$dim$blue${ip_pub[3]}$re\n"; 
+printf "\n\e[46;2m\t"; 
+date +" -- "%^A" "%d" "%^B" "%Y" $(printf "\e[7;38;5;200m - \e[2;37;36m") "%T" -- $(printf "\e[0m")"; 
+## QUOTES!! ######################################
+printf "\e[2m --$re\n"; 
+fortune -s 2>/dev/null|batcat -ppfl go; printf "\e[2m --\n";  
+##################################################
+printf "$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re \n\e[2m --$re\n";
+##################################################
+[ "$LF_LEVEL" ]&& printf "\e[7;97m -- LF_LEVEL -- \e[0m=$LF_LEVEL\n"; 
+# for i in {1..6}; do printf "  \e[1C\e[$((COLUMNS-12))G\e[2;4${i}m $i "; read -t1 -n1 -srep " " dd; [ -n "$dd" ]&& return 0; done; 
+# printf "\n\n\e[2A -- welcome! $dim[${re}x${dim}]$re to $blue$SHELL $re//$red$TERM$re$dim !! \n\n"; rere=x; read -t6 -srep " " -n1 "rere"&& 
+# [ "$rere" != "x" ]&& neofetch& disown;
+# [ "$rere" = "x" ]&& [ $DISPLAY ]||startx 2>/dev/null; 
+
+PS1='\e[0m\e[2;3m\t\e[0m - '${yo}'\e[0;2;40m@\e[32;40m\H\e[1;32m$PWD\e[0m\e[2A
+\e7\e[H\e[2K\e[44m\n\e[H$(bs)\e[2;40m ${BASH_COMMAND} \e8\n'
+####

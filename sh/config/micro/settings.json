@@ -1,6 +1,6 @@
 {
     "autoclose": false,
-    "colorscheme": "solarized-tc",
+    "colorscheme": "nord-tc",
     "fakecursor": true,
     "mkparents": true,
     "savecursor": true,

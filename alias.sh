@@ -14,7 +14,10 @@ alias ee='echo ';
 alias ll='lsd -l --extensionsort --group-directories-first -tr'
 alias la='lsd --extensionsort --group-directories-first -Altr'
 alias psp='tput indn 12 cuu 8;'
+alias aascihelp='batcat -pfl d $ants/sh/info/ansii.md'
+alias ansihelp='aascihelp' 
 note() {
+echo -e "\n\n -- syncing...\n\n"; 
 gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||
 (read -n1 -rep "-- login with token? [Y/n] " "yn"; [ "$yn" ]&& return; 
 printf "\n\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
@@ -24,6 +27,10 @@ gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n";
 printf "\n  try again \n\n"; )
 }
 alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c'
+# less (){
+# 
+# }
+alias iiii='$EDITOR $ants/sh/config/inputrc.sh; echo gg; '
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 alias 12_='menu $ants/12'
@@ -97,17 +104,18 @@ linesh=222;
 [ -n "${1} "]&& linesh="${1}";
 tail ~/.bash_history -n${linesh}|batcat -ppl c;
 }
-kat() {
-unset -v kat; 
-if [ "${1}" = "help" ] 2>/dev/null; then 
-batcat -h|batcat -fp --language d;
-return 0; fi; 
-[ $2 ]&& lng="${2}"; [ $2 ]|| lng="sh"; 
-[ $1 ] 2>/dev/null||ls -p --color --group-directories-first --hyperlink; 
-[ $1 ] 2>/dev/null||read -rep "$c2 kat file: " -i "$PWD/" kat;
-[ $2 ]&& batcat -Ppf $kat $1 --language $lng||batcat -Ppf $kat $1;
-
-}
+alias kat='batcat -pf --language D'
+# kat() {
+# unset -v kat; 
+# if [ "${1}" = "help" ] 2>/dev/null; then 
+# batcat -h|batcat -fp --language d;
+# return 0; fi; 
+# [ $2 ]&& lng="${2}"; [ $2 ]|| lng="sh"; 
+# [ $1 ] 2>/dev/null||ls -p --color --group-directories-first --hyperlink; 
+# [ $1 ] 2>/dev/null||read -rep "$c2 kat file: " -i "$PWD/" kat;
+# [ $2 ]&& batcat -Ppf $kat $1 --language $lng||batcat -Ppf $kat $1;
+# 
+# }
 alias ips='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
 alias fill='seq -s "" 2222';
 alias 12_nuke_ants='
