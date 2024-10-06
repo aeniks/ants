@@ -314,3 +314,14 @@ alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_H
 alias pub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:oioioioi -u 1000 -w /home/aa/GitHub/ -p $popo -Wo bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
 alias pppp='cd /ants; push; ssh aa@ants.ftp.sh "cd ants; git pull"' 
+alias apa='sudo apt install'
+
+alias apa='sudo apt install'
+alias save_as_alias='printf "\n\n\n\n\n\n
+\e[5A\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
+read -p " " -re "qq"; 
+printf "\e[0m -- choose \e[1;35malias-name:\e[0m\n --\e[35m alias:\n";
+read -p " " -re "ii"; 
+printf "\nalias $ii=$(quote "$qq")\n" | tee -a $ants/alias.sh'
+
+alias s4='byobu-layout restore 1'

@@ -283,13 +283,13 @@ lf -remote "send $id set user_selected_size $s" }}
 set cursorparentfmt "\033[44m" 
 set cursorpreviewfmt "\033[4m" 
 set cursoractivefmt "\033[7m" 
-set drawbox true
+set drawbox false
 set mouse
 set icons
 set shell bash
 set info size:time
-set sortby natural
-#set reverse 
+set sortby time
+set reverse 
 %test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
 source "~/.config/lf/opener"
 source "~/.config/lf/lf_m"
