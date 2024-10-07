@@ -54,7 +54,7 @@ csys="$(uname --kernel-name --kernel-release --operating-system --machine)"
 printf "$csys$re$dim | $re$red$TERM$re$dim | $white$SHELL $re
 $cyan$USER$re@$pink$HOSTNAME$re//$dim$yellow${ip_pub[4]}$re//$dim$green${ip_pub[2]}$re//$dim$blue${ip_pub[3]}$re\n\n"; 
 ## QUOTES!! ######################################
-printf " \t\t >_< \n\n    $SSH_CLIENT"|batcat -ppfl d;  
+printf " \t\t >_< \n $SSH_CLIENT \n\n"|batcat -ppfl d; echo 
 quotes||apt install fortune; 
 ##################################################
 ## IP;S !! #######################################
