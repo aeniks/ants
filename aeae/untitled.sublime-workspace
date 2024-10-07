@@ -1,0 +1,218 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"li",
+				"line-height"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"ali",
+				"align-items"
+			]
+		]
+	},
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"ASCII Decorator: Generate Font Test (Lorem Ipsum)"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"format",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package c",
+				"Package Control: Install Package"
+			],
+			[
+				"form",
+				"Preferences: Prettierd Format"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/aa/Templates/term.png.html",
+		"/home/aa/Templates/index_good.html",
+		"/home/aa/Templates/bash.sh",
+		"/home/aa/Templates/bash_menu.sh",
+		"/home/aa/Templates/index.html",
+		"/home/aa/Templates/aaaa.html",
+		"/home/aa/aeae/index.html",
+		"/home/aa/aeae/aetime.sh",
+		"/home/aa/aeae/time_aesome.sh",
+		"/ants/bash.sh",
+		"/home/aa/.config/sublime-text/Packages/User/Preferences.sublime-settings",
+		"/home/aa/.config/sublime-text/Packages/Default/Preferences.sublime-settings",
+		"/home/aa/Pictures/lele44svg.svg",
+		"/home/aa/pub/leonel/index.html",
+		"/home/aa/pub/zzzz.html",
+		"/media/aa/kubuntu_2404/home/aa/.fonts.conf",
+		"/media/aa/kubuntu_2404/home/aa/.local/share/recently-used.xbel",
+		"/tmp/tmpecs3p7.txt",
+		"/tmp/tmpnrngkq.txt",
+		"/home/aa/Documents/IMG_20190715_073339_1.svg",
+		"/home/aa/Desktop/pub/bosse/index.html",
+		"/home/aa/Desktop/pub/bosse/css.css",
+		"/home/aa/Public/bbbb/index.html",
+		"/home/aa/Public/bbbb/.blaze/style/default.css",
+		"/home/aa/Desktop/kk/kj.sh",
+		"/home/aa/Desktop/pub/leonel/index.html",
+		"/home/aa/Desktop/pub/1212/index.html",
+		"/home/aa/.config/sublime-text/Packages/User/Default (Linux).sublime-keymap",
+		"/home/aa/.config/sublime-text/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/aa/Desktop/1212/2.html",
+		"/home/aa/Desktop/leonel/index.html"
+	],
+	"find":
+	{
+		"height": 41.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 41.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"menu_visible": true,
+	"output.figlet_preview":
+	{
+		"height": 194.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"replace":
+	{
+		"height": 76.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 279.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
