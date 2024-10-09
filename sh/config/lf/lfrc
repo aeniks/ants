@@ -7,7 +7,8 @@ map F setfilter
 map <c-f> :filter ** 
 map <c-r> reload
 map <c-q> quit
-map <c-c> quit
+cmap <c-d> ""
+map <c-d> quit
 map <?> maps
 map <pgdn> half-down
 map <s-down> invert-below
@@ -69,12 +70,12 @@ map sh :cmds
 map H :maps 
 map m :push %mkdir<space>
 map oD :depl
-map t tag-toggle
-map l !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
+map t :tajm
+# map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
 map <enter><enter> dial 
 map <enter>c !chafa $f 
 map <enter>b $batcat --paging always -ld --decorations never $f 
-map g :lala
+map l :lenk
 # map <enter> pger
 map - maps
 map _ cmds
@@ -98,8 +99,27 @@ map j !printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_wid
 # map x $printf "\033[?47h\033[H\033[0J -- exif-viewer -- \n\n"; [ -x "/bin/exiftool" ]&&(exiftool $f; jp2a --width=88 --color-depth=8 $f)|batcat -pfl c --paging always; printf "\033[?47l"; 
 
 # map x $printf "\033[?47hh \n\n\n\n\033[2A"; exiftool $f|batcat -fpl c; read -n1 -prs "" 2>/dev/null; printf "\033[?47l"; 
+cmd tajm ${{ 
+printf "\e[?47h\e[2J"; date +%R|figlet -w $COLUMNS -c -f Big_Money-nw|batcat -ppflrs; date +%^A%n%-d" "%^B|figlet -w $COLUMNS -c -f miniwi|batcat -ppflr; printf  "\n\n\n\n"; fortune|batcat -ppfld; printf "\n\n"; read -t60 -n1 -srp " " "aa"; [ -z "$aa" ]&& printf "\e[?47l\n\ngg\n\n"; [ -z "$aa" ]&&tajm
+}} 
+cmd tajm2 ${{
+[ "$lf_width" ]||lf_width=${COLUMNS}; 
+[ "$lf_height" ]||lf_height=${LINES}; 
+printf "\e[$((lf_height/2-12))H"; 
+printf "\n\e[2J\e[2;38;5;24m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%A);  
+printf "\n\e[2K\e[2;38;5;224m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%d); 
+printf "\n\e[2K\e[2;38;5;124m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%B); 
+printf "\n\e[2K\e[2;38;5;14m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%Y); 
+[ "$PREFIX" ]&& s="-s";	fortune $s|batcat -ppfl d; 
+printf "\n\e[0;1;37m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%H" : "%M);
+printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\e[25m\e[0m"; 
 
-cmd lala ${{ 
+
+}} 
+
+
+
+cmd lenk ${{ 
 read -rep "ln from: $(printf "\e[96m")" -i "$fx" "kk"; read -rep "$(printf "\e[0m")to: $(printf "\e[92m")" -i "$PWD" "kt"; printf "\e[0m"; ln "${kk}" "${kt}" --symbolic; ls $kt; sleep 1; 
 }} 
 
@@ -152,15 +172,16 @@ mkdir -p ~/.trash 2>/dev/null;
 mv $fx ~/.trash/;
 elif [ "$ans" = "d" ]; then
 rm -rf $fx;
-fi; 
-}}
-cmd delete ${{
-set -f
-printf "\n\n\n\n$fx\n"
+elif [ "$ans" = "p" ]; then
 printf "delete? [Y/n]"
 read -n1 -rp " " "ans"; 
 if [ "$ans" != "n" ]; then 
 rm -rf $fx; else echo ok; fi; 
+fi; 
+}}
+cmd delete ${{
+set -f; printf "\n\n\n\n$fx\n"; printf "delete? [Y/n]"; read -n1 -rp " " "ans"; 
+if [ -z "$ans" ]; then rm -rf $fx; elif [ "$ans" = y ]; then rm -rf $fx; fi; 
 }}
 
 # use '<delete>' key for either 'trash' or 'delete' command
