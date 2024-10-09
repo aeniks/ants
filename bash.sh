@@ -65,6 +65,7 @@ printf "$re\n\n$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re\n\n";
 # printf "\n\n\e[2A -- welcome! $dim[${re}x${dim}]$re to $blue$SHELL $re//$red$TERM$re$dim !! \n\n"; rere=x; read -t6 -srep " " -n1 "rere"&& 
 # [ "$rere" != "x" ]&& neofetch& disown;
 # [ "$rere" = "x" ]&& [ $DISPLAY ]||startx 2>/dev/null; 
+ghuser="aeniks"; 
 PS1='\e[0m\e[2;3m\t\e[36;30;2m|'${yo}'\e[0;2;40m@\e[35;40m\H\e[48;5;224m\e[34m$PWD/\e[0m\n'
 ####
 
