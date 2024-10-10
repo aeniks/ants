@@ -54,19 +54,33 @@ csys="$(uname --kernel-name --kernel-release --operating-system --machine)"
 printf "$csys$re$dim | $re$red$TERM$re$dim | $white$SHELL $re
 $cyan$USER$re@$pink$HOSTNAME$re//$dim$yellow${ip_pub[4]}$re//$dim$green${ip_pub[2]}$re//$dim$blue${ip_pub[3]}$re\n\n"; 
 ## QUOTES!! ######################################
-printf " \t\t >_< \n $SSH_CLIENT \n\n"|batcat -ppfl d; echo 
-quotes||apt install fortune; 
+#printf " \t\t >_< \n\n"; 
+#quotes||apt install fortune; 
+####
+if [ "$TERMUX_APP_PID" ]; then 
+a_manu="$(getprop ro.product.manufacturer)"; 
+a_cpu="$(getprop ro.product.cpu.abi)"; 
+a_vers="$(getprop ro.product.build.version.release_or_codename)"; 
+a_model="$(getprop ro.product.model)"; 
+a_device="$(getprop ro.product.device)"; 
+printf "\n$a_manu [${a_model}] -- build: ${a_device} [${a_vers}] -- cpu $a_cpu -- \n\n";  
+else hostnamectl; fi
 ##################################################
 ## IP;S !! #######################################
-printf "$re\n\n$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re\n\n";
+printf "$re\n\n$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re\n";
+[ "$SSH_TTY" ]&& printf "\e[0m\e[36m$SSH_CONNECTION\e[0m\n"
+
 ##################################################
+
 [ "$LF_LEVEL" ]&& printf "\e[7;97m -- LF_LEVEL -- \e[0m=$LF_LEVEL\n"; 
 # for i in {1..6}; do printf "  \e[1C\e[$((COLUMNS-12))G\e[2;4${i}m $i "; read -t1 -n1 -srep " " dd; [ -n "$dd" ]&& return 0; done; 
 # printf "\n\n\e[2A -- welcome! $dim[${re}x${dim}]$re to $blue$SHELL $re//$red$TERM$re$dim !! \n\n"; rere=x; read -t6 -srep " " -n1 "rere"&& 
 # [ "$rere" != "x" ]&& neofetch& disown;
 # [ "$rere" = "x" ]&& [ $DISPLAY ]||startx 2>/dev/null; 
-ghuser="aeniks"; 
+ghuser="aeniks"; ghmail="leon@12ants.com"
+export TERM="xterm-256-color"
 PS1='\e[0m\e[2;3m\t\e[36;30;2m|'${yo}'\e[0;2;40m@\e[35;40m\H\e[48;5;224m\e[34m$PWD/\e[0m\n'
 ####
+
 
 
