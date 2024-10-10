@@ -37,7 +37,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #################################################
 ## GET IP:S #####################################
 ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
-ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1);
+ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
 #################################################
 ## COLORS -- VARIABLES ##########################
 key='\e[30m'; red='\e[31m'; green='\e[32m';
@@ -47,38 +47,36 @@ re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m';
 csys="$(uname --kernel-name --kernel-release --operating-system --machine)"
 # csys="$(uname --kernel-name --kernel-release --operating-system --machine|batcat -ppf --language nim)"
 
-[ "$UID" = "0" ]&& ss="\e[0;41m\e[32m"; me=$(whoami); uc="\e[48;5;16${UID:(-1)}m"; yo="${uc}$ss${me}"; 
 ## $dim$(id --groups -n)$re
 ##################################################
 ## SYSTEM // INFO ################################
-printf "$csys$re$dim | $re$red$TERM$re$dim | $white$SHELL $re
-$cyan$USER$re@$pink$HOSTNAME$re//$dim$yellow${ip_pub[4]}$re//$dim$green${ip_pub[2]}$re//$dim$blue${ip_pub[3]}$re\n\n"; 
+#printf "$re//$dim$yellow${ip_pub[4]}$re//$dim$green${ip_pub[2]}$re//$dim$blue${ip_pub[3]}"; 
+[ "$UID" = "0" ]&& ss="\e[0;41m\e[32m"; me=$(whoami); uc="\e[48;5;16${UID:(-1)}m"; yo="${uc}$ss${me}"; 
+printf "$re${dim}··········${re}\n$cyan$me$re@$pink$HOSTNAME$re | ${dim}"; date
+printf "$re${dim}··········\n$csys$re | $red$TERM$re | $dim$white$SHELL $re"; 
 ## QUOTES!! ######################################
 #printf " \t\t >_< \n\n"; 
 #quotes||apt install fortune; 
-####
+#############################################
+#############################################
+[ "$LF_LEVEL" ]&& printf "\e[0;97m -- LF_LEVEL -- \e[0m=$LF_LEVEL\n"; 
+[ "$LF_LEVEL" ]&& printf "\e[0;97m -- LF_LEVEL -- \e[0m=$LF_LEVEL\n"; 
+############################################
 if [ "$TERMUX_APP_PID" ]; then 
-a_manu="$(getprop ro.product.manufacturer)"; 
-a_cpu="$(getprop ro.product.cpu.abi)"; 
-a_vers="$(getprop ro.product.build.version.release_or_codename)"; 
-a_model="$(getprop ro.product.model)"; 
-a_device="$(getprop ro.product.device)"; 
-printf "\n$a_manu [${a_model}] -- build: ${a_device} [${a_vers}] -- cpu $a_cpu -- \n\n";  
-else hostnamectl; fi
+a_manu="$(getprop ro.product.manufacturer)"; a_cpu="$(getprop ro.product.cpu.abi)"; a_vers="$(getprop ro.product.build.version.release_or_codename)"; a_model="$(getprop ro.product.model)"; a_device="$(getprop ro.product.device)"; 
+printf "\n${re}[${dim}${a_model}${re}] $a_manu$dim --$re $a_cpu$dim -- $re${a_device}$dim [$re${a_vers}${dim}]$re --";  
+else printf ""; fi 
 ##################################################
 ## IP;S !! #######################################
-printf "$re\n\n$blue${ip_pub[0]:3}$re\n$cyan$ip_loc$re\n";
-[ "$SSH_TTY" ]&& printf "\e[0m\e[36m$SSH_CONNECTION\e[0m\n"
-
+printf "\n$re${dim}··········\n$re$blue${ip_pub[0]:3}\n${re}$cyan$ip_loc$re"; 
+[ "$SSH_TTY" ]&& printf "\n\e[0mssh login: \e[31m${sshc}${re} : \e[34m${sshc[2]}\e[0m"
 ##################################################
 
-[ "$LF_LEVEL" ]&& printf "\e[7;97m -- LF_LEVEL -- \e[0m=$LF_LEVEL\n"; 
 # for i in {1..6}; do printf "  \e[1C\e[$((COLUMNS-12))G\e[2;4${i}m $i "; read -t1 -n1 -srep " " dd; [ -n "$dd" ]&& return 0; done; 
 # printf "\n\n\e[2A -- welcome! $dim[${re}x${dim}]$re to $blue$SHELL $re//$red$TERM$re$dim !! \n\n"; rere=x; read -t6 -srep " " -n1 "rere"&& 
 # [ "$rere" != "x" ]&& neofetch& disown;
 # [ "$rere" = "x" ]&& [ $DISPLAY ]||startx 2>/dev/null; 
-ghuser="aeniks"; ghmail="leon@12ants.com"
-export TERM="xterm-256-color"
+printf "\n$re${dim}··········${re}\n"; 
 PS1='\e[0m\e[2;3m\t\e[36;30;2m|'${yo}'\e[0;2;40m@\e[35;40m\H\e[48;5;224m\e[34m$PWD/\e[0m\n'
 ####
 
