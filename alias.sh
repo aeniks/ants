@@ -73,7 +73,6 @@ cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-dir
 alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; 
 #############################
 alias o='/home/aa/go/bin/o'
-alias w='walk --icons'
 alias kkkk='sudo batcat -Ppfl c --line-range 1:88
  "/home/aa/.local/share/klipper/history2.lst"'
 ###############################
