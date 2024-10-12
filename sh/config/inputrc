@@ -8,8 +8,9 @@ Control-o: 'cd $(lf -print-last-dir); \n'
 Control-d: '\n exit \n'
 Control-p: 'sed -n l;\n' 
 Control-d: 'kill-whole-line;\nexit;\n'
-Control-q: '\nexit\nkill-whole-line;\nexit;\n'
+Control-q: 'kill-whole-line;\nexit;\n'
 Control-x: 'exec bash\n'
+Control-h: 'hh\n'
 "\eq": logout 
 # Control-s: 'history -a; history -n; printf "history \e[35m$HISTFILE\e[0m"; \ncat $HISTFILE|tac|fzf -m --no-sort --height 22";'
 # Control-s: 'history -a; history -n; cat $HISTFILE|tac|fzf -m --no-sort --height 22 --header "$HISTFILE / ";'
@@ -56,6 +57,7 @@ set show-mode-in-prompt off
 #"\e[3;3~": shell-kill-word
 # Option + c : Capitalize current word
 #"\ec": capitalize-word
+"\ez": 'cd -\015'
 # Option + l : lowercase current word
 #"\el": downcase-word
 # Option + u : UPPERCASE current word
@@ -65,7 +67,6 @@ set show-mode-in-prompt off
 # Option + x : Change dir to last word of last command and run 'lll'
 # "\ex": 'cd !$ \015lll\015'
 # Option + z : Undo a dir change
-"\ez": 'cd -\015'
 # Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
 set convert-meta on
 set input-meta   on

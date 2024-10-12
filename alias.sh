@@ -255,7 +255,9 @@ printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done; '
 #### IP_STUFF ##############################
 ############################################
 ############################################
-alias serch='printf "\e[A\e[K\e[8B\e[8A\e\n\n[2m --$re search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height 62% --header " -- $ss --")); printf "$dim --$re SELECTED: \n\n${kk[*]}\n\n$dim --$re variable$dim=$re\$kk \n\n"kill-whole-line;' 
+alias hh='printf "\e[0m\e[A\e[K\e[7m ------- $re"; kk=($(tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n"; '
+alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
+alias serch='sel'
 #alias fakta='neofetch 2>/dev/null '
 alias gg='tput indn 8 cuu 4; read -ep "$c2 " -i "google: " "google"; googler "https://www.google.com/search?q=$google"'
 alias zz="ranger 2>/dev/null" 
