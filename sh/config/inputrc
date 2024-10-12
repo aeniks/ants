@@ -2,15 +2,18 @@
 #Control-r: 'hh \n'
 #Control-x: 'exec bash \n'
 #Control-z: 'bg \n'
+
 Control-t: 'klock \n'
 Control-o: 'cd $(lf -print-last-dir); \n'
 Control-d: '\n exit \n'
 Control-p: 'sed -n l;\n' 
-Control-d: 'kill-whole-line;\n exit; \n'
-Control-q: '\n exit \n'
+Control-d: 'kill-whole-line;\nexit;\n'
+Control-q: '\nexit\nkill-whole-line;\nexit;\n'
 Control-x: 'exec bash\n'
 "\eq": logout 
-
+# Control-s: 'history -a; history -n; printf "history \e[35m$HISTFILE\e[0m"; \ncat $HISTFILE|tac|fzf -m --no-sort --height 22";'
+# Control-s: 'history -a; history -n; cat $HISTFILE|tac|fzf -m --no-sort --height 22 --header "$HISTFILE / ";'
+Control-f: 'kill-whole-line;\nsearch_history\n'
 # Cortrol-l 
 # kdm bash-env
 # .inputrc
@@ -18,14 +21,18 @@ Control-x: 'exec bash\n'
 #
 # https://man.archlinux.org/man/readline.3
 "\e1": dump-functions
+# "\es": 'printf "\e[A\e[K\e[8B\e[8A\e\n\n[2m --$re search folder: ";\n read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height 62% --header " -- $ss --"));\n printf "$dim --$re SELECTED: \n\n${kk[*]}\n\n$dim --$re variable$dim=$re\$kk \n\n"; \n '
+"\es": '\nserch\n'
 "\e2": dump-variables
 "\e3": dump-macros
 set show-mode-in-prompt off
 # bind -l: List functions
 # `bind -p`  : List functions      and bindings
-# `bind -v`  : List variable names and values
+# `bind C-v`  : List variable names and values
 #See actual character input coming into the terminal"
 # Delete-forward : Delete following character
+
+
 "\e[3~": delete-char
 # Page up : Move backwards through completion history
 "\e[5~": history-search-backward
@@ -94,16 +101,16 @@ set mark-symlinked-directories on
 # Do not tab-complete hidden files unless the pattern explicitly begins with a dot
 set match-hidden-files on
 # Turn off the use of the internal pager when returning long tab-completion lists
-set page-completions off
+set page-completions on
 # Display completions with matches sorted horizontally in alphabetical order, rather than down the screen
-set print-completions-horizontally off
+set print-completions-horizontally on
 # Only require single tab key press for tab-completion
 # (Default is double tab key press)
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set skip-completed-text on
 # Colored file types
-set colored-stats off
+set colored-stats on
 # Suffix each returned file tab-completion with a character denoting its type
 set visible-stats on
 # Include global inputrc files

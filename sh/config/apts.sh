@@ -1,0 +1,11 @@
+
+
+
+
+
+
+
+fzf
+ncdu 
+lf
+micro

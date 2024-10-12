@@ -255,6 +255,7 @@ printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done; '
 #### IP_STUFF ##############################
 ############################################
 ############################################
+alias serch='printf "\e[A\e[K\e[8B\e[8A\e\n\n[2m --$re search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height 62% --header " -- $ss --")); printf "$dim --$re SELECTED: \n\n${kk[*]}\n\n$dim --$re variable$dim=$re\$kk \n\n"kill-whole-line;' 
 #alias fakta='neofetch 2>/dev/null '
 alias gg='tput indn 8 cuu 4; read -ep "$c2 " -i "google: " "google"; googler "https://www.google.com/search?q=$google"'
 alias zz="ranger 2>/dev/null" 
@@ -300,3 +301,7 @@ printf "\nalias $ii=$(quote "$qq")\n" | tee -a $ants/alias.sh'
 
 alias s4='byobu-layout restore 1'
 alias mo='ssh -p 8022 192.168.0.108'
+alias search_history='history -a; history -n; cat $HISTFILE|tac|\
+fzf -m --no-sort --height 22 --header "$HISTFILE / ";'
+alias h='search_history'; 
+alias allias='cat $HISTFILE|tac|fzf -m --no-sort --height 16|tee -a $ants/alias.sh; '
