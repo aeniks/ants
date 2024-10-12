@@ -50,9 +50,10 @@ ip_mac=$(ifconfig|grep "ether"|cut -f10 -d" "); sshc=($SSH_CLIENT);
 ## COLORS -- VARIABLES ##########################
 key='\e[30m'; red='\e[31m'; green='\e[32m'; ee='echo';
 yellow='\e[33m'; blue='\e[34m'; pink='\e[35m';
-cyan='\e[36m'; white='\e[37m'; rev='\e[7m'; nn='\e[B'
+cyan='\e[36m'; white='\e[37m'; rev='\e[7m'; nn='0000\n'
 re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m'; 
-me="$(whoami)"; e='\e'; esc='\1xb'; 
+me="$(whoami)"; e='\e'; 
+# esc='\1xb'; 
 [ "$TERMUX" ]&& nn=$(printf '\n'); 
 printf "$HOME"|grep "termux" && PS1=''${PS1}'\n';
 
@@ -69,17 +70,17 @@ else export s='sudo'; fi;
 ########
 printf -v shall "${0/*\//}"; 
 printf "\n"; date; 
-printf "$re${dim}··········$yellow\n$($s who --count|tr "\n" "\t";) \n"; 
-printf "$re${dim}··········\n";  
-printf "$(uname --kernel-name;)$re - $dim${BASH_VERSINFO[-1]}$re -$dim "; 
+printf "$re${dim}··········$yellow\n"; 
+[ "$s" ]&& $s who --count|tr "\n" "\t"; 
+printf "\n$re${dim}··········\n";  
+printf "$(uname --kernel-name;)$re | $dim${BASH_VERSINFO[-1]}$re |$dim "; 
 uname --kernel-release; uname --kernel-version; 
-printf "$re${dim}··········$re"; 
-printf "\n$re${shall}$dim $BASH_VERSION$re | $red$TERM \n"; 
+printf "$re${shall}$dim $BASH_VERSION$re | $red$TERM \n"; 
 printf "$re${dim}··········$re\n"; 
 [ "${SSH_CLIENT}" ] && printf "\n$re $red${sshc}:$dim${sshc[2]}$re >> "; 
 printf "$cyan$ip4$re | $blue$ip_loc$re"; 
 printf "\n$re${dim}··········"; 
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
-printf "\n$re${dim}··········$re\n\n"; 
+printf "\n$re${dim}··········$re\n$(fortune)\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
 

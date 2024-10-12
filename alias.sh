@@ -256,7 +256,7 @@ printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done; '
 ############################################
 ############################################
 alias search_history='printf "\e[0m\e[A\e[K\e[7m ------- $re"; kk="$(tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --")"; printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n"; '
-alias hh='search_history'
+alias hh='printf "\e[A\e[0K \e[7m--\e[0m\n\n"; tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --"|tee -a ~/histcmd.sh'
 alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 alias serch='sel'
 #alias fakta='neofetch 2>/dev/null '
