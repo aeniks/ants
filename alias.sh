@@ -255,12 +255,32 @@ printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done; '
 #### IP_STUFF ##############################
 ############################################
 ############################################
-alias search_history='printf "\e[0m\e[A\e[K\e[7m ------- $re"; kk="$(tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --")"; printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n"; '
-alias hh='printf "\e[A\e[0K \e[7m--\e[0m\n\n"; tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --"|tee -a ~/histcmd.sh'
+alias hhhhhh='
+printf "\e[0m\e[A\e[K\e[7m ------- \n $HISTFILE $re"; 
+kk=($(tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n"; 
+read -rep " -- run $kk ? [Y/n] " yno; [ -z "${yno}" ]&& ${kk};
+printf "gg"; 
+'
+# alias hh='printf "\e[A\e[0K \e[7m--\e[0m\n\n"; tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --"|tee -a ~/histcmd.sh'
+
+alias search_history='printf "\e[0m\e[A\e[K\e[7m ------- \n $HISTFILE $re\n\n";
+hm="$(tac $HISTFILE|fzf -m --no-sort --height ~88%)"; 
+printf "\e[0m\n ---- \n"; 
+echo "$hm"; printf "[1] write to file \n[2] run command  \n";
+read -sren1 "run"; 
+if [ $run  = 1 ]; then printf "\n${hm}\n -- write to: "; 
+read -rep " " -i "$PWD/" "ht"; ht=${ht/ /}; printf "\n${hm}\n" >> "${ht}"; fi; 
+if [ $run  = 2 ]; then 
+$hm; fi; ' 
+ 
+
 alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 alias serch='sel'
 #alias fakta='neofetch 2>/dev/null '
-alias gg='tput indn 8 cuu 4; read -ep "$c2 " -i "google: " "google"; googler "https://www.google.com/search?q=$google"'
+gg() { 
+google="${@}"; 
+tput indn 8 cuu 4; read -rep "$c2 google: " -i "$google" "google"; googler "https://www.google.com/search?q=$google"; } 
+
 alias zz="ranger 2>/dev/null" 
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
@@ -284,9 +304,9 @@ if [ -x /usr/games/cowsay ]; then cows=($(ls /usr/share/cowsay/cows|sed s/.cow//
 alias 12_quote="/usr/games/fortune"
 alias push='git add --all; git commit --all -m $(date +%F_%H_%M); git push'
 alias pull='git pull'
-alias info_cm'=less $ants/sh/info/cmd.sh'
-alias cm2'=cat $ants/sh/cmd.sh'
 alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
+alias cm2'=cat $ants/sh/cmd.sh'
+# alias yno='read -n1 -p "$re$c2$dim ["$re$bold"Y$dim/"$re$bold"n$dim]$re " "yn"; if [ "$yn" == "${yn#[Nn]}" ]; then echo yes; fi;'
 ################################
 alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_Hello"|batcat -ppfl zig; printf "\n\n"'
 alias pub='curl ip.me -4'
@@ -308,7 +328,7 @@ alias h='search_history';
 alias allias='cat $HISTFILE|tac|fzf -m --no-sort --height 16|tee -a $ants/alias.sh; '
 me() {
 printf "\n $@ \n";
-printf "\n hello$USER !";  
+printf "\n hello  $USER !";  
 
 read -resn1 -p "$@" qq;
 }; 
