@@ -17,23 +17,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 . $ants/alias.sh; 
 [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
 # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
-# HSTR configuration - add this to ~/.bashrc
-# alias hs=hstr                    # hh to be alias for hstr
-# export HSTR_CONFIG=hicolor       # get more colors
-# shopt -s histappend              # append new history items to .bash_history
-# export HISTCONTROL=ignorespace   # leading space hides commands from history
-# export HISTFILESIZE=10000        # increase history file size (default is 500)
-# export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
-# ensure synchronization between bash memory and history file
-# export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
 export PROMPT_COMMAND="history -a; history -n;"; 
-# function hstrnotiocsti {
-#     { READLINE_LINE="$( { </dev/tty hstr ${READLINE_LINE}; } 2>&1 1>&3 3>&- )"; } 3>&1;
-#     READLINE_POINT=${#READLINE_LINE}
-# }
-# # if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
-# if [[ $- =~ .*i.* ]]; then bind -x '"\C-r": "hstrnotiocsti"'; fi
-# export HSTR_TIOCSTI=n
 ######## NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -44,7 +28,8 @@ export NVM_DIR="$HOME/.nvm"
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
 ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
 ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
-ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); sshc=($SSH_CLIENT); 
+#ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); 
+sshc=($SSH_CLIENT); 
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
 #################################################
 ## COLORS -- VARIABLES ##########################
@@ -53,10 +38,6 @@ yellow='\e[33m'; blue='\e[34m'; pink='\e[35m';
 cyan='\e[36m'; white='\e[37m'; rev='\e[7m'; nn='0000\n'
 re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m'; 
 me="$(whoami)"; e='\e'; 
-# esc='\1xb'; 
-# [ "$TERMUX" ]&& ret='\e[A'; 
-# printf "$HOME"|grep "termux" ||ne='\e[0m\n'; 
-#[ "$TMP" ]&& export $TMP; [ -f "$TMP" ]||read -rep 'tmp? ' -i "$PWD" "TMP"; 
 ##########################
 ##################################################
 ## SYSTEM // INFO ################################
@@ -66,7 +47,7 @@ if [ "$(id -u)" -gt "0" ]; then export s=' ';
 elif [ $(echo $HOME|grep "termux") ]; then export s=' '; nn='\n'
 else export s='sudo'; fi; 
 ########
-printf "\n"; date; 
+date; #### begin printf here ################
 printf "$re${dim}··········$yellow\n"; 
 uptime|cut -c2-; 
 printf "$re${dim}··········\n";  
@@ -74,13 +55,12 @@ qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)";
 qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
 qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 qqshell="${0/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
-printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $red$qqterm$sep $re$dim$qqos\n"; 
+printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 printf "$re${dim}··········$re\n"; 
 [ "${SSH_CLIENT}" ] && printf "\n$re $red${sshc}:$dim${sshc[2]}$re >> "; 
 printf "$cyan$ip4$re | $blue$ip_loc$re"; 
 printf "\n$re${dim}··········"; 
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
 printf "\n$re${dim}··········$re\n$(fortune)\n"; 
-
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
 
