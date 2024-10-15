@@ -257,13 +257,14 @@ printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done; '
 ############################################
 alias hhhhhh='
 printf "\e[0m\e[A\e[K\e[7m ------- \n $HISTFILE $re"; 
-kk=($(tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n"; 
-read -rep " -- run $kk ? [Y/n] " yno; [ -z "${yno}" ]&& ${kk};
+kk=($(tac $HISTFILE|fzf -m --no-sort --height ~62%)); printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n${kk[@]}$re\n"; 
+printf "\n -- save ${kk[@]} ? [Y/n] "; read -sren1 yno; [ -z "${yno}" ]&& read -rep "to:" -i "$PWD/" kkll&& echo "${kk[@]}" >> $kkll;
+printf " -- run $kk ? [Y/n] "; read -sren1 yno; [ -z "${yno}" ]&& ${kk};
 printf "gg"; 
 '
 # alias hh='printf "\e[A\e[0K \e[7m--\e[0m\n\n"; tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --"|tee -a ~/histcmd.sh'
 
-alias search_history='printf "\e[0m\e[A\e[K\e[7m ------- \n $HISTFILE $re\n\n";
+alias search_history='printf "\e[0m\e[A\e[K\e[7m ---- $HISTFILE ---- $re\n";
 hm="$(tac $HISTFILE|fzf -m --no-sort --height ~88%)"; 
 printf "\e[0m\n ---- \n"; 
 echo "$hm"; printf "[1] write to file \n[2] run command  \n";
@@ -273,7 +274,7 @@ read -rep " " -i "$PWD/" "ht"; ht=${ht/ /}; printf "\n${hm}\n" >> "${ht}"; fi;
 if [ $run  = 2 ]; then 
 $hm; fi; ' 
  
-
+alias hh='search_history'
 alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 alias serch='sel'
 #alias fakta='neofetch 2>/dev/null '
