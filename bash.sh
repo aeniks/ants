@@ -54,7 +54,7 @@ printf "$re${dim}··········\n";
 qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; 
 qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
 qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
-qqshell="${0/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
+qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 printf "$re${dim}··········$re\n"; 
 [ "${SSH_CLIENT}" ] && printf "\n$re $red${sshc}:$dim${sshc[2]}$re >> "; 
