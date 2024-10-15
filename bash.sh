@@ -44,7 +44,7 @@ export NVM_DIR="$HOME/.nvm"
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
 ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
 ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
-ip_mac=$(ifconfig|grep "ether"|cut -f10 -d" "); sshc=($SSH_CLIENT); 
+ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); sshc=($SSH_CLIENT); 
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
 #################################################
 ## COLORS -- VARIABLES ##########################
@@ -54,9 +54,8 @@ cyan='\e[36m'; white='\e[37m'; rev='\e[7m'; nn='0000\n'
 re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m'; 
 me="$(whoami)"; e='\e'; 
 # esc='\1xb'; 
-[ "$TERMUX" ]&& ret='\e[A'; printf "$HOME"|grep "termux" && ret='\e[A'; 
+[ "$TERMUX" ]&& ret='\e[A'; printf "$HOME"|grep "termux" && ret='\e[A\e[2K'; 
 #[ "$TMP" ]&& export $TMP; [ -f "$TMP" ]||read -rep 'tmp? ' -i "$PWD" "TMP"; 
-
 ##########################
 ##################################################
 ## SYSTEM // INFO ################################
@@ -80,5 +79,6 @@ printf "$cyan$ip4$re | $blue$ip_loc$re";
 printf "\n$re${dim}··········"; 
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
 printf "\n$re${dim}··········$re\n$(fortune)\n"; 
+
 PS1=''$ret'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
 
