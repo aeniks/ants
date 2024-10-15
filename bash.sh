@@ -55,7 +55,7 @@ re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m';
 me="$(whoami)"; e='\e'; 
 # esc='\1xb'; 
 # [ "$TERMUX" ]&& ret='\e[A'; 
-printf "$HOME"|grep "termux" ||ne='\e[0m\n'; 
+# printf "$HOME"|grep "termux" ||ne='\e[0m\n'; 
 #[ "$TMP" ]&& export $TMP; [ -f "$TMP" ]||read -rep 'tmp? ' -i "$PWD" "TMP"; 
 ##########################
 ##################################################
@@ -66,14 +66,15 @@ if [ "$(id -u)" -gt "0" ]; then export s=' ';
 elif [ $(echo $HOME|grep "termux") ]; then export s=' '; nn='\n'
 else export s='sudo'; fi; 
 ########
-printf -v shall "${0/*\//}"; 
 printf "\n"; date; 
 printf "$re${dim}··········$yellow\n"; 
-[ -e "/bin/who" ]&& $s who --count|tr "\n" "\t"; 
-printf "\n$re${dim}··········\n";  
-printf "$(uname --kernel-name;)$re | $dim${BASH_VERSINFO[-1]}$re |$dim "; 
-uname --kernel-release; uname --kernel-version; 
-printf "$re${shall}$dim $BASH_VERSION$re | $red$TERM \n"; 
+uptime|cut -c2-; 
+printf "$re${dim}··········\n";  
+qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; 
+qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
+qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
+qqshell="${0/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
+printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $red$qqterm$sep $re$dim$qqos\n"; 
 printf "$re${dim}··········$re\n"; 
 [ "${SSH_CLIENT}" ] && printf "\n$re $red${sshc}:$dim${sshc[2]}$re >> "; 
 printf "$cyan$ip4$re | $blue$ip_loc$re"; 
@@ -81,5 +82,5 @@ printf "\n$re${dim}··········";
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
 printf "\n$re${dim}··········$re\n$(fortune)\n"; 
 
-PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m'$ne''
+PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
 
