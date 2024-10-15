@@ -312,7 +312,7 @@ printf "\n hello$USER !";
 
 read -resn1 -p "$@" qq;
 }; 
-gh_new { 
+gh_new() { 
 read -rep " $c2 New repo name: " "ghreponame";
 read -rep " $c2 New repo dir: " -i "$PWD/$ghreponame" "ghsource";
 mkdir -p -m 775 $ghsource; cd $ghsource; 
