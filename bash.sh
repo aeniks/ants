@@ -57,7 +57,7 @@ qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 printf "$re${dim}··········$re\n"; 
-[ "${SSH_CLIENT}" ] && printf "\n$re $red${sshc}:$dim${sshc[2]}$re >> "; 
+[ "${SSH_CLIENT}" ] && printf "$re$red${sshc}:$dim${sshc[2]}$re\n"; 
 printf "$cyan$ip4$re | $blue$ip_loc$re"; 
 printf "\n$re${dim}··········"; 
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
