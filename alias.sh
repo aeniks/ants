@@ -312,3 +312,16 @@ printf "\n hello$USER !";
 
 read -resn1 -p "$@" qq;
 }; 
+gh_new { 
+read -rep " $c2 New repo name: " "ghreponame";
+read -rep " $c2 New repo dir: " -i "$PWD/$ghreponame" "ghsource";
+mkdir -p -m 775 $ghsource; cd $ghsource; 
+git init; gh repo create --add-readme --public \
+--source "$ghsource" --disable-issues --disable-wiki; 
+####
+printf "hello from $(date)" >> "README.md";
+git branch -M main; git add -A; 
+git commit -m "initial commit"; 
+git push -u origin main; 
+} 
+alias 12_new_github_repo='gh_new';
