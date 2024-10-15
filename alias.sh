@@ -325,3 +325,4 @@ git commit -m "initial commit";
 git push -u origin main; 
 } 
 alias 12_new_github_repo='gh_new';
+alias gpg='gpg --pinentry-mode loopback'
