@@ -326,3 +326,4 @@ git push -u origin main;
 } 
 alias 12_new_github_repo='gh_new';
 alias gpg='gpg --pinentry-mode loopback'
+alias aptss='for i in ${apts[@]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
