@@ -54,9 +54,7 @@ cyan='\e[36m'; white='\e[37m'; rev='\e[7m'; nn='0000\n'
 re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m'; 
 me="$(whoami)"; e='\e'; 
 # esc='\1xb'; 
-[ "$TERMUX" ]&& nn=$(printf '\n'); 
-printf "$HOME"|grep "termux" && PS1=''${PS1}'\n';
-
+[ "$TERMUX" ]&& ret='\e[A'; printf "$HOME"|grep "termux" && ret='\e[A'; 
 #[ "$TMP" ]&& export $TMP; [ -f "$TMP" ]||read -rep 'tmp? ' -i "$PWD" "TMP"; 
 
 ##########################
@@ -71,7 +69,7 @@ else export s='sudo'; fi;
 printf -v shall "${0/*\//}"; 
 printf "\n"; date; 
 printf "$re${dim}··········$yellow\n"; 
-[ "$s" ]&& $s who --count|tr "\n" "\t"; 
+[ -e "/bin/who" ]&& $s who --count|tr "\n" "\t"; 
 printf "\n$re${dim}··········\n";  
 printf "$(uname --kernel-name;)$re | $dim${BASH_VERSINFO[-1]}$re |$dim "; 
 uname --kernel-release; uname --kernel-version; 
@@ -82,5 +80,5 @@ printf "$cyan$ip4$re | $blue$ip_loc$re";
 printf "\n$re${dim}··········"; 
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
 printf "\n$re${dim}··········$re\n$(fortune)\n"; 
-PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
+PS1=''$ret'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
 
