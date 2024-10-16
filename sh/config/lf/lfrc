@@ -3,8 +3,7 @@
 map . set hidden! 
 map <esc> quit
 map i set icons!
-map F setfilter
-map <c-f> :filter ** 
+# map F setfilterF
 map <c-r> reload
 map <c-q> quit
 cmap <c-d> ""
@@ -70,18 +69,26 @@ map sh :cmds
 map H :maps 
 map m :push %mkdir<space>
 map oD :depl
-map t :tajm
+map j :tajm
 # map b !printf "\n\n\n\n\n\n\n\n\n\n"; exiftool $f|batcat -pl c++
-map <enter><enter> dial 
-map <enter>c !chafa $f 
-map <enter>b $batcat --paging always -ld --decorations never $f 
+map <enter> dial 
+# map <enter>c !chafa $f 
+map b $batcat --paging always -ld --decorations never $f 
 map l :lenk
 # map <enter> pger
 map - maps
 map _ cmds
 map <+> drawbox! 
 map x !$f 
-map j !printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%D); printf "\e[0;1;37m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%H" : "%M); printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\n\n\n\n\n\n\n\e[25m\e[0m"; 
+map t hora
+map <c-s> sese
+map F :filter
+map f :push F<backspace><right><backspace><right><backspace>**<left>
+cmd sese ${{
+
+}}
+
+cmd hora ${{ printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%D); printf "\e[0;1;37m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%H" : "%M); printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\n\n\n\n\n\n\n\e[25m\e[0m"; read }} 
 # map x :push :shell<space>$f 
 # cmd tamo ${{ 
 # printf "\e[2;38;5;24m"; 
@@ -100,7 +107,7 @@ map j !printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_wid
 
 # map x $printf "\033[?47hh \n\n\n\n\033[2A"; exiftool $f|batcat -fpl c; read -n1 -prs "" 2>/dev/null; printf "\033[?47l"; 
 cmd tajm ${{ 
-printf "\e[?47h\e[2J"; date +%R|figlet -w $COLUMNS -c -f Big_Money-nw|batcat -ppflrs; date +%^A%n%-d" "%^B|figlet -w $COLUMNS -c -f miniwi|batcat -ppflr; printf  "\n\n\n\n"; fortune|batcat -ppfld; printf "\n\n"; read -t60 -n1 -srp " " "aa"; [ -z "$aa" ]&& printf "\e[?47l\n\ngg\n\n"; [ -z "$aa" ]&&tajm
+printf "\e[?47h\e[2J"; date +%R|figlet -w $lf_width -c -f Big_Money-nw|batcat -ppflrs; date +%^A%n%-d" "%^B|figlet -w $lf_width -c -f miniwi|batcat -ppflr; printf  "\n\n\n\n"; fortune|batcat -ppfld; printf "\n\n"; read -t60 -n1 -srp " " "aa"; [ -z "$aa" ]&& printf "\e[?47l\n\ngg\n\n"; [ -z "$aa" ]&&tajm
 }} 
 cmd tajm2 ${{
 [ "$lf_width" ]||lf_width=${COLUMNS}; 
@@ -131,13 +138,24 @@ batcat --paging always -fpl c $f||cacaview $f||exiftool $f; read -r "x";
 }}
 
 cmd dial ${{ 
-printf "\n\n\n\n\n\n\e[4A"; 
-read -n1 -rep "[C]hafa [K]akaview [B]atcat e[X]iftool" "x"; 
-if [ $x = c ]; then chafa $f; 
-elif [ $x = k ]; then cacaview $f; 
-elif [ $x = b ]; then batcat $f -pl d; 
+dim="$(printf "\e[2m")"; re="$(printf "\e[0m")"; 
+for i in $(seq $((lf_height))); do printf "\n"; done; 
+printf "\e[$((lf_height/2+12))A"; 
+read -n1 -rep "
+  ${dim}[${re}C${dim}]${re}hafa 
+  ${dim}[${re}K${dim}]${re}akaview 
+  ${dim}[${re}B${dim}]${re}atcat 
+  ${dim}[${re}X${dim}]${re}iftool 
+  ${dim}[${re}M${dim}]${re}ediainfo 
+  ${dim}[${re}J${dim}]${re}p2a " "x"; 
+if [ $x = c ]; then chafa $f; read -n1 -p '[ok]'; 
+elif [ $x = k ]; then cacaview $f; read; 
+elif [ $x = b ]; then batcat --paging always $f -pl d; read -n1 -p '[ok]'; 
+elif [ $x = m ]; then mediainfo $f; read; 
+elif [ $x = j ]; then jp2a $f --color-depth=8; read; 
 elif [ $x = x ]; then printf "\n\n----\n\n\n\n\n\n\n\n"; 
-exiftool $f|batcat -pl c++; 
+# ffmpeg
+exiftool $f|batcat --paging always -pl c++; read; 
 fi 
 }}
 #set drawbox

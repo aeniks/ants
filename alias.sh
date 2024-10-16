@@ -1,11 +1,12 @@
 #!/bin/bash
 #" alias for bash terminal
 ############# _COLORS ##########
-e='echo -e '; bold=$($e'\e[1m';); dim=$($e'\e[2m';); italic=$($e'\e[3m';); 
-underline=$($e'\e[44m';); blink=$($e'\e[45m';); rev=$($e'\e[47m';); invis=$($e'\e[8m';); 
-strike=$($e'\e[9m';); blank=$($e'\e[0;30m';); red=$($e'\e[0;31m';); green=$($e'\e[0;32m';); 
-yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
-white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
+# e='echo -e '; 
+# bold=$($e'\e[1m';); dim=$($e'\e[2m';); italic=$($e'\e[3m';); 
+# underline=$($e'\e[44m';); blink=$($e'\e[45m';); rev=$($e'\e[47m';); invis=$($e'\e[8m';); 
+# strike=$($e'\e[9m';); blank=$($e'\e[0;30m';); red=$($e'\e[0;31m';); green=$($e'\e[0;32m';); 
+# yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
+# white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
 alias tt='tilde';
 alias mm='micro'
@@ -90,7 +91,7 @@ alias lan_portscan='nmap localhost|batcat -pP --language c++; printf "\n\nuse nm
 alias lan_neighbours='sudo nmap 192.168.0.1 192.168.0.100-122 -sn &>>/tmp/x; sudo nmap 192.168.0.1 192.168.0.100-122 -sL &>>/tmp/x; sudo ip -c n|grep -v "FAILED"'
 alias 12_it_portscan='portscan'
 alias 12_it_neighbours='neighbours'
-klockan="$ants/12/klockan.sh"
+# klockan="$ants/12/klockan.sh"
 ###############################
 ###############################
 # quotes() {
