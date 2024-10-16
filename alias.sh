@@ -266,16 +266,24 @@ printf "gg";
 
 alias search_history='printf "\e[0m\e[A\e[K\e[7m ---- $HISTFILE ---- $re\n";
 hm="$(tac $HISTFILE|fzf -m --no-sort --height ~88%)"; 
-printf "\e[0m\n ---- \n"; 
-echo "$hm"; printf "[1] write to file \n[2] run command  \n";
+printf "$cyan ---- $re\n"; 
+echo "$hm"; printf "$cyan ----$re\n[_] break \n[1] write to file \n[2] run command  \n";
 read -sren1 "run"; 
-if [ $run  = 1 ]; then printf "\n${hm}\n -- write to: "; 
+if [ -z "$run" ]; then printf "hm$cyan --$re $hm\n\n"; break 2>/dev/null; fi; 
+if [ "$run"  = 1 ]; then printf "\n${hm}\n -- write to: "; 
 read -rep " " -i "$PWD/" "ht"; ht=${ht/ /}; printf "\n${hm}\n" >> "${ht}"; fi; 
-if [ $run  = 2 ]; then 
+if [ "$run"  = 2 ]; then 
 $hm; fi; ' 
  
 alias hh='search_history'
 alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
+alias selct='info=" ---- mark choice with [TAB] -- confirm with [ENTER] ---- "
+printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss -- $info --")); 
+printf "${kk[*]}\n"; filist=($(for i in ${kk[*]}; do realpath $i; done));
+printf " ----\n${filist[*]}\n"'; 
+
+
+
 alias serch='sel'
 #alias fakta='neofetch 2>/dev/null '
 gg() { 

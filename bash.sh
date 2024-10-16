@@ -30,6 +30,9 @@ ip6=$(timeout 1 curl icanhazip.com -s6 & disown);
 ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
 #ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); 
 sshc=($SSH_CLIENT); 
+# Add this to .bashrc or .zshrc or its equivalent
+transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;}
+# Now you can use transfer function
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
 #################################################
 ## COLORS -- VARIABLES ##########################
@@ -57,7 +60,7 @@ qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 printf "$re${dim}··········$re\n"; 
-[ "${SSH_CLIENT}" ] && printf "$re$red${sshc}:$dim${sshc[2]}$re\n"; 
+[ "${SSH_CLIENT}" ] && printf "$re$red${sshc} : $pink${sshc[2]}$re\n${dim}··········\n"; 
 printf "$cyan$ip4$re | $blue$ip_loc$re"; 
 printf "\n$re${dim}··········"; 
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
