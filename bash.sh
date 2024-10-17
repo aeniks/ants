@@ -67,7 +67,7 @@ else export s='sudo'; fi;
 # [ -e "/etc/os-release" ]&& OOSS=($(cat "/etc/os-release"|tr " " "_"|tr -d '""'));
 # for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
-printf "$re${dim}··········\n";  
+# printf "$re${dim}··········\n";  
 cat ~/neocache.sh; 
 printf "$re${dim}··········$re\n"; 
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc} : $pink${sshc[2]}$re\n${dim}··········\n"; 
