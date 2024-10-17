@@ -28,7 +28,7 @@ set completion-ignore-case on
 # Treats hyphens (-) and underscores (_) as equivalent when performing case-insensitive filename matching and completion
 set completion-map-case off
 # Common prefixes longer than 5 are replaced with an ellipsis when displaying possible completions
-set completion-prefix-display-length 6
+set completion-prefix-display-length 2
 # Enable returning up to 500 tab-completions without having to be asked
 set completion-query-items 500
 # Don't expand the home dir tilde (~)
@@ -88,11 +88,11 @@ $if mode=emacs
 "\e[2~": quoted-insert
 # mappings for "page up" and "page down" to step to the beginning/end
 # of the history
-"\e[5~": beginning-of-history
-"\e[6~": end-of-history
+# "\e[5~": beginning-of-hist
+# "\e[6~": end-of-history
 # alternate mappings for "page up" and "page down" to search the history
-# "\e[5~": history-search-backward
-# "\e[6~": history-search-forward
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
 # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word

@@ -216,7 +216,7 @@ alias hiztory='command -v glow||(sudo apt install glow -y &>/dev/null||apt insta
 history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash_history|glow; read -rep " $c2 lines: " -i "$lo" "lo"; \
 tail -n${lo} ~/.bash_history|glow; '
 alias qq='cd ..; ' 
-alias ww='cd $OLDPWD; '
+#alias ww='cd $OLDPWD; '
 alias bb="btop --utf-force"
 alias emojis='cat $ants/sh/emojis.sh|tr "\n" "\t";';
 alias 12_emojis=emojis;
@@ -271,7 +271,7 @@ printf "gg";
 # alias hh='printf "\e[A\e[0K \e[7m--\e[0m\n\n"; tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --"|tee -a ~/histcmd.sh'
 
 alias search_history='printf "\e[0m\e[A\e[K\e[7m ---- $HISTFILE ---- $re\n";
-hm="$(tac $HISTFILE|fzf -m --no-sort --height ~88%)"; 
+hm="$(tac $HISTFILE|fzf -m --no-sort --height ~66%)"; 
 printf "$cyan ---- $re\n"; 
 echo "$hm"; printf "$cyan ----$re\n[_] break \n[1] write to file \n[2] run command  \n";
 read -sren1 "run"; 
@@ -279,15 +279,18 @@ if [ -z "$run" ]; then printf "hm$cyan --$re $hm\n\n"; break 2>/dev/null; fi;
 if [ "$run"  = 1 ]; then printf "\n${hm}\n -- write to: "; 
 read -rep " " -i "$PWD/" "ht"; ht=${ht/ /}; printf "\n${hm}\n" >> "${ht}"; fi; 
 if [ "$run"  = 2 ]; then 
-$hm; fi; ' 
+$hm; fi; history -s "$hm"' 
  
 alias hh='search_history'
-alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
+alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~44% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
+
+ff() { 
+kk=($(cat $ants/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
+
 alias selct='info=" ---- mark choice with [TAB] -- confirm with [ENTER] ---- "
-printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~62% --header " -- $ss -- $info --")); 
+printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~22% --header " -- $ss -- $info --")); 
 printf "${kk[*]}\n"; filist=($(for i in ${kk[*]}; do realpath $i; done));
 printf " ----\n${filist[*]}\n"'; 
-
 
 
 alias serch='sel'

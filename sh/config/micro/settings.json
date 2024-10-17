@@ -1,6 +1,5 @@
 {
     "autoclose": false,
-    "clipboard": "internal",
     "colorscheme": "nord-tc",
     "fakecursor": true,
     "mkparents": true,
