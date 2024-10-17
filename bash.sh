@@ -68,7 +68,7 @@ else export s='sudo'; fi;
 # for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
 # printf "$re${dim}··········\n";  
-cat ~/neocache.sh||neofetch 
+cat ~/neocache.sh 2>/dev/null||neofetch 
 # printf "$re${dim}··········$re\n"; 
 printf "$re$dim$(fortune)\n"; 
 printf "$re··········\n";
