@@ -60,10 +60,11 @@ qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 printf "$re${dim}··········$re\n"; 
+model="$(getprop ro.product.model 2>/dev/null; )"; dist="$(lsb_release -sdc|tr -s "\n" " ")"; printf "$model$dist\n" 
+printf "$re${dim}··········$re\n"; 
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc} : $pink${sshc[2]}$re\n${dim}··········\n"; 
 printf "$cyan$ip4$re | $blue$ip_loc$re"; 
 printf "\n$re${dim}··········"; 
 printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
 printf "\n$re${dim}··········$re\n$(fortune)\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
-

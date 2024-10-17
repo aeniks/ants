@@ -27,14 +27,17 @@ gh auth login --with-token < "/tmp/gh.txt"; printf "$c2 "; rm /tmp/gh.txt;
 gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n"; 
 printf "\n  try again \n\n"; )
 }
+alias gpg='gpg --pinentry loopback'; 
 alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c'
+# getprop ro.
+
 # less (){
 # 
 # }
 alias iiii='$EDITOR $ants/sh/config/inputrc; echo gg; '
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
-alias 12_='menu $ants/12'
+alias 12='menu $ants/12'
 alias qqqq='cd $ants/sh/q;'
 ###############################
 alias m11='ssh -p 8022 192.168.0.105||(read -rep "$c2 open findmydevice? [Y/n] " "gf"||open https://www.google.com/android/find/;)'
@@ -73,7 +76,7 @@ cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-dir
 # LFRC="$ants/sh/config/lf/lfrc"; 
 alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; 
 #############################
-alias o='/home/aa/go/bin/o'
+# alias o='/home/aa/go/bin/o'
 alias kkkk='sudo batcat -Ppfl c --line-range 1:88
  "/home/aa/.local/share/klipper/history2.lst"'
 ###############################
@@ -244,6 +247,8 @@ alias 12_info_tput='less /sh/info/tputhelp.txt'
 alias coolors='printf "\e[38;5;211m [code] m >> \n\n"; 
 for i in $(seq --equal-width 255); do 
 printf "\e[48;5;${i}m ${i} \e[7m\e[30m ${i} \e[0m"; done; ' 
+alias pathh='read -rep "  --  " -i "$PATH" "PATH"; export $PATH  ';
+
 ############################################
 ## RANDOM_STUFF ############################
 # export rnd1="(($RANDOM%99))"
