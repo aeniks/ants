@@ -68,11 +68,13 @@ else export s='sudo'; fi;
 # for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
 # printf "$re${dim}··········\n";  
-cat ~/neocache.sh; 
-printf "$re${dim}··········$re\n"; 
-[ "${SSH_CLIENT}" ] && printf "$re$red${sshc} : $pink${sshc[2]}$re\n${dim}··········\n"; 
-printf "$cyan$ip4$re | $blue$ip_loc$re"; 
-printf "\n$re${dim}··········"; 
-printf "\n$cyan$me$re@$pink$HOSTNAME$re"; 
-printf "\n$re${dim}··········$re\n$(fortune)\n"; 
+cat ~/neocache.sh||neofetch 
+# printf "$re${dim}··········$re\n"; 
+printf "$re$dim$(fortune)\n"; 
+printf "$re··········\n";
+[ "${SSH_CLIENT}" ] && printf "$re$red${sshc} : $pink${sshc[2]}$re\n··········\n"; 
+printf "$cyan$ip4$re | $blue$ip_loc$re\n"; 
+printf "$re··········\n"; 
+printf "$cyan$me$re@$pink$HOSTNAME$re\n"; 
+printf "$re··········\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
