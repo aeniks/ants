@@ -50,23 +50,25 @@ if [ "$(id -u)" -gt "0" ]; then export s=' ';
 elif [ $(echo $HOME|grep "termux") ]; then export s=' '; nn='\n'
 else export s='sudo'; fi; 
 ########
-date; #### begin printf here ################
-printf "$re${dim}··········$yellow\n"; 
-uptime|cut -c2-; 
+# 
+# date; #### begin printf here ################
+# printf "$re${dim}··········$yellow\n"; 
+# uptime|cut -c2-; 
+# printf "$re${dim}··········\n";  
+# qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; 
+# qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
+# qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
+# qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
+# printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
+# printf "$re${dim}··········$re\n"; 
+# #model="$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk ro.build.version.sdk ro.product.abilist ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha; )"; 
+# [ -e /sys/devices/virtual/dmi/id/product_family ]&& printf "$blue$(cat /sys/devices/virtual/dmi/id/product_family;) $re\n"; 
+# printf "$re${dim}··········\n";  
+# [ -e "/etc/os-release" ]&& OOSS=($(cat "/etc/os-release"|tr " " "_"|tr -d '""'));
+# for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
+# printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
 printf "$re${dim}··········\n";  
-qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; 
-qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
-qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
-qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
-printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
-printf "$re${dim}··········$re\n"; 
-#model="$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk ro.build.version.sdk ro.product.abilist ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha; )"; 
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& printf "$blue$(cat /sys/devices/virtual/dmi/id/product_family;) $re\n"; 
-printf "$re${dim}··········\n";  
-[ -e "/etc/os-release" ]&& OOSS=($(cat "/etc/os-release"|tr " " "_"|tr -d '""'));
-for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
-printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
-printf "$re${dim}··········\n";  
+cat ~/neocache.sh; 
 printf "$re${dim}··········$re\n"; 
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc} : $pink${sshc[2]}$re\n${dim}··········\n"; 
 printf "$cyan$ip4$re | $blue$ip_loc$re"; 
