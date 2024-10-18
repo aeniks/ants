@@ -8,7 +8,9 @@
 # yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
 # white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
-alias tt='tilde';
+
+# alias tt='tilde';
+alias tt='ttmenu';
 alias mm='micro'
 alias qq='cd ..; ll';
 alias ee='echo ';
@@ -37,6 +39,11 @@ alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c'
 alias iiii='$EDITOR $ants/sh/config/inputrc; echo gg; '
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
+alias ttmenu='tmux display-menu \
+" split - V " 1 "split-window -v" \
+" split | H " 2 "split-window -h"'
+[ "$TMUX" ]&& TERM=xterm-256color
+[ "$TMUX_PANE" = "%0" ]&& (sleep 2; ttmenu)& disown; 
 alias 12='menu $ants/12'
 alias qqqq='cd $ants/sh/q;'
 ###############################
@@ -365,3 +372,5 @@ git push -u origin main;
 alias 12_new_github_repo='gh_new';
 alias gpg='gpg --pinentry-mode loopback'
 alias aptss='for i in ${apts[@]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
+
+fffff() { fzf --height ~12 --preview "(batcat -pfld {})" --preview-window=border-none --info inline --scrollbar --scroll-off 12 --hscroll; }; 
