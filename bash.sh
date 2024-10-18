@@ -10,7 +10,7 @@ then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completio
 then . /etc/bash_completion; fi; fi; 
 shopt -s histappend; ## append to history, don't overwrite it
 export EDITOR='micro';
-export PAGER='batcat -p';
+export PAGER='less';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 ##############################################################
 ## load alias and functions 

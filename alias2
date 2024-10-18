@@ -1,0 +1,2 @@
+
+alias calle='printf "\n$(it .)\nleonljunghorn@gmail.com - gcal\n$(it .)"; gcalcli --default-calendar leonljunghorn@gmail.com agenda  --details description --details location; printf "\n$(it .)\n"; ,
