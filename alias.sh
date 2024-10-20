@@ -85,6 +85,7 @@ cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-dir
 # LFRC="$ants/sh/config/lf/lfrc"; 
 alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; 
 #############################
+alias infobash='batcat -pf "$ants/sh/info/cmd.sh"'
 # alias o='/home/aa/go/bin/o'
 alias kkkk='sudo batcat -Ppfl c --line-range 1:88
  "/home/aa/.local/share/klipper/history2.lst"'
@@ -353,12 +354,6 @@ alias s4='byobu-layout restore 1'
 alias mo='ssh -p 8022 192.168.0.108'
 alias h='search_history'; 
 alias allias='cat $HISTFILE|tac|fzf -m --no-sort --height 16|tee -a $ants/alias.sh; '
-me() {
-printf "\n $@ \n";
-printf "\n hello  $USER !";  
-
-read -resn1 -p "$@" qq;
-}; 
 gh_new() { 
 read -rep " $c2 New repo name: " "ghreponame";
 read -rep " $c2 New repo dir: " -i "$PWD/$ghreponame" "ghsource";
