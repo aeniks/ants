@@ -31,8 +31,8 @@ echo -e "\n\n -- syncing...\n\n";
 gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||gh gist edit 4b5c805719fe0855a10f9d4fbdd197e1||
 (read -n1 -rep "-- login with token? [Y/n] " "yn"; [ "$yn" ]&& return; 
 printf "\n\n$c2 ants folder:"; read -rep " " -i "$ants" "ants"; 
-gpg --pinentry-mode loopback -o "/tmp/gh.txt" -d "$ants/sh/config/gh_aeniks.gpg"; 
-gh auth login --with-token < "/tmp/gh.txt"; printf "$c2 "; rm /tmp/gh.txt;
+gpg --pinentry-mode loopback -o "~/gh.txt" -d "$ants/sh/config/gh_aeniks.gpg"; 
+gh auth login --with-token < "~/gh.txt"; printf "$c2 "; rm ~/gh.txt;
 gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n"; 
 printf "\n  try again \n\n"; )
 }
@@ -54,7 +54,7 @@ alias 1111='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||ope
 alias 11='ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"||ping 192.168.0.105 -c5||nmap 192.168.0.105 -sL -W1||nmap 192.168.0.105 -sn -W1 &&
 ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"'; 
 alias pp='printf'
-alias sl='ssh "aa@ants.ftp.sh"; '
+alias sl='ssh aa@ants.ftp.sh'
 alias sl_send='
 printf "\n\n\n\n\n\n\e[4A
  -- send: "; 
@@ -71,7 +71,7 @@ info() { command info $1|batcat -pf --language c#||man $1; }
 man() { command man $1|batcat -pf --language manpage||help $1; } 
 help() { command help $1|batcat -pf --language c#||apropos $1; } 
 #### wrangler stuff ###########
-alias wrangler_server='wrangler pages dev ./ '
+alias wrangler_server='wrangler pages dev ./||npm i -g wrangler'
 alias wrangler_deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
 alias wrangler_list='wrangler pages project list'
 alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
@@ -226,7 +226,7 @@ history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash
 tail -n${lo} ~/.bash_history|glow; '
 alias qq='cd ..; ' 
 #alias ww='cd $OLDPWD; '
-alias bb="btop --utf-force"
+alias bb="btop --utf-force|| gotop"
 alias emojis='cat $ants/sh/emojis.sh|tr "\n" "\t";';
 alias 12_emojis=emojis;
 ############################################
@@ -270,13 +270,13 @@ alias pathh='read -rep "  --  " -i "$PATH" "PATH"; export $PATH  ';
 #### IP_STUFF ##############################
 ############################################
 ############################################
-alias hhhhhh='
-printf "\e[0m\e[A\e[K\e[7m ------- \n $HISTFILE $re"; 
-kk=($(tac $HISTFILE|fzf -m --no-sort --height ~62%)); printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n${kk[@]}$re\n"; 
-printf "\n -- save ${kk[@]} ? [Y/n] "; read -sren1 yno; [ -z "${yno}" ]&& read -rep "to:" -i "$PWD/" kkll&& echo "${kk[@]}" >> $kkll;
-printf " -- run $kk ? [Y/n] "; read -sren1 yno; [ -z "${yno}" ]&& ${kk};
-printf "gg"; 
-'
+# alias hhhhhh='
+# printf "\e[0m\e[A\e[K\e[7m ------- \n $HISTFILE $re"; 
+# kk=($(tac $HISTFILE|fzf -m --no-sort --height ~62%)); printf "\n$dim --$re variable${dim} = ${re}kk\n$dim --$re SELECTED$dim --$re   \n${kk[@]}$re\n"; 
+# printf "\n -- save ${kk[@]} ? [Y/n] "; read -sren1 yno; [ -z "${yno}" ]&& read -rep "to:" -i "$PWD/" kkll&& echo "${kk[@]}" >> $kkll;
+# printf " -- run $kk ? [Y/n] "; read -sren1 yno; [ -z "${yno}" ]&& ${kk};
+# printf "gg"; 
+# '
 # alias hh='printf "\e[A\e[0K \e[7m--\e[0m\n\n"; tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --"|tee -a ~/histcmd.sh'
 
 alias search_history='printf "\e[0m\e[A\e[K\e[7m ---- $HISTFILE ---- $re\n";
