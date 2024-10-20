@@ -1,1 +1,16 @@
-/ants/sh/config/apts.sh
+
+
+
+
+
+apts() {
+
+fzf
+ncdu 
+lf
+micro
+
+npm i -g oji
+
+}
+
