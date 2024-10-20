@@ -292,12 +292,12 @@ if [ "$run"  = 2 ]; then
 $hm; fi; history -s "$hm"' 
  
 alias hh='search_history'
-alias sel='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~44% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
+alias searcl='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~44% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 
 ff() { 
 kk=($(cat $ants/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
 
-alias selct='info=" ---- mark choice with [TAB] -- confirm with [ENTER] ---- "
+alias sel='info=" ---- mark choice with [TAB] -- confirm with [ENTER] ---- "
 printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~22% --header " -- $ss -- $info --")); 
 printf "${kk[*]}\n"; filist=($(for i in ${kk[*]}; do realpath $i; done));
 printf " ----\n${filist[*]}\n"'; 
@@ -308,8 +308,9 @@ alias serch='sel'
 gg() { 
 google="${@}"; 
 tput indn 8 cuu 4; read -rep "$c2 google: " -i "$google" "google"; googler "https://www.google.com/search?q=$google"; } 
-
-alias zz="ranger 2>/dev/null" 
+alias calw='gcalcli calw --monday --military --locale=sv_SE.UTF-8'
+alias agenda='gcalcli agenda --military --locale=sv_SE.UTF-8'
+# alias zz="ranger 2>/dev/null" 
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
 # echo; read -ep "to: " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
