@@ -371,3 +371,5 @@ alias aptss='for i in ${apts[@]}; do printf "\n______${cyan}${i^^}${re}______ \n
 fffff() { fzf --height ~12 --preview "(batcat -pfld {})" --preview-window=border-none --info inline --scrollbar --scroll-off 12 --hscroll; }; 
 
 alias calle='printf "\n$(it -)\nleonljunghorn@gmail.com - gcal\n$(it -)"; gcalcli --default-calendar leonljunghorn@gmail.com agenda  --details description --details location; printf "\n$(it -)\n\n"; ' 
+
+alias cdd='dd=(*/); cd $(for df in ${dd[@]}; do echo $df; done|fzf --height ~22)'
