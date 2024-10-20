@@ -313,8 +313,8 @@ alias zz="ranger 2>/dev/null"
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
 alias cloner='
-psp read -ep "$c2 "$rev"clone where folder?$re " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
-chown "$SUDO_USER":"$USER" "$folder"; cd $folder; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ll -caklup;
+psp read -ep "to: " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
+chown "$SUDO_USER":"$USER" "$folder"; cd $folder; printf "$cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ll -caklup;
 ####
 psp read -ep "$c2 CLONE: https://github.com/aeniks/" -i "" "clone"; 
 git clone https://github.com/aeniks/$clone; cd $clone 2>/dev/null; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ls -a; echo;echo; '
