@@ -24,7 +24,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #################################################
 ## GET IP:S #####################################
-[ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL\e[0m=$LF_LEVEL\n"; 
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
 ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
 ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
@@ -79,4 +78,5 @@ printf "$cyan$ip4$re | $blue$ip_loc$re\n";
 printf "$re··········\n"; 
 printf "$cyan$me$re@$pink$HOSTNAME$re\n"; 
 printf "$re··········\n"; 
+[ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL\e[0m=$LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
