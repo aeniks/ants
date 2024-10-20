@@ -312,12 +312,9 @@ tput indn 8 cuu 4; read -rep "$c2 google: " -i "$google" "google"; googler "http
 alias zz="ranger 2>/dev/null" 
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
-alias cloner='
-psp read -ep "to: " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
-chown "$SUDO_USER":"$USER" "$folder"; cd $folder; printf "$cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ll -caklup;
-####
-psp read -ep "$c2 CLONE: https://github.com/aeniks/" -i "" "clone"; 
-git clone https://github.com/aeniks/$clone; cd $clone 2>/dev/null; echo -e "\n\t $cyan$bold> $pink$PWD/$cyan <$re\n\t * * * *\n"; ls -a; echo;echo; '
+# echo; read -ep "to: " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
+alias cloner='read -rep "git to CLONE: https://github.com/aeniks/" -i "" "clone"; 
+git clone https://github.com/aeniks/$clone; cd $clone; '
 # alias ww='ee;ee "$cyan";w;ee;ee "$blue"; ps all;ee "$re $PWD"'
 alias 12_last_logins='echo;echo "  LAST LOGINS"; echo -e "$pink"; sudo lastb -axdwn 4;echo -e "$white"; echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
 alias 12_choose_logins_screen='read -n1 -ep "  $c2  g/t  $(systemctl get-default)  " "gt"; if [ $gt == t ]; then sudo systemctl set-default multi-user.target; else sudo systemctl set-default graphical.target; fi ; echo gg'
