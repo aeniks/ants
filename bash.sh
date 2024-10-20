@@ -70,6 +70,8 @@ else export s='sudo'; fi;
 ##cat ~/neocache.sh 2>/dev/null||neofetch 
 # [ -e "/usr/bin/gcalcli" ]&& 
 # printf "$re${dim}··········$re\n"; 
+# date="$(date)"; 
+# printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
 printf "$re$dim$(fortune)\n"; 
 printf "$re··········\n";
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc} : $pink${sshc[2]}$re\n··········\n"; 
@@ -78,7 +80,19 @@ printf "$re··········\n";
 printf "$cyan$me$re@$pink$HOSTNAME$re\n"; 
 printf "$re··········\n"; 
 printf "\e[A$(cat $HOME/calagenda.sh)"; 
+printf "$re··········\n${dim}"; 
+date;
 printf "$re··········\n"; 
-(timeout 6 ssh aa@ants.ftp.sh "gcalcli --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
+####
+
+
+(timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL\e[0m=$LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
+
+
+
+
+
+
+
