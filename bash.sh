@@ -69,6 +69,8 @@ else export s='sudo'; fi;
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
 # printf "$re${dim}··········\n";  
 cat ~/neocache.sh 2>/dev/null||neofetch 
+# [ -e "/usr/bin/gcalcli" ]&& 
+timeout 6 ssh aa@ants.ftp.sh "gcalcli --calendar leonljunghorn@gmail.com agenda"& disown; 
 # printf "$re${dim}··········$re\n"; 
 printf "$re$dim$(fortune)\n"; 
 printf "$re··········\n";
