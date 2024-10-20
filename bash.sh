@@ -79,6 +79,6 @@ printf "$cyan$me$re@$pink$HOSTNAME$re\n";
 printf "$re··········\n"; 
 printf "\e[A$(cat $HOME/calagenda.sh)"; 
 printf "$re··········\n"; 
-(timeout 6 ssh aa@ants.ftp.sh "gcalcli --calendar leonljunghorn@gmail.com agenda"& disown) > $HOME/calagenda.sh
+(timeout 6 ssh aa@ants.ftp.sh "gcalcli --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL\e[0m=$LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m $PWD/\e[0m\n'
