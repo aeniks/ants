@@ -76,7 +76,7 @@ printf "$re$dim$(fortune)\n";
 printf "$re··········\n"; 
 printf "\e[A$(cat $HOME/calagenda.sh)"; 
 printf "$re··········\n"; 
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& printf "$blue$(cat /sys/devices/virtual/dmi/id/product_family;) $re\n"; 
+[ -e /sys/devices/virtual/dmi/id/product_family ]&& printf "$blue$(cat /sys/devices/virtual/dmi/id/product_sku;) $re\n"; 
 printf "$re··········\n";
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
