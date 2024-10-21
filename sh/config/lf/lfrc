@@ -83,6 +83,8 @@ map x !$f
 map t hora
 map <c-s> sese
 map F :filter
+map d :set dironly! 
+map R :rs
 map f :push F<backspace><right><backspace><right><backspace>**<left>
 cmd sese ${{
 
@@ -167,8 +169,8 @@ set cursorpreviewfmt "\033[7;2m"
 ## cmds
 cmd open &{{
 case $(file --mime-type -Lb $f) in
-text/*) lf -remote "send $id \$$EDITOR \$fx";;
-*) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+text/*) lf -remote "send $id \$$EDITOR \$f";;
+*) for f in $f; do $OPENER $f > /dev/null 2> /dev/null & done;;
 esac
 }}
 cmd depl ${{
@@ -209,6 +211,7 @@ if [ -z "$ans" ]; then rm -rf $fx; elif [ "$ans" = y ]; then rm -rf $fx; fi;
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
 cmd unzip ${{
+mkdir $f_f; cp $f $f_f; cd $f; 
     set -f
     case $f in
         *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
@@ -267,6 +270,45 @@ sudo chmod $chmod $fx;
 lf -remote "send $id unselect *"; 
 lf -remote "send $id reload"; 
 }}
+
+
+
+cmd rs ${{
+# for i in $(seq $lf_height); do printf "\n"; done; 
+# printf "\e[A\e[2K\n\n\e[12A"
+printf "\e[?47h\e[H\e[0J\n\ngg\n\n"
+rs=($fx); 
+printf "\e[7m rsync files: \e[0m\n"; 
+printf "\e[32m${rs[*]}\n\n\n\n\e[0m\e[7m rsync reciever: \e[0m\n"; 
+rsto="$(ls $ants/sh/config/ssh|fzf --margin 0,12,0,12 --border rounded --preview 'cat $ants/sh/config/ssh/{}' --preview-window border-left  --info=inline --height='~22%' --scroll-off=12 --header '-- ssh to: --')"; 
+# rs=("$(ls -ptr|grep -v '/'|fzf --height='~42%' --scroll-off=12 -m --info=inline --margin 0,12,0,12 --border rounded --preview 'cat {}' --preview-window border-left)"); 
+printf "\e[A\e[2K\n -- to: \t"; 
+[ "${rsto}" = "new" ] && read -rep " " -i "192.168.0.10" 'rsto'; 
+read -rep " " -i "$rsto" 'rsto'; 
+printf " -- user: \t"; 
+read -rep " " -i 'aa' 'rsuser'; 
+printf " -- folder: \t"; 
+read -rep " " -i '~/rs/' 'rsfold'; 
+printf "\n"; 
+rsync -a --info=name1 ${rs[*]} ${rsuser}@${rsto}:${rsfold} ; 
+printf "\n\e[7m$rsuser@$rsto:$rsfold\e[0m\n";
+ssh "$rsuser"@"$rsto" 'printf "\n\e[35m$HOME'"${rsfold/\~/}"'\n\n\e[0m"; ls -ptcr '"$rsfold"'|tail -n12';
+lf -remote "send $id unselect *"; 
+lf -remote "send $id reload"; 
+read; printf "\e[?47l\n"
+}}
+
+
+
+#fzf --margin 0,12,0,12 --height ~12% --preview "cat {}" --border rounded
+# 
+# cmd rs ${{
+# printf "\n\n\e[36m$fx\e[0m\n----\nchmod:"; 
+# read -rep " " -i "775" "chmod"; 
+# sudo chmod $chmod $fx; 
+# lf -remote "send $id unselect *"; 
+# lf -remote "send $id reload"; 
+# }}
 
 # 
 # cmd tata ${{
