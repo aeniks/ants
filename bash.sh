@@ -60,8 +60,7 @@ else export s='sudo'; fi;
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 # printf "$re${dim}··········$re\n"; 
-model="$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk ro.build.version.sdk ro.product.abilist ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha 2>/dev/null )"; 
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& printf "$blue$(cat /sys/devices/virtual/dmi/id/product_family;) $re\n"; 
+# model="$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk ro.build.version.sdk ro.product.abilist ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha 2>/dev/null )"; 
 # printf "$re${dim}··········\n";  
 # [ -e "/etc/os-release" ]&& OOSS=($(cat "/etc/os-release"|tr " " "_"|tr -d '""'));
 # for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
@@ -76,6 +75,8 @@ model="$(getprop ro.product.model ro.product.model ro.build.version.min_supporte
 printf "$re$dim$(fortune)\n"; 
 printf "$re··········\n"; 
 printf "\e[A$(cat $HOME/calagenda.sh)"; 
+printf "$re··········\n"; 
+[ -e /sys/devices/virtual/dmi/id/product_family ]&& printf "$blue$(cat /sys/devices/virtual/dmi/id/product_family;) $re\n"; 
 printf "$re··········\n";
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
