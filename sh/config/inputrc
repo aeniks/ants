@@ -9,12 +9,12 @@ Control-q: '\e[1~\nexit;\n'
 Control-x: 'exec bash\n'
 Control-h: '\e\e\n\\printf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
 
-"\eq": '\e[1~\nexit;\n'
+"\e[q": '\e[1~\nexit;\n'
 Control-c: "\ec"
 
 "\e[5~": 'hh\n'
 "\e^A"": 'quoted-insert '
-
+"\eu": upcase-word
 
 
 

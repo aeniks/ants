@@ -83,7 +83,7 @@ map x !$f
 map t hora
 map <c-s> sese
 map F :filter
-map d :set dironly! 
+map D :set dironly! 
 map R :rs
 map f :push F<backspace><right><backspace><right><backspace>**<left>
 cmd sese ${{

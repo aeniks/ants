@@ -79,7 +79,7 @@ alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD
 ###############################
 apt() { command apt $@||(printf "\n\n\e[1;32m  Going sudo!  \e[0m\n\n"&& sudo apt $@;)  }
 ###############################
-cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-directories-first||ls -pltcr; echo -e '\e[36m'; pwd; }
+# cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-directories-first||ls -pltcr; echo -e '\e[36m'; pwd; }
 ############################
 ######## LF ################
 # LFRC="$ants/sh/config/lf/lfrc"; 
