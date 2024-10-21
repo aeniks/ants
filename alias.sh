@@ -373,3 +373,5 @@ fffff() { fzf --height ~12 --preview "(batcat -pfld {})" --preview-window=border
 alias calle='printf "\n$(it -)\nleonljunghorn@gmail.com - gcal\n$(it -)"; gcalcli --default-calendar leonljunghorn@gmail.com agenda  --details description --details location; printf "\n$(it -)\n\n"; ' 
 
 alias cdd='dd=(*/); cd $(for df in ${dd[@]}; do echo $df; done|fzf --height ~22)'
+
+alias ttserc='ls -pt|fzf-tmux --no-sort -h'
