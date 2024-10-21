@@ -72,6 +72,7 @@ else export s='sudo'; fi;
 # date="$(date)"; 
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
 # [ "${SSH_CLIENT}" ] && 
+[ -e "/bin/gcalcli" ]&& gcalcli remind 66 & disown; 
 printf "$re$dim$(fortune)\n"; 
 printf "$re··········\n"; 
 printf "\e[A$(cat $HOME/calagenda.sh)"; 

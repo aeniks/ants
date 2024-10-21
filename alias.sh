@@ -193,7 +193,8 @@ alias norm=' echo -e '\e[0m'; tput cnorm 2>/dev/null;'
 alias aa='[ -z "$ants" ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants'
 alias aaaa="$EDITOR "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; exec bash;"
 alias bbbb="$EDITOR "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; exec bash;"
-alias cccc="$EDITOR "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; exec bash;"
+# alias cccc="$EDITOR "$ants/functions.sh"; read -ep 'update $ants/functions.sh? '; exec bash;"
+alias cccc="crontab -e"
 ####
 alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COLUMNS))); 
 do echo -n " "; done; tput cup 0'
