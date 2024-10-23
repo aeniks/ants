@@ -295,9 +295,9 @@ $hm; fi; history -s "$hm"'
 alias hh='search_history'
 alias searcl='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~44% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 
-ff() { 
+cmdss() { 
 kk=($(cat $ants/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
-
+alias ff='fastfetch||neofetch||hostname||id -nu'
 alias sel='info=" ---- mark choice with [TAB] -- confirm with [ENTER] ---- "
 printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~22% --header " -- $ss -- $info --")); 
 printf "${kk[*]}\n"; filist=($(for i in ${kk[*]}; do realpath $i; done));
