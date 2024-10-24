@@ -284,7 +284,7 @@ alias pathh='read -rep "  --  " -i "$PATH" "PATH"; export $PATH  ';
 alias search_history='printf "\e[0m\e[A\e[K\e[7m ---- $HISTFILE ---- $re\n";
 hm="$(tac $HISTFILE|fzf -m --no-sort --height ~66%)"; 
 printf "$cyan ---- $re\n"; 
-echo "$hm"; printf "$cyan ----$re\n[_] break \n[1] write to file \n[2] run command  \n";
+echo "\${hm[@]} -- $hm"; printf "$cyan ----$re\n[_] break \n[1] write to file \n[2] run command  \n";
 read -sren1 "run"; 
 if [ -z "$run" ]; then printf "hm$cyan --$re $hm\n\n"; break 2>/dev/null; fi; 
 if [ "$run"  = 1 ]; then printf "\n${hm}\n -- write to: "; 
@@ -298,13 +298,15 @@ alias searcl='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search fold
 cmdss() { 
 kk=($(cat $ants/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
 alias ff='fastfetch||neofetch||hostname||id -nu'
-alias sel='info=" ---- mark choice with [TAB] -- confirm with [ENTER] ---- "
-printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~22% --header " -- $ss -- $info --")); 
+
+alias serch='
+info=" -- [TAB]_mark choice(s)     -- [ENTER]_confirm     -- [C-q] quit "
+printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; 
+kk=($(ls --group-directories-first -tp $ss|fzf --inline-info --preview "file -ibs {}" --preview-window noborder --tac -m --height ~42% --header "$PWD $info")); 
 printf "${kk[*]}\n"; filist=($(for i in ${kk[*]}; do realpath $i; done));
-printf " ----\n${filist[*]}\n"'; 
+printf " ----\n${filist[*]}\n ----\nvar=\${filist[@]} " '; 
 
 
-alias serch='sel'
 #alias fakta='neofetch 2>/dev/null '
 gg() { 
 google="${@}"; 

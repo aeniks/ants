@@ -23,9 +23,9 @@ Control-h: '\n'
 # Cheatsheet
 #
 # https://man.archlinux.org/man/readline.3
-"\e1": dump-functions
 # "\es": 'printf "\e[A\e[K\e[8B\e[8A\e\n\n[2m --$re search folder: ";\n read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height 62% --header " -- $ss --"));\n printf "$dim --$re SELECTED: \n\n${kk[*]}\n\n$dim --$re variable$dim=$re\$kk \n\n"; \n '
 "\es": '\nserch\n'
+"\e1": dump-functions
 "\e2": dump-variables
 "\e3": dump-macros
 set show-mode-in-prompt off
