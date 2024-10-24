@@ -340,7 +340,7 @@ alias cm2'=cat $ants/sh/cmd.sh'
 alias hello='ff=$(figlist|shuf -n1);printf "\n\n$ff\n\n"; figlet -c -f "$ff" "_Hello"|batcat -ppfl zig; printf "\n\n"'
 alias pub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
-alias pppp='pp "$cyan"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
+alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
 alias apa='sudo apt install'
 
 alias apa='sudo apt install'
