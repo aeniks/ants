@@ -71,7 +71,9 @@ else export s='sudo'; fi;
 # [ "${SSH_CLIENT}" ] && 
 # gcalcli remind 66 "notify-send -a "$(date)" -u "normal" -t "6666" "%s" "& disown; 
 # gcalcli remind 66 & disown; 
-tty="$(tty)"; tty=${tty##*/}
+tty="$(tty)"; 
+tty="${tty:(-1):1}"
+#tty=${tty##*/}
 [ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
 ########
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku;)"

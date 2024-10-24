@@ -6,29 +6,24 @@ C-t: '\ek\nklock\n'
 C-o: '\ek\ncd $(lf -print-last-dir); \n'
 C-p: '\ek\nsed -n l;\n' 
 C-x: '\ek\nexec bash;\n'
-# C-f: '\ek\nprintf "\\e[A\\e[7m\\e[0K$SEARCH FOLDER\\n"; serch\n'
 C-f: '\ek\nserch\n'
 C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
-
-"\ep": "export PATH=${PATH}\e\C-e\"\C-a\ef\ef\C-f:\C-b\""
-
-"\eq": insert-comment
-
-"\e[5~": 'hh\n'
 "\eP": quoted-insert
 "\eu": upcase-word
-"\es": '\ek\nserch\n'
 "\e1": dump-functions
 "\e2": dump-variables
-"\e3": dump-macros
-"\e4": 'kat \e2'
+"\e4": insert-comment
 "\e9": complete-into-braces 
-
-
-
-"\e[1;2D": copy-backward-word
-# copy-forward-word
 "\eb": copy-region-as-kill
+"\e[1;2D": copy-backward-word
+"\ep": "export PATH=${PATH}\e\C-e\"\C-a\ef\ef\C-f:\C-b\""
+"\e[5~": 'hh\n'
+"\eq": '\ek\C-d'
+"\es": '\ek\nserch\n'
+
+
+
+# copy-forward-word
 # 
 
 
