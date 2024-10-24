@@ -10,7 +10,7 @@
 ################################
 
 # alias tt='tilde';
-alias tt='ttmenu';
+alias tt='[ "${TMUX}" ]||tmux; ttmenu';
 alias ttmenu='tmux display-menu \
 " split - V " v "split-window -v" \
 " split | H " h "split-window -h" \
