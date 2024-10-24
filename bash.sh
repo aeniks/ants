@@ -67,7 +67,6 @@ else export s='sudo'; fi;
 # [ -e "/usr/bin/gcalcli" ]&& 
 # printf "$re${dim}··········$re\n"; 
 # date="$(date)"; 
-(timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
 # [ "${SSH_CLIENT}" ] && 
 # gcalcli remind 66 "notify-send -a "$(date)" -u "normal" -t "6666" "%s" "& disown; 
@@ -94,6 +93,7 @@ printf "$re$(date)$cyan · $re$(uptime -p)\n";
 printf "$re··········\n"; 
 ####
 ####
+(timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m \w/\e[0m\n'
 
