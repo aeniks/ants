@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>What
+is my public IP address - IP.ME</title>
+    <meta name="description" content="Use our
+free IP address tool to find your public IP address (IPv4 - IPv6) in one
+click." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/vendor/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/vendor/fa.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/static/android-icon-192x192.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/static/favicon-96x96.png"
+    />
+
+    <link rel="manifest" href="/static/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="/static/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="/static/main.css" />
+    <link rel="stylesheet" href="/static/vpn-cta.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.0.slim.min.js"
+      integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    ></script>
+  </head>
+  <body class="home text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <span class="text-white">ip</span>.<span class="text-white">me</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <!--
+					<li class="nav-item ">
+						<a class="nav-link" href="/check-webrtc-leaks">WebRTC</a>
+					</li>
+					-->
+            <li class="nav-item ">
+              <a class="nav-link" href="/ip">IP Lookup</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="/whois">Whois</a>
+            </li>
+            <li class="nav-item">
+              <span
+                class="title "
+                >DNS</span
+              >
+              <ul class="submenu">
+                <li class="nav-item ">
+                  <a class="nav-link" href="/dns">DNS Lookup</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/mx">MX Lookup</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/ns">NS Lookup</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/cname">CNAME Lookup</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/txt">TXT Lookup</a>
+                </li>
+              </ul>
+            </li>
+            <!-- <li class="nav-item">
+						<span class="title ">Tools</span>
+						<ul class="submenu">
+							<li class="nav-item ">
+								<a class="nav-link" href="/ip">IP Lookup</a>
+							</li>
+							<li class="nav-item ">
+								<a class="nav-link" href="/whois">Whois</a>
+							</li>
+							<li class="nav-item ">
+								<a class="nav-link" href="/dns">DNS</a>
+							</li>
+						</ul>
+					</li> -->
+            <!--
+					<li class="nav-item ">
+						<a class="nav-link" href="/resources">Resources</a>
+					</li>
+					-->
+            <li class="nav-item ">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+     
+
+    <main class="py-4">
+      <div class="container">
+           
+
+<style>
+  .ip-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .ip-container input[type="text"] {
+    max-width: 215px;
+  }
+
+  @media (max-width: 992px) {
+    .ip-container {
+      flex-direction: column;
+      justify-content: center
+      /* align-items: flex-start; */
+      /* height: 140px; */
+    }
+
+    .ip-container input[type="submit"] {
+      width: auto !important;
+    }
+  }
+</style>
+
+<h1 class="mt-1 heading">What’s my public IP address?</h1>
+<div class="ip-container">   
+    <p class="your-ip-text">Your public IP address is:</p>
+    <p class="ip-address">2001:9b1:c3c1:e201:475c:966c:822f:d44a</p>
+</div>
+<!-- <form method="POST" action="/ip">
+  <div class="form-row">
+    <div class="form-group col-md-6 ip-container">
+      <label for="ip-lookup" class="your-ip-text">Your public IP address is:</label>
+      <input
+        type="text"
+        name="ip"
+        value="2001:9b1:c3c1:e201:475c:966c:822f:d44a"
+        class="form-control"
+        id="ip-lookup"
+        placeholder="0.0.0.0"
+        autofocus
+        
+      />
+    </div> -->
+    <!-- <div class="form-group col">
+      <label class="d-none d-md-block">&nbsp;</label>
+      <input type="submit" value="IP Lookup" class="btn btn-primary" />
+    </div> -->
+  <!-- </div>
+</form> -->
+
+<script type="text/javascript">
+  $(function () {
+    $("form").submit(function (event) {
+      var ip = $("#ip-lookup").val();
+      if (ip !== "" && ip !== undefined) {
+        window.location.replace("/ip/" + ip);
+        event.preventDefault();
+      }
+    });
+  });
+
+  // function to create the animation on the chevron icon in the faq component
+  function toggleIcon(button) {
+    const icon = button.querySelector('.accordion-icon');
+    if (icon.src.includes('chevron-down.svg')) {
+      icon.src = '../static/chevron-up.svg';  // Change to up icon
+    } else {
+      icon.src = '../static/chevron-down.svg'; // Change back to down icon
+    }
+  }
+</script>
+
+<div class="row pb-3">
+  <div class="col-md-8 map_container">
+    <div id="map"></div>
+  </div>
+  <div class="col-md-4">
+
+    <table class="table bg-transparent text-white table-sm">
+      
+      <tr>
+        <th>City:</th>
+        <td><code>Stockholm</code></td>
+      </tr>
+      <tr>
+        <th>Country:</th>
+        <td><code>Sweden</code></td>
+      </tr>
+      <tr>
+        <th>Country Code:</th>
+        <td><code>SE</code></td>
+      </tr>
+      <tr>
+        <th>Latitude:</th>
+        <td class="latitude">
+          <code>59.3241</code>
+        </td>
+      </tr>
+      <tr>
+        <th>Longitude:</th>
+        <td class="longitude">
+          <code>18.0517</code>
+        </td>
+      </tr>
+      <tr>
+        <th>Postal Code:</th>
+        <td><code>195 87</code></td>
+      </tr>
+      <tr>
+        <th>Organization:</th>
+        <td><code>Bahnhof AB</code></td>
+      </tr>
+      <tr>
+        <th>ASN:</th>
+        <td><code>8473</code></td>
+      </tr>
+      <tr>
+        <th>ISP Name:</th>
+        <td><code>Bahnhof AB</code></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="d-flex align-items-center cta-container">
+  <div class="d-flex flex-column left-side">
+    <h2 class="h2">
+      Browse privately with Proton’s free VPN
+    </h2>
+    <p class="cta-p1">
+      Stop Big Tech, ISPs, and marketers from using your IP to track your location and online activities. Hide your IP address and protect your personal data and privacy with Proton VPN. 
+    </p>
+    <a
+      class="vpn-cta-button"
+      href="https://protonvpn.com/free-vpn?utm_campaign=ww-all-2a-vpn-ref_web-g_acq-acq_gs_test_24&utm_source=ip.me&utm_medium=cta"
+      target="_blank"
+      >Get Proton VPN Free</a
+    >
+  </div>
+  <div class="d-flex flex-column right-side">
+    <img
+      src="../static/vpn-cta-image.png"
+      alt="vpn-image"
+      class="cta-image"
+    />
+  </div>
+</div>
+<div class="container three-boxes">
+  <div class="row text-white mt-5 d-flex align-items-stretch">
+    <div class="col-md-4 d-flex single-box">
+      <div class="custom-box p-4 flex-fill">
+        <h3 class="box-title">What is an IP address?</h3>
+        <p>An IP address is a number assigned to your device by your ISP which acts as a unique identifier. It allows anyone (ISPs, governments, advertisers) to track your online activity, leaving you vulnerable.</p>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="custom-box p-4 flex-fill">
+        <h3 class="box-title">Easily hide your IP address</h3>
+        <p>When you connect to a VPN, it assigns you a new IP address that masks your real IP. This hides your location, online identity, and activities and protects your privacy.</p>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="custom-box p-4 flex-fill">
+        <h3 class="box-title">Choose Proton VPN Free</h3>
+        <p><ul>
+          <li>Unlimited bandwidth and high connection speeds</li>
+          <li>No-logs policy – even we can’t see your online activities </li>
+          <li>A secure VPN that’s backed by strict Swiss privacy laws</li>
+          <li>Open source and audited</li>
+        </ul></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="mt-5 faq-title">Frequently asked questions</h2>
+
+<div id="accordion">
+  <!-- First Card -->
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+       <button class="btn btn-link custom-accordion-button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="toggleIcon(this)">
+          Why do I need a VPN?  <img src="../static/chevron-down.svg" class="accordion-icon" alt="Chevron Icon">
+        </button> 
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+      <div class="card-body">
+        A virtual private network (VPN) is a tool that protects your internet connection so you stay private and secure online. It gives you a new temporary IP address and encrypts the data from your computer, smartphone, or tablet, allowing you to browse anonymously without being tracked or identified by online snoops, cybercriminals, advertisers, or even governments.
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Card -->
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link custom-accordion-button collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="toggleIcon(this)">
+          How does a VPN hide my public IP address? <img src="../static/chevron-down.svg" class="accordion-icon" alt="Chevron Icon">
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+      <div class="card-body">
+        Once connected, all of your internet traffic is routed through the VPN server. Instead of using your real IP address assigned by your Internet Service Provider (ISP), the VPN server assigns you a new IP address, so any website you visit sees the VPN server’s IP address, not your actual public IP address.
+      </div>
+    </div>
+  </div>
+
+  <!-- Third Card -->
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link custom-accordion-button collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="toggleIcon(this)">
+          What else can a VPN do? <img src="../static/chevron-down.svg" class="accordion-icon" alt="Chevron Icon">
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+      <div class="card-body">
+        <p>A VPN offers more than just masking your IP address. Here’s what else a VPN can do for you:
+</p>
+        <p class="faq-heading">Establishes a secure internet connection</p>
+        <p>When you connect to a VPN, your device (computer, smartphone, etc.) establishes a secure, encrypted connection with one of the VPN provider’s servers. This server can be located in another city or country, depending on your preferences. This ensures your connection is secure, even on public wi-fi networks.</p>
+        <p class="faq-heading">Encrypts your data</p>
+        <p>A good VPN (like Proton VPN) encrypts your internet traffic, meaning that all data passing between your device and the VPN server is scrambled and unreadable to anyone who might try to intercept it, including your ISP, hackers, or government surveillance.</p>
+        <p class="faq-heading">Hides your location</p>
+        <p>Since the VPN server assigns you a new IP address that corresponds to its location, websites and online services assume you are located where the VPN server is. This masks your real geographical location.</p>
+        <p class="faq-heading">Gives you access to your favorite content</p>
+        <p>VPNs can help you explore content available in different regions by allowing you to connect to servers in other countries. For example:</p>
+        <p><ul><li>Streaming services: You might find that some platforms have different shows and movies in various regions. Using a VPN, you can access content that may not be available in your current location.</li>
+        <li>Access to restricted websites: If certain websites or apps aren’t available in your area, a VPN can help you browse more freely.</li>
+        </ul></p>
+      </div>
+    </div>
+  </div>
+  <!-- Fourth Card -->
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link custom-accordion-button collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" onclick="toggleIcon(this)">
+          Is Proton VPN free? <img src="../static/chevron-down.svg" class="accordion-icon" alt="Chevron Icon">
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+      <div class="card-body">Yes, Proton VPN offers a free version with no data limits, making it one of the more generous free VPN options. The paid version of Proton VPN provides additional benefits, like access to a wider range of servers in more countries, faster speeds, support for streaming services, and advanced features like Secure Core servers, which offer extra layers of privacy protection.
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""
+  ></script>
+  
+  <script defer>
+    // initialize Leaflet
+    var map = L.map('map').setView({lon: 18.0517, lat: 59.3241 }, 6);
+    map.attributionControl.setPrefix(false);
+
+    // add the OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    	maxZoom: 12,
+    	attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(map);
+
+    // show the scale bar on the lower left corner
+    L.control.scale({imperial: true, metric: true}).addTo(map);
+
+    // show a marker on the map
+    L.marker({lon: 18.0517, lat: 59.3241}).addTo(map);
+
+    console.log(L);
+  </script>
+   
+      </div>
+    </main>
+
+    <footer class="pt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col menu">
+            <a class="active" href="/">Home</a>
+            |
+            <a class="" href="/ip"
+              >IP Lookup</a
+            >
+            |
+            <a class="" href="/whois"
+              >Whois</a
+            >
+            |
+            <a class="" href="/dns">DNS</a>
+            |
+            <a class="" href="/about"
+              >About</a
+            >
+          </div>
+          <div class="col text-right">
+            Made with <i class="fa fa-heart text-danger"></i> by
+            <a href="https://proton.me" target="_blank" class="text-white"
+              >Proton</a
+            >
+            &copy; 2024 ip.me
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript" defer>
+      $(function () {
+        $("form").on("submit", function () {
+          $(this).find('button, input[type="submit"]').attr("disabled", true);
+        });
+      });
+    </script>
+  </body>
+</html>
