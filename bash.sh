@@ -71,29 +71,27 @@ else export s='sudo'; fi;
 # [ "${SSH_CLIENT}" ] && 
 # gcalcli remind 66 "notify-send -a "$(date)" -u "normal" -t "6666" "%s" "& disown; 
 # gcalcli remind 66 & disown; 
+tty="$(tty)"; tty=${tty##*/}
 [ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
 ########
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku;)"
 ###############################################
 ###############################################
-[ -e "/bin/gcalcli" ]&& gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+[ "${tty}" -lt "2" ]&& [ -e "/bin/gcalcli" ]&& gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
 ###############################################
-printf "$dim$(date)\n";
-printf "$re··········\n"; 
-printf "$re$dim$(fortune)\n"; 
-printf "$re··········\n"; 
-printf "\e[A$(cat $HOME/calagenda.sh)"; 
+# printf "$re··········\n"; 
+[ "${tty}" -lt "2" ]&& printf "$re$dim$(fortune)\n$re··········\n\e[A$(cat $HOME/calagenda.sh)"; 
 printf "$re··········\n"; 
 printf "$green$dim${model[*]}$re\n" 
 printf "$re··········\n";
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
 printf "$re··········\n"; 
-printf "$re$(date)$cyan · $re$(uptime -p)\n"; 
+printf "$dim$(date)$re | $re$dim$(uptime -p)\n"; 
 printf "$re··········\n"; 
 ####
 ####
-(timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
+[ "${tty}" -lt "2" ]&& (timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m \w/\e[0m\n'
 
