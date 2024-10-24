@@ -2,13 +2,16 @@
 ## alarm timer
 qalarma() {
 ppp=$(timeout 1 notify-send -u critical aa -p)
-for i in {1..8}; do echo gg; timeout 1 kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ping-msg "${an} kk"; 
+for i in {1..8}; do echo gg; timeout 1 kdeconnect-cli -d "3280304e_a6b9_4168_a6c2_3c5adc626102" --ping-msg "${an} kk"; 
 sudo wall --nobanner "${an}"; 
 $(timeout 2 notify-send -u critical -a "${an} $ppp" -r "$ppp" -A "exit"="TURN OFF $ppp" "$an $ppp $(date) ")
-kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring& 
+kdeconnect-cli -d "3280304e_a6b9_4168_a6c2_3c5adc626102" --ring& 
 echo gg; done 
 } 
-
+malarma() {
+termux-media-player play ~/ants/media/money.mp3; 
+termux-notification -c "${an}";
+}
 qalarm() {
 
 ########################################
@@ -32,7 +35,9 @@ printf "${re}${bo}  Your Alarm: ${pink}${rev} ${an} ${re} is set to ${bb}${al:0:
 printf "${re}${dim}    ----------${re}\n\n"; 
 ########################################
 ## timer checks every 25 seconds #######
-while true; do sleep 44; if [ "$(date +%H%M)" -eq "${al}" ]; then qalarma; return; fi; done & disown; 
+alarmtype="qalarma"
+[ "${PREFIX}" ]&& alarmtype=malarma
+while true; do sleep 44; if [ "$(date +%H%M)" -eq "${al}" ]; then ${alarmtype}; return; fi; done & disown; 
 return; 
 ########################################
 }
@@ -48,37 +53,5 @@ qalarm
 #     ${re}-----------------------------------${dim}
 #   Example: ${dim}[${bb}1645${re}${dim}] (sets alarm to quarter to five.)
 #   Example: ${dim}[${bm}0800${re}${dim}] (sets alarm to eight AM.)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
