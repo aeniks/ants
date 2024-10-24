@@ -29,9 +29,6 @@ ip6=$(timeout 1 curl icanhazip.com -s6 & disown);
 ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
 #ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); 
 sshc=($SSH_CLIENT); 
-# Add this to .bashrc or .zshrc or its equivalent
-transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;}
-# Now you can use transfer function
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
 #################################################
 ## COLORS -- VARIABLES ##########################
@@ -82,6 +79,8 @@ else export s='sudo'; fi;
 ###############################################
 [ -e "/bin/gcalcli" ]&& gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
 ###############################################
+printf "$dim$(date)\n";
+printf "$re··········\n"; 
 printf "$re$dim$(fortune)\n"; 
 printf "$re··········\n"; 
 printf "\e[A$(cat $HOME/calagenda.sh)"; 
@@ -90,8 +89,8 @@ printf "$green$dim${model[*]}$re\n"
 printf "$re··········\n";
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
-printf "$re··········\n${dim}"; 
-date;
+printf "$re··········\n"; 
+printf "$re$(date)$cyan · $re$(uptime -p)\n"; 
 printf "$re··········\n"; 
 ####
 ####
