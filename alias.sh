@@ -8,7 +8,8 @@
 # yellow=$($e'\e[0;33m';); blue=$($e'\e[0;34m';); pink=$($e'\e[0;35m';); cyan=$($e'\e[0;36m';); 
 # white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
-
+alias sshknown='cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq'
+alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq|fzf$tt --height "~42%")'
 # alias tt='tilde';
 alias tt='[ "${TMUX}" ]||tmux; ttmenu';
 alias ttmenu='tmux display-menu \
