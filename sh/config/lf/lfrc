@@ -36,6 +36,8 @@ map s8 :set ratios 1:8
 map s6 :set ratios 2:1
 map s9 :set ratios 1:1:1
 map s5 :set ratios 1:4:4
+
+map sl :sese 
 map sr :set reverse!
 map sz :set sortby size
 map sd :set drawbox!
@@ -87,7 +89,7 @@ map D :set dironly!
 map R :rs
 map f :push F<backspace><right><backspace><right><backspace>**<left>
 cmd sese ${{
-
+mv $(basename $f) $(slugify ${f/*\/})
 }}
 
 cmd hora ${{ printf "\e[$((lf_height/2-16))H\n\n\e[2J\e[2;38;5;24m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%D); printf "\e[0;1;37m"; figlet -w $lf_width -c -fDOS_Rebel $(date +%H" : "%M); printf "\e[35;5m\e[$((lf_width/2-2))G >_<\n\n\n\n\n\n\n\n\e[25m\e[0m"; read }} 
@@ -150,6 +152,7 @@ read -n1 -rep "
   ${dim}[${re}X${dim}]${re}iftool 
   ${dim}[${re}M${dim}]${re}ediainfo 
   ${dim}[${re}J${dim}]${re}p2a " "x"; 
+
 if [ $x = c ]; then chafa $f; read -n1 -p '[ok]'; 
 elif [ $x = k ]; then cacaview $f; read; 
 elif [ $x = b ]; then batcat --paging always $f -pl d; read -n1 -p '[ok]'; 
@@ -234,8 +237,8 @@ cmd tar ${{
 
 # cmd zip ${{
 # set -f
-# mkdir $f
 # cp -r $fx $f
+# mkdir $f
 # zip -r $f.zip $f
 # # rm -rf $1
 # }}
@@ -267,6 +270,14 @@ cmd chmod_p ${{
 printf "\n\n\e[36m$fx\e[0m\n----\nchmod:"; 
 read -rep " " -i "775" "chmod"; 
 sudo chmod $chmod $fx; 
+lf -remote "send $id unselect *"; 
+lf -remote "send $id reload"; 
+}}
+
+cmd chown_p ${{
+printf "\n\n\e[36m$fx\e[0m\n----\nchmod:"; 
+read -rep " " -i "$LOGNAME" "chown"; 
+sudo chown $chown $fx; 
 lf -remote "send $id unselect *"; 
 lf -remote "send $id reload"; 
 }}

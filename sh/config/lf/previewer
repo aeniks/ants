@@ -132,6 +132,8 @@ zipinfo -1 "$1"|batcat -pPfl perl;
 echo;echo " -- -- -- -- ";echo;
 zipinfo -t "$1"|batcat -pPfl c; 
 	;;
+	(application/zip,0 | application/x-7z-compressed,0 )
+tar -
 	(audio/*,[01])
 		exiftool -S "$1"|batcat -ppfl d
 	;;
