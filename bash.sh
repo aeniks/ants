@@ -39,6 +39,8 @@ re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m';
 me="$(whoami)"; e='\e'; 
 ##########################
 ##################################################
+[ "${SECONDS}" -gt "90" ]&& systemd-analyze|batcat -ppflzig;
+
 ## SYSTEM // INFO ################################
 #########################
 ########
@@ -67,6 +69,9 @@ else export s='sudo'; fi;
 # [ -e "/usr/bin/gcalcli" ]&& 
 # printf "$re${dim}··········$re\n"; 
 # date="$(date)"; 
+[ "$(uptime|cut -f4 -d" "|tr -d " ,:")" -lt 122 ] && systemd-analyze|batcat -ppflzig;  
+printf "$re··········\n"; 
+
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
 # [ "${SSH_CLIENT}" ] && 
 # gcalcli remind 66 "notify-send -a "$(date)" -u "normal" -t "6666" "%s" "& disown; 
@@ -74,7 +79,10 @@ else export s='sudo'; fi;
 tty="$(tty)"; 
 tty="${tty:(-1):1}"
 #tty=${tty##*/}
+printf "$dim$(date)$re | $re$dim$(uptime -p)\n"; 
+printf "$re··········\n\e[7m"; 
 [ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
+printf "$re\n··········\n"; 
 ########
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku;)"
 ###############################################

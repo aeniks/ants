@@ -1,0 +1,2 @@
+
+alias hupp='hhup=$(tac /home/aa/.bash_history|fzf --inline-info --scroll-off 12 --color --expect="q" --height="2%" +s -i ")'
