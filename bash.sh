@@ -68,6 +68,10 @@ else export s='sudo'; fi;
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
 # printf "$re${dim}··········\n";  
 ##cat ~/neocache.sh 2>/dev/null||neofetch 
+if [ -e "${PREFIX}/bin/figlet" ]; then ff=$(figlist|shuf -n1); printf "\n\n$ff\n\n"; 
+figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null; 
+printf "\n\n"
+fi; 
 tty="$(tty)"; tty="${tty:(-1):1}"
 [ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
