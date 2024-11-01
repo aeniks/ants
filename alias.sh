@@ -352,7 +352,6 @@ alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e 
 alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
 alias apa='sudo apt install'
 
-alias apa='sudo apt install'
 alias save_as_alias='printf "\n\n\n\n\n\n
 \e[5A\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
 read -p " " -re "qq"; 
@@ -361,7 +360,8 @@ read -p " " -re "ii";
 printf "\nalias $ii=$(quote "$qq")\n" | tee -a $ants/alias.sh'
 
 alias s4='byobu-layout restore 1'
-alias mo='ssh -p 8022 192.168.0.108'
+alias mo='ssh -p 8022 192.168.1.8'
+
 alias h='search_history'; 
 alias allias='cat $HISTFILE|tac|fzf -m --no-sort --height 16|tee -a $ants/alias.sh; '
 gh_new() { 

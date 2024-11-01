@@ -39,7 +39,7 @@ re='\e[0m'; bold='\e[1m'; dim='\e[2m'; og='\e[8m';
 me="$(whoami)"; e='\e'; 
 ##########################
 ##################################################
-[ "${SECONDS}" -gt "90" ]&& systemd-analyze|batcat -ppflzig;
+# [ "${SECONDS}" -gt "90" ]&& systemd-analyze|batcat -ppflzig;
 
 ## SYSTEM // INFO ################################
 #########################
@@ -68,11 +68,11 @@ else export s='sudo'; fi;
 ##cat ~/neocache.sh 2>/dev/null||neofetch 
 tty="$(tty)"; tty="${tty:(-1):1}"
 [ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku;)"
+[ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor|tr '\n' '-')"
 # [ -e "/usr/bin/gcalcli" ]&& 
 # printf "$re${dim}··········$re\n"; 
 # date="$(date)"; 
-[ "$(uptime -p|cut -f4 -d" "|tr -d " ,:")" -lt 12 ] && (systemd-analyze|batcat -ppflzig;  
+[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig;  
 printf "$re··········\n"; )
 
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
