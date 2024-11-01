@@ -26,7 +26,9 @@ export NVM_DIR="$HOME/.nvm"
 ## GET IP:S #####################################
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
 # ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
-ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
+# ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
+ip_loc=$(ip r|tail -n1|tr " " "\n"|grep "src" -A1|tail -n1)
+
 #ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); 
 sshc=($SSH_CLIENT); 
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
