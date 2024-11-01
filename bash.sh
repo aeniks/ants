@@ -25,7 +25,7 @@ export NVM_DIR="$HOME/.nvm"
 #################################################
 ## GET IP:S #####################################
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
-ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
+# ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
 ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
 #ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); 
 sshc=($SSH_CLIENT); 
@@ -68,7 +68,7 @@ else export s='sudo'; fi;
 ##cat ~/neocache.sh 2>/dev/null||neofetch 
 tty="$(tty)"; tty="${tty:(-1):1}"
 [ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor|tr '\n' '-')"
+[ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' ')"
 # [ -e "/usr/bin/gcalcli" ]&& 
 # printf "$re${dim}··········$re\n"; 
 # date="$(date)"; 
@@ -85,21 +85,23 @@ printf "$re··········\n\e[7m";
 ########
 ###############################################
 ###############################################
-[ "${tty}" -lt "4" ]&& [ -e "/bin/gcalcli" ]&& gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+[ "${tty}" -lt "4" ]&& [ -e "/bin/gcalcli" ]&& timeout 6 gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+# calcurse -d 6 2>/dev/null; 
 ###############################################
 # printf "$re··········\n"; 
 [ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune)\n$re··········\n\e[A$(cat $HOME/calagenda.sh)"; 
 printf "$re··········\n"; 
-printf "$green$dim$rev${model[*]}$re\n" 
+printf "$green$dim$rev${model[*]}$re | $cyan$MACHTYPE$re\n"; 
+printf "$green$TERM$re | $cyan$SHELL$re\n" 
 printf "$re··········\n";
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
 printf "$re··········\n"; 
-printf "$dim$(date)$re | $re$dim$(uptime -p)\n"; 
+printf "$dim$(date -R)$re | $re$dim$(uptime -p)\n"; 
 printf "$re··········\n"; 
 ####
 ####
-[ "${tty}" -lt "4" ]&& (timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
+[ "${tty}" -lt "4" ]&& (timeout 6 ssh aa@ants.ftp.sh "timeout 6 gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m \w/\e[0m\n'
 
