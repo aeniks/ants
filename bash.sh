@@ -68,7 +68,8 @@ else export s='sudo'; fi;
 ##cat ~/neocache.sh 2>/dev/null||neofetch 
 tty="$(tty)"; tty="${tty:(-1):1}"
 [ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' ')"
+[ -e /sys/devices/virtual/dmi/id/product_family ]&& \
+model="$(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' ')"
 # [ -e "/usr/bin/gcalcli" ]&& 
 # printf "$re${dim}··········$re\n"; 
 # date="$(date)"; 
@@ -80,8 +81,8 @@ printf "$re··········\n"; )
 # gcalcli remind 66 "notify-send -a "$(date)" -u "normal" -t "6666" "%s" "& disown; 
 # gcalcli remind 66 & disown; 
 #tty=${tty##*/}
-printf "$dim$(date)$re | $dim$(uptime -p)\n"; 
-printf "$re··········\n\e[7m"; 
+# printf "$dim$(date -R)$re | $dim$(uptime -p)\n"; 
+printf "$re\n\nhello\n$re··········\n\e[7m"; 
 ########
 ###############################################
 ###############################################
@@ -89,25 +90,20 @@ printf "$re··········\n\e[7m";
 # calcurse -d 6 2>/dev/null; 
 ###############################################
 # printf "$re··········\n"; 
-[ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune)\n$re··········\n\e[A$(cat $HOME/calagenda.sh)"; 
+[ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n\e[A$(cat $HOME/calagenda.sh)"; 
 printf "$re··········\n"; 
-printf "$green$dim$rev${model[*]}$re | $cyan$MACHTYPE$re\n"; 
-printf "$green$TERM$re | $cyan$SHELL$re\n" 
+printf "$cyan$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n" 
+printf "$re··········\n"; 
+printf "$green$rev${model[*]}$re\n"; 
 printf "$re··········\n";
-[ "${SSH_CLIENT}" ] && printf "$re$red${sshc}$re >> "; 
+[ "${SSH_CLIENT}" ] && \
+printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
 printf "$re··········\n"; 
 printf "$dim$(date -R)$re | $re$dim$(uptime -p)\n"; 
 printf "$re··········\n"; 
 ####
 ####
-[ "${tty}" -lt "4" ]&& (timeout 6 ssh aa@ants.ftp.sh "timeout 6 gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
+[ "${tty}" -lt "4" ]&& (timeout 6 ssh aa@ants.ftp.sh "timeout 6 gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military" 2>/dev/null & disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m \w/\e[0m\n'
-
-
-
-
-
-
-
