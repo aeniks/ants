@@ -14,6 +14,7 @@ alias kk='|kk'
 # 
 
 # }
+alias speed='speedtest --bytes --no-upload'
 alias ipme='wget icanhazip.com -qLO-'
 alias ipme4='curl icanhazip.com -s4'
 alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq|fzf$tt --height "~42%")'

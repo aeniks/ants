@@ -66,33 +66,31 @@ else export s='sudo'; fi;
 # printf "$green${OS_ID_LIKE^} ${OS_ID^} ${OS_VERSION}\n";
 # printf "$re${dim}··········\n";  
 ##cat ~/neocache.sh 2>/dev/null||neofetch 
+tty="$(tty)"; tty="${tty:(-1):1}"
+[ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
+[ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku;)"
 # [ -e "/usr/bin/gcalcli" ]&& 
 # printf "$re${dim}··········$re\n"; 
 # date="$(date)"; 
-[ "$(uptime|cut -f4 -d" "|tr -d " ,:")" -lt 122 ] && systemd-analyze|batcat -ppflzig;  
-printf "$re··········\n"; 
+[ "$(uptime -p|cut -f4 -d" "|tr -d " ,:")" -lt 12 ] && (systemd-analyze|batcat -ppflzig;  
+printf "$re··········\n"; )
 
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
 # [ "${SSH_CLIENT}" ] && 
 # gcalcli remind 66 "notify-send -a "$(date)" -u "normal" -t "6666" "%s" "& disown; 
 # gcalcli remind 66 & disown; 
-tty="$(tty)"; 
-tty="${tty:(-1):1}"
 #tty=${tty##*/}
-printf "$dim$(date)$re | $re$dim$(uptime -p)\n"; 
+printf "$dim$(date)$re | $dim$(uptime -p)\n"; 
 printf "$re··········\n\e[7m"; 
-[ "$PREFIX" ]&& model="$(getprop ro.product.system.model;)";  
-printf "$re\n··········\n"; 
 ########
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& model="$(cat /sys/devices/virtual/dmi/id/product_sku;)"
 ###############################################
 ###############################################
-[ "${tty}" -lt "2" ]&& [ -e "/bin/gcalcli" ]&& gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+[ "${tty}" -lt "4" ]&& [ -e "/bin/gcalcli" ]&& gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
 ###############################################
 # printf "$re··········\n"; 
-[ "${tty}" -lt "2" ]&& printf "$re$dim$(fortune)\n$re··········\n\e[A$(cat $HOME/calagenda.sh)"; 
+[ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune)\n$re··········\n\e[A$(cat $HOME/calagenda.sh)"; 
 printf "$re··········\n"; 
-printf "$green$dim${model[*]}$re\n" 
+printf "$green$dim$rev${model[*]}$re\n" 
 printf "$re··········\n";
 [ "${SSH_CLIENT}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
@@ -101,7 +99,7 @@ printf "$dim$(date)$re | $re$dim$(uptime -p)\n";
 printf "$re··········\n"; 
 ####
 ####
-[ "${tty}" -lt "2" ]&& (timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
+[ "${tty}" -lt "4" ]&& (timeout 6 ssh aa@ants.ftp.sh "gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military"& disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
 PS1=''$re'\e[2;3m\t '$re$cyan$me$re'@\e[35;40m\H\e[34m \w/\e[0m\n'
 
