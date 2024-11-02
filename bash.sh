@@ -61,6 +61,7 @@ else export s='sudo'; fi;
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 # printf "$re${dim}··········$re\n"; 
+# model="$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk ro.build.version.sdk ro.product.abilist ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha 2>/dev/null )"; 
 # printf "$re${dim}··········\n";  
 # [ -e "/etc/os-release" ]&& OOSS=($(cat "/etc/os-release"|tr " " "_"|tr -d '""'));
 # for i in ${!OOSS[@]}; do printf -v "OS_${OOSS[i]/=*}" "${OOSS[i]/*=}"; done 
@@ -72,13 +73,10 @@ figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null;
 printf "\n\n"
 fi; 
 tty="$(tty)"; tty="${tty:(-1):1}"
-[ "$PREFIX" ]&& model="$(getprop ro.soc.manufacturer ro.product.model; getprop  ro.build.version.min_supported_target_sdk ro.build.version.sdk; getprop ro.product.abilist gsm.sim.operator.alpha)"; 
+[ "$PREFIX" ]&& model="$(getprop ro.product.system.model; uname --kernel-version;)";  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model="$(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' ')"
-
-
 # [ -e "/usr/bin/gcalcli" ]&& 
-# model="$(getprop ro.product.system.model; ls)";  
 # printf "$re${dim}··········$re\n"; 
 # date="$(date)"; 
 [ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig;  
