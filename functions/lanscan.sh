@@ -10,7 +10,7 @@ printf "\n\t $c2\e[2m Scanning LAN\e[0m$c2\e[0m\n\n";
 
 
 host="$(ip r|tail -n1|cut -f1 -d'0')"
-
+read -rep '  host: ' -i "$host" "host"; 
 
 	# host="192.168.1.1";
 we=(); for i in $(seq 12); do ping ${host}${i} -W 1 -qACc1 1>/dev/null&& we+=( "$host$i" )&& printf "\t  \e[48;5;2$((${i:(-1)}*2/7))m${we[@]: -1}\e[0m is \e[2;42mopen\e[0m\n"; done; 
