@@ -8,8 +8,11 @@ C-p: '\ek\nsed -n l;\n'
 C-x: '\ek\nexec bash;\n'
 C-f: '\ek\nserch\n'
 C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
-"\eP": quoted-insert
-"\e3": quoted-insert
+"\eq": insert-comment
+"\e3": insert-comment
+"£": insert-insert
+C-3: insert-comment
+"\eU": upcase-word
 "\eu": upcase-word
 "\e1": dump-functions
 "\e2": dump-variables
@@ -19,16 +22,19 @@ C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
 "\e[1;2D": copy-backward-word
 "\ep": "export PATH=${PATH}\e\C-e\"\C-a\ef\ef\C-f:\C-b\""
 "\e[5~": 'hh\n'
-"\e[1;2A": 'dd="$(tac ~/.bash_history|fzf --no-sort --height 2% --scroll-off 12 --inline-info -x +s -i --expect q;)";\n read -rep "" -i "${dd}" dd; \n'
-
+"\e[6~": kill-whole-line
 
 
 
 # read -rei "$hh" "hh";\n$hh\n'
 # "\eq": '\ek\C-d'
-# "\es": '\ek\nserch\n'
-
-
+# 
+# "\es": '\ek\nfzf\n'
+# 
+# 
+# alias hh='hello="$HISTFILE size: $HISTFILESIZE"; hh="$(tac $HISTFILE|fzf --inline-info --scheme history --no-sort -i --expect q;)"; printf "\n\e[37;45m\e[1m ·· ${hello}\e[${#hello}D$hello "; for i in $(seq $((COLUMNS - ${#hello} - 8))); do printf "·"; done; printf " \e[0m\n"; printf "$hh\n"; \n'
+# 
+# \ef: hh\n
 
 # copy-forward-word
 # 
@@ -56,6 +62,7 @@ set expand-tilde on
 # set horizontal-scroll-mode on
 # Display the common prefix of the list of possible completions (which may be empty) before cycling through the list
 set menu-complete-display-prefix on
+
 # Attempt to place the cursor position at the same location on each history line retrieved with previous-history or next-history
 set history-preserve-point on
 # Tab-completed directory names have a slash appended
@@ -72,7 +79,7 @@ set print-completions-horizontally on
 # (Default is double tab key press)
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
-set skip-completed-text off
+set skip-completed-text on
 # Colored file types
 set colored-stats on
 # Suffix each returned file tab-completion with a character denoting its type

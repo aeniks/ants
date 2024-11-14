@@ -9,13 +9,13 @@
 # white=$($e'\e[0;37m';); re=$($e'\e[0m';); c2=$($e'\e[36m --\e[0m';); 
 ################################
 alias sshknown='cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq'
-alias kk='|kk'
+# alias kk='kk||printf "\nalias kk = |kk\n--\n"'
 # kk() {
 # 
 
 # }
 alias speed='speedtest --bytes --no-upload'
-alias ipme='wget icanhazip.com -qLO-'
+alias ipme='time wget icanhazip.com -qLO-'
 alias ipme4='curl icanhazip.com -s4'
 alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq|fzf$tt --height "~42%")'
 # alias tt='tilde';
@@ -46,13 +46,14 @@ gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n";
 printf "\n  try again \n\n"; )
 }
 alias gpg='gpg --pinentry loopback'; 
-alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c'
+alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c||getprop system.productname|kat; printf "\n$HOSTNAME : $HOSTTYPE : $MACHTYPE : $OS_TYPE\n\n"; '
 # getprop ro.
 
 # less (){
 # 
 # }
-alias iiii='$EDITOR $ants/sh/config/inputrc; echo gg; '
+alias ss='ssss -l'
+alias iiii='$EDITOR $ants/sh/config/inputrc; echo gg; exec $0'
 #alias sl='ssh aaaa@ants.ftp.sh'; 
 ###############################
 alias 12='menu $ants/12'
@@ -76,9 +77,9 @@ ssh "aa@ants.ftp.sh";
 ##alias sl='sshs="aa@ants.ftp.sh"; read -rep "-- ssh: " -i "${sshs}" "sshs"; ssh ${sshs}; '
 alias hhhh='batcat -pfl sh ~/.bash_history' 
 ###############################
-info() { command info $1|batcat -pf --language c#||man $1; }
-man() { command man $1|batcat -pf --language manpage||help $1; } 
-help() { command help $1|batcat -pf --language c#||apropos $1; } 
+info() { (printf "\ninfo $@\n\n"; whatis $@; echo; whereis $@; command info $@)|batcat -ppf||man $@; }
+man() { man $@|batcat -ppf||whatis $@; help $@; } 
+help() { printf "$cyan ------ $green$1 $red$2 $blue$3 $green$4 $re \n"; command help $@|batcat -ppfld||apropos $@; }   
 #### wrangler stuff ###########
 alias wrangler_server='wrangler pages dev ./||npm i -g wrangler'
 alias wrangler_deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
@@ -86,7 +87,7 @@ alias wrangler_list='wrangler pages project list'
 alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
 ###############################
 ###############################
-apt() { command apt $@||(printf "\n\n\e[1;32m  Going sudo!  \e[0m\n\n"&& sudo apt $@;)  }
+apt() { sudo apt $@||(printf "\n\n\e[1;32m  Going no sudo! \e[0m\n\n"; apt $@;)  }
 ###############################
 # cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-directories-first||ls -pltcr; echo -e '\e[36m'; pwd; }
 ############################
@@ -131,7 +132,7 @@ alias quotes='fortune $s|tr -s "\t" " "|batcat -ppfl go'
 kl() {
 batlist=($(batcat --list-languages|grep ','|grep -v " "|tr "," "\n"|cut -f2 -d ":"));
 batn=$(shuf -e -n1 ${batlist[@]})
-echo -e "$cyan${batn}$re\n"; batcat -Ppf --language $batn; echo; 
+printf "$cyan${batn}$re\n"; date +%A|figlet -f $(shuf -e $HOME/ff.sh)|batcat -ppfl $batn; echo; 
 }
 ################################
 hhhhhh() {
@@ -139,7 +140,8 @@ linesh=222;
 [ -n "${1} "]&& linesh="${1}";
 tail ~/.bash_history -n${linesh}|batcat -ppl c;
 }
-alias kat='batcat -pf --language D'
+alias kk='batcat -pf|less --use-color --tilde --file-size'
+alias kat='batcat -pfld'
 # kat() {
 # unset -v kat; 
 # if [ "${1}" = "help" ] 2>/dev/null; then 
@@ -147,12 +149,12 @@ alias kat='batcat -pf --language D'
 # return 0; fi; 
 # [ $2 ]&& lng="${2}"; [ $2 ]|| lng="sh"; 
 # [ $1 ] 2>/dev/null||ls -p --color --group-directories-first --hyperlink; 
-# [ $1 ] 2>/dev/null||read -rep "$c2 kat file: " -i "$PWD/" kat;
-# [ $2 ]&& batcat -Ppf $kat $1 --language $lng||batcat -Ppf $kat $1;
+# [ $1 ] 2>/dev/null||read -rep "$c2 katfile: " -i "$PWD/" kat;
+# [ $2 ]&& batcat -Ppf $kat  $1 --language $lng||batcat -Ppf $kat $1;
 # 
 # }
 alias ips='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
-alias fill='seq -s "" 2222';
+alias fill='hash lolcat && seq -s " " 2222';
 alias 12_nuke_ants='
 read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
 read -rep "$c2$red nuke$re new ant-folder: " -i "$ants" "nk"; 
@@ -185,7 +187,7 @@ alias goto='echo -e "\n\n\n\n"; tput cuu 2; echo -ne "\t $c2 goto: "; read -ep "
 
 #alias apt='sudo apt'
 alias gmail='open gmail.com'
-alias no='echo -e "\e[?25h"'
+alias no='echo -e "\e[?25h"; printf "\e[0m"'
 alias 12_info_ansi='batcat -p $ants/sh/info/ansi.md'
 alias 12_tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
@@ -237,7 +239,7 @@ history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash
 tail -n${lo} ~/.bash_history|glow; '
 alias qq='cd ..; ' 
 #alias ww='cd $OLDPWD; '
-alias bb="btop --utf-force|| gotop"
+alias bb="[ "$TMUX" ]tt sudo btop --utf-force||gotop||atop||htop||top"
 alias emojis='cat $ants/sh/emojis.sh|tr "\n" "\t";';
 alias 12_emojis=emojis;
 ############################################
@@ -317,21 +319,26 @@ printf " ----\n${filist[*]}\n ----\nvar=\${filist[@]} " ';
 
 
 #alias fakta='neofetch 2>/dev/null '
-gg() { 
-google="${@}"; 
-tput indn 8 cuu 4; read -rep "$c2 google: " -i "$google" "google"; googler "https://www.google.com/search?q=$google"; } 
+
+export www_display='google chrome'
+export www_cli='links2'
+c2="$(printf "\e[36--\e[0m";)"; 
+
+
 alias calw='gcalcli calw --monday --military --locale=sv_SE.UTF-8'
-alias agenda='gcalcli agenda --military --locale=sv_SE.UTF-8'
+alias agenda='gcalcli agendaq --military --locale=sv_SE.UTF-8'
 # alias zz="ranger 2>/dev/null" 
 #alias pp='echo ____pinging_moto8____; for i in {1..18}; do sleep 1; 
 #kdeconnect-cli -n "moto g(8)" --ping-msg "  >_<  "; sleep 1; done'
 # echo; read -ep "to: " -i "$PWD/" "folder"; mkdir -p $folder -m 775 2>/dev/null; 
-alias cloner='read -rep "git to CLONE: https://github.com/aeniks/" -i "" "clone"; 
+alias git_clone='echo; read -rep " -- clone a repo to dir: " -i "$HOME/gh/" "ghhome"; mkdir -pm 765 $ghhome; cd $ghhome; pwd; read -rep " -- gh - user: " -i "aeniks" "ghcloneuser"; [ -z "/bin/gh" ]||gh repo list $ghcloneuser; read -rep " -- gh - repo" "ghclonerepo"; git clone https://github.com/${ghcloneuser}/${ghclonerepo}'; 
+alias github_clone_aeniks='read -rep "git to CLONE: https://github.com/aeniks/" -i "" "clone"; 
 git clone https://github.com/aeniks/$clone; cd $clone; '
 # alias ww='ee;ee "$cyan";w;ee;ee "$blue"; ps all;ee "$re $PWD"'
 alias 12_last_logins='echo;echo "  LAST LOGINS"; echo -e "$pink"; sudo lastb -axdwn 4;echo -e "$white"; echo "       = = = = = = == ";echo; sudo last -wxdFan4;echo;landscape-sysinfo; echo;echo "    = = = = = =   ";echo'
 alias 12_choose_logins_screen='read -n1 -ep "  $c2  g/t  $(systemctl get-default)  " "gt"; if [ $gt == t ]; then sudo systemctl set-default multi-user.target; else sudo systemctl set-default graphical.target; fi ; echo gg'
 alias xx='startx'
+alias g_t='12_choose_logins_screen' 
 #alias an12='bash <(wget -O- dub.sh12)'
 #alias aeniks='wget -Ok dub.sh/aeniks; . k;'
 alias greet='echo -ne "\t$c2 Welcome back $blue $USER,$re today is:$blue "; date; echo'
@@ -351,9 +358,10 @@ alias pub='curl ip.me -4'
 alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e "\n >_<\n";	echo -e "\n -- http://"$ip_loc":"$popo" \n"; '
 alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
 alias apa='sudo apt install'
+alias less='less -Rr --use-color --no-histdups --incsearch --file-size --chop-long-lines'; 
 
-alias save_as_alias='printf "\n\n\n\n\n\n
-\e[5A\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
+alias save_as_alias='printf "\n\n\n\n\n\n\22B
+\e[25A\e[J\n\n\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
 read -p " " -re "qq"; 
 printf "\e[0m -- choose \e[1;35malias-name:\e[0m\n --\e[35m alias:\n";
 read -p " " -re "ii"; 
@@ -375,7 +383,7 @@ printf "hello from $(date)" >> "README.md";
 git branch -M main; git add -A; 
 git commit -m "initial commit"; 
 git push -u origin main; 
-} 
+ } 
 alias 12_new_github_repo='gh_new';
 alias gpg='gpg --pinentry-mode loopback'
 alias aptss='for i in ${apts[@]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
@@ -387,3 +395,9 @@ alias calle='printf "\n$(it -)\nleonljunghorn@gmail.com - gcal\n$(it -)"; gcalcl
 alias cdd='dd=(*/); cd $(for df in ${dd[@]}; do echo $df; done|fzf --height ~22)'
 
 alias ttserc='ls -pt|fzf-tmux --no-sort -h'
+
+
+gg() { 
+printf "\n\e[8m$(seq 12)\e[0m\e[12A\e[96m\n --\e[0m google:"; read -rp " " "gg"; 
+gs="https://www.google.com/search?q=${gg// /+}"; 
+if [ -z "/bin/googler" ]; then googler "$gs" 2>/dev/null||[ -e "/bin/$www_cli" ]&& $www_cli "${gs}"||$BROWSER_CLI "${gs}"; fi; } 
