@@ -359,7 +359,6 @@ alias tttt='popo=8686; ttyd -c aa:aa -p $popo -W bash& disown; sleep 1; echo -e 
 alias pppp='pp "$re"; cd /ants; push; cd -; pp "$red"; ssh aa@ants.ftp.sh "cd ants; git pull"; pp "$green"; mo "cd ants; git pull"; pp "$re"; ' 
 alias apa='sudo apt install'
 alias less='less -Rr --use-color --no-histdups --incsearch --file-size --chop-long-lines'; 
-
 alias save_as_alias='printf "\n\n\n\n\n\n\22B
 \e[25A\e[J\n\n\e[0m -- choose \e[36;1mcommand\e[0m to save as alias: [up/down]\n --\e[36m command:\n"; 
 read -p " " -re "qq"; 
@@ -387,16 +386,10 @@ git push -u origin main;
 alias 12_new_github_repo='gh_new';
 alias gpg='gpg --pinentry-mode loopback'
 alias aptss='for i in ${apts[@]}; do printf "\n______${cyan}${i^^}${re}______ \n"; apt show ${i} 2>/dev/null|grep -e "Description" -A12; done|batcat -p'
-
 fffff() { fzf --height ~12 --preview "(batcat -pfld {})" --preview-window=border-none --info inline --scrollbar --scroll-off 12 --hscroll; }; 
-
 alias calle='printf "\n$(it -)\nleonljunghorn@gmail.com - gcal\n$(it -)"; gcalcli --default-calendar leonljunghorn@gmail.com agenda  --details description --details location; printf "\n$(it -)\n\n"; ' 
-
 alias cdd='dd=(*/); cd $(for df in ${dd[@]}; do echo $df; done|fzf --height ~22)'
-
 alias ttserc='ls -pt|fzf-tmux --no-sort -h'
-
-
 gg() { 
 printf "\n\e[8m$(seq 12)\e[0m\e[12A\e[96m\n --\e[0m google:"; read -rp " " "gg"; 
 gs="https://www.google.com/search?q=${gg// /+}"; 
