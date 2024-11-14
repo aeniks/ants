@@ -132,6 +132,5 @@ printf "$re··········\n";
 dawd="$(date +%w)"; dadm="$(date +%d)"; 
 damo="$(date +%m)"; daye="$(date +%y)"; 
 dahh="$(date +%H)"; damm="$(date +%M)";
-[ "${tty}" -lt "4" ]&& (timeout 6 ssh aa@ants.ftp.sh "timeout 6 gcalcli --locale sv_SE.UTF-8 --calendar leonljunghorn@gmail.com agenda --military" 2>/dev/null & disown) > $HOME/calagenda.sh
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
 PS1='\e[37;41m$model$re$cyan$me$re@\e[45;30m\H\e[34;40m\W/\e[0m\e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
