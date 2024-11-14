@@ -92,7 +92,7 @@ else export s='sudo'; fi;
 # printf "\n\n"
 # fi; 
 tty="$(tty)"; tty="${tty:(-1):1}"
-[ "$PREFIX" ]&& model=($((getprop ro.product.system.model; uname --kernel-version)));  
+[ "$PREFIX" ]&& model=($(getprop ro.product.system.model ro.product.model; uname --kernel-version));  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' '))
 # [ -e "/usr/bin/gcalcli" ]&& 
