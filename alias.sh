@@ -19,14 +19,14 @@ alias ipme='time wget icanhazip.com -qLO-'
 alias ipme4='curl icanhazip.com -s4'
 alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq|fzf$tt --height "~42%")'
 # alias tt='tilde';
-alias tt='[ "${TMUX}" ]||tmux; ';
+alias tt='[ "${TMUX}" ]||tmux';
 alias ttmenu='tmux display-menu \
 " split - V " v "split-window -v" \
 " split | H " h "split-window -h" \
 " open " o "display-popup gotop||btop" \
 " serch " s "display-popup lsd --classify -R --depth=2|fzf"'
 [ "$TMUX" ]&& TERM=xterm-256color
-[ "$TMUX_PANE" = "%0" ]&& (sleep 2; ttmenu)& disown; 
+# [ "$TMUX_PANE" = "%0" ]&& (sleep 2; ttmenu)& disown; 
 alias mm='micro'
 alias qq='cd ..; ll';
 alias ee='echo ';
@@ -46,7 +46,7 @@ gh auth status&& printf "\n\n\e[42m OK \e[0m\n\n";
 printf "\n  try again \n\n"; )
 }
 alias gpg='gpg --pinentry loopback'; 
-alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c||getprop system.productname|kat; printf "\n$HOSTNAME : $HOSTTYPE : $MACHTYPE : $OS_TYPE\n\n"; '
+# alias os_info='cat /etc/os-release|grep -v "URL"|batcat -ppfl c||getprop system.productname|kat; printf "\n$HOSTNAME : $HOSTTYPE : $MACHTYPE : $OS_TYPE\n\n"; '
 # getprop ro.
 
 # less (){
@@ -127,7 +127,7 @@ alias 12_it_neighbours='neighbours'
 # fortune|batcat --style numbers --theme "${bathb//_/ }" --language ${batn};
 # } 
 alias rrrrch='$EDITOR $ants/functions/rrrr.sh'; 
-alias quotes='fortune $s|tr -s "\t" " "|batcat -ppfl go'
+alias quotes='fortune $s|tr -s "\t" " "'
 
 kl() {
 batlist=($(batcat --list-languages|grep ','|grep -v " "|tr "," "\n"|cut -f2 -d ":"));
@@ -153,7 +153,7 @@ alias kat='batcat -pfld'
 # [ $2 ]&& batcat -Ppf $kat  $1 --language $lng||batcat -Ppf $kat $1;
 # 
 # }
-alias ips='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
+alias ipip='echo;echo -ne "$c2$c2 "; hostname; echo -ne "$c2$c2 "; id; echo -e "\n$c2 IPS$c2\n$(timeout 2 hostname --all-fqdn; timeout 1 hostname -I;) \n\n$c2 PUBLIC IPS$c2 "; timeout 2 curl ip.me; timeout 2 curl ip.me -4; echo -e "\n$c2 ROUTES$c2"; ip -c r; echo -e "\n$c2 ADRESSES$c2"; ip -c a; echo -e "\n$c2 NEIGHBOURS$c2"; ip -c n; ' 
 alias fill='hash lolcat && seq -s " " 2222';
 alias 12_nuke_ants='
 read -rep "$c2$red nuke$re old ant-folder: " -i "$ants" "ok"; 
@@ -293,16 +293,16 @@ alias pathh='read -rep "  --  " -i "$PATH" "PATH"; export $PATH  ';
 # alias hh='printf "\e[A\e[0K \e[7m--\e[0m\n\n"; tac $HISTFILE|fzf -m --no-sort --height ~62% --header " -- $ss --"|tee -a ~/histcmd.sh'
 
 alias search_history='printf "\e[0m\e[A\e[K\e[7m ---- $HISTFILE ---- $re\n";
-hm="$(tac $HISTFILE|fzf -m --no-sort --height ~66%)"; 
+hm="$(tac $HISTFILE|fzf -m --no-sort --height ~66% --inline-info --expect q --hscroll --no-literal)"; 
 printf "$cyan ---- $re\n"; 
-echo "\${hm[@]} -- $hm"; printf "$cyan ----$re\n[_] break \n[1] write to file \n[2] run command  \n";
+[ "$hm" = "q" ] && printf "\n\noq\n\n"; 
+if [ "$hm" ]; then echo "\${hm[@]} -- $hm"; printf "$cyan ----$re\n[_] break \n[1] write to file \n[2] run command  \n";
 read -sren1 "run"; 
 if [ -z "$run" ]; then printf "hm$cyan --$re $hm\n\n"; break 2>/dev/null; fi; 
 if [ "$run"  = 1 ]; then printf "\n${hm}\n -- write to: "; 
 read -rep " " -i "$PWD/" "ht"; ht=${ht/ /}; printf "\n${hm}\n" >> "${ht}"; fi; 
 if [ "$run"  = 2 ]; then 
-$hm; fi; history -s "$hm"' 
- 
+$hm; fi; history -s "$hm"; else printf "\nnothing new....\n"; fi' 
 alias hh='search_history'
 alias searcl='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~44% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 
@@ -320,11 +320,9 @@ printf " ----\n${filist[*]}\n ----\nvar=\${filist[@]} " ';
 
 #alias fakta='neofetch 2>/dev/null '
 
-export www_display='google chrome'
+export www_display='google-chrome'
 export www_cli='links2'
 c2="$(printf "\e[36--\e[0m";)"; 
-
-
 alias calw='gcalcli calw --monday --military --locale=sv_SE.UTF-8'
 alias agenda='gcalcli agendaq --military --locale=sv_SE.UTF-8'
 # alias zz="ranger 2>/dev/null" 

@@ -16,8 +16,6 @@ export BROWSER_CLI='links2';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 ##############################################################
 ## load alias and functions 
-. $ants/alias.sh; 
-[ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
 # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
 export PROMPT_COMMAND="history -a; history -n;"; 
 ######## NVM
@@ -36,7 +34,6 @@ sshc=($SSH_CLIENT);
 #################################################
 ## COLORS -- VARIABLES ##########################
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
-printf "\e[40m\e[96m$HOSTNAME\e[1;37m -\e[0m\e[40m\e[2m$(uptime) \n"; 
 ee='echo';
 key="$(printf "\e[30m";)"; 
 red="$(printf "\e[31m";)"; 
@@ -73,6 +70,9 @@ e='\e';
 # qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; 
 # qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
 # qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
+[ -z "$ants" ]&& read -rp " " "ants"; 
+[ -z "$ants" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; printf "export ants=$ants" ) >> ~/.bashrc; 
+. $ants/alias.sh; [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 # printf "$re${dim}··········$re\n"; 
@@ -109,6 +109,7 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id
 # calcurse -d 6 2>/dev/null; 
 ###############################################
 # printf "$re··········\n"; 
+printf "\e[40m\e[96m$HOSTNAME\e[1;37m -\e[0m\e[40m\e[2m$(uptime) \n"; 
 printf "$re··········\n"; 
 [ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n$(cat $HOME/calagenda.sh)";
 printf "$re··········\n"; 
