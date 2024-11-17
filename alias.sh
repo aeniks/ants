@@ -19,7 +19,7 @@ alias ipme='time wget icanhazip.com -qLO-'
 alias ipme4='curl icanhazip.com -s4'
 alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq|fzf$tt --height "~42%")'
 # alias tt='tilde';
-alias tt='[ "${TMUX}" ]||tmux; ttmenu';
+alias tt='[ "${TMUX}" ]||tmux; ';
 alias ttmenu='tmux display-menu \
 " split - V " v "split-window -v" \
 " split | H " h "split-window -h" \

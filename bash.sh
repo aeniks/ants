@@ -11,7 +11,7 @@ then . /etc/bash_completion; fi; fi;
 shopt -s histappend; ## append to history, don't overwrite it
 export EDITOR='micro';
 export PAGER='less';
-export BROWSER='google chrome'; 
+export BROWSER='google-chrome'; 
 export BROWSER_CLI='links2'; 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 ##############################################################
@@ -22,8 +22,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export PROMPT_COMMAND="history -a; history -n;"; 
 ######## NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 #################################################
 ## GET IP:S #####################################
 ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
@@ -36,28 +35,25 @@ sshc=($SSH_CLIENT);
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
 #################################################
 ## COLORS -- VARIABLES ##########################
+[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
+printf "\e[40m\e[96m$HOSTNAME\e[1;37m -\e[0m\e[40m\e[2m$(uptime) \n"; 
 ee='echo';
-key="$(printf "\e[30m")"; 
-red="$(printf "\e[31m")"; 
-green="$(printf "\e[32m")"; 
-yellow="$(printf "\e[33m")"; 
-blue="$(printf "\e[34m")"; 
-pink="$(printf "\e[35m")";
-cyan="$(printf "\e[36m")"; 
-white="$(printf "\e[37m")"; 
-rev="$(printf "\e[7m")"; 
-re="$(printf "\e[0m")"; 
-bold="$(printf "\e[1m")"; 
-dim="$(printf "\e[2m")"; 
-og="$(printf "\e[8m")"; 
+key="$(printf "\e[30m";)"; 
+red="$(printf "\e[31m";)"; 
+green="$(printf "\e[32m";)"; 
+yellow="$(printf "\e[33m";)"; 
+blue="$(printf "\e[34m";)"; 
+pink="$(printf "\e[35m";)";
+cyan="$(printf "\e[36m";)"; 
+white="$(printf "\e[37m";)"; 
+rev="$(printf "\e[7m";)"; 
+re="$(printf "\e[0m";)"; 
+bold="$(printf "\e[1m";)"; 
+dim="$(printf "\e[2m";)"; 
+c2="$(printf "\e[0m\e[36m--\e[0m")"; 
 invis="$(printf "\e[8m")"; 
-nn='0000\n'
-me="$(whoami)"; e='\e'; c2="$(printf "\e[0m\e[36m--\e[0m")"; 
-roll() {
-printf "\e[0m\n\e[8m"; 
-for i in $(seq $1); do printf "\n"; done; 
-} 
-
+me="$(id -nu)"; 
+e='\e'; 
 ##########################
 ##################################################
 # [ "${SECONDS}" -gt "90" ]&& systemd-analyze|batcat -ppflzig;
@@ -65,9 +61,9 @@ for i in $(seq $1); do printf "\n"; done;
 ## SYSTEM // INFO ################################
 #########################
 ########
-if [ "$(id -u)" -gt "0" ]; then export s=' '; 
-elif [ $(echo $HOME|grep "termux") ]; then alias sudo=' '; export s=' '; nn='\n'
-else export s='sudo'; fi; 
+# if [ "$(id -u)" -gt "0" ]; then export s=' '; 
+# elif [ $(echo $HOME|grep "termux") ]; then alias sudo=' '; export s=' '; nn='\n'
+# else export s='sudo'; fi; 
 ########
 # 
 # date; #### begin printf here ################
@@ -92,14 +88,12 @@ else export s='sudo'; fi;
 # printf "\n\n"
 # fi; 
 tty="$(tty)"; tty="${tty:(-1):1}"
-[ "$PREFIX" ]&& model=($(getprop ro.product.system.model ro.product.model; uname --kernel-version));  
+[ "$PREFIX" ]&& model=($(getprop ro.product.system.model ro.product.model))&& ±
+[ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' '))
-# [ -e "/usr/bin/gcalcli" ]&& 
-# printf "$re${dim}··········$re\n"; 
-# date="$(date)"; 
-[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig;  
-printf "$re··········\n"; )
+[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig; ); 
+# printf "$re··········\n"; )
 
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
 # [ "${SSH_CLIENT}" ] && 
@@ -107,7 +101,7 @@ printf "$re··········\n"; )
 # gcalcli remind 66 & disown; 
 #tty=${tty##*/}
 # printf "$dim$(date -R)$re | $dim$(uptime -p)\n"; 
-printf "$re\n\nhello\n$re··········\n\e[7m"; 
+# printf "$re\nhello\n$re··········\n\e[7m"; 
 ########
 ###############################################
 ###############################################
@@ -115,7 +109,8 @@ printf "$re\n\nhello\n$re··········\n\e[7m";
 # calcurse -d 6 2>/dev/null; 
 ###############################################
 # printf "$re··········\n"; 
-[ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n\e[A$(cat $HOME/calagenda.sh)"; 
+printf "$re··········\n"; 
+[ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n$(cat $HOME/calagenda.sh)";
 printf "$re··········\n"; 
 printf "$cyan$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n" 
 printf "$re··········\n"; 

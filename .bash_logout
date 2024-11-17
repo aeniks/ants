@@ -12,3 +12,9 @@ pull
 momo
 l
 sl
+aa
+pull 
+sl
+push
+pppp
+sl
