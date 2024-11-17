@@ -87,8 +87,9 @@ e='\e';
 # figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null; 
 # printf "\n\n"
 # fi; 
-tty="$(tty)"; tty="${tty:(-1):1}"
-[ "$PREFIX" ]&& model=($(getprop ro.product.system.model ro.product.model))&& ±
+tty="$(tty)"; 
+tty="${tty:(-1):1}"; 
+[ "$PREFIX" ]&& model=($(getprop ro.product.system.model ro.product.model))&& \
 [ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' '))
