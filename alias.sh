@@ -14,18 +14,24 @@ alias sshknown='cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq'
 # 
 
 # }
-alias speed='speedtest --bytes --no-upload'
-alias ipme='time wget icanhazip.com -qLO-'
+alias speed='speedtest --bytes --no-upload||speedtest-cli'
+alias ipme='wget icanhazip.com -qLO-'
 alias ipme4='curl icanhazip.com -s4'
 alias sshh='[ "${TMUX}" ]&& tt="-tmux -h"; ssh aa@$(cat $HOME/.ssh/known_hosts|cut -f1 -d" "|tr -d "[]"|uniq|fzf$tt --height "~42%")'
 # alias tt='tilde';
-alias tt='[ "${TMUX}" ]||tmux';
-alias ttmenu='tmux display-menu \
+alias tt='[ "${TMUX}" ]||tmux; [ "$TMUX" ] && tmux display-menu \
 " split - V " v "split-window -v" \
 " split | H " h "split-window -h" \
-" open " o "display-popup gotop||btop" \
-" serch " s "display-popup lsd --classify -R --depth=2|fzf"'
-[ "$TMUX" ]&& TERM=xterm-256color
+" open " o "display-popup gotop||btop||gotop||htop||top" \
+" serch " s "display-popup lsd|fzf"';
+####
+####
+# alias ttmenu='
+# [ "$TMUX" ] && tmux display-menu \
+# " split - V " v "split-window -v" \
+# " split | H " h "split-window -h" \
+# " open " o "display-popup gotop||btop||gotop||htop||top" \
+# " serch " s "display-popup lsd|fzf"' 
 # [ "$TMUX_PANE" = "%0" ]&& (sleep 2; ttmenu)& disown; 
 alias mm='micro'
 alias qq='cd ..; ll';
@@ -59,10 +65,10 @@ alias iiii='$EDITOR $ants/sh/config/inputrc; echo gg; exec $0'
 alias 12='menu $ants/12'
 alias qqqq='cd $ants/sh/q;'
 ###############################
-alias m11='ssh -p 8022 192.168.0.105||(read -rep "$c2 open findmydevice? [Y/n] " "gf"||open https://www.google.com/android/find/;)'
-alias 1111='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
-alias 11='ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"||ping 192.168.0.105 -c5||nmap 192.168.0.105 -sL -W1||nmap 192.168.0.105 -sn -W1 &&
-ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"'; 
+# alias m11='ssh -p 8022 192.168.0.105||(read -rep "$c2 open findmydevice? [Y/n] " "gf"||open https://www.google.com/android/find/;)'
+# alias 1111='kdeconnect-cli -d "fb1c649a_3a0c_4297_ae12_b0cf5cb558b8" --ring||open https://www.google.com/android/find/;'
+# alias 11='ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"||ping 192.168.0.105 -c5||nmap 192.168.0.105 -sL -W1||nmap 192.168.0.105 -sn -W1 &&
+# ssh -p 8022 u0_a428@192.168.0.105 "termux-media-player play ~/music/money.mp3"'; 
 alias pp='printf'
 alias sl='ssh aa@ants.ftp.sh'
 alias sl_send='
@@ -87,7 +93,7 @@ alias wrangler_list='wrangler pages project list'
 alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'
 ###############################
 ###############################
-apt() { sudo apt $@||(printf "\n\n\e[1;32m  Going no sudo! \e[0m\n\n"; apt $@;)  }
+apt() { apt $@||(printf "\n\n\e[1;32m  Going no sudo! \e[0m\n\n"; sudo apt $@;)  }
 ###############################
 # cd() { builtin cd "$@" && lsd --hyperlink always -htr --color=always --group-directories-first||ls -pltcr; echo -e '\e[36m'; pwd; }
 ############################
@@ -195,12 +201,12 @@ do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "
 alias tard='lo="$(jp2a $ants/media/tard.jpg --chars="_oooo" --term-width)";
 echo -e "\e[?25l\e[36m"; for i in $(seq ${#lo}); 
 do echo -ne "\e[3$(shuf -en1 2 4 6)m${lo:$i-1:1}"|tr "_o" " ."; done; echo -ne "\e[?25h";'
-alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
-alias staticants=''
+#alias pick='height="$(stty size|head -c3)"; tput indn $((height/4)) cuu $((height/4-2)); gum choose * --no-limit --cursor=" > " --height $((height/2))'
+#alias staticants=''
 alias figz='figlist=($(figlist|batcat -pp --line-range 4:|head -n-5)); 
 nn=; for i in ${figlist[*]}; do printf "\n\n\e[0m --\t\e[7;46m $i\e[0m \e[38;5;$((nn++))m\n\n"; figlet -f "$i" "$i"; done; '; 
 alias reloadbash='exec bash'
-alias norm=' echo -e '\e[0m'; tput cnorm 2>/dev/null;' 
+#alias norm=' echo -e '\e[0m'; tput cnorm 2>/dev/null;' 
 alias aa='[ -z "$ants" ]&& (read -rep "antspath: " -i "$PWD" "ants"; echo -e "\nants=${ants} \nexport ants=${ants}" >> ~/.bashrc; exec bash); cd $ants'
 alias aaaa="$EDITOR "$ants/alias.sh"; read -ep 'update $ants/alias.sh? '; exec bash;"
 alias bbbb="$EDITOR "$ants/bash.sh"; read -ep 'update $ants/bash.sh? '; exec bash;"
@@ -209,7 +215,7 @@ alias cccc="crontab -e"
 ####
 alias bgbg='tput cup 0 setab $((RANDOM%222 + 44)); for i in $(seq $((LINES * COLUMNS))); 
 do echo -n " "; done; tput cup 0'
-alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
+#alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
 ## $($e'\e[2m') invis $($e'\e[0m') 	## $($e'\e[9m') strike $($e'\e[0m')
 ## $($e'\e[2m') blank $($e'\e[0m') 	## $($e'\e[31m') red$($e'\e[0m')
 ## $($e'\e[32m') green $($e'\e[0m') 	## $($e'\e[33m') yellow $($e'\e[0m')
@@ -219,9 +225,9 @@ alias 12_fillscreen='seq -s "-" 2222|lolcat -p .8 -s 2'
 #shost="aeniks.mooo.com"; suser="aaaa";
 alias 12_serve_folder_with_wrangler='read -n1 -ep  "$c2 serve $PWD/? "; npx wrangler pages dev . 2>/dev/null'
 #alias wrangler='npx wrangler pages'
-alias 12_iplocal='ip route; cat ~/iplog; ' 
-alias 12_12_ants_dl_installer='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new$ants; . /tmp/in.sh;'
-alias lenoo='read -t 8 -rep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; curl -k https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM='
+#alias 12_iplocal='ip route; cat ~/iplog; ' 
+#alias 12_12_ants_dl_installer='read -ep "$c2 get ants? " ""; wget -O /tmp/in.sh git.new$ants; . /tmp/in.sh;'
+#alias lenoo='read -t 8 -rep "$c2 update ants.swe.net to lenoos cmp? " "kndfkd"; curl -k https://freedns.afraid.org/dynamic/update.php?OHJNTjc5SWZsRGZoZm1Nanhtek06MjI1MjY0NTM='
 # alias 12_rainbow='echo;echo;echo; tput cuu 2; read -ep "$c2 " "rainbow"; rb "$rainbow";'
 # alias 12_fortune="rrf; fortune; tput sgr0;"
 alias rr="sudo -s"
@@ -234,18 +240,19 @@ zip -r "${zipz}" -i "${zipf}";
 zipinfo -l "${zipz}"; printf "\e[36m"; 
 zipinfo -h "${zipz}"; printf "\e[0m"; ' 
 ##
-alias hiztory='command -v glow||(sudo apt install glow -y &>/dev/null||apt install glow -y&>/dev/null); 
-history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash_history|glow; read -rep " $c2 lines: " -i "$lo" "lo"; \
-tail -n${lo} ~/.bash_history|glow; '
+# alias hiztory='command -v glow||(sudo apt install glow -y &>/dev/null||apt install glow -y&>/dev/null); 
+# history -a; echo -e "## $(tty; date;) ## " >> ~/.bash_history; tail -n22 ~/.bash_history|glow; read -rep " $c2 lines: " -i "$lo" "lo"; \
+# tail -n${lo} ~/.bash_history|glow; '
 alias qq='cd ..; ' 
 #alias ww='cd $OLDPWD; '
-alias bb="[ "$TMUX" ]tt sudo btop --utf-force||gotop||atop||htop||top"
+
+alias bb="[ "$TMUX" ]&& tm="display-popup"; ${tm} sudo btop --utf-force||gotop||atop||htop||top"
 alias emojis='cat $ants/sh/emojis.sh|tr "\n" "\t";';
 alias 12_emojis=emojis;
 ############################################
 #### GITHUB ################################
 alias 12_write_gist_kk='read -ep ">_ " 'kl'; printf "$kl"|gh gist create -f $(date +%A_%y_%m_%d_%__0k_%M.sh);'
-alias kf='guf=$(gum file);echo -e "\n\n\n\n\n"; tput cuu 2; read -ep "$c2 title: $cyan" -i "$(date +%A%y%m%d%0k%M.sh)" "ttll";cat $guf|gh gist create -f $ttll - '
+alias kf='guf=$(ls|fzf);echo -e "\n\n\n\n\n"; tput cuu 2; read -ep "$c2 title: $cyan" -i "$(date +%A%y%m%d%0k%M.sh)" "ttll";cat $guf|gh gist create -f $ttll - '
 ############################################
 #### SSH ###################################
 ############################################
@@ -390,4 +397,7 @@ alias ttserc='ls -pt|fzf-tmux --no-sort -h'
 gg() { 
 printf "\n\e[8m$(seq 12)\e[0m\e[12A\e[96m\n --\e[0m google:"; read -rp " " "gg"; 
 gs="https://www.google.com/search?q=${gg// /+}"; 
-if [ -z "/bin/googler" ]; then googler "$gs" 2>/dev/null||[ -e "/bin/$www_cli" ]&& $www_cli "${gs}"||$BROWSER_CLI "${gs}"; fi; } 
+if [ -z "/bin/googler" ]; then googler "$gs" 2>/dev/null||[ -e "/bin/$www_cli" ]&& $www_cli "${gs}"||$BROWSER_CLI "${gs}"; fi; 
+open ${gs[*]}; 
+
+} 

@@ -1,0 +1,3 @@
+set -g exit-empty off
+set -g editor /usr/bin/micro
+tmux_conf_theme_prefix="̣̉+"

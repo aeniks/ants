@@ -56,7 +56,12 @@ me="$(id -nu)";
 #########################
 ########
 # if [ "$(id -u)" -gt "0" ]; then export s=' '; 
-# elif [ $(echo $HOME|grep "termux") ]; then alias sudo=' '; export s=' '; nn='\n'
+[ $(echo $HOME|grep -w "termux") ] && alias sudo='command'; 
+
+
+[ "$TMUX" ] && TERM=xterm-256color
+
+
 # else export s='sudo'; fi; 
 ########
 # 
