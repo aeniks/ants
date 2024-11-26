@@ -23,13 +23,17 @@ export NVM_DIR="$HOME/.nvm"
 alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 #################################################
 ## GET IP:S #####################################
-ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
 # ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
 # ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
+ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
+[ "${#ip4}" -gt 22 ] && ip4="nope"; 
+iploci="$(ifconfig|grep UP -A1|tail -n1|cut -f10 -d" ";)"; 
+iploca="$(ip a|grep UP -A2|tail -n1|cut -f6 -d" ")"
 ip_loc=$(ip r|tail -n1|tr " " "\n"|grep "src" -A1|tail -n1)
 
+sshc=($SSH_CONNECTION); 
+
 #ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); 
-sshc=($SSH_CLIENT); 
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
 #################################################
 ## COLORS -- VARIABLES ##########################
@@ -70,8 +74,8 @@ me="$(id -nu)";
 # qqkrel="$(uname --kernel-release)"; qqkvers="$(uname --kernel-version)"; 
 # qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
 # qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
-[ -z "$ants" ]&& read -rp " " "ants"; 
-[ -z "$ants" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; printf "export ants=$ants" ) >> ~/.bashrc; 
+[ -z "${ants}" ]&& read -rp "ants: " -i "$PWD" "ants"; 
+[ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; printf "export ants=$ants" ) >> ~/.bashrc; 
 . $ants/alias.sh; 
 # [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
@@ -90,8 +94,8 @@ me="$(id -nu)";
 # fi; 
 tty="$(tty)"; 
 tty="${tty:(-1):1}"; 
-[ "$PREFIX" ]&& model=($(getprop ro.product.system.model ro.product.model))&& \
-[ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release);";  
+[ "$PREFIX" ]&& model=($(getprop ro.product.model))&& \
+[ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' '))
 [ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig; ); 
@@ -107,19 +111,21 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id
 ########
 ###############################################
 ###############################################
-[ "${tty}" -lt "4" ]&& [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& timeout 6 gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+[ "${tty}" -lt "4" ]&& [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
+timeout 6 gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
 # calcurse -d 6 2>/dev/null; 
 ###############################################
 # printf "$re··········\n"; 
 printf "\e[40m\e[96m$HOSTNAME\e[1;37m -\e[0m\e[40m\e[2m$(uptime) \n"; 
 printf "$re··········\n"; 
-[ "${tty}" -lt "4" ]&& printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n$(cat $HOME/calagenda.sh)";
+[ "${tty}" -lt "4" ]&& \
+printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n$(cat $HOME/calagenda.sh)";
 printf "$re··········\n"; 
 printf "$cyan$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n" 
 printf "$re··········\n"; 
 printf "$green$rev${model[*]}$re\n"; 
 printf "$re··········\n";
-[ "${SSH_CLIENT}" ] && \
+[ "${SSH_CONNECTION}" ] && \
 printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$ip_loc$re\n"; 
 printf "$re··········\n"; 
