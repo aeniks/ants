@@ -101,7 +101,7 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id
 #tty=${tty##*/}
 # printf "$dim$(date -R)$re | $dim$(uptime -p)\n"; 
 # printf "$re\nhello\n$re··········\n\e[7m"; 
-########
+########cat ~/logs/gcalagenda.sh
 ###############################################
 ###############################################
 [ "${tty}" -lt "4" ]&& [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
@@ -119,8 +119,7 @@ sshc=($SSH_CONNECTION);
 # printf "$re··········\n"; 
 printf "\e[40m\e[96m$HOSTNAME\e[1;37m -\e[0m\e[40m\e[2m$(uptime) \n"; 
 printf "$re··········\n"; 
-[ "${tty}" -lt "4" ]&& \
-printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n$(cat $HOME/calagenda.sh)";
+printf "$re$dim$(fortune 2>/dev/null)\n$re··········\n$(head -n6 logs/gcalagenda.sh|tail -n+2)";
 printf "$re··········\n"; 
 printf "$cyan$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n" 
 printf "$re··········\n"; 
