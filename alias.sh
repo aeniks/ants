@@ -77,9 +77,9 @@ ssh "aa@ants.ftp.sh";
 ##alias sl='sshs="aa@ants.ftp.sh"; read -rep "-- ssh: " -i "${sshs}" "sshs"; ssh ${sshs}; '
 alias hhhh='batcat -pfl sh ~/.bash_history' 
 ###############################
-info() { (printf "\ninfo $@\n\n"; whatis $@; echo; whereis $@; command info $@)|batcat -ppf||man $@; }
-man() { man $@|batcat -ppf||whatis $@; help $@; } 
-help() { printf "$cyan ------ $green$1 $red$2 $blue$3 $green$4 $re \n"; command help $@|batcat -ppfld||apropos $@; }   
+# info() { (printf "\ninfo $@\n\n"; whatis $@; echo; whereis $@; command info $@)|batcat -ppf||man $@; }
+# man() { man $@|batcat -ppf||whatis $@; help $@; } 
+# help() { printf "$cyan ------ $green$1 $red$2 $blue$3 $green$4 $re \n"; command help $@|batcat -ppfld||apropos $@; }   
 #### wrangler stuff ###########
 alias wrangler_server='wrangler pages dev ./||npm i -g wrangler'
 alias wrangler_deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD##*/}"'

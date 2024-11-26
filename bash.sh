@@ -90,7 +90,7 @@ tty="${tty:(-1):1}";
 [ "$PREFIX" ]&& model=($(getprop ro.product.model))&& \
 [ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
-model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' '))
+model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq -u|tr '\n' ' '))
 [ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig; echo;echo;); 
 # printf "$re··········\n"; )
 
