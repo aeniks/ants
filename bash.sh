@@ -50,7 +50,7 @@ dim="$(printf "\e[2m";)";
 c2="$(printf "\e[0m\e[36m--\e[0m")"; 
 invis="$(printf "\e[8m")"; 
 me="$(id -nu)"; 
-e='\e'; 
+#e='\e'; 
 ##########################
 ##################################################
 # [ "${SECONDS}" -gt "90" ]&& systemd-analyze|batcat -ppflzig;
@@ -72,7 +72,8 @@ e='\e';
 # qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 [ -z "$ants" ]&& read -rp " " "ants"; 
 [ -z "$ants" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; printf "export ants=$ants" ) >> ~/.bashrc; 
-. $ants/alias.sh; [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
+. $ants/alias.sh; 
+# [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 # printf "$re${dim}··········$re\n"; 
