@@ -25,19 +25,12 @@ alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; [ -s "$NVM_D
 ## GET IP:S #####################################
 # ip6=$(timeout 1 curl icanhazip.com -s6 & disown); 
 # ip_loc=$(ifconfig 2>/dev/null|grep 4163 -A1|cut -f10 -d" "|tail -n1); 
-ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
-[ "${#ip4}" -gt 22 ] && ip4="nope"; 
-iploci="$(ifconfig|grep UP -A1|tail -n1|cut -f10 -d" ";)"; 
-iploca="$(ip a|grep UP -A2|tail -n1|cut -f6 -d" ")"
-ip_loc=$(ip r|tail -n1|tr " " "\n"|grep "src" -A1|tail -n1)
-
-sshc=($SSH_CONNECTION); 
 
 #ip_mac=$(ifconfig 2>/dev/null|grep "ether"|cut -f10 -d" "); 
 # ip_pub=($(timeout 2 curl -s ipinfo.io|tr -d ',}{"" '& disown;))
 #################################################
 ## COLORS -- VARIABLES ##########################
-[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
+
 ee='echo';
 key="$(printf "\e[30m";)"; 
 red="$(printf "\e[31m";)"; 
@@ -75,7 +68,7 @@ me="$(id -nu)";
 # qqkname="$(uname --kernel-name)"; qqos="$(uname --operating-system)"; 
 # qqarch="${BASH_VERSINFO[-1]}"; qqterm="${TERM}"; sep='\e[0m -\e[2m';
 [ -z "${ants}" ]&& read -rp "ants: " -i "$PWD" "ants"; 
-[ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; printf "export ants=$ants" ) >> ~/.bashrc; 
+[ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; printf %b "export ants=$ants\n" ) >> ~/.bashrc; 
 . $ants/alias.sh; 
 # [ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
@@ -98,7 +91,7 @@ tty="${tty:(-1):1}";
 [ -z "${HOST}" ]&& HOST="$(uname --kernel-name --kernel-release);";  
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq|tr '\n' ' '))
-[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig; ); 
+[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig; echo;echo;); 
 # printf "$re··········\n"; )
 
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
@@ -113,6 +106,14 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id
 ###############################################
 [ "${tty}" -lt "4" ]&& [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
 timeout 6 gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
+ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
+[ "${#ip4}" -gt 22 ] && ip4="nope"; 
+iploci="$(ifconfig|grep UP -A1|tail -n1|cut -f10 -d" ";)"; 
+iploca="$(ip a|grep UP -A2|tail -n1|cut -f6 -d" ")"
+ip_loc=$(ip r|tail -n1|tr " " "\n"|grep "src" -A1|tail -n1)
+sshc=($SSH_CONNECTION); 
+[ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
+[ -z "$HOST" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
 # calcurse -d 6 2>/dev/null; 
 ###############################################
 # printf "$re··········\n"; 
@@ -137,4 +138,4 @@ dawd="$(date +%w)"; dadm="$(date +%d)";
 damo="$(date +%m)"; daye="$(date +%y)"; 
 dahh="$(date +%H)"; damm="$(date +%M)";
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
-PS1='\e[37;41m$model$re$cyan$me$re@\e[45;30m\H\e[34;40m\W/\e[0m\e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
+PS1='\e[37;41m$model$re$cyan$me$re@\e[45;30m\H\e[34;40m$(pwd)/\e[0m\e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
