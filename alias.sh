@@ -363,10 +363,9 @@ read -p " " -re "qq";
 printf "\e[0m -- choose \e[1;35malias-name:\e[0m\n --\e[35m alias:\n";
 read -p " " -re "ii"; 
 printf "\nalias $ii=$(quote "$qq")\n" | tee -a $ants/alias.sh'
-
 alias s4='byobu-layout restore 1'
-alias mo='ssh -p 8022 192.168.1.8'
-
+alias mo='ssh -p 8022 qq.ftp.sh'
+alias momo='ssh -p 8022 qq.ftp.sh "termux-media-player play ~/ants/media/money.mp3"'
 alias h='search_history'; 
 alias allias='cat $HISTFILE|tac|fzf -m --no-sort --height 16|tee -a $ants/alias.sh; '
 gh_new() { 
