@@ -134,7 +134,7 @@ printf "\e[40m\e[96m$HOSTNAME\e[1;37m -\e[0m\e[40m\e[2m$(uptime) $re\n";
 printf "$re··········\n"; 
 printf "$re$dim$(forts 2>/dev/null)\n"; 
 printf "$re··········\n"; 
-printf "$(test -e ~/logs/gcalagenda.sh && batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column;)$re\n";
+printf "$(test -e ~/logs/gcalagenda.sh && batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|tr -s " " " "|column;)$re\n";
 printf "$re··········\n"; 
 printf "$cyan$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n" 
 printf "$re··········\n"; 
@@ -152,4 +152,4 @@ damo="$(date +%m)"; daye="$(date +%y)";
 dahh="$(date +%H)"; damm="$(date +%M)";
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
-PS1='\e[2;37m$mod$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
+PS1='\e[2;37m${mod:0:12}$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
