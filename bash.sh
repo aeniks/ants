@@ -5,9 +5,10 @@ case $- in
 *i*) ;;
 *) return;;
 esac
+if [ -z $PREFIX ]; then 
 if ! shopt -oq posix; then if [ -f /usr/share/bash-completion/bash_completion ]; 
 then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completion ]; 
-then . /etc/bash_completion; fi; fi; 
+then . /etc/bash_completion; fi; fi; fi; 
 shopt -s histappend; ## append to history, don't overwrite it
 export EDITOR='micro';
 export PAGER='less';
@@ -57,11 +58,7 @@ me="$(id -nu)";
 ########
 # if [ "$(id -u)" -gt "0" ]; then export s=' '; 
 [ $(echo $HOME|grep -w "termux") ] && alias sudo='command'; 
-
-
 [ "$TMUX" ] && TERM=xterm-256color
-
-
 # else export s='sudo'; fi; 
 ########
 # 
@@ -100,7 +97,7 @@ me="$(id -nu)";
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq -u|tr '\n' ' '))
 ####
 ####
-[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig; echo;echo;); 
+[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && [ -z "${PREFIX}" ] && (systemd-analyze|batcat -ppflzig; echo;echo;); 
 # printf "$re··········\n"; )
 
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
