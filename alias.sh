@@ -100,6 +100,7 @@ alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD
 ######## LF ################
 # LFRC="$ants/sh/config/lf/lfrc"; 
 qe() { type $@; whatis $@; 
+apt show $@ 2>/dev/null|grep -wi "description" -A12; 
 } 
 
 alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; 

@@ -1,0 +1,1 @@
+seq 12 > /data/data/com.termux/files/home/logs/fortune.sh; while [ "$(cat /data/data/com.termux/files/home/logs/fortune.sh|wc --lines)" -gt "6" ]; do fortune > /data/data/com.termux/files/home/logs/fortune.sh; done; cat /data/data/com.termux/files/home/logs/fortune.sh 

@@ -90,12 +90,16 @@ me="$(id -nu)";
 # figlet -c -f "$ff" "_Hello"|batcat -ppfl zig 2>/dev/null; 
 # printf "\n\n"
 # fi; 
-tty="$(tty)"; 
-tty="${tty:(-1):1}"; 
+# tty="$(tty)"; 
+# tty="${tty:(-1):1}"; 
 [ "$PREFIX" ] && model=($(getprop ro.product.model))&& \
 [ -z "${HOST}" ] && HOST="$(uname --kernel-name --kernel-release);";  
+####
+####
 [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq -u|tr '\n' ' '))
+####
+####
 [ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && (systemd-analyze|batcat -ppflzig; echo;echo;); 
 # printf "$re··········\n"; )
 
@@ -112,26 +116,34 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id
 # [ "${tty}" -lt "4" ] && 
 [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
 timeout 6 gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
-ip4=$(timeout 1 curl icanhazip.com -s4 -L); 
-[ "${#ip4}" -gt 22 ] && ip4="nope"; 
+ip4=$(timeout 1 curl icanhazip.com -s4 -L); [ "${#ip4}" -gt 22 ] && ip4="nope"; 
+ipgateway="$(ip -c -4 r|cut -f3 -d" "|head -n1;)"; sshc=($SSH_CONNECTION); 
+ip0="$(ip r|tail -n1|cut -f1 -d"/")-12"; 
+alias neighbours='sudo nmap $ip0 -p 22,80,443,53,8022,5555 --open --min-rate 22|batcat -ppflgo --theme Nord|grep -v "Not"'; 
 test $PREFIX && iploc="$(getprop "vendor.arc.net.ipv4.host_wifi_address")"; 
 test $iploc || iploc="$(ifconfig|grep -v "lo"|grep -w "4163" -A1|tail -n1|cut -f10 -d" ";)"; 
-sshc=($SSH_CONNECTION); 
+####
+####
 [ -z "$HOSTNAME" ]&& HOSTNAME="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
 [ -z "$HOST" ]&& HOST="$(uname --kernel-name --kernel-release|tr " ." "_")"; 
 # calcurse -d 6 2>/dev/null; 
 ###############################################
 # printf "$re··········\n"; 
+####
+alias forts='seq 12 > $HOME/.ff.sh; while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "6" ]; do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
+####
+####
 printf "\e[40m\e[96m$HOSTNAME\e[1;37m -\e[0m\e[40m\e[2m$(uptime) $re\n"; 
 printf "$re··········\n"; 
-printf "$re$dim$(fortune 2>/dev/null|tr -d "\t";)\n$re··········\n$(test -e ~/logs/gcalagenda.sh && printf %b "\e[1A" &&  head -n8 ~/logs/gcalagenda.sh|tail -n+1|tr -s "\t " " ")";
+printf "$re$dim$(forts 2>/dev/null)\n"; 
+printf "$re··········\n"; 
+printf "$(test -e ~/logs/gcalagenda.sh && batcat ~/logs/gcalagenda.sh -ppflzig --theme Nord|column;)$re\n";
 printf "$re··········\n"; 
 printf "$cyan$MACHTYPE$re | $green$TERM$re | $cyan$0 $TERM_PROGRAM$re\n" 
 printf "$re··········\n"; 
 printf "$green$rev${model[*]}$re\n"; 
-printf "$re··········\n";
-[ "${SSH_CONNECTION}" ] && \
-printf "$re$red${sshc}$re >> "; 
+printf "$re··········\n"; 
+[ "${SSH_CONNECTION}" ] && printf "$re$red${sshc}$re >> "; 
 printf "$cyan$me$re@$pink$HOSTNAME$re | $cyan$ip4$re | $blue$iploc$re\n"; 
 printf "$re··········\n"; 
 printf "$dim$(date -R)$re | $re$dim$(uptime -p)\n"; 
@@ -141,6 +153,6 @@ printf "$re··········\n";
 dawd="$(date +%w)"; dadm="$(date +%d)"; 
 damo="$(date +%m)"; daye="$(date +%y)"; 
 dahh="$(date +%H)"; damm="$(date +%M)";
-
+mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
-PS1='\e[37;41m$model$re$cyan$me$re@\e[45;30m\H\e[0m-\e[34;40m\W/\e[0m\e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
+PS1='\e[37;41m$mod$re$cyan$me$re@\e[45;30m\H\e[0m-\e[34;40m\W/\e[0m\e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
