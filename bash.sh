@@ -10,11 +10,11 @@ if ! shopt -oq posix; then if [ -f /usr/share/bash-completion/bash_completion ];
 then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completion ]; 
 then . /etc/bash_completion; fi; fi; fi; 
 shopt -s histappend; ## append to history, don't overwrite it
-export EDITOR='micro';
-export PAGER='less';
-export BROWSER='google-chrome'; 
-export BROWSER_CLI='links2'; 
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+# export EDITOR='micro';
+# export PAGER='less';
+# export BROWSER='google-chrome'; 
+# export BROWSER_CLI='links2'; 
+# export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 ##############################################################
 ## load alias and functions 
 # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
@@ -93,11 +93,11 @@ me="$(id -nu)";
 [ -z "${HOST}" ] && HOST="$(uname --kernel-name --kernel-release);";  
 ####
 ####
-[ -e /sys/devices/virtual/dmi/id/product_family ]&& \
+[ -z "${PREFIX}" ] && [ -e /sys/devices/virtual/dmi/id/product_family ]&& \
 model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id/board_vendor /sys/devices/virtual/dmi/id/bios_vendor|sort|uniq -u|tr '\n' ' '))
 ####
 ####
-[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && [ -z "${PREFIX}" ] && (systemd-analyze|batcat -ppflzig; echo;echo;); 
+#[ "$(uptime -p|tr -d '[:alpha:] ,:')" -lt 6 ] && [ -z "${PREFIX}" ] && (systemd-analyze|batcat -ppflzig; echo;echo;); 
 # printf "$re··········\n"; )
 
 # printf "\e7\e[4;64H\e[2;37m${date}\e8\e[0m"; 
@@ -107,6 +107,8 @@ model=($(cat /sys/devices/virtual/dmi/id/product_sku /sys/devices/virtual/dmi/id
 #tty=${tty##*/}
 # printf "$dim$(date -R)$re | $dim$(uptime -p)\n"; 
 # printf "$re\nhello\n$re··········\n\e[7m"; 
+####
+#### 
 ########cat ~/logs/gcalagenda.sh
 ###############################################
 ###############################################
@@ -152,4 +154,8 @@ damo="$(date +%m)"; daye="$(date +%y)";
 dahh="$(date +%H)"; damm="$(date +%M)";
 mod="$(echo -e "${model[*]}"|tr " " "-";)"; 
 [ "$LF_LEVEL" ]&& printf "\n\e[0;91m -- LF_LEVEL \e[0m = $LF_LEVEL\n"; 
+######## << TMUX TO BASHRC
+#tmux source-file "$HOME/.tmux.conf"; 
+#if [ -z "${TMUX}" ]; then [ "$SSH_CONNECTION" ]|| tmux source&& exit; 
+#else tmux lock-server fi;
 PS1='\e[2;37m${mod:0:12}$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
