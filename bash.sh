@@ -15,6 +15,7 @@ export PROMPT_COMMAND="history -a; history -n;" NVM_DIR="$HOME/.nvm"; alias nvm_
 [ -e "/bin/gcalcli" ]&& [ "$me" = "aa" ]&& \
 timeout 6 gcalcli remind --locale='sv_SE.UTF-8' "166" "notify-send -a ""'$(date)'"" -u "normal" -t "6666" ""'%s'"" " 2>/dev/null & disown; 
 ## COLORS -- VARIABLES ##########################
+apts=(fzf ccze lf batcat tmux)
 key="$(printf "\e[30m";)"; 
 red="$(printf "\e[31m";)"; 
 green="$(printf "\e[32m";)"; 
@@ -59,6 +60,7 @@ dawd="$(date +%w)"; dadm="$(date +%d)"; damo="$(date +%m)"; daye="$(date +%y)"; 
 alias neighbours='sudo nmap $ip0 -p 22,80,443,53,8022,5555 --open --min-rate 22|batcat -ppflgo --theme Nord|grep -v "Not"'; 
 alias fortshort='seq 12 > $HOME/.ff.sh; while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "6" ]; do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
 alias vim='nano'; 
+alias ff='timeout 1 fastfetch||timeout 1 neofetch||id'
 ####
 ####
 sshc=($SSH_CONNECTION); 
