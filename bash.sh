@@ -105,4 +105,4 @@ mod="$(echo -e "${model[*]}"|tr " " "-";)";
 ## PS1='\e[2;40;96m\t\e[37m$(echo $PWD|bat --theme Nord -ppflr;)/\e[0m\n'
 ##PS1='\e[2;37m${mod:0:22}$re $cyan$me$re @ \e[45;30m\H\e[0m \e[34;40m\W/\e[0m \e[$((COLUMNS-26))G$(date +%d-%m-%y" $(printf \e[9${dawd:(-1)}m)"%^A"$re "%X)\n'
 ##################################
-PS1='\e[0;40;96;2m${PWD}\e[97m/ \e[0m \n'; 
+PS1='\e[2;37m${mod:0:22}$re $cyan$me$re \e[0;40;96;2m${PWD}\e[97m/ \e[0m \n'; 
