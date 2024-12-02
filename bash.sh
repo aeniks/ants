@@ -40,7 +40,8 @@ export PAGER='less' GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32
 [ -z "${ants}" ]&& ( printf "export ants=$ants >> ~/.bashrc; "; 
 printf %b "export ants=$ants\n" ) >> ~/.bashrc; 
 . $ants/alias.sh; 
-[ -e $ants/functions ] && for i in $ants/functions/*; do . $i; done; 
+. $ants/func.func.sh; 
+# [ -e $ants/func/func.sh ]&& for i in $ants/functions/*; do . $i; done; 
 # qqshell="${SHELL/*\//}"; qqshell="$(printf "${qqshell^^}$sep $BASH_VERSION")"; 
 # printf "$dim$qqkvers \n$qqshell$sep $qqarch\n$qqkname $qqkrel$sep $qqos$sep $re$red$qqterm\n"; 
 # model="$(getprop ro.product.model ro.product.model ro.build.version.min_supported_target_sdk ro.build.version.sdk ro.product.abilist ro.product.name ro.soc.manufacturer ro.soc.model gsm.sim.operator.alpha 2>/dev/null )"; 
