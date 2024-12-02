@@ -1,4 +1,4 @@
 set -g exit-empty off
 set -g editor /usr/bin/micro
-tmux_conf_theme_prefix="\u0aca"
-tmux_conf_battery_bar_symbol_full="¡"
+tmux_conf_theme_prefix="🥎 "
+tmux_conf_battery_bar_symbol_full="*"

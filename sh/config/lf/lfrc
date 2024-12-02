@@ -51,7 +51,8 @@ map 122 :mark-remove
 map v paste
 map k cut
 map A :cd /ants
-map p :chmod_p
+map pm :chmod_p
+map po :chown_p
 map <c-p> :reload && :history 
 map 1 !true
 map x $$f
@@ -144,33 +145,45 @@ batcat --paging always -fpl c $f||cacaview $f||exiftool $f; read -r "x";
 cmd dial ${{ 
 unset x cmds_lf; declare cmds_lf a; 
 dim="$(printf "\e[2m")"; re="$(printf "\e[0m")"; 
+#for i in ${cmds_lf[*]}; do printf " $i $i \n"; done
 for i in $(seq $((lf_height/2))); do printf "\n"; done; 
-cmds_lf=(chafa kakaview "batcat -ppf" "jp2a"); 
-for i in ${cmds_lf[*]}; do printf " $i $i \n"; done
-read -n1 -rp " " "lf_cmd"; 
-printf "\e[0m\n\n"; IFS=; ia=2; for i in ${cmds_lf[@]}; do printf "$re [\e[38;5;$((ia++))m$dim${i:0:1}$re]$dim${i:1} \n"; done; printf "\n\n\n\n\n\n\e[6A"; read -n1 -resp "  " "x"; if [ -z "$x" ]; then read -rep "    :$re" "x"; fi; 
+cmds_lf=("chafa" "kakaview" "batcat -ppf" "jp2a"); 
+
+printf "\e[0m\n"; IFS="$(printf %b "\n")"; ia=2; 
+
+# for i in ${cmds_lf[@]}; do printf "$re [\e[38;5;$((ia++))m$dim${i:0:1}$re]$dim${i:1} \n"; done; 
+# printf "\n\n\e[2A"; 
+#read -n1 -resp "  " "x"; if [ -z "$x" ]; then read -rep "Command:$re " "x"; fi; 
 
 # case "$lf_cmd" in 
+ftype="$(file -bi $f|cut -f1 -d"/")"; 
 
+#image
+#text
+#audio
+#inode
+#application
+# \e[$((lf_height/4))A
 
-
-printf "\e[$((lf_height/4))A"; 
-read -n1 -rep "
+printf "\n----\n"; 
+printf %b "
   ${dim}[${re}C${dim}]${re}hafa 
   ${dim}[${re}K${dim}]${re}akaview 
   ${dim}[${re}B${dim}]${re}atcat 
   ${dim}[${re}X${dim}]${re}iftool 
   ${dim}[${re}M${dim}]${re}ediainfo 
   ${dim}[${re}J${dim}]${re}p2a 
-  ${dim}[${re}ENTER${dim}]${re}other ...${re}" "x"; 
-  
-if [ $x = c ]; then chafa $f; read -n1 -p '[ok]'; 
-elif [ $x = k ]; then cacaview $f; read; 
-elif [ $x = b ]; then batcat --paging always $f -pl d; read -n1 -p '[ok]'; 
-elif [ $x = m ]; then mediainfo $f; read; 
-elif [ $x = j ]; then jp2a $f --color-depth=8; read; 
-elif [ $x = x ]; then printf "\n\n----\n\n\n\n\n\n\n\n"; read; 
-fi 
+  ${dim}[${re}ENTER${dim}]${re}other ...${re}
+  "; read -n1 -res "x"; 
+###########
+if [ -z "$x" ]; then read -rep "Command:$re " "x"; ${x[*]} $f; 
+elif [ "$x" = c ]; then chafa $f; 
+elif [ "$x" = k ]; then cacaview $f; 
+elif [ "$x" = b ]; then batcat --paging always $f -pl d; 
+elif [ "$x" = m ]; then mediainfo $f; 
+elif [ "$x" = j ]; then jp2a $f --color-depth=8; 
+fi; 
+printf %b "\n[\e[92m ENTER\e[0m ] to return  \n\n\e[A "; read -n1 -resp " " ; 
 }}
 #set drawbox
 # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.
@@ -281,7 +294,7 @@ zip -r $ee.zip $fx
 cmd chmod_p ${{
 printf "\n\n\e[36m$fx\e[0m\n----\nchmod:"; 
 read -rep " " -i "775" "chmod"; 
-sudo chmod $chmod $fx; 
+chmod $chmod $fx||sudo chmod $chmod $fx; 
 lf -remote "send $id unselect *"; 
 lf -remote "send $id reload"; 
 }}
@@ -289,7 +302,7 @@ lf -remote "send $id reload";
 cmd chown_p ${{
 printf "\n\n\e[36m$fx\e[0m\n----\nchmod:"; 
 read -rep " " -i "$LOGNAME" "chown"; 
-sudo chown $chown $fx; 
+chown $chown $fx||sudo chown $chown $fx; 
 lf -remote "send $id unselect *"; 
 lf -remote "send $id reload"; 
 }}

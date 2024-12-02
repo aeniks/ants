@@ -99,8 +99,9 @@ alias deploy='wrangler pages deploy ./ --commit-dirty=true --project-name="${PWD
 ############################
 ######## LF ################
 # LFRC="$ants/sh/config/lf/lfrc"; 
-qe() { type $@; whatis $@; 
-apt show $@ 2>/dev/null|grep -wi "description" -A12; 
+qe() { 
+type $@; whatis $@; 
+apt show $@ 2>/dev/null|grep -wi "description" -A12; type
 } 
 
 alias l='cd $(lf -config ~/.config/lf/lfrc -print-last-dir)'; 
@@ -318,9 +319,8 @@ alias hh='search_history'
 alias searcl='printf "\e[0m\e[A\e[K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; read -re  -i "$PWD" "ss"; kk=($(ls $ss|fzf -m --height ~44% --header " -- $ss --")); printf "\n$dim --$re variable${dim} =${re}kk\n$dim --$re SELECTED$dim --$re   \n\n${kk[*]}\n" '; 
 
 cmdss() { 
-kk=($(cat $ants/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
-alias ff='fastfetch||neofetch||hostname||id -nu'
-
+kk=($(cat $ants/sh/cmds.sh|fzf -m --height ~44% --header '[TAB] - choose  ||  [ENTER] = confirm')); printf "\n$dim --$re variable${dim}${re}kk\n$dim ------$re   \n\n${kk[*]}\n"; }; 
+alias ff='timeout .2 fastfetch & disown||neofetch||hostnamectl||id'
 alias serch='
 info=" -- [TAB]_mark choice(s)     -- [ENTER]_confirm     -- [C-q] quit "
 printf "\e[0m\e[A\e[2K\n\n\n\n\e[4A\e[7m -------- ${re} search folder: "; 
