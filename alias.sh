@@ -405,3 +405,6 @@ if [ -z "/bin/googler" ]; then googler "$gs" 2>/dev/null||[ -e "/bin/$www_cli" ]
 open ${gs[*]}; 
 
 } 
+
+
+alias aantslog='sl "sudo tail -f /home/ants/logs/nginx/access.log"|batcat -ppfld'

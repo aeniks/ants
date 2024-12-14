@@ -8,6 +8,9 @@ C-p: '\ek\nsed -n l;\n'
 C-x: '\ek\nexec bash;\n'
 C-f: '\ek\nserch\n'
 C-h: '\ek\nprintf "\\e[A\\e[7m\\e[0K$HISTFILE\\n"; search_history\n'
+C-z: undo
+^Z: undo
+"\e[z": undo
 "\eq": insert-comment
 "\e3": insert-comment
 "£": insert-insert
@@ -53,7 +56,7 @@ set completion-ignore-case on
 # Treats hyphens (-) and underscores (_) as equivalent when performing case-insensitive filename matching and completion
 set completion-map-case off
 # Common prefixes longer than 5 are replaced with an ellipsis when displaying possible completions
-set completion-prefix-display-length 2
+set completion-prefix-display-length 4
 # Enable returning up to 500 tab-completions without having to be asked
 set completion-query-items 500
 # Don't expand the home dir tilde (~)
@@ -62,7 +65,6 @@ set expand-tilde on
 #set horizontal-scroll-mode on
 # Display the common prefix of the list of possible completions (which may be empty) before cycling through the list
 set menu-complete-display-prefix on
-
 # Attempt to place the cursor position at the same location on each history line retrieved with previous-history or next-history
 set history-preserve-point on
 # Tab-completed directory names have a slash appended
@@ -72,7 +74,7 @@ set mark-symlinked-directories on
 # Do not tab-complete hidden files unless the pattern explicitly begins with a dot
 set match-hidden-files on
 # Turn off the use of the internal pager when returning long tab-completion lists
-set page-completions on
+set page-completions off
 # Display completions with matches sorted horizontally in alphabetical order, rather than down the screen
 set print-completions-horizontally off
 # Only require single tab key press for tab-completion

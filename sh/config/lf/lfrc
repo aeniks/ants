@@ -7,13 +7,20 @@ map i set icons!
 map <c-r> reload
 map <c-q> quit
 cmap <c-d> ""
+cmap p "" 
+map p 
+cmap <c-up> "" 
+map <c-up> half-up
+map <a-up> half-up
+map <a-down> half-down
+map <c-down> half-down
 map <c-d> quit
 map <?> maps
 map <pgdn> half-down
 map <s-down> invert-below
 map <pgup> half-up
-map <a-up> top
-map <a-down> bottom
+# map <a-up> top
+# map <a-down> bottom
 map <s-up> :invert && :invert-below 
 map M set mouse!
 map <c-a> invert glob-select *
@@ -51,8 +58,8 @@ map 122 :mark-remove
 map v paste
 map k cut
 map A :cd /ants
-map pm :chmod_p
-map po :chown_p
+map pm :chmod_p 
+map po :chown_p 
 map <c-p> :reload && :history 
 map 1 !true
 map x $$f
@@ -143,38 +150,53 @@ batcat --paging always -fpl c $f||cacaview $f||exiftool $f; read -r "x";
 }}
 
 cmd dial ${{ 
-unset x cmds_lf; declare cmds_lf a; 
+unset x a c cmds_lf; declare cmds_lf a; declare i c; 
 dim="$(printf "\e[2m")"; re="$(printf "\e[0m")"; 
 #for i in ${cmds_lf[*]}; do printf " $i $i \n"; done
-for i in $(seq $((lf_height/2))); do printf "\n"; done; 
-cmds_lf=("chafa" "kakaview" "batcat -ppf" "jp2a"); 
-
-printf "\e[0m\n"; IFS="$(printf %b "\n")"; ia=2; 
-
-# for i in ${cmds_lf[@]}; do printf "$re [\e[38;5;$((ia++))m$dim${i:0:1}$re]$dim${i:1} \n"; done; 
-# printf "\n\n\e[2A"; 
-#read -n1 -resp "  " "x"; if [ -z "$x" ]; then read -rep "Command:$re " "x"; fi; 
-
-# case "$lf_cmd" in 
+#for i in $(seq $((lf_height/2))); do printf "\n"; done; 
+cmds_lf=(
+'batcat -p ' 
+"ls" 
+"cd" 
+"chafa" 
+"kakaview" 
+"batcat -ppfld" 
+"jp2a" 
+"mediainfo"
+); 
+printf "\e[0m\n"; 
+IFS="$(printf %b "\n")"; 
+c=0; a=2; for i in ${cmds_lf[@]}; do printf " $re $((c++)) [\e[38;5;$((a++))m$dim${i:0:1}$re]$dim${i:1} \n"; done; 
+printf %b "    $re["$dim"ENTER"$re"]custom\n\n\n\n\n\n\e[4A"; 
+read -n1 -srep " " "x"; 
+if [ "$x" != "q" ]; then 
+if [ -z "$x" ]; then read -rep "Command$re: " "x"; 
+printf %b "${x[*]} $f "; read -rep "[OK]? " "ok"; [ -z "$ok" ]&& ${x[*]} $f; fi; 
+##
+unset re dim; 
+printf %b "${cmds_lf[${x}]} $f"; 
+/usr/bin/${cmds_lf[${x}]} $f; 
+read; 
+##  case "$lf_cmd" in 
 ftype="$(file -bi $f|cut -f1 -d"/")"; 
-
 #image
 #text
 #audio
 #inode
 #application
 # \e[$((lf_height/4))A
-
-printf "\n----\n"; 
+dim="$(printf "\e[2m")"; re="$(printf "\e[0m")"; 
+printf "\n  --  $ftype\n"; 
+# case in $ftype 
 printf %b "
-  ${dim}[${re}C${dim}]${re}hafa 
-  ${dim}[${re}K${dim}]${re}akaview 
-  ${dim}[${re}B${dim}]${re}atcat 
-  ${dim}[${re}X${dim}]${re}iftool 
-  ${dim}[${re}M${dim}]${re}ediainfo 
-  ${dim}[${re}J${dim}]${re}p2a 
-  ${dim}[${re}ENTER${dim}]${re}other ...${re}
-  "; read -n1 -res "x"; 
+${dim}[${re}C${dim}]${re}hafa 
+${dim}[${re}K${dim}]${re}akaview 
+${dim}[${re}B${dim}]${re}atcat 
+${dim}[${re}X${dim}]${re}iftool 
+${dim}[${re}M${dim}]${re}ediainfo 
+${dim}[${re}J${dim}]${re}p2a 
+${dim}[${re}ENTER${dim}]${re}other ...${re}\n"; 
+read -n1 -res "x"; 
 ###########
 if [ -z "$x" ]; then read -rep "Command:$re " "x"; ${x[*]} $f; 
 elif [ "$x" = c ]; then chafa $f; 
@@ -183,7 +205,9 @@ elif [ "$x" = b ]; then batcat --paging always $f -pl d;
 elif [ "$x" = m ]; then mediainfo $f; 
 elif [ "$x" = j ]; then jp2a $f --color-depth=8; 
 fi; 
-printf %b "\n[\e[92m ENTER\e[0m ] to return  \n\n\e[A "; read -n1 -resp " " ; 
+printf %b "\n[\e[6;92mENTER\e[0m] to return\e[A"; 
+read -n1 -res; 
+fi; 
 }}
 #set drawbox
 # set '-eu' options for shell commands These options are used to have safer shell commands. Option '-e' is used to exit on error and option '-u' is used to give error for unset variables. Option '-f' disables pathname expansion which can be useful when $f, $fs, and $fx variables contain names with '*' or '?' characters. However, this option is used selectively within individual commands as it can be limiting at times.

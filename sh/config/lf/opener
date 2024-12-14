@@ -137,7 +137,8 @@ cmd openwith ${{
 	)"
 
 	menu_select() {
-		nl -nln | fzf --with-nth 2.. | cut -d' ' -f1
+	test -n "$TMUX"&& mt='-tmux -h'
+		nl -nln | fzf$mt --with-nth 2.. | cut -d' ' -f1
 	}
 
 	# TODO: hacer que se puedan abrir con múltiples a la vez (fzf +m)
@@ -166,6 +167,9 @@ cmd openwith ${{
 		mpv
 		krita
 		inkscape
+		chafa
+		jp2a
+		media-info
 		EOF
 		)
 		case "$app" in
@@ -180,6 +184,8 @@ cmd openwith ${{
 		;;
 		(4) dem krita $fx ;;
 		(5) dem inkscape $fx ;;
+		(6) dem chafa $f ;; 
+		(7) dem jp2a $f ;; 
 		esac
 	;;
 

@@ -8,6 +8,7 @@ esac
 if [ -z "${PREFIX}" ]; then if ! shopt -oq posix; then if [ -f /usr/share/bash-completion/bash_completion ]; 
 then . /usr/share/bash-completion/bash_completion; elif [ -f /etc/bash_completion ]; then . /etc/bash_completion; fi; fi; fi; 
 shopt -s histappend; ## append to history, don't overwrite it
+# set -e; 
 #### # export BROWSER='google-chrome'; # export BROWSER_CLI='links2';  # alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
 export PROMPT_COMMAND="history -a; history -n;" NVM_DIR="$HOME/.nvm"; alias nvm_initzz='[ -s "$NVM_DIR/nvm.sh" ]&& \
 . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ]&& . "$NVM_DIR/bash_completion"'
@@ -61,6 +62,7 @@ alias neighbours='sudo nmap $ip0 -p 22,80,443,53,8022,5555 --open --min-rate 22|
 alias fortshort='seq 12 > $HOME/.ff.sh; while [ "$(cat $HOME/.ff.sh|wc --lines)" -gt "6" ]; do fortune > $HOME/.ff.sh; done; cat $HOME/.ff.sh'; 
 alias vim='nano'; 
 alias ff='timeout 1 fastfetch||timeout 1 neofetch||id'
+alias less="command less --use-color --incsearch --tilde --file-size --raw-control-chars --IGNORE-CASE --quit-on-intr --prompt=' %f  .?n?m(%T %i of %m) ..?lt  %lt-%lb?L / %L. :byte %bB?s/%s. .?e(END) ?x- Next\: %x.:?pB%pB\%..%t  (%S) '"
 ####
 ####
 sshc=($SSH_CONNECTION); 
