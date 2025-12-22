@@ -20,5 +20,5 @@ for i in {1..6}; do printf "\e[H\e[0J\e[1;9${i}m\n\n
                                                                  ░▒▒░  
 \e[0m"; sleep .2; done; read -n1 -srep " $o dl ants git? [Y/n] " "ny"; 
 [ $ny ]||(echo " $o ok"; read -rep " $o whereto? " -i "$PWD" "aa";
-cd $aa; rm ants; git clone https://github.com/aeniks/ants --depth=1; cd ants;)
+cd $aa; rm ants; git clone https://github.com/12ants/zz --depth=1; cd ants;)
 echo;echo -e "\e[1;5m\t>_<" ; echo;echo; . bash.sh 2>/dev/null;
